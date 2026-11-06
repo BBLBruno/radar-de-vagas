@@ -7,7 +7,7 @@ import { JobDetailModal } from './components/JobDetailModal';
 import { CopilotModal } from './components/CopilotModal';
 import { ProfileDrawer } from './components/ProfileDrawer';
 import { CrawlerControlModal } from './components/CrawlerControlModal';
-import { Job, FilterState, CandidateProfile } from './types';
+import { Job, FilterState, CandidateProfile, NicheCategory } from './types';
 import { SEED_JOBS } from './engine/seedJobs';
 import {
   calculateDaysOpen,
@@ -26,10 +26,44 @@ import {
   SearchX,
   ArrowUpDown,
   Bookmark,
-  ShieldCheck,
+  X,
+  SlidersHorizontal,
+  Globe,
+  Wifi,
+  Briefcase,
+  Layers,
+  Database,
+  Clock,
+  MapPin,
+  EyeOff,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
+
+const SHORT_CATEGORY_LABELS: Record<NicheCategory, string> = {
+  bizops_processos: 'BizOps & Processos',
+  inteligencia_mercado: 'Inteligência Comercial',
+  crm_revops_onboarding: 'CRM & Onboarding',
+  dados_bi: 'Dados & BI',
+  automacao_ia: 'Automação & IA',
+};
+
+const SHORT_SENIORITY_LABELS: Record<string, string> = {
+  estagio: 'Estágio / Trainee',
+  junior: 'Júnior',
+  pleno: 'Pleno',
+  senior: 'Sênior',
+  especialista: 'Especialista / Lead',
+};
+
+const SHORT_PLATFORM_LABELS: Record<string, string> = {
+  gupy: 'Gupy',
+  remotive_intl: 'Internacional',
+  greenhouse: 'Greenhouse',
+  inhire: 'InHire',
+  empregostec: 'EmpregosTec',
+  lever: 'Lever',
+};
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved' | 'crawlers'>('radar');
@@ -102,6 +136,18 @@ export const App: React.FC = () => {
     setSavedJobIds(prev =>
       prev.includes(job.id) ? prev.filter(id => id !== job.id) : [...prev, job.id]
     );
+  };
+
+  const toggleStackFilter = (stack: string) => {
+    setFilters(prev => {
+      const exists = prev.selectedStacks.includes(stack);
+      return {
+        ...prev,
+        selectedStacks: exists
+          ? prev.selectedStacks.filter(s => s !== stack)
+          : [...prev.selectedStacks, stack],
+      };
+    });
   };
 
   const jobsWithMatch = useMemo(() => {
@@ -184,14 +230,15 @@ export const App: React.FC = () => {
           return false;
         }
 
+        // Filtro por Habilidades & Ferramentas (OR / Qualquer uma das habilidades selecionadas)
         if (filters.selectedStacks.length > 0) {
-          const hasAllStacks = filters.selectedStacks.every(
+          const hasAnySelectedStack = filters.selectedStacks.some(
             s =>
               job.stacks.some(js => js.toLowerCase() === s.toLowerCase()) ||
               job.title.toLowerCase().includes(s.toLowerCase()) ||
               job.description.toLowerCase().includes(s.toLowerCase())
           );
-          if (!hasAllStacks) return false;
+          if (!hasAnySelectedStack) return false;
         }
 
         return true;
@@ -232,7 +279,7 @@ export const App: React.FC = () => {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {activeTab === 'radar' && (
-          <div className="space-y-5">
+          <div className="space-y-4">
             <StatsBar totalJobs={jobs.length} filteredJobs={filteredJobs} />
 
             <FilterBar
@@ -241,27 +288,144 @@ export const App: React.FC = () => {
               popularStacks={POPULAR_FILTER_STACKS}
             />
 
-            {/* Sub-header: Count and Sort (Sem exibir % de compatibilidade) */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-              <div className="text-sm font-semibold text-slate-300 flex flex-wrap items-center gap-2">
-                <span>
+            {/* Sub-header: Contagem + Tags Resumidas de Filtros Ativos + Ordenação */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
+              <div className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-slate-300">
+                <span className="mr-1">
                   Exibindo <strong className="text-emerald-400">{filteredJobs.length}</strong> de{' '}
                   <strong>{jobs.length}</strong> vagas
                 </span>
+
+                {/* Tags Resumidas Dinâmicas dos Filtros Ativos */}
                 {filters.hideExecutiveSenior && (
-                  <span className="text-xs px-2.5 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    Foco Entrada / Jr / Pleno
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, hideExecutiveSenior: false }))}
+                    title="Clique para remover filtro"
+                    className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
+                  >
+                    <SlidersHorizontal className="w-3 h-3" />
+                    <span>Jr / Pleno</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
                 )}
+
+                {filters.scopeFilter !== 'todas' && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'todas' }))}
+                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
+                  >
+                    <Globe className="w-3 h-3" />
+                    <span>{filters.scopeFilter === 'nacional' ? 'Brasil' : 'Internacional'}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.workplaceType !== 'todos' && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, workplaceType: 'todos' }))}
+                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
+                  >
+                    <Wifi className="w-3 h-3" />
+                    <span className="capitalize">{filters.workplaceType}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.seniority !== 'todos' && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, seniority: 'todos' }))}
+                    className="text-[11px] px-2 py-0.5 bg-sky-500/15 text-sky-300 border border-sky-500/30 rounded-md flex items-center gap-1 hover:bg-sky-500/25 transition-all"
+                  >
+                    <Briefcase className="w-3 h-3" />
+                    <span>{SHORT_SENIORITY_LABELS[filters.seniority]}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.selectedNicheCategory !== 'todas' && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, selectedNicheCategory: 'todas' }))}
+                    className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
+                  >
+                    <Layers className="w-3 h-3" />
+                    <span>{SHORT_CATEGORY_LABELS[filters.selectedNicheCategory]}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.platform !== 'todas' && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, platform: 'todas' }))}
+                    className="text-[11px] px-2 py-0.5 bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 rounded-md flex items-center gap-1 hover:bg-indigo-500/25 transition-all"
+                  >
+                    <Database className="w-3 h-3" />
+                    <span>{SHORT_PLATFORM_LABELS[filters.platform] || filters.platform}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.maxDays < 45 && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, maxDays: 45 }))}
+                    className="text-[11px] px-2 py-0.5 bg-slate-800 text-slate-300 border border-slate-700 rounded-md flex items-center gap-1 hover:bg-slate-700 transition-all"
+                  >
+                    <Clock className="w-3 h-3 text-cyan-400" />
+                    <span>Até {filters.maxDays}d</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.onlyMuzambinhoRadiusOrRemote && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: false }))}
+                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
+                  >
+                    <MapPin className="w-3 h-3" />
+                    <span>Raio 150km / Remoto</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.hideAffirmative && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: false }))}
+                    className="text-[11px] px-2 py-0.5 bg-slate-800/80 text-slate-400 border border-slate-700/70 rounded-md flex items-center gap-1 hover:text-slate-200 transition-all"
+                  >
+                    <EyeOff className="w-3 h-3" />
+                    <span>Sem Afirmativas</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.selectedStacks.map(stack => (
+                  <button
+                    key={stack}
+                    type="button"
+                    onClick={() => toggleStackFilter(stack)}
+                    className="text-[11px] px-2 py-0.5 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-md flex items-center gap-1 hover:bg-amber-500/25 transition-all"
+                  >
+                    <span>{stack}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                ))}
               </div>
 
-              <div className="flex items-center gap-2 self-end sm:self-auto">
+              <div className="flex items-center gap-2 self-end lg:self-auto shrink-0">
                 <span className="text-xs text-slate-400 flex items-center gap-1">
                   <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
                   Ordenar por:
                 </span>
                 <button
+                  type="button"
                   onClick={() => setSortBy('recent')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     sortBy === 'recent'
@@ -272,6 +436,7 @@ export const App: React.FC = () => {
                   Mais Recentes
                 </button>
                 <button
+                  type="button"
                   onClick={() => setSortBy('match')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${
                     sortBy === 'match'
@@ -285,14 +450,16 @@ export const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Job Cards Grid */}
+            {/* Job Cards Grid (items-start para que expandir o resumo de 1 card não estique os outros!) */}
             {filteredJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
                 {filteredJobs.map(job => (
                   <JobCard
                     key={job.id}
                     job={job}
                     isSaved={savedJobIds.includes(job.id)}
+                    selectedStacks={filters.selectedStacks}
+                    onToggleStack={toggleStackFilter}
                     onToggleSave={toggleSaveJob}
                     onOpenDetails={setDetailJob}
                     onOpenCopilot={setCopilotJob}
@@ -313,6 +480,7 @@ export const App: React.FC = () => {
                   </p>
                 </div>
                 <button
+                  type="button"
                   onClick={() =>
                     setFilters({
                       searchQuery: '',
@@ -351,12 +519,14 @@ export const App: React.FC = () => {
             </div>
 
             {savedJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                 {savedJobs.map(job => (
                   <JobCard
                     key={job.id}
                     job={job}
                     isSaved={true}
+                    selectedStacks={filters.selectedStacks}
+                    onToggleStack={toggleStackFilter}
                     onToggleSave={toggleSaveJob}
                     onOpenDetails={setDetailJob}
                     onOpenCopilot={setCopilotJob}

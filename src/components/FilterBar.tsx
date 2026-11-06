@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Search,
   X,
-  Filter,
   Sparkles,
   MapPin,
   EyeOff,
@@ -11,7 +10,6 @@ import {
   Layers,
   Globe,
   Building2,
-  ShieldCheck,
   Briefcase,
   ChevronDown,
   ChevronUp,
@@ -24,6 +22,7 @@ import {
   Cpu,
   Workflow,
   RotateCcw,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -33,7 +32,6 @@ interface FilterBarProps {
   popularStacks: string[];
 }
 
-// Ícone SVG da Bandeira do Brasil (substituindo emoji)
 export const BrazilFlagIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} rounded-[2px] shrink-0`}>
     <rect width="24" height="16" rx="2" fill="#009B3A" />
@@ -44,11 +42,20 @@ export const BrazilFlagIcon: React.FC<{ className?: string }> = ({ className = '
 );
 
 const DAY_OPTIONS = [
-  { value: 3, label: '3d' },
-  { value: 7, label: '7d' },
-  { value: 14, label: '14d' },
-  { value: 30, label: '30d' },
+  { value: 3, label: '3 dias' },
+  { value: 7, label: '7 dias' },
+  { value: 14, label: '14 dias' },
+  { value: 30, label: '30 dias' },
   { value: 45, label: 'Todas' },
+];
+
+const PLATFORM_OPTIONS: Array<{ value: 'todas' | ATSPlatform; label: string }> = [
+  { value: 'todas', label: 'Todas as Fontes' },
+  { value: 'gupy', label: 'Gupy' },
+  { value: 'remotive_intl', label: 'Internacional' },
+  { value: 'greenhouse', label: 'Greenhouse' },
+  { value: 'inhire', label: 'InHire' },
+  { value: 'lever', label: 'Lever' },
 ];
 
 const CATEGORY_OPTIONS: Array<{
@@ -88,9 +95,8 @@ const SENIORITY_OPTIONS: Array<{
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks }) => {
-  // Estados de recolhimento (fechados por padrão como solicitado)
-  const [isAreaExpanded, setIsAreaExpanded] = useState(false);
-  const [isSkillsExpanded, setIsSkillsExpanded] = useState(false);
+  // Estado único compartilhado: quando Área ou Habilidades expande, os dois expandem juntos!
+  const [areDrawersExpanded, setAreDrawersExpanded] = useState(false);
 
   const toggleStack = (stack: string) => {
     setFilters(prev => {
@@ -104,10 +110,38 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
+  const handleSelectSeniority = (level: 'todos' | SeniorityLevel) => {
+    setFilters(prev => {
+      // Se o usuário clicou especificamente em Sênior ou Especialista, desativa a trava que oculta Sênior/Executivo
+      const shouldDisableExecLock = level === 'senior' || level === 'especialista';
+      return {
+        ...prev,
+        seniority: level,
+        hideExecutiveSenior: shouldDisableExecLock ? false : prev.hideExecutiveSenior,
+      };
+    });
+  };
+
+  const handleToggleExecLock = () => {
+    setFilters(prev => {
+      const nextLock = !prev.hideExecutiveSenior;
+      // Se ativou a trava anti-sênior mas o filtro de senioridade estava em Sênior/Especialista, volta senioridade para 'todos'
+      const nextSeniority =
+        nextLock && (prev.seniority === 'senior' || prev.seniority === 'especialista')
+          ? 'todos'
+          : prev.seniority;
+      return {
+        ...prev,
+        hideExecutiveSenior: nextLock,
+        seniority: nextSeniority,
+      };
+    });
+  };
+
   const resetFilters = () => {
     setFilters({
       searchQuery: '',
-      maxDays: 30,
+      maxDays: 45,
       workplaceType: 'todos',
       scopeFilter: 'todas',
       seniority: 'todos',
@@ -139,6 +173,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           />
           {filters.searchQuery && (
             <button
+              type="button"
               onClick={() => setFilters(prev => ({ ...prev, searchQuery: '' }))}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
             >
@@ -147,9 +182,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           )}
         </div>
 
-        {/* Seletor de Local com Ícones (Bandeira do Brasil SVG e Globo Lucide) */}
+        {/* Seletor de Local com Ícones (Bandeira do Brasil SVG e Globo) */}
         <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/70 p-1 rounded-xl border border-slate-800">
           <button
+            type="button"
             onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'todas' }))}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
               filters.scopeFilter === 'todas'
@@ -162,6 +198,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </button>
 
           <button
+            type="button"
             onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'nacional' }))}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
               filters.scopeFilter === 'nacional'
@@ -174,6 +211,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </button>
 
           <button
+            type="button"
             onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'internacional' }))}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
               filters.scopeFilter === 'internacional'
@@ -187,6 +225,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
 
         <button
+          type="button"
           onClick={resetFilters}
           className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition-all flex items-center justify-center gap-1.5 shrink-0"
         >
@@ -210,6 +249,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               return (
                 <button
                   key={opt.value}
+                  type="button"
                   onClick={() => setFilters(prev => ({ ...prev, workplaceType: opt.value }))}
                   className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
                     isSelected
@@ -237,7 +277,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               return (
                 <button
                   key={opt.value}
-                  onClick={() => setFilters(prev => ({ ...prev, seniority: opt.value }))}
+                  type="button"
+                  onClick={() => handleSelectSeniority(opt.value)}
                   className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
                     isSelected
                       ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold shadow-sm'
@@ -252,111 +293,131 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
       </div>
 
-      {/* Linha 3: Toggles Principais + Plataforma e Data com Menos Destaque */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800/60">
-        {/* Toggles de Triagem */}
-        <div className="flex flex-wrap items-center gap-2">
+      {/* Linha 3: Destaque Principal para FONTE e TEMPO DA VAGA + Menor Destaque (Discreto/Responsivo) para os 3 Toggles */}
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pt-3 border-t border-slate-800/60">
+        {/* Esquerda (MAIOR DESTAQUE): Fonte da Vaga & Tempo de Publicação */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 flex-wrap">
+          {/* Seletor de Fonte em Destaque */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+            <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1 px-2">
+              <Database className="w-3.5 h-3.5" />
+              Fonte:
+            </span>
+            {PLATFORM_OPTIONS.map(opt => {
+              const active = filters.platform === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setFilters(prev => ({ ...prev, platform: opt.value }))}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    active
+                      ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Seletor de Tempo da Vaga em Destaque */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+            <span className="text-xs font-semibold text-cyan-400 flex items-center gap-1 px-2">
+              <Clock className="w-3.5 h-3.5" />
+              Publicação:
+            </span>
+            {DAY_OPTIONS.map(opt => {
+              const active = filters.maxDays === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setFilters(prev => ({ ...prev, maxDays: opt.value }))}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    active
+                      ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Direita (MENOR DESTAQUE, Discreto e Responsivo): Os 3 Toggles Auxiliares */}
+        <div className="flex flex-wrap items-center gap-1.5 xl:justify-end">
           <button
-            onClick={() => setFilters(prev => ({ ...prev, hideExecutiveSenior: !prev.hideExecutiveSenior }))}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+            type="button"
+            onClick={handleToggleExecLock}
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
               filters.hideExecutiveSenior
-                ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/40'
-                : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200'
+                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
+                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
             }`}
-            title="Remove cargos executivos e seniores (Staff, Director, Head, Senior, Especialista, Gerente)"
+            title="Oculta cargos Sênior, Staff, Head, Director, Gerente, Supervisor e Especialista"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Ocultar Cargos Sênior / Executivos</span>
+            <SlidersHorizontal className="w-3 h-3 text-slate-400 shrink-0" />
+            <span>Ocultar Sênior/Exec</span>
             {filters.hideExecutiveSenior ? (
-              <CheckSquare className="w-3.5 h-3.5 text-cyan-400" />
+              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
             ) : (
-              <Square className="w-3.5 h-3.5" />
+              <Square className="w-3 h-3 text-slate-600 shrink-0" />
             )}
           </button>
 
           <button
+            type="button"
             onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
               filters.hideAffirmative
-                ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
-                : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200'
+                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
+                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
             }`}
+            title="Oculta vagas exclusivas para ações afirmativas"
           >
-            <EyeOff className="w-3.5 h-3.5 text-rose-400" />
-            <span>Ocultar Afirmativas</span>
+            <EyeOff className="w-3 h-3 text-slate-400 shrink-0" />
+            <span>Sem Afirmativas</span>
             {filters.hideAffirmative ? (
-              <CheckSquare className="w-3.5 h-3.5 text-rose-400" />
+              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
             ) : (
-              <Square className="w-3.5 h-3.5" />
+              <Square className="w-3 h-3 text-slate-600 shrink-0" />
             )}
           </button>
 
           <button
+            type="button"
             onClick={() =>
               setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: !prev.onlyMuzambinhoRadiusOrRemote }))
             }
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
               filters.onlyMuzambinhoRadiusOrRemote
-                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200'
+                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
+                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
             }`}
+            title="Exibe apenas vagas 100% Remotas ou presenciais/híbridas em até 150km de Muzambinho-MG"
           >
-            <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Apenas Remoto ou Raio 150km (Muzambinho)</span>
+            <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+            <span>Raio 150km / Remoto</span>
             {filters.onlyMuzambinhoRadiusOrRemote ? (
-              <CheckSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
             ) : (
-              <Square className="w-3.5 h-3.5" />
+              <Square className="w-3 h-3 text-slate-600 shrink-0" />
             )}
           </button>
         </div>
-
-        {/* Controles Secundários Discretos: Fonte Direta & Data de Publicação */}
-        <div className="flex flex-wrap items-center gap-2 ml-auto">
-          <div className="flex items-center gap-1.5 bg-slate-950/50 border border-slate-800/80 rounded-lg px-2.5 py-1">
-            <Database className="w-3 h-3 text-slate-500" />
-            <span className="text-[11px] text-slate-500">Fonte:</span>
-            <select
-              value={filters.platform}
-              onChange={(e) => setFilters(prev => ({ ...prev, platform: e.target.value as 'todas' | ATSPlatform }))}
-              className="bg-transparent text-[11px] font-medium text-slate-300 focus:outline-none cursor-pointer"
-            >
-              <option value="todas" className="bg-slate-900">Todas</option>
-              <option value="gupy" className="bg-slate-900">Gupy</option>
-              <option value="remotive_intl" className="bg-slate-900">Internacional</option>
-              <option value="greenhouse" className="bg-slate-900">Greenhouse</option>
-              <option value="inhire" className="bg-slate-900">InHire</option>
-              <option value="empregostec" className="bg-slate-900">EmpregosTec</option>
-              <option value="lever" className="bg-slate-900">Lever</option>
-            </select>
-          </div>
-
-          <div className="flex items-center gap-1 bg-slate-950/50 border border-slate-800/80 rounded-lg px-2 py-1">
-            <Clock className="w-3 h-3 text-slate-500 mr-0.5" />
-            {DAY_OPTIONS.map(opt => (
-              <button
-                key={opt.value}
-                onClick={() => setFilters(prev => ({ ...prev, maxDays: opt.value }))}
-                className={`px-1.5 py-0.5 rounded text-[11px] font-medium transition-all ${
-                  filters.maxDays === opt.value
-                    ? 'bg-slate-700 text-white font-semibold'
-                    : 'text-slate-500 hover:text-slate-300'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
-      {/* Linha 4: Seções Recolhidas (Área de Atuação & Filtro Rápido por Habilidades/Ferramentas) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/60">
-        {/* Botão Recolhido 1: Área de Atuação */}
-        <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden">
+      {/* Linha 4: Seções Recolhidas Sincronizadas (Quando uma expande, a outra expande junto!) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/60 items-stretch">
+        {/* Coluna 1: Filtro por Área */}
+        <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden flex flex-col">
           <button
             type="button"
-            onClick={() => setIsAreaExpanded(prev => !prev)}
+            onClick={() => setAreDrawersExpanded(prev => !prev)}
             className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
           >
             <div className="flex items-center gap-2 truncate">
@@ -366,21 +427,22 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                 {selectedAreaLabel}
               </span>
             </div>
-            {isAreaExpanded ? (
+            {areDrawersExpanded ? (
               <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
             ) : (
               <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
             )}
           </button>
 
-          {isAreaExpanded && (
-            <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap gap-1.5 bg-slate-950/80">
+          {areDrawersExpanded && (
+            <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap content-start gap-1.5 bg-slate-950/80 flex-1">
               {CATEGORY_OPTIONS.map(opt => {
                 const Icon = opt.icon;
                 const active = filters.selectedNicheCategory === opt.value;
                 return (
                   <button
                     key={opt.value}
+                    type="button"
                     onClick={() => setFilters(prev => ({ ...prev, selectedNicheCategory: opt.value }))}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
                       active
@@ -388,7 +450,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                         : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border border-slate-700/50'
                     }`}
                   >
-                    <Icon className="w-3.5 h-3.5" />
+                    <Icon className="w-3.5 h-3.5 shrink-0" />
                     <span>{opt.label}</span>
                   </button>
                 );
@@ -397,11 +459,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           )}
         </div>
 
-        {/* Botão Recolhido 2: Filtro Rápido por Habilidades & Ferramentas */}
-        <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden">
+        {/* Coluna 2: Filtro Rápido por Habilidades & Ferramentas */}
+        <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden flex flex-col">
           <button
             type="button"
-            onClick={() => setIsSkillsExpanded(prev => !prev)}
+            onClick={() => setAreDrawersExpanded(prev => !prev)}
             className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
           >
             <div className="flex items-center gap-2 truncate">
@@ -409,24 +471,25 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               <span>Filtro Rápido por Habilidades & Ferramentas</span>
               {filters.selectedStacks.length > 0 && (
                 <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px]">
-                  {filters.selectedStacks.length} selecionada(s)
+                  {filters.selectedStacks.length} ativa(s)
                 </span>
               )}
             </div>
-            {isSkillsExpanded ? (
+            {areDrawersExpanded ? (
               <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
             ) : (
               <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
             )}
           </button>
 
-          {isSkillsExpanded && (
-            <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap gap-1.5 bg-slate-950/80">
+          {areDrawersExpanded && (
+            <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap content-start gap-1.5 bg-slate-950/80 flex-1">
               {popularStacks.map(stack => {
                 const isSelected = filters.selectedStacks.includes(stack);
                 return (
                   <button
                     key={stack}
+                    type="button"
                     onClick={() => toggleStack(stack)}
                     className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
                       isSelected

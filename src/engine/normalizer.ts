@@ -116,7 +116,7 @@ export function isBlacklistedTitle(title: string): boolean {
  * Lista negra de senioridade executiva/alta no título (usada quando o filtro de ocultar executivos/sênior está ativo)
  */
 export function isExecutiveOrSeniorTitle(title: string): boolean {
-  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|vp|chief|architect|arquiteto|iii)\b/i.test(
+  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|supervisor|supervisora|vp|chief|architect|arquiteto|iii)\b/i.test(
     title
   );
 }

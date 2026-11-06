@@ -20,6 +20,12 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import crypto from 'node:crypto';
+
+function makeUniqueId(prefix, url, title, company) {
+  const hash = crypto.createHash('md5').update(`${url}_${title}_${company}`).digest('hex').slice(0, 12);
+  return `${prefix}_${hash}`;
+}
 
 // Termos de busca no Brasil (incluindo explicitamente os termos Júnior solicitados)
 const GUPY_SEARCH_TERMS = [
@@ -432,7 +438,7 @@ async function scrapeEmpregosTec() {
         .replace(/\s+na empresa\s+.+$/i, '')
         .trim();
 
-      const cleanDesc = stripHtml(descCdata || contentEncoded);
+      const cleanDesc = stripHtml(contentEncoded || descCdata);
       if (isBlacklistedTitle(title) || !isRelevantCareerJob(title, cleanDesc)) continue;
 
       const pubDate = pubDateStr ? new Date(pubDateStr) : new Date();
@@ -461,7 +467,7 @@ async function scrapeEmpregosTec() {
       const affirmative = detectAffirmative(title, cleanDesc);
 
       jobs.push({
-        id: `et_${Buffer.from(canonicalUrl).toString('base64').replace(/[^a-zA-Z0-9]/g, '').slice(-24)}`,
+        id: makeUniqueId('et', canonicalUrl, title, company),
         title,
         company,
         platform,
