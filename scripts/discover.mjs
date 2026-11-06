@@ -1,15 +1,11 @@
 /**
  * Dynamic ATS Discovery & Scraping Engine (AI Ops, RevOps, Automação & Produto)
  * 
- * Não depende de empresas fixas:
- * 1. Faz varredura por palavras-chave na busca pública de ATSs (Gupy Portal Search)
- * 2. Descobre dinamicamente dezenas de empresas contratando no Brasil
- * 3. Faz varredura multi-empresa nos endpoints públicos de Greenhouse e Lever
- * 4. Aplica filtros estritos:
- *    - Apenas AI Ops, RevOps, N8N, Automação, CRM, Product Owner, Analista de Requisitos/Produto
- *    - Descarte de desenvolvedores puros (backend/frontend puros)
- *    - Apenas Remoto ou Híbrido (<= 150km de Muzambinho e <= 2 dias)
- *    - Detecção e etiquetagem de vagas afirmativas
+ * Regras estritas:
+ * 1. ZERO links falsos/mockados: TODAS as vagas passam por checagem HTTP HEAD antes de serem salvas.
+ * 2. 100% Brasil (descarte estrito de Argentina, México, Portugal, etc.)
+ * 3. 100% Nicho (AI Ops, RevOps, Automação N8N, CRM, Produto)
+ * 4. Remoto OU Híbrido (<= 150km de Muzambinho e <= 2 dias presenciais)
  * 
  * Uso: node scripts/discover.mjs
  */
@@ -17,46 +13,26 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-// Palavras-chave do nicho
-const SEARCH_KEYWORDS = [
-  'n8n',
-  'revops',
-  'sales ops',
-  'ai ops',
-  'aiops',
-  'automação de processos',
-  'automacao de processos',
-  'crm',
-  'product owner',
-  'analista de produto',
-  'analista de requisitos',
-  'hubspot',
-  'salesforce',
-  'make.com',
-  'rpa'
-];
-
-// Empresas em escala no Brasil com boards no Greenhouse e Lever
-const EXPANDED_SCALEUP_SLUGS = {
+// Scale-ups no Brasil com boards públicos em Greenhouse e Lever
+const MONITORED_SCALEUPS = {
   greenhouse: [
     { slug: 'quintoandar', name: 'QuintoAndar' },
     { slug: 'vtex', name: 'VTEX' },
     { slug: 'gympass', name: 'Wellhub (Gympass)' },
-    { slug: 'loft', name: 'Loft' },
-    { slug: 'nuvemshop', name: 'Nuvemshop' },
-    { slug: 'pipefy', name: 'Pipefy' },
-    { slug: 'hotmart', name: 'Hotmart' },
     { slug: 'rdstation', name: 'RD Station' },
+    { slug: 'pipefy', name: 'Pipefy' },
+    { slug: 'nuvemshop', name: 'Nuvemshop' },
+    { slug: 'hotmart', name: 'Hotmart' },
+    { slug: 'creditas', name: 'Creditas' },
     { slug: 'takeblip', name: 'Take Blip' },
     { slug: 'contaazul', name: 'Conta Azul' },
-    { slug: 'dock', name: 'Dock' },
-    { slug: 'creditas', name: 'Creditas' },
+    { slug: 'dock', name: 'Dock' }
   ],
   lever: [
     { slug: 'neon', name: 'Banco Neon' },
+    { slug: 'dasa', name: 'Dasa Tech' },
     { slug: 'olist', name: 'Olist' },
     { slug: 'buser', name: 'Buser' },
-    { slug: 'dasa', name: 'Dasa Tech' },
     { slug: 'zup', name: 'Zup Innovation' }
   ]
 };
@@ -87,6 +63,26 @@ function calculateDaysOpen(isoDate) {
   return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 }
 
+function isStrictBrazil(title, location) {
+  const combined = `${title} ${location}`.toLowerCase();
+  
+  // Exclusões expressas de outros países
+  const foreignExclusions = [
+    'argentina', 'buenos aires', 'chile', 'santiago', 'colombia', 'bogota', 
+    'mexico', 'cdmx', 'peru', 'lima', 'uruguay', 'montevideo', 'portugal', 
+    'lisboa', 'porto', 'spain', 'madrid', 'barcelona', 'united states', 'usa', 
+    'germany', 'berlin', 'uk', 'london', 'poland', 'italy'
+  ];
+
+  for (const f of foreignExclusions) {
+    if (combined.includes(f) && !combined.includes('brasil') && !combined.includes('brazil')) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function detectAffirmative(title, desc = '') {
   const combined = `${title} ${desc}`.toLowerCase();
   const patterns = [
@@ -108,7 +104,7 @@ function isNicheRole(title, desc = '') {
   const combined = `${title} ${desc}`.toLowerCase();
   const titleLower = title.toLowerCase();
 
-  // 1. Descarte explícito de desenvolvedores puros (backend/frontend tradicional)
+  // Descarte explícito de desenvolvedores tradicionais puros
   const isPureDev = 
     (titleLower.includes('desenvolvedor backend') || 
      titleLower.includes('backend developer') ||
@@ -133,7 +129,7 @@ function isNicheRole(title, desc = '') {
     return false;
   }
 
-  // 2. Termos do nicho (AI Ops, RevOps, Automação, CRM, Produto)
+  // Palavras-chave do nicho
   const requiredTerms = [
     'n8n', 'make.com', 'zapier', 'ai ops', 'aiops', 'revops', 'revenue operations',
     'sales ops', 'sales operations', 'marketing ops', 'crm', 'hubspot', 'salesforce',
@@ -154,13 +150,9 @@ function detectWorkplace(title, location) {
 }
 
 function validateLocationAndRadius(workplace, location, title, desc) {
-  // Presencial é descartado
-  if (workplace === 'presencial') return { valid: false, reason: 'Presencial' };
-  
-  // Remoto é sempre aceito
+  if (workplace === 'presencial') return { valid: false, reason: 'Presencial descartado' };
   if (workplace === 'remoto') return { valid: true, distance: 0, days: 0 };
 
-  // Híbrido: máximo 2 dias presenciais e <= 150km de Muzambinho
   if (workplace === 'hibrido') {
     const text = `${title} ${desc}`.toLowerCase();
     const days = text.includes('3x') || text.includes('3 dias') ? 3 : 
@@ -205,72 +197,22 @@ function detectSeniority(text) {
 }
 
 /**
- * 1. Descoberta Dinâmica via Gupy Portal Search API
+ * Validação HTTP HEAD: Garante que a URL responde 200 OK
  */
-async function discoverGupyJobs(keyword) {
-  const discovered = [];
+async function verifyUrlLive(url) {
   try {
-    const url = `https://portal.gupy.io/api/v1/jobs?jobName=${encodeURIComponent(keyword)}&limit=30`;
-    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-    if (!res.ok) return [];
-
-    const json = await res.json();
-    const rawJobs = Array.isArray(json) ? json : (json.data || []);
-
-    for (const raw of rawJobs) {
-      const title = raw.name || '';
-      const desc = raw.description || '';
-
-      // Filtro de nicho
-      if (!isNicheRole(title, desc)) continue;
-
-      const workplace = raw.isRemoteWork ? 'remoto' : detectWorkplace(title, `${raw.city || ''} ${raw.state || ''}`);
-      const locStr = raw.isRemoteWork ? 'Remoto - Brasil' : `${raw.city ? raw.city + ', ' : ''}${raw.state || 'Brasil'}`;
-      
-      const geoCheck = validateLocationAndRadius(workplace, locStr, title, desc);
-      if (!geoCheck.valid) continue;
-
-      const affirmative = detectAffirmative(title, desc);
-      const stacks = extractStacks(`${title} ${desc}`);
-      const daysOpen = calculateDaysOpen(raw.publishedDate);
-
-      const canonicalUrl = raw.jobUrl || 
-        (raw.careerPageUrl ? `${raw.careerPageUrl}/job/${raw.id}` : `https://portal.gupy.io/job/${raw.id}`);
-
-      discovered.push({
-        id: `gupy_disc_${raw.id}`,
-        title,
-        company: raw.careerPageName || 'Empresa (Descoberta via Gupy)',
-        companyLogo: raw.careerPageLogo,
-        platform: 'gupy',
-        canonicalUrl,
-        publishedAt: raw.publishedDate,
-        daysOpen,
-        workplaceType: workplace,
-        location: locStr,
-        city: raw.city,
-        state: raw.state,
-        seniority: detectSeniority(title),
-        stacks: stacks.length > 0 ? stacks : ['Automação', 'Processos', 'CRM'],
-        description: desc.slice(0, 450) || `Oportunidade na ${raw.careerPageName} no nicho de ${keyword.toUpperCase()}.`,
-        requirements: stacks.map(s => `Conhecimento prático em ${s}`),
-        isActive: true,
-        isAffirmative: affirmative.isAffirmative,
-        affirmativeReason: affirmative.reason,
-        distanceFromMuzambinhoKm: geoCheck.distance,
-        hybridDaysPerWeek: geoCheck.days,
-      });
-    }
-  } catch (err) {
-    // Silencia erros de timeout em palavras pontuais
+    const res = await fetch(url, { 
+      method: 'HEAD', 
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      redirect: 'follow'
+    });
+    return res.ok;
+  } catch {
+    return false;
   }
-  return discovered;
 }
 
-/**
- * 2. Descoberta Multi-Empresa em Greenhouse
- */
-async function scrapeGreenhouseCompany(company) {
+async function scrapeGreenhouse(company) {
   try {
     const res = await fetch(`https://boards-api.greenhouse.io/v1/boards/${company.slug}/jobs?content=true`);
     if (!res.ok) return [];
@@ -282,6 +224,7 @@ async function scrapeGreenhouseCompany(company) {
       const content = raw.content || '';
       const loc = raw.location?.name || '';
 
+      if (!isStrictBrazil(title, loc)) continue;
       if (!isNicheRole(title, content)) continue;
 
       const workplace = detectWorkplace(title, loc);
@@ -291,20 +234,21 @@ async function scrapeGreenhouseCompany(company) {
       const affirmative = detectAffirmative(title, content);
       const stacks = extractStacks(`${title} ${content}`);
       const daysOpen = calculateDaysOpen(raw.updated_at);
+      const canonicalUrl = raw.absolute_url;
 
       jobs.push({
-        id: `gh_disc_${company.slug}_${raw.id}`,
+        id: `gh_${company.slug}_${raw.id}`,
         title,
         company: company.name,
         platform: 'greenhouse',
-        canonicalUrl: raw.absolute_url,
+        canonicalUrl,
         publishedAt: raw.updated_at,
         daysOpen,
         workplaceType: workplace,
         location: loc || 'Remoto - Brasil',
         seniority: detectSeniority(title),
-        stacks: stacks.length > 0 ? stacks : ['RevOps', 'AI Ops', 'Produto'],
-        description: `Oportunidade na ${company.name} focada em ${title}. Inscrição direta via Greenhouse.`,
+        stacks: stacks.length > 0 ? stacks : ['RevOps', 'AI Ops', 'CRM'],
+        description: `Oportunidade na ${company.name} para ${title}. Inscrição direta via Greenhouse.`,
         requirements: stacks.map(s => `Experiência com ${s}`),
         isActive: true,
         isAffirmative: affirmative.isAffirmative,
@@ -314,15 +258,12 @@ async function scrapeGreenhouseCompany(company) {
       });
     }
     return jobs;
-  } catch (err) {
+  } catch {
     return [];
   }
 }
 
-/**
- * 3. Descoberta Multi-Empresa em Lever
- */
-async function scrapeLeverCompany(company) {
+async function scrapeLever(company) {
   try {
     const res = await fetch(`https://api.lever.co/v0/postings/${company.slug}?mode=json`);
     if (!res.ok) return [];
@@ -334,6 +275,7 @@ async function scrapeLeverCompany(company) {
       const desc = raw.descriptionPlain || '';
       const loc = raw.categories?.location || '';
 
+      if (!isStrictBrazil(title, loc)) continue;
       if (!isNicheRole(title, desc)) continue;
 
       const workplace = detectWorkplace(title, loc);
@@ -344,13 +286,14 @@ async function scrapeLeverCompany(company) {
       const pubIso = new Date(raw.createdAt).toISOString();
       const daysOpen = calculateDaysOpen(pubIso);
       const stacks = extractStacks(`${title} ${desc}`);
+      const canonicalUrl = raw.hostedUrl;
 
       jobs.push({
-        id: `lever_disc_${company.slug}_${raw.id}`,
+        id: `lever_${company.slug}_${raw.id}`,
         title,
         company: company.name,
         platform: 'lever',
-        canonicalUrl: raw.hostedUrl,
+        canonicalUrl,
         publishedAt: pubIso,
         daysOpen,
         workplaceType: workplace,
@@ -367,70 +310,67 @@ async function scrapeLeverCompany(company) {
       });
     }
     return jobs;
-  } catch (err) {
+  } catch {
     return [];
   }
 }
 
 async function main() {
   console.log('================================================================');
-  console.log('📡 RADAR VAGAS - DISCOVERY ENGINE ATIVADA');
+  console.log('📡 RADAR VAGAS - DISCOVERY ENGINE & VALIDADOR DE LINKS VIVOS');
   console.log('🎯 Nicho: AI Ops, RevOps, Automação (N8N) & Produto');
-  console.log('📍 Filtro Geográfico: 100% Remoto OU Híbrido (<= 150km de Muzambinho - MG, max 2d)');
-  console.log('🚫 Descarte: Desenvolvedores puros (backend/frontend tradicional)');
+  console.log('📍 Filtro: 100% Brasil | Remoto OU Híbrido (<= 150km Muzambinho, max 2d)');
+  console.log('✅ Validação: 100% dos links testados com resposta HTTP 200 OK');
   console.log('================================================================\n');
 
-  const allDiscovered = [];
+  const candidates = [];
 
-  // 1. Busca dinâmica no Gupy por palavras-chave
-  console.log('🔎 [1/3] Varrendo busca dinâmica pública de ATSs (Gupy Portal)...');
-  for (const kw of SEARCH_KEYWORDS) {
-    const results = await discoverGupyJobs(kw);
-    if (results.length > 0) {
-      console.log(`   ↳ Palavra-chave "${kw}": ${results.length} vagas de nicho encontradas`);
-      allDiscovered.push(...results);
+  for (const c of MONITORED_SCALEUPS.greenhouse) {
+    const list = await scrapeGreenhouse(c);
+    if (list.length > 0) {
+      console.log(`[Greenhouse] ${c.name}: ${list.length} vagas de nicho encontradas`);
+      candidates.push(...list);
     }
   }
 
-  // 2. Varredura Greenhouse em scale-ups
-  console.log('\n🔎 [2/3] Varrendo scale-ups com Greenhouse...');
-  for (const comp of EXPANDED_SCALEUP_SLUGS.greenhouse) {
-    const jobs = await scrapeGreenhouseCompany(comp);
-    if (jobs.length > 0) {
-      console.log(`   ↳ ${comp.name}: ${jobs.length} vagas no nicho retidas`);
-      allDiscovered.push(...jobs);
+  for (const c of MONITORED_SCALEUPS.lever) {
+    const list = await scrapeLever(c);
+    if (list.length > 0) {
+      console.log(`[Lever] ${c.name}: ${list.length} vagas de nicho encontradas`);
+      candidates.push(...list);
     }
   }
 
-  // 3. Varredura Lever em scale-ups
-  console.log('\n🔎 [3/3] Varrendo scale-ups com Lever...');
-  for (const comp of EXPANDED_SCALEUP_SLUGS.lever) {
-    const jobs = await scrapeLeverCompany(comp);
-    if (jobs.length > 0) {
-      console.log(`   ↳ ${comp.name}: ${jobs.length} vagas no nicho retidas`);
-      allDiscovered.push(...jobs);
-    }
-  }
-
-  // Deduplicação por URL Canônica e Título
+  // Deduplicação
   const uniqueMap = new Map();
-  for (const j of allDiscovered) {
-    const key = j.canonicalUrl || `${j.company}_${j.title}`;
-    if (!uniqueMap.has(key)) {
-      uniqueMap.set(key, j);
+  for (const j of candidates) {
+    if (!uniqueMap.has(j.canonicalUrl)) {
+      uniqueMap.set(j.canonicalUrl, j);
     }
   }
-  const finalized = Array.from(uniqueMap.values());
+  const uniqueJobs = Array.from(uniqueMap.values());
+
+  console.log(`\n🔍 Verificando integridade das URLs HTTP (${uniqueJobs.length} vagas)...`);
+  const verifiedJobs = [];
+
+  for (const j of uniqueJobs) {
+    const isLive = await verifyUrlLive(j.canonicalUrl);
+    if (isLive) {
+      verifiedJobs.push(j);
+    } else {
+      console.warn(`⚠️ [Link Descartado - 404/Inativo]: ${j.canonicalUrl}`);
+    }
+  }
 
   const outDir = path.resolve('src/data');
   await fs.mkdir(outDir, { recursive: true });
-  await fs.writeFile(path.join(outDir, 'liveJobs.json'), JSON.stringify(finalized, null, 2), 'utf-8');
+  await fs.writeFile(path.join(outDir, 'liveJobs.json'), JSON.stringify(verifiedJobs, null, 2), 'utf-8');
 
   console.log('\n================================================================');
-  console.log(`✅ DISCOBERTA CONCLUÍDA COM SUCESSO!`);
-  console.log(`Total de vagas retidas estritamente no seu nicho: ${finalized.length}`);
-  console.log(`Vagas afirmativas identificadas: ${finalized.filter(j => j.isAffirmative).length}`);
-  console.log(`Vagas 100% remotas: ${finalized.filter(j => j.workplaceType === 'remoto').length}`);
+  console.log(`🎉 CONCLUÍDO COM SUCESSO!`);
+  console.log(`Total de vagas com LINKS 100% VÁLIDOS (HTTP 200): ${verifiedJobs.length}`);
+  console.log(`Vagas 100% remotas: ${verifiedJobs.filter(j => j.workplaceType === 'remoto').length}`);
+  console.log(`Vagas afirmativas: ${verifiedJobs.filter(j => j.isAffirmative).length}`);
   console.log(`Salvo em: src/data/liveJobs.json`);
   console.log('================================================================\n');
 }
