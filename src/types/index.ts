@@ -1,33 +1,23 @@
-export type ATSPlatform = 
-  | 'gupy' 
-  | 'inhire' 
-  | 'greenhouse' 
-  | 'lever' 
-  | 'solides' 
+export type ATSPlatform =
+  | 'gupy'
+  | 'inhire'
   | 'empregostec'
+  | 'greenhouse'
+  | 'lever'
+  | 'solides'
   | 'github_vagas'
   | 'remotive_intl';
 
 export type WorkplaceType = 'remoto' | 'hibrido' | 'presencial';
 
-export type SeniorityLevel = 
-  | 'estagio' 
-  | 'junior' 
-  | 'pleno' 
-  | 'senior' 
-  | 'especialista'
-  | 'todos';
+export type SeniorityLevel = 'estagio' | 'junior' | 'pleno' | 'senior' | 'especialista';
 
-export type NicheCategory = 
-  | 'implantacao'
-  | 'suporte'
+export type NicheCategory =
+  | 'bizops_processos'
+  | 'inteligencia_mercado'
+  | 'crm_revops_onboarding'
   | 'dados_bi'
-  | 'crm_revops'
-  | 'automacao_ia'
-  | 'produto'
-  | 'desenvolvimento'
-  | 'qa_infra'
-  | 'geral';
+  | 'automacao_ia';
 
 export interface Job {
   id: string;
@@ -35,9 +25,9 @@ export interface Job {
   company: string;
   companyLogo?: string;
   platform: ATSPlatform;
-  canonicalUrl: string; // Link direto para a página de inscrição oficial
-  publishedAt: string; // ISO date UTC
-  daysOpen: number; // Dias em aberto (calculado contra data atual)
+  canonicalUrl: string;
+  publishedAt: string; // ISO UTC date
+  daysOpen: number;
   workplaceType: WorkplaceType;
   location: string;
   city?: string;
@@ -47,20 +37,17 @@ export interface Job {
   salary?: string;
   description: string;
   requirements: string[];
-  benefits?: string[];
   isActive: boolean;
-  rawPayloadId?: string;
-  fitScore?: number; // 0 - 100 calculado dinamicamente com o perfil
+  isAffirmative?: boolean;
+  affirmativeReason?: string;
+  distanceFromMuzambinhoKm?: number;
+  hybridDaysPerWeek?: number;
+  isWithinAllowedRadius?: boolean;
+  nicheCategories?: NicheCategory[];
+  isInternational?: boolean;
+  fitScore?: number;
   matchedKeywords?: string[];
   missingKeywords?: string[];
-  
-  nicheCategories?: NicheCategory[];
-  isAffirmative: boolean; // Vagas afirmativas (PCD, gênero, raça/etnia, 50+)
-  affirmativeReason?: string;
-  hybridDaysPerWeek?: number;
-  distanceFromMuzambinhoKm?: number;
-  isWithinAllowedRadius?: boolean;
-  isInternational?: boolean; // Vagas internacionais (100% remotas)
 }
 
 export interface CandidateProfile {
@@ -77,17 +64,15 @@ export interface CandidateProfile {
   seniority: SeniorityLevel;
   primaryStacks: string[];
   yearsOfExperience: number;
-  preferredWorkplace: 'remoto' | 'hibrido' | 'presencial' | 'todos';
+  preferredWorkplace: WorkplaceType | 'qualquer';
   salaryExpectationClt: string;
   salaryExpectationPj: string;
-  
   background: {
     education: string;
     entrepreneurship: string;
     keyMetricCase: string;
     nicheFocus: string[];
   };
-
   preferences: {
     hideAffirmativeJobs: boolean;
     maxHybridDistanceKm: number;
@@ -95,11 +80,10 @@ export interface CandidateProfile {
     referenceCity: string;
     referenceState: string;
   };
-
   screeningAnswers: {
     availability: string;
     englishLevel: string;
-    pcd: 'nao' | 'sim';
+    pcd: 'sim' | 'nao';
     willingToRelocate: boolean;
     leadershipExperience: string;
     customBio: string;
@@ -108,26 +92,15 @@ export interface CandidateProfile {
 
 export interface FilterState {
   searchQuery: string;
-  maxDays: number; // 1, 3, 7, 14, 30
+  maxDays: number;
   workplaceType: 'todos' | WorkplaceType;
-  scopeFilter: 'todos' | 'nacional' | 'internacional';
-  seniority: SeniorityLevel;
-  hideExecutiveSenior: boolean; // Trava opcional contra cargos executivos/sênior (Staff, Head, Director, Sr, Especialista, Manager)
+  scopeFilter: 'todas' | 'nacional' | 'internacional';
+  seniority: 'todos' | SeniorityLevel;
+  hideExecutiveSenior: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   stateFilter: string;
   hideAffirmative: boolean;
   onlyMuzambinhoRadiusOrRemote: boolean;
   selectedNicheCategory: 'todas' | NicheCategory;
-}
-
-export interface GlobalAggregatorStats {
-  id: string;
-  name: string;
-  description: string;
-  platformKey: ATSPlatform | 'all';
-  scope: 'Brasil (Todas as Empresas)' | 'Internacional (100% Remoto)';
-  workplacesSupported: string[];
-  jobsCount: number;
-  status: 'online' | 'syncing';
 }

@@ -47,67 +47,136 @@ const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'porto alegre': 950,
 };
 
+// Chips de Habilidades de Negócios, Operações, Inteligência, Dados, CRM e Automação (Sem TI/Dev/Suporte)
 export const POPULAR_FILTER_STACKS = [
-  'Implantação', 'Suporte N2', 'SQL', 'Power BI', 'CRM', 'HubSpot',
-  'Sales Ops', 'RevOps', 'N8N', 'APIs / Webhooks', 'IA / LLMs',
-  'BPMN / Processos', 'Excel / Sheets', 'Jira', 'Python', 'React',
-  'Node.js', 'TypeScript', 'Java', 'C# / .NET', 'PHP', 'QA / Testes', 'AWS', 'Docker'
+  'Inteligência de Mercado',
+  'Inteligência Comercial',
+  'Operações / BizOps',
+  'Processos / BPMN',
+  'Onboarding / CS',
+  'Análise de Dados',
+  'Indicadores / KPIs',
+  'CRM',
+  'HubSpot',
+  'Salesforce',
+  'Sales Ops',
+  'RevOps',
+  'Power BI',
+  'SQL',
+  'N8N',
+  'Automação / IA',
+  'Excel / Sheets',
 ];
 
 export const BRAZIL_STATES = [
-  'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 
-  'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 
-  'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+  'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
+  'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
+  'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ];
 
 /**
- * Lista negra de senioridade executiva/alta no título (usada quando o filtro "Foco Entrada/Júnior/Pleno" está ativo)
+ * BLACKLIST ESTRITA DE TÍTULOS:
+ * Descarta qualquer vaga cujo título contenha Suporte Técnico, Técnico de Suporte, Tecnico Suporte,
+ * Help Desk, Service Desk, Suporte N1, Suporte N2, Infraestrutura, Desenvolvedor, Developer,
+ * Front-end, Back-end, Fullstack, DevOps.
  */
-export function isExecutiveOrSeniorTitle(title: string): boolean {
-  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|vp|chief|architect|arquiteto|iii)\b/i.test(title);
+export function isBlacklistedTitle(title: string): boolean {
+  if (!title) return true;
+  const normalized = title
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const blacklistPatterns = [
+    /\bsuporte\s+tecnico\b/i,
+    /\btecnico\s+(de\s+)?suporte\b/i,
+    /\banalista\s+de\s+suporte\b/i,
+    /\bhelp\s*desk\b/i,
+    /\bservice\s*desk\b/i,
+    /\bsuporte\s+n[123]\b/i,
+    /\binfraestrutura\b/i,
+    /\bdesenvolvedor(a)?\b/i,
+    /\bdeveloper\b/i,
+    /\bfront[\s-]*end\b/i,
+    /\bback[\s-]*end\b/i,
+    /\bfull[\s-]*stack\b/i,
+    /\bdevops\b/i,
+    /\bsoftware\s+engineer\b/i,
+    /\bengenheiro(a)?\s+de\s+software\b/i,
+    /\bsre\b/i,
+    /\bqa\s+engineer\b/i,
+    /\banalista\s+de\s+testes\b/i,
+    /\bprogramador(a)?\b/i,
+  ];
+
+  return blacklistPatterns.some(regex => regex.test(normalized) || regex.test(title));
 }
 
 /**
- * Classifica a vaga nas áreas de atuação do mercado
+ * Lista negra de senioridade executiva/alta no título (usada quando o filtro de ocultar executivos/sênior está ativo)
+ */
+export function isExecutiveOrSeniorTitle(title: string): boolean {
+  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|vp|chief|architect|arquiteto|iii)\b/i.test(
+    title
+  );
+}
+
+/**
+ * Classifica a vaga nas 5 áreas de atuação de Negócios, Operações, Inteligência, CRM/Onboarding, Dados/BI e Automação
  */
 export function classifyJobCategories(title: string, description: string = ''): NicheCategory[] {
-  const t = title.toLowerCase();
   const combined = `${title} ${description}`.toLowerCase();
   const categories: NicheCategory[] = [];
 
-  if (/\b(implanta[çc][ãa]o|onboarding|implementation|ativac[ãa]o|customer success|setup)\b/i.test(combined)) {
-    categories.push('implantacao');
+  if (
+    /\b(opera[çc][õo]es|operations|bizops|business\s+operations|processos|process|bpm|bpmn|melhoria\s+cont[íi]nua|analista\s+de\s+neg[óo]cios|business\s+analyst|requisitos|product\s+operations|produto|product\s+owner|planejamento)\b/i.test(
+      combined
+    )
+  ) {
+    categories.push('bizops_processos');
   }
-  if (/\b(suporte|support|service desk|help desk|n1|n2|n3|sustenta[çc][ãa]o|atendimento t[ée]cnico)\b/i.test(combined)) {
-    categories.push('suporte');
+  if (
+    /\b(intelig[êe]ncia\s+de\s+mercado|market\s+intelligence|intelig[êe]ncia\s+comercial|sales\s+intelligence|competitive\s+intelligence|go-to-market|gtm|pesquisa\s+de\s+mercado|pricing|planejamento\s+comercial|estrategia\s+comercial)\b/i.test(
+      combined
+    )
+  ) {
+    categories.push('inteligencia_mercado');
   }
-  if (/\b(dados|data|bi\b|business intelligence|power bi|looker|metabase|analytics|sql|etl)\b/i.test(combined)) {
+  if (
+    /\b(crm|revops|revenue\s+operations|sales\s+ops|sales\s+operations|opera[çc][õo]es\s+comerciais|hubspot|salesforce|pipedrive|rd\s+station|implanta[çc][ãa]o|onboarding|implementation|customer\s+success|sucesso\s+do\s+cliente|cs\s+ops|ativac[ãa]o)\b/i.test(
+      combined
+    )
+  ) {
+    categories.push('crm_revops_onboarding');
+  }
+  if (
+    /\b(dados|data|bi\b|business\s+intelligence|power\s+bi|looker|metabase|tableau|analytics|sql|etl|indicadores|kpis?|dashboard)\b/i.test(
+      combined
+    )
+  ) {
     categories.push('dados_bi');
   }
-  if (/\b(revops|revenue operations|sales ops|sales operations|crm|hubspot|salesforce|pipedrive|rd station|opera[çc][õo]es comerciais)\b/i.test(combined)) {
-    categories.push('crm_revops');
-  }
-  if (/\b(n8n|zapier|make\.com|automa[çc][ãa]o|automation|rpa|ai ops|aiops|agentes de ia|ai agents|processos|bpm|bpmn|prompt)\b/i.test(combined)) {
+  if (
+    /\b(n8n|zapier|make\.com|integromat|automa[çc][ãa]o|automation|rpa|ai\s+ops|aiops|agentes\s+de\s+ia|ai\s+agents|llm|openai|prompt|webhooks)\b/i.test(
+      combined
+    )
+  ) {
     categories.push('automacao_ia');
   }
-  if (/\b(product owner|\bpo\b|product manager|\bpm\b|analista de produto|analista de requisitos|analista de neg[óo]cios|business analyst|discovery)\b/i.test(combined)) {
-    categories.push('produto');
-  }
-  if (/\b(desenvolvedor|developer|software engineer|engenheiro de software|frontend|front-end|backend|back-end|full stack|fullstack|mobile|react|node|java|python|php|dotnet|\.net|golang)\b/i.test(t)) {
-    categories.push('desenvolvimento');
-  }
-  if (/\b(qa|quality assurance|testes|tester|devops|sre|cloud|infraestrutura|seguran[çc]a|cybersecurity|redes)\b/i.test(t)) {
-    categories.push('qa_infra');
-  }
 
-  if (categories.length === 0) categories.push('geral');
+  if (categories.length === 0) {
+    categories.push('bizops_processos');
+  }
   return categories;
 }
 
 /**
  * Identifica se a vaga é afirmativa (PCD, gênero, raça/etnia, 50+, etc.)
  */
-export function detectAffirmative(title: string, description: string = ''): { isAffirmative: boolean; reason?: string } {
+export function detectAffirmative(
+  title: string,
+  description: string = ''
+): { isAffirmative: boolean; reason?: string } {
   const combined = `${title} ${description}`.toLowerCase();
 
   const patterns = [
@@ -116,7 +185,7 @@ export function detectAffirmative(title: string, description: string = ''): { is
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(negr[ao]s?|pret[ao]s?|pard[ao]s?)\b/i, reason: 'Afirmativa Pessoas Negras/Pretas' },
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(lgbt|lgbtqia\+|trans|transg[êe]nero)\b/i, reason: 'Afirmativa LGBTQIA+' },
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(50\+|60\+|s[êe]nioridade et[áa]ria)\b/i, reason: 'Afirmativa 50+' },
-    { regex: /\bvaga\s+afirmativa\b|\bprograma\s+afirmativo\b|\bbanco\s+afirmativo\b/i, reason: 'Programa Afirmativo' }
+    { regex: /\bvaga\s+afirmativa\b|\bprograma\s+afirmativo\b|\bbanco\s+afirmativo\b/i, reason: 'Programa Afirmativo' },
   ];
 
   for (const p of patterns) {
@@ -130,7 +199,10 @@ export function detectAffirmative(title: string, description: string = ''): { is
 
 export function calculateDistanceToMuzambinho(location: string): number | null {
   if (!location) return null;
-  const locLower = location.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const locLower = location
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
 
   for (const [cityKey, distance] of Object.entries(DISTANCES_TO_MUZAMBINHO)) {
     const cleanKey = cityKey.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -159,7 +231,10 @@ export function detectSeniority(title: string, description: string = ''): Senior
   const text = `${title} ${description}`.toLowerCase();
 
   if (isExecutiveOrSeniorTitle(title)) {
-    if (/\b(sênior|senior|sr\.?|iii)\b/i.test(t) && !/\b(staff|principal|director|diretor|head|lead|líder|especialista|manager|gerente|coordenador)\b/i.test(t)) {
+    if (
+      /\b(sênior|senior|sr\.?|iii)\b/i.test(t) &&
+      !/\b(staff|principal|director|diretor|head|lead|líder|especialista|manager|gerente|coordenador)\b/i.test(t)
+    ) {
       return 'senior';
     }
     return 'especialista';
@@ -176,7 +251,8 @@ export function detectSeniority(title: string, description: string = ''): Senior
 export function detectWorkplaceType(title: string, location: string = '', workplaceRaw: string = ''): WorkplaceType {
   const combined = `${title} ${location} ${workplaceRaw}`.toLowerCase();
   if (combined.includes('híbrido') || combined.includes('hibrido') || combined.includes('hybrid')) return 'hibrido';
-  if (combined.includes('remoto') || combined.includes('remote') || combined.includes('home office') || combined.includes('teletrabalho')) return 'remoto';
+  if (combined.includes('remoto') || combined.includes('remote') || combined.includes('home office') || combined.includes('teletrabalho'))
+    return 'remoto';
   if (combined.includes('presencial') || combined.includes('on-site') || combined.includes('onsite')) return 'presencial';
   return 'remoto';
 }

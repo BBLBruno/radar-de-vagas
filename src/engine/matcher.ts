@@ -13,19 +13,18 @@ export interface MatchResult {
 export function calculateJobMatch(job: Job, profile: CandidateProfile | null): MatchResult {
   if (!profile) {
     return {
-      score: 50,
+      score: 60,
       matchedKeywords: [],
       missingKeywords: job.stacks,
       seniorityMatch: false,
       workplaceMatch: false,
-      isNicheFit: false,
+      isNicheFit: true,
     };
   }
 
-  let totalScore = 25; // Base score para qualquer vaga real
+  let totalScore = 35; // Base score para vagas já filtradas do nicho de Negócios/Operações/Dados
   const userStacksLower = profile.primaryStacks.map(s => s.toLowerCase());
 
-  // 1. Stack & Keyword Match (Até 40 pontos)
   const matchedKeywords: string[] = [];
   const missingKeywords: string[] = [];
 
@@ -39,55 +38,57 @@ export function calculateJobMatch(job: Job, profile: CandidateProfile | null): M
 
   if (job.stacks.length > 0) {
     const stackRatio = matchedKeywords.length / job.stacks.length;
-    totalScore += Math.min(40, Math.round(stackRatio * 40) + matchedKeywords.length * 6);
+    totalScore += Math.min(35, Math.round(stackRatio * 30) + matchedKeywords.length * 6);
   } else {
     totalScore += 15;
   }
 
-  // Bônus por categorias de entrada estratégica e operações (Implantação, Suporte N2, Dados/BI, CRM/RevOps, Automação/IA, Produto)
   const cats = job.nicheCategories || [];
   const isStrategicCategory = cats.some(c =>
-    ['implantacao', 'suporte', 'dados_bi', 'crm_revops', 'automacao_ia', 'produto'].includes(c)
+    [
+      'bizops_processos',
+      'inteligencia_mercado',
+      'crm_revops_onboarding',
+      'dados_bi',
+      'automacao_ia',
+    ].includes(c)
   );
 
   if (isStrategicCategory) {
     totalScore += 12;
   }
 
-  // 2. Senioridade (Até 20 pontos)
   let seniorityMatch = false;
   const isExec = isExecutiveOrSeniorTitle(job.title);
   if (profile.seniority === job.seniority) {
     seniorityMatch = true;
-    totalScore += 18;
+    totalScore += 15;
   } else if (
     (job.seniority === 'junior' || job.seniority === 'pleno' || job.seniority === 'estagio') &&
     !isExec
   ) {
-    totalScore += 14;
-  } else if (isExec && (profile.seniority === 'junior' || profile.seniority === 'pleno' || profile.seniority === 'estagio')) {
+    totalScore += 12;
+  } else if (isExec) {
     totalScore -= 15;
   }
 
-  // 3. Modelo de Trabalho (Até 15 pontos)
   let workplaceMatch = false;
   if (job.workplaceType === 'remoto') {
     workplaceMatch = true;
-    totalScore += 15;
+    totalScore += 10;
   } else if (job.workplaceType === 'hibrido') {
     workplaceMatch = profile.preferredWorkplace !== 'remoto';
-    totalScore += 10;
+    totalScore += 8;
   } else {
     workplaceMatch = profile.preferredWorkplace === 'presencial' || profile.preferredWorkplace === 'qualquer';
-    totalScore += 6;
+    totalScore += 5;
   }
 
-  // 4. Afirmativa
   if (job.isAffirmative && profile.preferences?.hideAffirmativeJobs) {
     totalScore -= 20;
   }
 
-  const finalScore = Math.min(99, Math.max(15, Math.round(totalScore)));
+  const finalScore = Math.min(99, Math.max(20, Math.round(totalScore)));
 
   return {
     score: finalScore,

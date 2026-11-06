@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radar, User, Bookmark, Cpu, ExternalLink } from 'lucide-react';
+import { Radar, User, Bookmark, Cpu } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: 'radar' | 'profile' | 'saved' | 'crawlers';
@@ -9,58 +9,56 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCount }) => {
   return (
-    <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
         {/* Brand */}
-        <div 
-          onClick={() => setActiveTab('radar')} 
+        <div
+          onClick={() => setActiveTab('radar')}
           className="flex items-center gap-3 cursor-pointer group"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 text-emerald-400 group-hover:border-emerald-400 transition-all">
-            <Radar className="w-5 h-5 animate-pulse" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping opacity-75" />
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
+            <Radar className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-emerald-400 bg-clip-text text-transparent">
-                Radar Vagas TI
+              <span className="font-bold text-lg text-white tracking-tight">
+                Radar BizOps & Dados
               </span>
-              <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
+              <span className="px-2 py-0.5 text-[11px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 rounded-md">
                 BR + GLOBAL
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              Agregador de Vagas Diretas (Gupy, InHire, EmpregosTec, GitHub BR & Remoto Global)
+              Operações, Processos, Inteligência Comercial, CRM/RevOps, Onboarding, BI & Automação
             </p>
           </div>
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex items-center gap-1.5 sm:gap-2">
           <button
             onClick={() => setActiveTab('radar')}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'radar'
-                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
-            Radar
+            Vagas
           </button>
 
           <button
             onClick={() => setActiveTab('saved')}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'saved'
-                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
             <Bookmark className="w-4 h-4" />
             <span className="hidden sm:inline">Salvas</span>
             {savedCount > 0 && (
-              <span className="px-1.5 py-0.2 text-xs font-bold bg-emerald-500 text-slate-950 rounded-full">
+              <span className="px-1.5 py-0.2 text-xs font-bold bg-slate-950/20 rounded-full">
                 {savedCount}
               </span>
             )}
@@ -68,29 +66,28 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
 
           <button
             onClick={() => setActiveTab('profile')}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'profile'
-                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
             <User className="w-4 h-4" />
-            <span className="hidden sm:inline">Meu Perfil & Copiloto</span>
+            <span className="hidden sm:inline">Perfil & Copiloto</span>
           </button>
 
           <button
             onClick={() => setActiveTab('crawlers')}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'crawlers'
-                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
             <Cpu className="w-4 h-4" />
-            <span className="hidden sm:inline">Engine / ATSs</span>
+            <span className="hidden sm:inline">Fontes ({savedCount >= 0 ? '7 Globais + BR' : ''})</span>
           </button>
         </nav>
-
       </div>
     </header>
   );

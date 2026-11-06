@@ -13,9 +13,9 @@ import {
   calculateDaysOpen,
   classifyJobCategories,
   isExecutiveOrSeniorTitle,
+  isBlacklistedTitle,
   detectAffirmative,
   calculateDistanceToMuzambinho,
-  POPULAR_FILTER_STACKS,
 } from './engine/normalizer';
 import { calculateJobMatch } from './engine/matcher';
 import { deduplicateJobs } from './engine/deduplicator';
@@ -25,27 +25,24 @@ import {
   SearchX,
   ArrowUpDown,
   Bookmark,
-  ShieldCheck,
 } from 'lucide-react';
 
-const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v3';
+const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
 
 export const App: React.FC = () => {
-  // Navigation
   const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved' | 'crawlers'>('radar');
-
-  // Candidate Profile
   const [profile, setProfile] = useState<CandidateProfile>(() => loadStoredProfile());
 
-  // Jobs State: Carrega todas as vagas reais coletadas (Brasil + Internacional 100% Remoto, todas as empresas e modalidades)
+  // Inicializa as vagas reais aplicando a Blacklist contra Suporte/Dev/Infra
   const [jobs, setJobs] = useState<Job[]>(() => {
-    const enriched = SEED_JOBS.map(j => {
+    const enriched = SEED_JOBS.filter(j => !isBlacklistedTitle(j.title)).map(j => {
       const categories =
         j.nicheCategories && j.nicheCategories.length > 0
           ? j.nicheCategories
           : classifyJobCategories(j.title, j.description);
       const affirmative = detectAffirmative(j.title, j.description);
-      const distKm = j.distanceFromMuzambinhoKm ?? calculateDistanceToMuzambinho(j.location) ?? undefined;
+      const distKm =
+        j.distanceFromMuzambinhoKm ?? calculateDistanceToMuzambinho(j.location) ?? undefined;
 
       return {
         ...j,
@@ -53,7 +50,8 @@ export const App: React.FC = () => {
         isAffirmative: j.isAffirmative ?? affirmative.isAffirmative,
         affirmativeReason: j.affirmativeReason ?? affirmative.reason,
         distanceFromMuzambinhoKm: distKm,
-        isWithinAllowedRadius: j.workplaceType === 'remoto' || (distKm !== undefined && distKm <= 150),
+        isWithinAllowedRadius:
+          j.workplaceType === 'remoto' || (distKm !== undefined && distKm <= 150),
         nicheCategories: categories,
       };
     });
@@ -61,7 +59,6 @@ export const App: React.FC = () => {
     return deduplicateJobs(enriched);
   });
 
-  // Saved Jobs
   const [savedJobIds, setSavedJobIds] = useState<string[]>(() => {
     try {
       const stored = localStorage.getItem(SAVED_STORAGE_KEY);
@@ -71,33 +68,27 @@ export const App: React.FC = () => {
     }
   });
 
-  // Filters State: Aberto para qualquer empresa e modalidade, mas com trava de cargos executivos/sênior ativada por padrão (fácil de alternar)
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
-    maxDays: 30,
+    maxDays: 45,
     workplaceType: 'todos',
     scopeFilter: 'todas',
     seniority: 'todos',
-    hideExecutiveSenior: true, // Oculta Staff, Director, Head, Senior, Especialista no título por padrão para focar em oportunidades reais de entrada/pleno
+    hideExecutiveSenior: true,
     platform: 'todas',
     selectedStacks: [],
     stateFilter: '',
     hideAffirmative: true,
-    onlyMuzambinhoRadiusOrRemote: false, // Permite ver Presencial, Híbrido e Remoto de qualquer lugar por padrão
+    onlyMuzambinhoRadiusOrRemote: false,
     selectedNicheCategory: 'todas',
   });
 
   const [sortBy, setSortBy] = useState<'match' | 'recent'>('recent');
-
-  // Modals
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
-
-  // Sync state
   const [isSyncing, setIsSyncing] = useState(false);
-  const [lastSyncTime, setLastSyncTime] = useState<string | null>(' Sincronizado com sucesso');
+  const [lastSyncTime, setLastSyncTime] = useState<string | null>('Atualizado agora');
 
-  // Persist saved jobs
   useEffect(() => {
     try {
       localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(savedJobIds));
@@ -112,7 +103,6 @@ export const App: React.FC = () => {
     );
   };
 
-  // Enriquecer com Match Score
   const jobsWithMatch = useMemo(() => {
     return jobs.map(job => {
       const match = calculateJobMatch(job, profile);
@@ -125,11 +115,13 @@ export const App: React.FC = () => {
     });
   }, [jobs, profile]);
 
-  // Filtragem Completa
   const filteredJobs = useMemo(() => {
     return jobsWithMatch
       .filter(job => {
-        // 1. Trava de Senioridade Executiva / Sênior (quando ativada)
+        // 0. Blacklist estrita (Garantia dupla contra TI / Dev / Suporte)
+        if (isBlacklistedTitle(job.title)) return false;
+
+        // 1. Trava de Senioridade Executiva / Sênior
         if (filters.hideExecutiveSenior) {
           if (job.seniority === 'senior' || job.seniority === 'especialista') {
             return false;
@@ -173,7 +165,7 @@ export const App: React.FC = () => {
           return false;
         }
 
-        // 7. Busca textual livre (Cargo, Empresa, Descrição, Localidade ou Stack)
+        // 7. Busca textual livre
         if (filters.searchQuery.trim()) {
           const query = filters.searchQuery.toLowerCase();
           const matchesTitle = job.title.toLowerCase().includes(query);
@@ -200,16 +192,6 @@ export const App: React.FC = () => {
         // 10. Plataforma / Fonte
         if (filters.platform !== 'todas' && job.platform !== filters.platform) {
           return false;
-        }
-
-        // 11. Stacks selecionadas
-        if (filters.selectedStacks.length > 0) {
-          const hasAllStacks = filters.selectedStacks.every(s =>
-            job.stacks.some(js => js.toLowerCase() === s.toLowerCase()) ||
-            job.title.toLowerCase().includes(s.toLowerCase()) ||
-            job.description.toLowerCase().includes(s.toLowerCase())
-          );
-          if (!hasAllStacks) return false;
         }
 
         return true;
@@ -242,62 +224,35 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
-      {/* Header */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         savedCount={savedJobIds.length}
       />
 
-      {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* TAB: RADAR DE VAGAS */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {activeTab === 'radar' && (
           <div className="space-y-6">
-            {/* Stats Bar */}
-            <StatsBar
-              totalJobs={jobs.length}
-              filteredJobs={filteredJobs}
-              maxDays={filters.maxDays}
-            />
+            <StatsBar totalJobs={jobs.length} filteredJobs={filteredJobs} />
 
-            {/* Filter Bar */}
-            <FilterBar
-              filters={filters}
-              setFilters={setFilters}
-              popularStacks={POPULAR_FILTER_STACKS}
-            />
+            <FilterBar filters={filters} setFilters={setFilters} />
 
-            {/* Sub-header: Count, Active Badges and Sort */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-              <div className="text-sm font-semibold text-slate-300 flex flex-wrap items-center gap-2">
-                <span>
-                  Exibindo <strong className="text-emerald-400">{filteredJobs.length}</strong> de{' '}
-                  <strong>{jobs.length}</strong> vagas indexadas
-                </span>
-                {filters.hideExecutiveSenior && (
-                  <span className="text-xs px-2.5 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    Foco Entrada / Jr / Pleno (Sem Executivos/Sênior)
-                  </span>
-                )}
-                {filters.hideAffirmative && (
-                  <span className="text-xs px-2 py-0.5 bg-rose-500/10 text-rose-300 border border-rose-500/20 rounded-md">
-                    Afirmativas ocultadas
-                  </span>
-                )}
+            {/* Barra de Ordenação Limpa */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+              <div className="text-sm text-slate-300">
+                Mostrando <strong className="text-white font-bold">{filteredJobs.length}</strong> oportunidades
               </div>
 
-              <div className="flex items-center gap-2 self-end sm:self-auto">
-                <span className="text-xs text-slate-400 flex items-center gap-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-400 flex items-center gap-1 mr-1">
                   <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-                  Ordenar por:
+                  Ordenar:
                 </span>
                 <button
                   onClick={() => setSortBy('recent')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     sortBy === 'recent'
-                      ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                      ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -305,21 +260,21 @@ export const App: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setSortBy('match')}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${
                     sortBy === 'match'
-                      ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30'
+                      ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Sparkles className="w-3 h-3 text-cyan-400" />
-                  Maior Compatibilidade (%)
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                  Maior Match
                 </button>
               </div>
             </div>
 
-            {/* Job Cards Grid */}
+            {/* Grid de Vagas com Espaçamento Confortável */}
             {filteredJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredJobs.map(job => (
                   <JobCard
                     key={job.id}
@@ -332,24 +287,23 @@ export const App: React.FC = () => {
                 ))}
               </div>
             ) : (
-              /* Empty State */
               <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center max-w-lg mx-auto my-8 space-y-4">
                 <div className="w-14 h-14 rounded-2xl bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
                   <SearchX className="w-7 h-7" />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">
-                    Nenhuma vaga encontrada com os filtros atuais
+                    Nenhuma vaga encontrada com os filtros selecionados
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Experimente limpar os filtros ou ampliar o período de busca para visualizar todas as {jobs.length} vagas.
+                  <p className="text-sm text-slate-400 mt-1">
+                    Limpe os filtros ou desative a trava de cargos Sênior/Executivos para ver todas as {jobs.length} vagas.
                   </p>
                 </div>
                 <button
                   onClick={() =>
                     setFilters({
                       searchQuery: '',
-                      maxDays: 90,
+                      maxDays: 45,
                       workplaceType: 'todos',
                       scopeFilter: 'todas',
                       seniority: 'todos',
@@ -362,32 +316,29 @@ export const App: React.FC = () => {
                       selectedNicheCategory: 'todas',
                     })
                   }
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-flex items-center gap-2"
                 >
-                  Mostrar todas as {jobs.length} vagas
+                  Ver todas as {jobs.length} vagas
                 </button>
               </div>
             )}
           </div>
         )}
 
-        {/* TAB: VAGAS SALVAS */}
         {activeTab === 'saved' && (
           <div className="space-y-6 max-w-5xl mx-auto">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <Bookmark className="w-5 h-5 text-emerald-400" />
-                  Vagas Salvas ({savedJobs.length})
-                </h2>
-                <p className="text-xs text-slate-400">
-                  Acompanhe suas oportunidades selecionadas e gere pitches personalizados com o Copiloto.
-                </p>
-              </div>
+            <div>
+              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                <Bookmark className="w-5 h-5 text-emerald-400" />
+                Vagas Salvas ({savedJobs.length})
+              </h2>
+              <p className="text-sm text-slate-400 mt-1">
+                Oportunidades salvas para candidatura rápida com o Copiloto.
+              </p>
             </div>
 
             {savedJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {savedJobs.map(job => (
                   <JobCard
                     key={job.id}
@@ -403,29 +354,18 @@ export const App: React.FC = () => {
               <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center space-y-3">
                 <Bookmark className="w-8 h-8 text-slate-500 mx-auto" />
                 <h3 className="text-base font-bold text-white">Nenhuma vaga salva ainda</h3>
-                <p className="text-xs text-slate-400">
-                  Clique no ícone de marcador nos cards de vagas para salvá-las aqui.
+                <p className="text-sm text-slate-400">
+                  Clique no ícone de marcador nos cards para salvar suas vagas favoritas.
                 </p>
-                <button
-                  onClick={() => setActiveTab('radar')}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-block"
-                >
-                  Explorar Radar de Vagas
-                </button>
               </div>
             )}
           </div>
         )}
 
-        {/* TAB: MEU PERFIL & COPILOTO */}
         {activeTab === 'profile' && (
-          <ProfileDrawer
-            profile={profile}
-            setProfile={setProfile}
-          />
+          <ProfileDrawer profile={profile} setProfile={setProfile} />
         )}
 
-        {/* TAB: ENGINE & FONTES */}
         {activeTab === 'crawlers' && (
           <CrawlerControlModal
             onTriggerSync={handleTriggerSync}
@@ -436,7 +376,6 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Modals */}
       <JobDetailModal
         job={detailJob}
         onClose={() => setDetailJob(null)}
@@ -456,15 +395,9 @@ export const App: React.FC = () => {
         }}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-slate-800 bg-slate-950/80 py-6 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-1">
-          <p>
-            <strong>Radar Vagas TI</strong> • Agregador Multi-Fontes (Gupy, InHire, EmpregosTec, GitHub BR, Greenhouse, Lever & Remoto Internacional)
-          </p>
-          <p>
-            Vagas Presenciais, Híbridas e Remotas com Link Canônico Direto • Sem intermediários
-          </p>
+      <footer className="border-t border-slate-900 bg-slate-950 py-6 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+          <strong>Radar de Vagas</strong> • Operações (BizOps), Processos, Inteligência de Mercado/Comercial, CRM/RevOps, Onboarding, Dados/BI & Automação (N8N)
         </div>
       </footer>
     </div>

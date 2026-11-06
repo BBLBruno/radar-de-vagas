@@ -1,19 +1,13 @@
 import { Job } from '../types';
 import liveJobsData from '../data/liveJobs.json';
+import { isBlacklistedTitle } from './normalizer';
 
-// VAGAS 100% REAIS E VALIDADAS DOS ATSs E PORTAIS GLOBAIS (ZERO MOCK / ZERO LINKS FALSOS)
+// VAGAS 100% REAIS E VALIDADAS (ZERO MOCK / ZERO RUÍDO DE SUPORTE TÉCNICO OU DEV)
 export const SEED_JOBS: Job[] = (liveJobsData as Job[]).filter(j => {
-  if (!j.canonicalUrl) return false;
+  if (!j.canonicalUrl || !j.title) return false;
 
-  const isMockUrl =
-    j.canonicalUrl.includes('fintechhub') ||
-    j.canonicalUrl.includes('saasgrowth') ||
-    j.canonicalUrl.includes('omnichannel') ||
-    j.canonicalUrl.includes('agritechvalley') ||
-    j.canonicalUrl.includes('nextgendigital') ||
-    j.canonicalUrl.includes('logistica.gupy');
-
-  if (isMockUrl) return false;
+  // Bloqueio estrito contra cargos de TI / Suporte Técnico / Desenvolvimento / Infraestrutura
+  if (isBlacklistedTitle(j.title)) return false;
 
   // Vagas internacionais 100% remotas são sempre permitidas
   if (j.isInternational || j.platform === 'remotive_intl') {

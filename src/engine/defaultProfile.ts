@@ -9,14 +9,28 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   portfolioUrl: 'https://radar-concursos-ti.vercel.app',
   city: 'Muzambinho',
   state: 'MG',
-  title: 'Analista de Sistemas, Automação (N8N/IA), Dados & Operações (RevOps/Implantação)',
-  summary: 'Bacharel em Ciência da Computação e ex-cofundador de operação de e-commerce que faturou R$ 2.5M. Experiência prática na otimização de processos, automações via N8N e IA (case real de redução de 60% do SAC), integrações via API/Webhooks, SQL, BI e estruturação de operações de CRM, Suporte Técnico e Implantação.',
+  title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial, Dados & Automação (N8N)',
+  summary:
+    'Bacharel em Ciência da Computação e ex-cofundador de operação de e-commerce que faturou R$ 2.5M. Forte vivência prática em Operações de Negócios (BizOps), mapeamento e otimização de processos, Inteligência de Mercado/Comercial, estruturação de CRM/RevOps, Onboarding, análise de dados (SQL/Power BI/KPIs) e automação de fluxos via N8N e IA (case de redução de 60% na demanda operacional do SAC).',
   seniority: 'pleno',
   primaryStacks: [
-    'SQL', 'Python', 'Power BI', 'N8N', 'Automação', 'IA / AI',
-    'CRM', 'HubSpot', 'Salesforce', 'API REST', 'Implantação',
-    'Onboarding', 'Customer Success', 'Suporte Técnico', 'Scrum / Agile',
-    'JavaScript', 'TypeScript', 'Node.js', 'Git'
+    'Inteligência de Mercado',
+    'Inteligência Comercial',
+    'Operações / BizOps',
+    'Processos / BPMN',
+    'Onboarding / CS',
+    'Análise de Dados',
+    'Indicadores / KPIs',
+    'CRM',
+    'HubSpot',
+    'Salesforce',
+    'Sales Ops',
+    'RevOps',
+    'Power BI',
+    'SQL',
+    'N8N',
+    'Automação / IA',
+    'Excel / Sheets',
   ],
   yearsOfExperience: 3,
   preferredWorkplace: 'qualquer',
@@ -27,12 +41,17 @@ export const DEFAULT_PROFILE: CandidateProfile = {
     entrepreneurship: 'Ex-cofundador de e-commerce de R$ 2.5M',
     keyMetricCase: 'Case comprovado de redução de 60% no volume de SAC via N8N e IA',
     nicheFocus: [
-      'Implantação', 'Onboarding', 'Suporte Técnico', 'Dados & BI', 'SQL',
-      'CRM', 'RevOps', 'Sales Ops', 'N8N', 'Automação', 'Produto', 'Desenvolvimento'
-    ]
+      'Operações / BizOps',
+      'Processos / BPMN',
+      'Inteligência de Mercado',
+      'Inteligência Comercial',
+      'CRM, RevOps & Onboarding',
+      'Dados & BI (SQL / Power BI)',
+      'Automação & IA (N8N)',
+    ],
   },
   preferences: {
-    hideAffirmativeJobs: false,
+    hideAffirmativeJobs: true,
     maxHybridDistanceKm: 150,
     maxHybridDaysPerWeek: 2,
     referenceCity: 'Muzambinho',
@@ -40,15 +59,17 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   },
   screeningAnswers: {
     availability: 'Disponibilidade imediata para atuação remota, híbrida ou presencial.',
-    englishLevel: 'Intermediário/Avançado para leitura técnica, documentação e comunicação.',
+    englishLevel: 'Intermediário/Avançado para leitura técnica, ferramentas globais e comunicação assíncrona.',
     pcd: 'nao',
     willingToRelocate: true,
-    leadershipExperience: 'Experiência como cofundador estruturando atendimento, implantação de ferramentas, análise de dados e automação de processos de ponta a ponta.',
-    customBio: 'Profissional com base sólida em Ciência da Computação e vivência real de negócio, focado em resolver gargalos operacionais com tecnologia, dados, integrações e automação.',
-  }
+    leadershipExperience:
+      'Experiência como cofundador estruturando operações comerciais, indicadores (KPIs), implantação de ferramentas de CRM e automação de processos de ponta a ponta.',
+    customBio:
+      'Profissional com formação analítica em Ciência da Computação e vivência real de dono de negócio, focado em alavancar eficiência operacional, receita e inteligência de dados.',
+  },
 };
 
-const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v3';
+const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v4';
 
 export function loadStoredProfile(): CandidateProfile {
   try {
