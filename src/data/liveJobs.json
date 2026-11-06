@@ -1,6 +1,6 @@
 [
   {
-    "id": "gh_quintoandar_4433716009",
+    "id": "gh_disc_quintoandar_4433716009",
     "title": "Analista de Planejamento e Performance | Sales Operations - Afirmativa PcD",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -11,16 +11,101 @@
     "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
+      "HubSpot",
+      "Salesforce",
+      "CRM",
+      "SQL",
       "Python"
     ],
-    "description": "Vaga de Analista de Planejamento e Performance | Sales Operations - Afirmativa PcD na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Analista de Planejamento e Performance | Sales Operations - Afirmativa PcD. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4321369009",
+    "id": "gh_disc_quintoandar_4330619009",
+    "title": "Banco de Talentos I Telesales Executive - Argentina",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4330619009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Argentina",
+    "seniority": "pleno",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "Oportunidade na QuintoAndar focada em Banco de Talentos I Telesales Executive - Argentina. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_quintoandar_4449573009",
+    "title": "Data Specialist",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4449573009",
+    "publishedAt": "2026-10-27T08:00:37-04:00",
+    "daysOpen": 10,
+    "workplaceType": "remoto",
+    "location": "Argentina",
+    "seniority": "pleno",
+    "stacks": [
+      "SQL",
+      "Python"
+    ],
+    "description": "Oportunidade na QuintoAndar focada em Data Specialist. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com SQL",
+      "Experiência com Python"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_quintoandar_4361108009",
+    "title": "Farmer SMB",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4361108009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Mexico City, Mexico City, Mexico",
+    "seniority": "pleno",
+    "stacks": [
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na QuintoAndar focada em Farmer SMB. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_quintoandar_4321369009",
     "title": "Grupo QuintoAndar | Account Manager Farming B2B - Porto Alegre",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -31,15 +116,23 @@
     "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "HubSpot",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Account Manager Farming B2B - Porto Alegre na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Account Manager Farming B2B - Porto Alegre. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4419756009",
+    "id": "gh_disc_quintoandar_4419756009",
     "title": "Grupo QuintoAndar | Analista Comercial Hunter – Imovelweb | Rio de Janeiro",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -50,53 +143,21 @@
     "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista Comercial Hunter – Imovelweb | Rio de Janeiro na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista Comercial Hunter – Imovelweb | Rio de Janeiro. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4462819009",
-    "title": "Grupo QuintoAndar | Analista Compliance Pleno",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4462819009",
-    "publishedAt": "2026-10-27T18:21:02-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista Compliance Pleno na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4459780009",
-    "title": "Grupo QuintoAndar | Analista Compliance Sênior",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4459780009",
-    "publishedAt": "2026-10-27T18:57:05-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista Compliance Sênior na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4468261009",
+    "id": "gh_disc_quintoandar_4468261009",
     "title": "Grupo QuintoAndar | Analista de Inside Sales 2 Pleno",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -107,15 +168,19 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Inside Sales 2 Pleno na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista de Inside Sales 2 Pleno. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4391355009",
+    "id": "gh_disc_quintoandar_4391355009",
     "title": "Grupo QuintoAndar | Analista de Inside Sales Pleno (Consórcio)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -126,15 +191,23 @@
     "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "HubSpot",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Inside Sales Pleno (Consórcio) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista de Inside Sales Pleno (Consórcio). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4391389009",
+    "id": "gh_disc_quintoandar_4391389009",
     "title": "Grupo QuintoAndar | Analista de Inside Sales Sênior (Consórcio)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -145,15 +218,23 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "HubSpot",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Inside Sales Sênior (Consórcio) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista de Inside Sales Sênior (Consórcio). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4205239009",
+    "id": "gh_disc_quintoandar_4205239009",
     "title": "Grupo QuintoAndar | Analista de Performance Sênior",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -164,36 +245,21 @@
     "location": "Brasil",
     "seniority": "senior",
     "stacks": [
+      "SQL",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Performance Sênior na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista de Performance Sênior. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4450897009",
-    "title": "Grupo QuintoAndar | Analista de Planejamento e Performance 2 - Negócios (Afirmativa PcD)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4450897009",
-    "publishedAt": "2026-11-04T07:24:16-05:00",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Planejamento e Performance 2 - Negócios (Afirmativa PcD) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Python"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4383529009",
+    "id": "gh_disc_quintoandar_4383529009",
     "title": "Grupo QuintoAndar | Analista de Planejamento e Performance - Supply Photos (PcD)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -204,187 +270,24 @@
     "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
+      "Salesforce",
+      "SQL",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Planejamento e Performance - Supply Photos (PcD) na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Analista de Planejamento e Performance - Supply Photos (PcD). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com Salesforce",
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4364168009",
-    "title": "Grupo QuintoAndar | Analista de Reclame Aqui Pleno - Afirmativa PCD",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4364168009",
-    "publishedAt": "2026-10-21T07:35:48-04:00",
-    "daysOpen": 16,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Reclame Aqui Pleno - Afirmativa PCD na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4472985009",
-    "title": "Grupo QuintoAndar | Analista de Segurança Corporativa - Vaga afirmativa para PcD",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4472985009",
-    "publishedAt": "2026-11-06T11:56:05-05:00",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Segurança Corporativa - Vaga afirmativa para PcD na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4415225009",
-    "title": "Grupo QuintoAndar | Analista de Treinamento e Comunidade",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4415225009",
-    "publishedAt": "2026-10-21T07:41:16-04:00",
-    "daysOpen": 16,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista de Treinamento e Comunidade na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4437889009",
-    "title": "Grupo QuintoAndar | Analista Sênior de Operações de Comunicação [Vaga Afirmativa para Pessoas com Deficiência]",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4437889009",
-    "publishedAt": "2026-10-19T12:58:38-04:00",
-    "daysOpen": 18,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "senior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analista Sênior de Operações de Comunicação [Vaga Afirmativa para Pessoas com Deficiência] na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4391178009",
-    "title": "Grupo QuintoAndar | Analyst Corporate Development ",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4391178009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Analyst Corporate Development  na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4047195009",
-    "title": "Grupo QuintoAndar | Banco de Talentos | Analista de Crédito Imobiliário",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4047195009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Banco de Talentos | Analista de Crédito Imobiliário na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4059153009",
-    "title": "Grupo QuintoAndar | Banco de talentos - PCD",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4059153009",
-    "publishedAt": "2026-10-29T10:10:11-04:00",
-    "daysOpen": 8,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Banco de talentos - PCD na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4423527009",
-    "title": "Grupo QuintoAndar| Brand Specialist",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423527009",
-    "publishedAt": "2026-10-15T19:16:10-04:00",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Brand Specialist na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4429078009",
-    "title": "Grupo QuintoAndar | Business Operations Specialist",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4429078009",
-    "publishedAt": "2026-10-16T08:46:53-04:00",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Business Operations Specialist na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4254812009",
+    "id": "gh_disc_quintoandar_4254812009",
     "title": "Grupo QuintoAndar | Business Strategy Specialist (Consórcio)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -395,93 +298,21 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "CRM",
+      "SQL"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Business Strategy Specialist (Consórcio) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4435534009",
-    "title": "Grupo QuintoAndar| Content  & Social Media SR (B2B)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4435534009",
-    "publishedAt": "2026-10-29T16:55:37-04:00",
-    "daysOpen": 7,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Content  & Social Media SR (B2B) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4423064009",
-    "title": "Grupo QuintoAndar | Data Intelligence Specialist (Collections & New Businesses )",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423064009",
-    "publishedAt": "2026-10-16T07:33:06-04:00",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Data Intelligence Specialist (Collections & New Businesses ) na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Business Strategy Specialist (Consórcio). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com CRM",
+      "Experiência com SQL"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4380748009",
-    "title": "Grupo QuintoAndar | Especialista de Controladoria",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4380748009",
-    "publishedAt": "2026-10-29T17:40:09-04:00",
-    "daysOpen": 7,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de Controladoria na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4419565009",
-    "title": "Grupo QuintoAndar| Especialista de Crédito (IFRS 9)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4419565009",
-    "publishedAt": "2026-10-15T19:34:39-04:00",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Especialista de Crédito (IFRS 9) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Python"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4359915009",
+    "id": "gh_disc_quintoandar_4359915009",
     "title": "Grupo QuintoAndar | Especialista de CRM - Marketing Cloud",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -492,35 +323,23 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM",
+      "SQL"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de CRM - Marketing Cloud na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4371945009",
-    "title": "Grupo QuintoAndar | Especialista de Riscos Financeiros",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4371945009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de Riscos Financeiros na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Especialista de CRM - Marketing Cloud. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com SQL"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4371970009",
+    "id": "gh_disc_quintoandar_4371970009",
     "title": "Grupo QuintoAndar | Especialista de Riscos Não Financeiros",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -531,15 +350,19 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "RevOps",
+      "AI Ops",
+      "Produto"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de Riscos Não Financeiros na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Especialista de Riscos Não Financeiros. Inscrição direta via Greenhouse.",
     "requirements": [],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4306506009",
+    "id": "gh_disc_quintoandar_4306506009",
     "title": "Grupo QuintoAndar | Especialista de Tesouraria",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -550,205 +373,19 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "SQL"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de Tesouraria na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Especialista de Tesouraria. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com SQL"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4434126009",
-    "title": "Grupo QuintoAndar | Especialista de Tesouraria",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4434126009",
-    "publishedAt": "2026-10-09T13:09:21-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista de Tesouraria na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4372926009",
-    "title": "Grupo QuintoAndar | Especialista em Backoffice Financeiro | Vaga Afirmativa PCD",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4372926009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista em Backoffice Financeiro | Vaga Afirmativa PCD na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4374532009",
-    "title": "Grupo QuintoAndar | Especialista em Sistemas de Cobrança (CyberFinancial)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4374532009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Especialista em Sistemas de Cobrança (CyberFinancial) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4337564009",
-    "title": "Grupo QuintoAndar | FP&A Specialist — Strategic Modeling & Long-Term Planning",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4337564009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | FP&A Specialist — Strategic Modeling & Long-Term Planning na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4355611009",
-    "title": "Grupo QuintoAndar | Gerente Comercial Farming B2B (City Owner) - Belo Horizonte",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4355611009",
-    "publishedAt": "2026-10-14T18:03:16-04:00",
-    "daysOpen": 22,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Gerente Comercial Farming B2B (City Owner) - Belo Horizonte na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4375416009",
-    "title": "Grupo QuintoAndar| Gerente de Dados & Analytics",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4375416009",
-    "publishedAt": "2026-10-16T09:09:27-04:00",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Gerente de Dados & Analytics na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4358313009",
-    "title": "Grupo QuintoAndar | Gerente de Projetos - For Rent Post Contract",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4358313009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Gerente de Projetos - For Rent Post Contract na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4424349009",
-    "title": "Grupo QuintoAndar| Growth Intelligence Specialist",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4424349009",
-    "publishedAt": "2026-10-19T16:47:42-04:00",
-    "daysOpen": 17,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Growth Intelligence Specialist na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4421451009",
-    "title": "Grupo QuintoAndar| Growth Intelligence Specialist | Market Intelligence",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4421451009",
-    "publishedAt": "2026-10-20T08:06:42-04:00",
-    "daysOpen": 17,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| Growth Intelligence Specialist | Market Intelligence na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4404916009",
-    "title": "Grupo QuintoAndar | Growth Marketing Specialist",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4404916009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Growth Marketing Specialist na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4374595009",
+    "id": "gh_disc_quintoandar_4374595009",
     "title": "Grupo QuintoAndar | Head Data & AI",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -757,38 +394,27 @@
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "pleno",
+    "seniority": "especialista",
     "stacks": [
+      "Make",
+      "LangChain",
+      "AI Agents",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Head Data & AI na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Head Data & AI. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com Make",
+      "Experiência com LangChain",
+      "Experiência com AI Agents",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4438562009",
-    "title": "Grupo QuintoAndar | Head of BizOps",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4438562009",
-    "publishedAt": "2026-10-28T21:50:12-04:00",
-    "daysOpen": 8,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Go"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Head of BizOps na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Go"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4403918009",
+    "id": "gh_disc_quintoandar_4403918009",
     "title": "Grupo QuintoAndar | Head of Controllership",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -797,37 +423,21 @@
     "daysOpen": 22,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "pleno",
+    "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "RPA"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Head of Controllership na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4389210009",
-    "title": "Grupo QuintoAndar | Head of Credit",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4389210009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Head of Credit na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Head of Controllership. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com RPA"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4428956009",
+    "id": "gh_disc_quintoandar_4428956009",
     "title": "Grupo QuintoAndar | Head of Salesforce Engineering",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -836,113 +446,44 @@
     "daysOpen": 18,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "pleno",
+    "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Head of Salesforce Engineering na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4434306009",
-    "title": "Grupo QuintoAndar | HRBP Manager ",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4434306009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | HRBP Manager  na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4452400009",
-    "title": "Grupo QuintoAndar | Information Security Specialist - IAM",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4452400009",
-    "publishedAt": "2026-10-21T10:38:37-04:00",
-    "daysOpen": 16,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Information Security Specialist - IAM na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4412404009",
-    "title": "Grupo QuintoAndar | Pay In New Business Sr Manager",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4412404009",
-    "publishedAt": "2026-10-26T17:11:15-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Pay In New Business Sr Manager na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4328012009",
-    "title": "Grupo QuintoAndar| People Analytics Specialist",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4328012009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Python"
-    ],
-    "description": "Vaga de Grupo QuintoAndar| People Analytics Specialist na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Head of Salesforce Engineering. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com Salesforce"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4322971009",
-    "title": "Grupo QuintoAndar | Pessoa Coordenadora de Operações - Financiamento Imobiliário",
+    "id": "gh_disc_quintoandar_4323027009",
+    "title": "Grupo QuintoAndar | Key Account Manager ",
     "company": "QuintoAndar",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4322971009",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4323027009",
     "publishedAt": "2026-10-08T18:10:57-04:00",
     "daysOpen": 28,
     "workplaceType": "remoto",
-    "location": "Brasil",
+    "location": "Mexico City, Mexico City, Mexico",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Pessoa Coordenadora de Operações - Financiamento Imobiliário na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Key Account Manager . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4449587009",
+    "id": "gh_disc_quintoandar_4449587009",
     "title": "Grupo QuintoAndar | Project Manager - City Growth Roadmap ",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -953,15 +494,19 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "RevOps",
+      "AI Ops",
+      "Produto"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Project Manager - City Growth Roadmap  na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Project Manager - City Growth Roadmap . Inscrição direta via Greenhouse.",
     "requirements": [],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4023482009",
+    "id": "gh_disc_quintoandar_4023482009",
     "title": "Grupo QuintoAndar | Senior Data Scientist",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -972,16 +517,21 @@
     "location": "Brasil",
     "seniority": "senior",
     "stacks": [
+      "AI Agents",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Data Scientist na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Senior Data Scientist. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com AI Agents",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4023483009",
+    "id": "gh_disc_quintoandar_4023483009",
     "title": "Grupo QuintoAndar | Senior Data Scientist (Women Applicants Only)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -992,40 +542,23 @@
     "location": "Brasil",
     "seniority": "senior",
     "stacks": [
+      "Make",
+      "AI Agents",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Data Scientist (Women Applicants Only) na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Senior Data Scientist (Women Applicants Only). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com Make",
+      "Experiência com AI Agents",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4288328009",
-    "title": "Grupo QuintoAndar | Senior Platform Engineer (Women Applicants Only)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4288328009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "senior",
-    "stacks": [
-      "Golang",
-      "AWS",
-      "Kubernetes"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Platform Engineer (Women Applicants Only) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Golang",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4249527009",
+    "id": "gh_disc_quintoandar_4249527009",
     "title": "Grupo QuintoAndar | Senior Site Reliability Engineer - AI Platform",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1036,82 +569,19 @@
     "location": "Brasil",
     "seniority": "senior",
     "stacks": [
-      "Kubernetes"
+      "Zapier"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Site Reliability Engineer - AI Platform na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Senior Site Reliability Engineer - AI Platform. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Kubernetes"
+      "Experiência com Zapier"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4471889009",
-    "title": "Grupo QuintoAndar | Senior Software Engineer",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4471889009",
-    "publishedAt": "2026-10-29T13:32:37-04:00",
-    "daysOpen": 8,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "senior",
-    "stacks": [
-      "React",
-      "Node.js",
-      "Python",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS",
-      "Docker",
-      "Kubernetes",
-      "Kafka"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Software Engineer na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em Node.js",
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS",
-      "Conhecimento em Docker",
-      "Conhecimento em Kubernetes",
-      "Conhecimento em Kafka"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4471377009",
-    "title": "Grupo QuintoAndar | Senior Software Engineer - Endpoint Security",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4471377009",
-    "publishedAt": "2026-11-04T14:26:33-05:00",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "senior",
-    "stacks": [
-      "Python",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Software Engineer - Endpoint Security na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4472023009",
+    "id": "gh_disc_quintoandar_4472023009",
     "title": "Grupo QuintoAndar | Senior Software Engineer - IAM",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1122,112 +592,42 @@
     "location": "Brasil",
     "seniority": "senior",
     "stacks": [
-      "Python",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS",
-      "Kubernetes"
+      "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Senior Software Engineer - IAM na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Senior Software Engineer - IAM. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes"
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4462880009",
-    "title": "Grupo QuintoAndar | S&P Manager Consórcio QuintoAndar",
+    "id": "gh_disc_quintoandar_4129556009",
+    "title": "Grupo Quinto Andar - Staff Data Science",
     "company": "QuintoAndar",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4462880009",
-    "publishedAt": "2026-10-26T17:54:14-04:00",
-    "daysOpen": 10,
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4129556009",
+    "publishedAt": "2026-11-02T10:24:53-05:00",
+    "daysOpen": 4,
     "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
+    "location": "Buenos Aires, Buenos Aires, Argentina",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | S&P Manager Consórcio QuintoAndar na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4415272009",
-    "title": "Grupo QuintoAndar | Sr Performance Analyst (Onboarding High Touch)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4415272009",
-    "publishedAt": "2026-10-19T13:17:03-04:00",
-    "daysOpen": 18,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Sr Performance Analyst (Onboarding High Touch) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4023115009",
-    "title": "Grupo QuintoAndar | Staff Data Engineer",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023115009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "São Paulo, São Paulo, Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "Python",
-      "AWS",
-      "Kubernetes"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Data Engineer na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo Quinto Andar - Staff Data Science. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes"
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4023118009",
-    "title": "Grupo QuintoAndar | Staff Data Engineer (Women Applicants Only)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023118009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "especialista",
-    "stacks": [
-      "Python",
-      "AWS",
-      "Kubernetes"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Data Engineer (Women Applicants Only) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4023516009",
+    "id": "gh_disc_quintoandar_4023516009",
     "title": "Grupo QuintoAndar | Staff Data Scientist",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1236,18 +636,23 @@
     "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
+      "AI Agents",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Data Scientist na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Staff Data Scientist. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com AI Agents",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4023517009",
+    "id": "gh_disc_quintoandar_4023517009",
     "title": "Grupo QuintoAndar | Staff Data Scientist (Women Applicants Only)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1256,38 +661,23 @@
     "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
+      "AI Agents",
       "Python"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Data Scientist (Women Applicants Only) na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Staff Data Scientist (Women Applicants Only). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python"
+      "Experiência com AI Agents",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4422353009",
-    "title": "Grupo QuintoAndar | Staff Product Designer",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4422353009",
-    "publishedAt": "2026-11-04T17:54:41-05:00",
-    "daysOpen": 1,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "especialista",
-    "stacks": [
-      "Go"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Product Designer na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Go"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4426626009",
+    "id": "gh_disc_quintoandar_4426626009",
     "title": "Grupo QuintoAndar | Staff Salesforce Engineer",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1296,103 +686,25 @@
     "daysOpen": 18,
     "workplaceType": "remoto",
     "location": "Brasil",
-    "seniority": "especialista",
-    "stacks": [
-      "Node.js",
-      "JavaScript",
-      "Java",
-      "Kafka"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Salesforce Engineer na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Node.js",
-      "Conhecimento em JavaScript",
-      "Conhecimento em Java",
-      "Conhecimento em Kafka"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4471917009",
-    "title": "Grupo QuintoAndar | Staff Software Engineer",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4471917009",
-    "publishedAt": "2026-10-30T07:29:50-04:00",
-    "daysOpen": 7,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "especialista",
-    "stacks": [
-      "React",
-      "Node.js",
-      "Python",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Software Engineer na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em Node.js",
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4183586009",
-    "title": "Grupo QuintoAndar | Staff Software Engineer (PwD Applicants Only)",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4183586009",
-    "publishedAt": "2026-10-08T18:10:57-04:00",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "especialista",
-    "stacks": [
-      "JavaScript",
-      "Java",
-      "Kotlin",
-      "AWS",
-      "Kubernetes"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Staff Software Engineer (PwD Applicants Only) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em JavaScript",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4400445009",
-    "title": "Grupo QuintoAndar | Supervisor(a) de Operações – Canais Críticos",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4400445009",
-    "publishedAt": "2026-10-28T14:15:06-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "Brasil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM",
+      "Node.js"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Supervisor(a) de Operações – Canais Críticos na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Staff Salesforce Engineer. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com Node.js"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4422722009",
+    "id": "gh_disc_quintoandar_4422722009",
     "title": "Grupo QuintoAndar | Supervisor(a) de Operações Comerciais (Fintech e For Rent)",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1403,53 +715,19 @@
     "location": "Belo Horizonte, Minas Gerais, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "CRM"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Supervisor(a) de Operações Comerciais (Fintech e For Rent) na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Supervisor(a) de Operações Comerciais (Fintech e For Rent). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4419867009",
-    "title": "Grupo QuintoAndar | Supervisor(a) de Operações - Pre-Contract Ops Support",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4419867009",
-    "publishedAt": "2026-11-06T11:56:15-05:00",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Supervisor(a) de Operações - Pre-Contract Ops Support na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4409891009",
-    "title": "Grupo QuintoAndar | Supervisor(a) de Operações – Reclame Aqui",
-    "company": "QuintoAndar",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4409891009",
-    "publishedAt": "2026-10-28T13:11:18-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "Brasil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Grupo QuintoAndar | Supervisor(a) de Operações – Reclame Aqui na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_quintoandar_4436451009",
+    "id": "gh_disc_quintoandar_4436451009",
     "title": "Grupo QuintoAndar | Tax Analyst - Affirmative for PwD",
     "company": "QuintoAndar",
     "platform": "greenhouse",
@@ -1460,189 +738,169 @@
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make"
     ],
-    "description": "Vaga de Grupo QuintoAndar | Tax Analyst - Affirmative for PwD na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Grupo QuintoAndar | Tax Analyst - Affirmative for PwD. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4393062009",
-    "title": "Sr. Staff Product Designer",
+    "id": "gh_disc_quintoandar_4396907009",
+    "title": "Inbound Sales Lead",
     "company": "QuintoAndar",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4393062009",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4396907009",
     "publishedAt": "2026-10-08T18:10:57-04:00",
     "daysOpen": 28,
     "workplaceType": "remoto",
-    "location": "Brasil",
+    "location": "Mexico City, Mexico City, Mexico",
     "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "HubSpot",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Sr. Staff Product Designer na QuintoAndar. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Inbound Sales Lead. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_quintoandar_4453239009",
-    "title": "Staff Software Engineer - Frameworks",
+    "id": "gh_disc_quintoandar_4371929009",
+    "title": "Retention Lead",
     "company": "QuintoAndar",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4453239009",
-    "publishedAt": "2026-11-06T06:41:01-05:00",
-    "daysOpen": 0,
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4371929009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
     "workplaceType": "remoto",
-    "location": "Brasil",
+    "location": "Mexico City, Mexico City, Mexico",
     "seniority": "especialista",
     "stacks": [
-      "React",
-      "Node.js",
-      "Python",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Staff Software Engineer - Frameworks na QuintoAndar. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na QuintoAndar focada em Retention Lead. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em Node.js",
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS"
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6234888004",
-    "title": "Analista Administrativo Jurídico (Exclusivo para pessoas com deficiência)",
-    "company": "VTEX",
+    "id": "gh_disc_quintoandar_4247698009",
+    "title": "Sales Operations Lead",
+    "company": "QuintoAndar",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6234888004",
-    "publishedAt": "2026-10-27T15:20:16-04:00",
-    "daysOpen": 10,
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4247698009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
     "workplaceType": "remoto",
-    "location": "Rio de Janeiro; São Paulo, Sao Paulo, Brazil",
+    "location": "Mexico City, Mexico City, Mexico",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "Oportunidade na QuintoAndar focada em Sales Operations Lead. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_quintoandar_4400927009",
+    "title": "Senior Strategy & Operations Manager",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4400927009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Mexico City, Mexico City, Mexico",
+    "seniority": "senior",
+    "stacks": [
+      "Salesforce"
+    ],
+    "description": "Oportunidade na QuintoAndar focada em Senior Strategy & Operations Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_quintoandar_4360672009",
+    "title": "Telesales - México",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4360672009",
+    "publishedAt": "2026-10-08T18:10:57-04:00",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Mexico City, Mexico City, Mexico",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce"
     ],
-    "description": "Vaga de Analista Administrativo Jurídico (Exclusivo para pessoas com deficiência) na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na QuintoAndar focada em Telesales - México. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6100504004",
-    "title": "Analista Administrativo Tech (Exclusivo para pessoas com deficiência)",
+    "id": "gh_disc_vtex_6098704004",
+    "title": "Commerce Engineer EMEA-APAC",
     "company": "VTEX",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6100504004",
-    "publishedAt": "2026-10-28T13:46:24-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "Rio de Janeiro; São Paulo, Sao Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Analista Administrativo Tech (Exclusivo para pessoas com deficiência) na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6218060004",
-    "title": "Analytics Engineer - Campaign Intelligence [Ads]",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6218060004",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6098704004",
     "publishedAt": "2026-10-27T08:52:14-04:00",
     "daysOpen": 10,
     "workplaceType": "remoto",
-    "location": "Brazil",
+    "location": "Barcelona",
     "seniority": "pleno",
     "stacks": [
-      "Python",
-      "AWS"
+      "Make",
+      "HubSpot",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Analytics Engineer - Campaign Intelligence [Ads] na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Commerce Engineer EMEA-APAC. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em AWS"
+      "Experiência com Make",
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6131839004",
-    "title": "Associate Field Software Engineer",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6131839004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "React",
-      "Go",
-      "GraphQL"
-    ],
-    "description": "Vaga de Associate Field Software Engineer na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em Go",
-      "Conhecimento em GraphQL"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_5461719004",
-    "title": "Banco de Talentos Diversos - Inclusão de Pessoas com Deficiência",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/5461719004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Rio de Janeiro; São Paulo, Sao Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Banco de Talentos Diversos - Inclusão de Pessoas com Deficiência na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6146079004",
-    "title": "Commercial Contracts Specialist",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6146079004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Rio de Janeiro; São Paulo, Sao Paulo, Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Go"
-    ],
-    "description": "Vaga de Commercial Contracts Specialist na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em Go"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6233170004",
+    "id": "gh_disc_vtex_6233170004",
     "title": "Commercial Contracts Specialist - Legal Ops",
     "company": "VTEX",
     "platform": "greenhouse",
@@ -1653,115 +911,268 @@
     "location": "Rio de Janeiro; São Paulo, Sao Paulo, Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "AI Agents",
+      "HubSpot",
+      "CRM"
     ],
-    "description": "Vaga de Commercial Contracts Specialist - Legal Ops na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Commercial Contracts Specialist - Legal Ops. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com AI Agents",
+      "Experiência com HubSpot",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6011690004",
-    "title": "Cricket Digital Producer — Battle of Bats",
+    "id": "gh_disc_vtex_6138130004",
+    "title": "Field Marketing Data Analyst",
     "company": "VTEX",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6011690004",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6138130004",
     "publishedAt": "2026-10-27T08:52:14-04:00",
     "daysOpen": 10,
     "workplaceType": "remoto",
-    "location": "Rio de Janeiro",
+    "location": "Bucharest",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "Zapier",
+      "HubSpot",
+      "CRM"
     ],
-    "description": "Vaga de Cricket Digital Producer — Battle of Bats na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6227608004",
-    "title": "Engineering Manager, Product Discovery & My Account Experience",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6227608004",
-    "publishedAt": "2026-10-27T14:12:45-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Engineering Manager, Product Discovery & My Account Experience na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6241809004",
-    "title": "Estágio em Ciência de Dados",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6241809004",
-    "publishedAt": "2026-11-06T06:58:02-05:00",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "estagio",
-    "stacks": [
-      "Python",
-      "AWS"
-    ],
-    "description": "Vaga de Estágio em Ciência de Dados na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Field Marketing Data Analyst. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em AWS"
+      "Experiência com Make",
+      "Experiência com Zapier",
+      "Experiência com HubSpot",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_5856357004",
-    "title": "Partner Technical Account Engineer",
+    "id": "gh_disc_vtex_6249848004",
+    "title": "Lead Account Executive – B2B",
     "company": "VTEX",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/5856357004",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6249848004",
+    "publishedAt": "2026-11-04T13:09:58-05:00",
+    "daysOpen": 2,
+    "workplaceType": "remoto",
+    "location": "Manhattan, New York",
+    "seniority": "especialista",
+    "stacks": [
+      "Make",
+      "HubSpot",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na VTEX focada em Lead Account Executive – B2B. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6250729004",
+    "title": "Lead Field Marketing Specialist - Business Development",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6250729004",
+    "publishedAt": "2026-11-05T13:44:06-05:00",
+    "daysOpen": 1,
+    "workplaceType": "remoto",
+    "location": "Miami, Florida",
+    "seniority": "especialista",
+    "stacks": [
+      "Make",
+      "HubSpot",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na VTEX focada em Lead Field Marketing Specialist - Business Development. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6249872004",
+    "title": "Lead Field Marketing Specialist - Business Development (B2B)",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6249872004",
+    "publishedAt": "2026-11-04T13:16:29-05:00",
+    "daysOpen": 2,
+    "workplaceType": "remoto",
+    "location": "Manhattan, New York",
+    "seniority": "especialista",
+    "stacks": [
+      "Make",
+      "HubSpot",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na VTEX focada em Lead Field Marketing Specialist - Business Development (B2B). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6142214004",
+    "title": "Sales Director",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6142214004",
     "publishedAt": "2026-10-27T08:52:14-04:00",
     "daysOpen": 10,
     "workplaceType": "remoto",
-    "location": "São Paulo, Sao Paulo, Brazil",
+    "location": "Mexico City",
     "seniority": "pleno",
     "stacks": [
-      "GraphQL"
+      "Make",
+      "HubSpot",
+      "Salesforce"
     ],
-    "description": "Vaga de Partner Technical Account Engineer na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Sales Director. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em GraphQL"
+      "Experiência com Make",
+      "Experiência com HubSpot",
+      "Experiência com Salesforce"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6230561004",
-    "title": "Sales Account Executive - Enterprise",
+    "id": "gh_disc_vtex_6250790004",
+    "title": "Sales Director - System Integrators",
     "company": "VTEX",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6230561004",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6250790004",
+    "publishedAt": "2026-11-05T14:28:26-05:00",
+    "daysOpen": 1,
+    "workplaceType": "remoto",
+    "location": "Miami, Florida",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "HubSpot"
+    ],
+    "description": "Oportunidade na VTEX focada em Sales Director - System Integrators. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6126627004",
+    "title": "Sales Leader - System Integrators",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6126627004",
     "publishedAt": "2026-10-27T08:52:14-04:00",
     "daysOpen": 10,
     "workplaceType": "remoto",
-    "location": "São Paulo, Sao Paulo, Brazil",
-    "seniority": "pleno",
+    "location": "Miami, Florida",
+    "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "HubSpot"
     ],
-    "description": "Vaga de Sales Account Executive - Enterprise na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na VTEX focada em Sales Leader - System Integrators. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6098565004",
+    "id": "gh_disc_vtex_6126625004",
+    "title": "Sales Leader - System Integrators",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6126625004",
+    "publishedAt": "2026-10-27T08:52:14-04:00",
+    "daysOpen": 10,
+    "workplaceType": "remoto",
+    "location": "Manhattan, New York",
+    "seniority": "especialista",
+    "stacks": [
+      "Make",
+      "HubSpot"
+    ],
+    "description": "Oportunidade na VTEX focada em Sales Leader - System Integrators. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com HubSpot"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6138157004",
+    "title": "Senior Account Executive - B2B - ",
+    "company": "VTEX",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6138157004",
+    "publishedAt": "2026-10-27T08:52:14-04:00",
+    "daysOpen": 10,
+    "workplaceType": "remoto",
+    "location": "Warsaw",
+    "seniority": "senior",
+    "stacks": [
+      "Make",
+      "CRM"
+    ],
+    "description": "Oportunidade na VTEX focada em Senior Account Executive - B2B - . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_vtex_6098565004",
     "title": "Senior Product Manager, Content Management",
     "company": "VTEX",
     "platform": "greenhouse",
@@ -1772,57 +1183,21 @@
     "location": "Brazil",
     "seniority": "senior",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "Product Discovery"
     ],
-    "description": "Vaga de Senior Product Manager, Content Management na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_5224072004",
-    "title": "Senior Software Engineer, Backend",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/5224072004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "C#"
-    ],
-    "description": "Vaga de Senior Software Engineer, Backend na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Senior Product Manager, Content Management. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em C#"
+      "Experiência com Make",
+      "Experiência com Product Discovery"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_5601610004",
-    "title": "Senior Software Engineer, Cloud",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/5601610004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "senior",
-    "stacks": [
-      ".NET",
-      "Kubernetes"
-    ],
-    "description": "Vaga de Senior Software Engineer, Cloud na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em .NET",
-      "Conhecimento em Kubernetes"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_5252367004",
+    "id": "gh_disc_vtex_5252367004",
     "title": "Senior Software Engineer, Frontend",
     "company": "VTEX",
     "platform": "greenhouse",
@@ -1833,83 +1208,21 @@
     "location": "Brazil",
     "seniority": "senior",
     "stacks": [
-      "React",
-      "TypeScript",
-      "GraphQL"
+      "Make",
+      "TypeScript"
     ],
-    "description": "Vaga de Senior Software Engineer, Frontend na VTEX. Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na VTEX focada em Senior Software Engineer, Frontend. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em TypeScript",
-      "Conhecimento em GraphQL"
+      "Experiência com Make",
+      "Experiência com TypeScript"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_vtex_6232047004",
-    "title": "Senior Software Engineer (Platform Engineer), Cloud Storage",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6232047004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "senior",
-    "stacks": [
-      "PostgreSQL"
-    ],
-    "description": "Vaga de Senior Software Engineer (Platform Engineer), Cloud Storage na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em PostgreSQL"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_5818833004",
-    "title": "Staff Software Engineer, Backend",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/5818833004",
-    "publishedAt": "2026-10-27T08:52:14-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Brazil",
-    "seniority": "especialista",
-    "stacks": [
-      "C#",
-      ".NET",
-      "AWS"
-    ],
-    "description": "Vaga de Staff Software Engineer, Backend na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [
-      "Conhecimento em C#",
-      "Conhecimento em .NET",
-      "Conhecimento em AWS"
-    ],
-    "isActive": true
-  },
-  {
-    "id": "gh_vtex_6217287004",
-    "title": "Workplace & Rituals Specialist",
-    "company": "VTEX",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/vtex/jobs/6217287004",
-    "publishedAt": "2026-10-27T15:20:53-04:00",
-    "daysOpen": 10,
-    "workplaceType": "remoto",
-    "location": "Rio de Janeiro",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Workplace & Rituals Specialist na VTEX. Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_gympass_8857404002",
+    "id": "gh_disc_gympass_8857404002",
     "title": "Analista de Atendimento ao Cliente  - Vaga Afirmativa para Pessoas com Deficiência",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -1920,15 +1233,22 @@
     "location": "Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Analista de Atendimento ao Cliente  - Vaga Afirmativa para Pessoas com Deficiência na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Analista de Atendimento ao Cliente  - Vaga Afirmativa para Pessoas com Deficiência. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8901090002",
+    "id": "gh_disc_gympass_8901090002",
     "title": "Analista de Experiência do Cliente  - Vaga Afirmativa para Pessoas com Deficiência",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -1939,15 +1259,22 @@
     "location": "Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Analista de Experiência do Cliente  - Vaga Afirmativa para Pessoas com Deficiência na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Analista de Experiência do Cliente  - Vaga Afirmativa para Pessoas com Deficiência. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8901092002",
+    "id": "gh_disc_gympass_8901092002",
     "title": "Analista de Suporte ao Cliente (CX)  - Vaga Afirmativa para Pessoas com Deficiência",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -1958,73 +1285,124 @@
     "location": "Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Analista de Suporte ao Cliente (CX)  - Vaga Afirmativa para Pessoas com Deficiência na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_gympass_8805367002",
-    "title": "Banco de Talentos Jovem Aprendiz ",
-    "company": "Wellhub (Gympass)",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8805367002",
-    "publishedAt": "2026-10-28T11:39:16-04:00",
-    "daysOpen": 9,
-    "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Banco de Talentos Jovem Aprendiz  na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_gympass_8036785002",
-    "title": "Banco de Talentos para Pessoas com Deficiência",
-    "company": "Wellhub (Gympass)",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8036785002",
-    "publishedAt": "2026-10-28T11:39:16-04:00",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "São Paulo",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Vaga de Banco de Talentos para Pessoas com Deficiência na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "gh_gympass_8894225002",
-    "title": " Client Sales Account Executive",
-    "company": "Wellhub (Gympass)",
-    "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8894225002",
-    "publishedAt": "2026-10-28T11:39:16-04:00",
-    "daysOpen": 9,
-    "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
-    "seniority": "pleno",
-    "stacks": [
-      "Go"
-    ],
-    "description": "Vaga de  Client Sales Account Executive na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Analista de Suporte ao Cliente (CX)  - Vaga Afirmativa para Pessoas com Deficiência. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8917430002",
+    "id": "gh_disc_gympass_8895851002",
+    "title": "BDR - Enterprise Strategic Accounts",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8895851002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Argentina (Buenos Aires - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em BDR - Enterprise Strategic Accounts. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8810613002",
+    "title": "Business Development Representative",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8810613002",
+    "publishedAt": "2026-10-30T13:31:06-04:00",
+    "daysOpen": 7,
+    "workplaceType": "hibrido",
+    "location": "UK (London - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Business Development Representative. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8620203002",
+    "title": "Channel Partners Senior Account Manager",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8620203002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Argentina (Buenos Aires - Hybrid)",
+    "seniority": "senior",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Channel Partners Senior Account Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8929806002",
+    "title": "Client Sales Director (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8929806002",
+    "publishedAt": "2026-11-05T04:50:16-05:00",
+    "daysOpen": 1,
+    "workplaceType": "hibrido",
+    "location": "(Germany (Munich - Hybrid))",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Client Sales Director (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8917430002",
     "title": "Client Sales Enterprise Account Executive",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2035,16 +1413,94 @@
     "location": "US (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "Salesforce"
     ],
-    "description": "Vaga de Client Sales Enterprise Account Executive na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Client Sales Enterprise Account Executive. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Salesforce"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8919092002",
+    "id": "gh_disc_gympass_8855397002",
+    "title": "Client Sales Senior Manager",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8855397002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Italy (Milan - Hybrid)",
+    "seniority": "senior",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Client Sales Senior Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8653171002",
+    "title": "Client Success Manager  (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8653171002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Berlin - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Client Success Manager  (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8706171002",
+    "title": "Client Success Senior Manager",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8706171002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "UK (London - Hybrid)",
+    "seniority": "senior",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Client Success Senior Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8919092002",
     "title": "Consolidations & Financial Reporting Manager",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2055,18 +1511,46 @@
     "location": "US (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Python",
-      "Go"
+      "Make",
+      "SQL",
+      "Python"
     ],
-    "description": "Vaga de Consolidations & Financial Reporting Manager na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Consolidations & Financial Reporting Manager. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8845430002",
+    "id": "gh_disc_gympass_8693058002",
+    "title": "Country Lead & Revenue Senior Director",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8693058002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Austria (Vienna - Hybrid)",
+    "seniority": "especialista",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Country Lead & Revenue Senior Director. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8845430002",
     "title": "CX Agent Analyt  - Vaga Afirmativa para Pessoas com Deficiência",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2077,35 +1561,45 @@
     "location": "Brazil",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de CX Agent Analyt  - Vaga Afirmativa para Pessoas com Deficiência na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em CX Agent Analyt  - Vaga Afirmativa para Pessoas com Deficiência. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8860017002",
-    "title": "Director of User Growth",
+    "id": "gh_disc_gympass_8924570002",
+    "title": "Director of Brand Marketing",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8860017002",
-    "publishedAt": "2026-10-30T15:57:23-04:00",
-    "daysOpen": 7,
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8924570002",
+    "publishedAt": "2026-11-05T17:05:42-05:00",
+    "daysOpen": 0,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "US (NY - Hybrid)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Director of User Growth na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Director of Brand Marketing. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8917010002",
+    "id": "gh_disc_gympass_8917010002",
     "title": "Director Product Manager | Payout",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2116,35 +1610,52 @@
     "location": "Brazil (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "Salesforce",
+      "CRM",
+      "REST APIs",
+      "SQL"
     ],
-    "description": "Vaga de Director Product Manager | Payout na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Director Product Manager | Payout. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com REST APIs",
+      "Experiência com SQL"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8908591002",
-    "title": "Especialista de Client Success SMB - Retenção",
+    "id": "gh_disc_gympass_8108633002",
+    "title": "ENT Business Development Representative | Talent Pool ",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8908591002",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8108633002",
     "publishedAt": "2026-10-28T11:39:16-04:00",
     "daysOpen": 9,
-    "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
-    "seniority": "especialista",
+    "workplaceType": "remoto",
+    "location": "Miami, Florida",
+    "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "Salesforce"
     ],
-    "description": "Vaga de Especialista de Client Success SMB - Retenção na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em ENT Business Development Representative | Talent Pool . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8858797002",
+    "id": "gh_disc_gympass_8858797002",
     "title": "FP&A Senior Specialist",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2155,18 +1666,21 @@
     "location": "Brazil (São Paulo - Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go",
-      ".NET"
+      "Make",
+      "AI Agents"
     ],
-    "description": "Vaga de FP&A Senior Specialist na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em FP&A Senior Specialist. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go",
-      "Conhecimento em .NET"
+      "Experiência com Make",
+      "Experiência com AI Agents"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8438995002",
+    "id": "gh_disc_gympass_8438995002",
     "title": "Frontend Manager Software Engineer (Hands-On) | Partners Acquisition",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2177,45 +1691,79 @@
     "location": "Brazil (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "React",
-      "TypeScript",
-      "Go",
-      "Java",
-      "Kotlin",
-      "AWS"
+      "Make",
+      "Salesforce",
+      "CRM",
+      "TypeScript"
     ],
-    "description": "Vaga de Frontend Manager Software Engineer (Hands-On) | Partners Acquisition na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Frontend Manager Software Engineer (Hands-On) | Partners Acquisition. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em TypeScript",
-      "Conhecimento em Go",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS"
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com TypeScript"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8692315002",
-    "title": "Gerente de Departamento Pessoal (English Speaker)",
+    "id": "gh_disc_gympass_8439001002",
+    "title": "Frontend Manager Software Engineer (Hands-On) | Partners Acquisition",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8692315002",
-    "publishedAt": "2026-10-29T17:27:59-04:00",
-    "daysOpen": 7,
-    "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8439001002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "remoto",
+    "location": "Portugal (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "Salesforce",
+      "CRM",
+      "TypeScript"
     ],
-    "description": "Vaga de Gerente de Departamento Pessoal (English Speaker) na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Frontend Manager Software Engineer (Hands-On) | Partners Acquisition. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM",
+      "Experiência com TypeScript"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8925182002",
+    "id": "gh_disc_gympass_8549923002",
+    "title": "Global Accounting Specialist ",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8549923002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Berlin - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "SQL"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Global Accounting Specialist . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com SQL"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8925182002",
     "title": "Global Director of Transfer Pricing",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2226,35 +1774,42 @@
     "location": "US (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Global Director of Transfer Pricing na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Global Director of Transfer Pricing. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8926082002",
-    "title": "Growth & Engagement Manager (Enterprise Accounts)",
+    "id": "gh_disc_gympass_8932740002",
+    "title": "Head of Brand",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8926082002",
-    "publishedAt": "2026-10-30T17:45:26-04:00",
-    "daysOpen": 6,
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8932740002",
+    "publishedAt": "2026-11-05T17:05:43-05:00",
+    "daysOpen": 0,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
-    "seniority": "pleno",
+    "location": "US (NY - Hybrid)",
+    "seniority": "especialista",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make"
     ],
-    "description": "Vaga de Growth & Engagement Manager (Enterprise Accounts) na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Head of Brand. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8764382002",
+    "id": "gh_disc_gympass_8764382002",
     "title": "HR Global Senior Manager of Benefits, Wellbeing & Mobility",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2265,35 +1820,42 @@
     "location": "Brazil (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make"
     ],
-    "description": "Vaga de HR Global Senior Manager of Benefits, Wellbeing & Mobility na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em HR Global Senior Manager of Benefits, Wellbeing & Mobility. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8727988002",
-    "title": "HR Operations Manager",
+    "id": "gh_disc_gympass_8919507002",
+    "title": "Legal Counsel- (German-Speaking)",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8727988002",
-    "publishedAt": "2026-10-29T16:08:29-04:00",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8919507002",
+    "publishedAt": "2026-10-30T08:09:37-04:00",
     "daysOpen": 7,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "Italy (Milan - Hybrid)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de HR Operations Manager na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Legal Counsel- (German-Speaking). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8893388002",
+    "id": "gh_disc_gympass_8893388002",
     "title": "Marketing Analytics Engineer",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2304,38 +1866,237 @@
     "location": "Brazil (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Python",
-      "Go"
+      "Make",
+      "AI Agents",
+      "CRM",
+      "SQL",
+      "Python"
     ],
-    "description": "Vaga de Marketing Analytics Engineer na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Marketing Analytics Engineer. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com AI Agents",
+      "Experiência com CRM",
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8860690002",
-    "title": "Partner Sales Executive",
+    "id": "gh_disc_gympass_8671558002",
+    "title": "Partner Sales Executive  (m/f/d)",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8860690002",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8671558002",
     "publishedAt": "2026-10-28T11:39:16-04:00",
     "daysOpen": 9,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "Germany (Cologne - Hybrid)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Partner Sales Executive na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Sales Executive  (m/f/d). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8871615002",
+    "id": "gh_disc_gympass_8630781002",
+    "title": "Partner Sales Executive  (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8630781002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Berlin - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Sales Executive  (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8596965002",
+    "title": "Partner Sales Executive  (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8596965002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Munich - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Sales Executive  (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8902732002",
+    "title": "Partner Sales Executive (m/w/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8902732002",
+    "publishedAt": "2026-11-04T09:36:33-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Austria (Vienna - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Sales Executive (m/w/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8921366002",
+    "title": "Partner Sales Sr. Manager- Austria & Switzerland (m/w/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8921366002",
+    "publishedAt": "2026-11-04T09:27:20-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Austria (Vienna - Hybrid)",
+    "seniority": "senior",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Sales Sr. Manager- Austria & Switzerland (m/w/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8900164002",
+    "title": "Partnerships Sales Account Manager",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8900164002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Mexico (CDMX - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "Metabase"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partnerships Sales Account Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com Metabase"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8878706002",
+    "title": "Partner Success Executive ",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8878706002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Netherlands (Amsterdam - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Partner Success Executive . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8876320002",
+    "title": "People Operations Working Student (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8876320002",
+    "publishedAt": "2026-11-04T09:14:31-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Germany (Berlin- Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em People Operations Working Student (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8871615002",
     "title": "Regional Engagement Analyst",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2346,16 +2107,73 @@
     "location": "US (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Regional Engagement Analyst na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Regional Engagement Analyst. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8660933002",
+    "id": "gh_disc_gympass_8878824002",
+    "title": "Sales Development Representative  (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8878824002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Berlin- Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Sales Development Representative  (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8902382002",
+    "title": "Sales Development Representative  (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8902382002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Germany (Munich - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Sales Development Representative  (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8660933002",
     "title": "Senior Backend Software Engineer | AI Engine",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2366,28 +2184,23 @@
     "location": "Brazil (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Python",
-      "Go",
-      "Golang",
-      "Java",
-      "Kotlin",
-      "AWS",
-      "Kafka"
+      "Make",
+      "SQL",
+      "Python"
     ],
-    "description": "Vaga de Senior Backend Software Engineer | AI Engine na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior Backend Software Engineer | AI Engine. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em Golang",
-      "Conhecimento em Java",
-      "Conhecimento em Kotlin",
-      "Conhecimento em AWS",
-      "Conhecimento em Kafka"
+      "Experiência com Make",
+      "Experiência com SQL",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8917038002",
+    "id": "gh_disc_gympass_8917038002",
     "title": "Senior Business Operations Analyst | Revenue Assurance",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2398,38 +2211,73 @@
     "location": "Brazil (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go",
-      "PostgreSQL"
+      "Make",
+      "SQL"
     ],
-    "description": "Vaga de Senior Business Operations Analyst | Revenue Assurance na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior Business Operations Analyst | Revenue Assurance. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go",
-      "Conhecimento em PostgreSQL"
+      "Experiência com Make",
+      "Experiência com SQL"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8922095002",
-    "title": "Senior Customer Success Manager (Digital / High-Volume)",
+    "id": "gh_disc_gympass_8925023002",
+    "title": "Senior Manager, Partner Sales & Success - Austria & Switzerland (m/w/d)",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8922095002",
-    "publishedAt": "2026-10-28T12:14:34-04:00",
-    "daysOpen": 9,
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8925023002",
+    "publishedAt": "2026-11-04T09:27:12-05:00",
+    "daysOpen": 2,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "Austria (Vienna - Hybrid)",
     "seniority": "senior",
     "stacks": [
-      "Go"
+      "Make",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de Senior Customer Success Manager (Digital / High-Volume) na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior Manager, Partner Sales & Success - Austria & Switzerland (m/w/d). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8729831002",
+    "id": "gh_disc_gympass_8596908002",
+    "title": "​Senior Manager, Strategic Partner Accounts",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8596908002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Netherlands (Amsterdam - Hybrid)",
+    "seniority": "senior",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em ​Senior Manager, Strategic Partner Accounts. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8729831002",
     "title": "Senior Security Engineer | CloudSec ",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2440,22 +2288,19 @@
     "location": "Brazil (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go",
-      "AWS",
-      "Docker",
-      "Kubernetes"
+      "Make"
     ],
-    "description": "Vaga de Senior Security Engineer | CloudSec  na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior Security Engineer | CloudSec . Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go",
-      "Conhecimento em AWS",
-      "Conhecimento em Docker",
-      "Conhecimento em Kubernetes"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8881245002",
+    "id": "gh_disc_gympass_8881245002",
     "title": "Senior Security Engineer | InfoSec",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2466,38 +2311,223 @@
     "location": "Brazil (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go",
-      "AWS"
+      "Make",
+      "AI Agents"
     ],
-    "description": "Vaga de Senior Security Engineer | InfoSec na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior Security Engineer | InfoSec. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go",
-      "Conhecimento em AWS"
+      "Experiência com Make",
+      "Experiência com AI Agents"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8908608002",
-    "title": "SMB Success Senior Manager",
+    "id": "gh_disc_gympass_8917306002",
+    "title": "Senior SMB & Mid-Market Account Executive",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8908608002",
-    "publishedAt": "2026-10-28T12:14:35-04:00",
-    "daysOpen": 9,
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8917306002",
+    "publishedAt": "2026-10-29T17:10:02-04:00",
+    "daysOpen": 7,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "US (NY - Hybrid)",
     "seniority": "senior",
     "stacks": [
-      "Go"
+      "Make",
+      "Salesforce",
+      "CRM"
     ],
-    "description": "Vaga de SMB Success Senior Manager na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Senior SMB & Mid-Market Account Executive. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "gh_gympass_8925198002",
+    "id": "gh_disc_gympass_8108591002",
+    "title": "SMB Business Development Representative | Talent Pool",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8108591002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "remoto",
+    "location": "Miami, Florida",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Business Development Representative | Talent Pool. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_gympass_8908568002",
+    "title": "SMB Inside Sales Executive",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8908568002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "US (NY - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Inside Sales Executive. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8705027002",
+    "title": "SMB Partnerships Sales Account Executive",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8705027002",
+    "publishedAt": "2026-11-04T09:53:32-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "UK (London - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Partnerships Sales Account Executive. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8563859002",
+    "title": "SMB Sales Account Executive II",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8563859002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "Netherlands (Amsterdam - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Sales Account Executive II. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8919715002",
+    "title": "SMB Sales Account Executive (m/f/d)",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8919715002",
+    "publishedAt": "2026-11-05T04:33:44-05:00",
+    "daysOpen": 1,
+    "workplaceType": "hibrido",
+    "location": "Germany (Munich- Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce",
+      "CRM"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Sales Account Executive (m/f/d). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8919194002",
+    "title": "SMB Sales Manager",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8919194002",
+    "publishedAt": "2026-11-04T06:03:06-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Romania (Bucharest - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em SMB Sales Manager. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8699687002",
+    "title": "Social Media Specialist",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8699687002",
+    "publishedAt": "2026-10-28T11:39:16-04:00",
+    "daysOpen": 9,
+    "workplaceType": "hibrido",
+    "location": "UK (London - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Social Media Specialist. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8925198002",
     "title": "Sr. Director of Global Tax Reporting & Compliance",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2508,16 +2538,19 @@
     "location": "US (Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Sr. Director of Global Tax Reporting & Compliance na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Sr. Director of Global Tax Reporting & Compliance. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8881211002",
+    "id": "gh_disc_gympass_8881211002",
     "title": "Staff Corporate IT Engineer",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2526,18 +2559,21 @@
     "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Staff Corporate IT Engineer na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Corporate IT Engineer. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8868814002",
+    "id": "gh_disc_gympass_8868814002",
     "title": "Staff Platform Engineer ",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2546,26 +2582,23 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Python",
-      "Go",
-      "AWS",
-      "Kubernetes",
-      "Kafka"
+      "Make",
+      "Python"
     ],
-    "description": "Vaga de Staff Platform Engineer  na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Platform Engineer . Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes",
-      "Conhecimento em Kafka"
+      "Experiência com Make",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8504504002",
+    "id": "gh_disc_gympass_8504504002",
     "title": "Staff Platform Engineer | Observability",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2574,26 +2607,23 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Python",
-      "Go",
-      "AWS",
-      "Kubernetes",
-      "Kafka"
+      "Make",
+      "Python"
     ],
-    "description": "Vaga de Staff Platform Engineer | Observability na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Platform Engineer | Observability. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Python",
-      "Conhecimento em Go",
-      "Conhecimento em AWS",
-      "Conhecimento em Kubernetes",
-      "Conhecimento em Kafka"
+      "Experiência com Make",
+      "Experiência com Python"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8764365002",
+    "id": "gh_disc_gympass_8764365002",
     "title": "Staff Product Manager | BASE",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2602,18 +2632,23 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "Metabase"
     ],
-    "description": "Vaga de Staff Product Manager | BASE na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Product Manager | BASE. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com Metabase"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8917066002",
+    "id": "gh_disc_gympass_8917066002",
     "title": "Staff Product Manager | Identity",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2622,18 +2657,21 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Staff Product Manager | Identity na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Product Manager | Identity. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8638136002",
+    "id": "gh_disc_gympass_8638136002",
     "title": "Staff Product Manager - Occupational Health (New Ventures)",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2642,18 +2680,23 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make",
+      "AI Agents"
     ],
-    "description": "Vaga de Staff Product Manager - Occupational Health (New Ventures) na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Product Manager - Occupational Health (New Ventures). Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com AI Agents"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8690156002",
+    "id": "gh_disc_gympass_8690156002",
     "title": "Staff Product Manager | Partners",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2662,17 +2705,44 @@
     "daysOpen": 9,
     "workplaceType": "remoto",
     "location": "Brazil (Remote)",
-    "seniority": "especialista",
+    "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make"
     ],
-    "description": "Vaga de Staff Product Manager | Partners na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Staff Product Manager | Partners. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8790986002",
+    "id": "gh_disc_gympass_8917389002",
+    "title": "Strategic Account Sales Director",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8917389002",
+    "publishedAt": "2026-10-28T16:49:54-04:00",
+    "daysOpen": 8,
+    "workplaceType": "hibrido",
+    "location": "Mexico (CDMX - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Strategic Account Sales Director. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_gympass_8790986002",
     "title": "Strategic Partnerships Director",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2683,16 +2753,19 @@
     "location": "US (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "Go"
+      "Make"
     ],
-    "description": "Vaga de Strategic Partnerships Director na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Strategic Partnerships Director. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8881226002",
+    "id": "gh_disc_gympass_8881226002",
     "title": " Technical Manager - Platform Services Mobile Foundations",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2703,22 +2776,46 @@
     "location": "Brazil (Remote)",
     "seniority": "pleno",
     "stacks": [
-      "React",
-      "Node.js",
-      "Go",
-      "GraphQL"
+      "Make",
+      "Node.js"
     ],
-    "description": "Vaga de  Technical Manager - Platform Services Mobile Foundations na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em  Technical Manager - Platform Services Mobile Foundations. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em React",
-      "Conhecimento em Node.js",
-      "Conhecimento em Go",
-      "Conhecimento em GraphQL"
+      "Experiência com Make",
+      "Experiência com Node.js"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8783677002",
+    "id": "gh_disc_gympass_8881232002",
+    "title": "Technical Manager - Platform Services Mobile Foundations",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8881232002",
+    "publishedAt": "2026-10-29T18:51:31-04:00",
+    "daysOpen": 7,
+    "workplaceType": "remoto",
+    "location": "Portugal (Remote)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Node.js"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Technical Manager - Platform Services Mobile Foundations. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Node.js"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_gympass_8783677002",
     "title": "Website Experience Sr. Director",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
@@ -2729,35 +2826,153 @@
     "location": "Brazil (São Paulo - Remote)",
     "seniority": "senior",
     "stacks": [
-      "Go"
+      "Make",
+      "AI Agents",
+      "Figma"
     ],
-    "description": "Vaga de Website Experience Sr. Director na Wellhub (Gympass). Inscrição direta via Greenhouse.",
+    "description": "Oportunidade na Wellhub (Gympass) focada em Website Experience Sr. Director. Inscrição direta via Greenhouse.",
     "requirements": [
-      "Conhecimento em Go"
+      "Experiência com Make",
+      "Experiência com AI Agents",
+      "Experiência com Figma"
     ],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   },
   {
-    "id": "gh_gympass_8909499002",
-    "title": "Wellbeing Engagement Growth Manager",
+    "id": "gh_disc_gympass_8921658002",
+    "title": "Wellbeing Engagement Professional",
     "company": "Wellhub (Gympass)",
     "platform": "greenhouse",
-    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8909499002",
-    "publishedAt": "2026-10-30T17:43:58-04:00",
-    "daysOpen": 6,
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8921658002",
+    "publishedAt": "2026-11-03T08:31:47-05:00",
+    "daysOpen": 3,
     "workplaceType": "hibrido",
-    "location": "Brazil (São Paulo - Hybrid)",
+    "location": "France (Paris - Hybrid)",
     "seniority": "pleno",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "Make",
+      "Salesforce"
     ],
-    "description": "Vaga de Wellbeing Engagement Growth Manager na Wellhub (Gympass). Inscrição direta via Greenhouse.",
-    "requirements": [],
-    "isActive": true
+    "description": "Oportunidade na Wellhub (Gympass) focada em Wellbeing Engagement Professional. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
   },
   {
-    "id": "lever_neon_5cae0695-01bc-4b65-81a9-11fcba5c53ba",
+    "id": "gh_disc_gympass_8927975002",
+    "title": "Wellbeing Engagement Professional ",
+    "company": "Wellhub (Gympass)",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8927975002",
+    "publishedAt": "2026-11-04T12:39:26-05:00",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Netherlands (Amsterdam - Hybrid)",
+    "seniority": "pleno",
+    "stacks": [
+      "Make",
+      "Salesforce"
+    ],
+    "description": "Oportunidade na Wellhub (Gympass) focada em Wellbeing Engagement Professional . Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com Make",
+      "Experiência com Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 2
+  },
+  {
+    "id": "gh_disc_rdstation_8919131002",
+    "title": "Analista de Pré-Vendas SDR - Eventos e Parcerias| RD Station",
+    "company": "RD Station",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/rdstation/jobs/8919131002",
+    "publishedAt": "2026-10-27T16:18:40-04:00",
+    "daysOpen": 10,
+    "workplaceType": "remoto",
+    "location": "São Paulo, São Paulo, Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "RD Station",
+      "CRM"
+    ],
+    "description": "Oportunidade na RD Station focada em Analista de Pré-Vendas SDR - Eventos e Parcerias| RD Station. Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com RD Station",
+      "Experiência com CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_rdstation_8919788002",
+    "title": "Designer de Interação Pleno | RD Station (Remoto)",
+    "company": "RD Station",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/rdstation/jobs/8919788002",
+    "publishedAt": "2026-11-06T07:40:42-05:00",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "Remoto, Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "RD Station",
+      "Figma"
+    ],
+    "description": "Oportunidade na RD Station focada em Designer de Interação Pleno | RD Station (Remoto). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com RD Station",
+      "Experiência com Figma"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "gh_disc_rdstation_8923667002",
+    "title": "Engenharia de Software Fullsatck Pleno - Python e React | RD Station (Remoto)",
+    "company": "RD Station",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/rdstation/jobs/8923667002",
+    "publishedAt": "2026-10-29T11:39:36-04:00",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto, Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "RD Station",
+      "SQL",
+      "Python"
+    ],
+    "description": "Oportunidade na RD Station focada em Engenharia de Software Fullsatck Pleno - Python e React | RD Station (Remoto). Inscrição direta via Greenhouse.",
+    "requirements": [
+      "Experiência com RD Station",
+      "Experiência com SQL",
+      "Experiência com Python"
+    ],
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa PcD",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
+  },
+  {
+    "id": "lever_disc_neon_5cae0695-01bc-4b65-81a9-11fcba5c53ba",
     "title": "Analista de CRM Sênior | Vaga Afirmativa para Mulheres Pretas e Pardas",
     "company": "Banco Neon",
     "platform": "lever",
@@ -2768,125 +2983,16 @@
     "location": "Remoto",
     "seniority": "senior",
     "stacks": [
-      "Tecnologia",
-      "Software"
+      "CRM"
     ],
-    "description": "Sobre a Neon\n \nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima!\n \nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira ",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_ee4524e2-2aa4-48cc-9fa3-75eca6738147",
-    "title": "Banco de Talentos - Comunidade Negra",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/ee4524e2-2aa4-48cc-9fa3-75eca6738147",
-    "publishedAt": "2022-11-01T13:17:54.502Z",
-    "daysOpen": 1466,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
+    "description": "Sobre a Neon\n \nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima!\n \nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira das pessoas de forma simples e sem burocracia.\n \nNosso objetivo é simplificar o sistema bancário e t",
+    "requirements": [
+      "Conhecimento em CRM"
     ],
-    "description": "Sobre a Neon\n\nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima! \n\nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira d",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_969f8926-8533-4b97-91b8-dc7a42254106",
-    "title": "Banco de Talentos - LGBTQIA+",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/969f8926-8533-4b97-91b8-dc7a42254106",
-    "publishedAt": "2022-11-01T13:21:15.987Z",
-    "daysOpen": 1466,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Sobre a Neon\n\nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima! \n\nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira d",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_5f6eabf8-201a-40a9-8d04-0789e8fb392e",
-    "title": "Banco de Talentos - Liderança Feminina",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/5f6eabf8-201a-40a9-8d04-0789e8fb392e",
-    "publishedAt": "2022-11-01T13:13:44.710Z",
-    "daysOpen": 1466,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Sobre a Neon\n\nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima! \n\nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira d",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_237602a3-d307-48ff-9a7c-7b0e38d18f03",
-    "title": "Banco de Talentos - Pessoa com Deficiência",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/237602a3-d307-48ff-9a7c-7b0e38d18f03",
-    "publishedAt": "2022-11-01T13:05:04.893Z",
-    "daysOpen": 1466,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "pleno",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Sobre a Neon\n\nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima! \n\nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira d",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_9af127ee-0d56-4593-96f9-a06e78397e31",
-    "title": "Business Analyst Júnior - Collections | Afirmativa para PCD's",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/9af127ee-0d56-4593-96f9-a06e78397e31",
-    "publishedAt": "2026-10-27T21:43:16.901Z",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "junior",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Sobre a Neon\n \nQueremos ser, cada vez mais,  um time excepcional - que constrói, apoia e reconhece equipes diversas que sobem a barra lá em cima!\n \nSomos uma fintech fundada por um brasileiro que, insatisfeito com os bancos tradicionais, começou a construir um serviço que ajudasse a vida financeira ",
-    "requirements": [],
-    "isActive": true
-  },
-  {
-    "id": "lever_neon_f9b925d6-38e1-4b24-9adb-4cbbcca3100f",
-    "title": "Staff Software Engineer",
-    "company": "Banco Neon",
-    "platform": "lever",
-    "canonicalUrl": "https://jobs.lever.co/neon/f9b925d6-38e1-4b24-9adb-4cbbcca3100f",
-    "publishedAt": "2025-10-24T13:45:25.991Z",
-    "daysOpen": 378,
-    "workplaceType": "remoto",
-    "location": "Remoto",
-    "seniority": "especialista",
-    "stacks": [
-      "Tecnologia",
-      "Software"
-    ],
-    "description": "Sobre a Neon\n\nNa Neon, cada ideia conta e pode transformar a vida financeira de milhares de brasileiras e brasileiros que acreditam que o céu é o limite. Buscamos pessoas que querem contribuir com impacto real e crescer junto com a gente!\n\nNosso ritmo é intenso, assim como o aprendizado com gente mu",
-    "requirements": [],
-    "isActive": true
+    "isActive": true,
+    "isAffirmative": true,
+    "affirmativeReason": "Afirmativa Mulheres",
+    "distanceFromMuzambinhoKm": 0,
+    "hybridDaysPerWeek": 0
   }
 ]

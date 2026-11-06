@@ -16,6 +16,8 @@ export type SeniorityLevel =
   | 'especialista'
   | 'todos';
 
+export type NicheCategory = 'ai_ops' | 'revops' | 'automacao' | 'produto' | 'geral';
+
 export interface Job {
   id: string;
   title: string;
@@ -40,6 +42,14 @@ export interface Job {
   fitScore?: number; // 0 - 100 calculado dinamicamente com o perfil
   matchedKeywords?: string[];
   missingKeywords?: string[];
+  
+  // Novos campos de nicho e filtros avançados
+  nicheCategories?: NicheCategory[];
+  isAffirmative: boolean; // Vagas afirmativas (PCD, gênero, raça/etnia, 50+)
+  affirmativeReason?: string;
+  hybridDaysPerWeek?: number; // Ex: 1 ou 2 dias na semana
+  distanceFromMuzambinhoKm?: number; // Distância calculada em KM
+  isWithinAllowedRadius?: boolean;
 }
 
 export interface CandidateProfile {
@@ -49,9 +59,9 @@ export interface CandidateProfile {
   linkedinUrl: string;
   githubUrl: string;
   portfolioUrl: string;
-  city: string;
-  state: string;
-  title: string; // ex: Desenvolvedor Full Stack
+  city: string; // Padrão: Muzambinho
+  state: string; // Padrão: MG
+  title: string; // ex: Especialista em AI Ops, RevOps & Automações
   summary: string;
   seniority: SeniorityLevel;
   primaryStacks: string[];
@@ -59,6 +69,23 @@ export interface CandidateProfile {
   preferredWorkplace: 'remoto' | 'hibrido' | 'ambos';
   salaryExpectationClt: string;
   salaryExpectationPj: string;
+  
+  // Background profissional fixo de alto impacto
+  background: {
+    education: string; // Bacharel em Ciência da Computação
+    entrepreneurship: string; // Ex-cofundador de e-commerce de R$ 2.5M
+    keyMetricCase: string; // Redução de 60% do SAC com N8N e fluxos inteligentes com IA
+    nicheFocus: string[]; // ['N8N', 'AI Ops', 'RevOps', 'Sales Ops', 'CRM', 'Product Owner']
+  };
+
+  preferences: {
+    hideAffirmativeJobs: boolean; // Ocultar vagas afirmativas
+    maxHybridDistanceKm: number; // 150 km
+    maxHybridDaysPerWeek: number; // 2 dias
+    referenceCity: string; // Muzambinho
+    referenceState: string; // MG
+  };
+
   screeningAnswers: {
     availability: string;
     englishLevel: string;
@@ -77,7 +104,9 @@ export interface FilterState {
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   stateFilter: string;
-  minMatchScore?: number;
+  hideAffirmative: boolean; // Oculta vagas afirmativas
+  onlyMuzambinhoRadiusOrRemote: boolean; // Remoto ou Híbrido <= 150km de Muzambinho com <= 2 dias
+  selectedNicheCategory: 'todas' | NicheCategory;
 }
 
 export interface ScraperSourceConfig {

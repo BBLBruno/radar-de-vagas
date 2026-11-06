@@ -9,7 +9,10 @@ import {
   Check, 
   Plus, 
   X,
-  FileCheck
+  Target,
+  ShieldCheck,
+  MapPin,
+  EyeOff
 } from 'lucide-react';
 import { CandidateProfile, SeniorityLevel } from '../types';
 import { saveStoredProfile } from '../engine/defaultProfile';
@@ -25,6 +28,26 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
 
   const handleChange = (field: keyof CandidateProfile, value: any) => {
     setProfile(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleBackgroundChange = (field: keyof CandidateProfile['background'], value: any) => {
+    setProfile(prev => ({
+      ...prev,
+      background: {
+        ...prev.background,
+        [field]: value,
+      }
+    }));
+  };
+
+  const handlePreferencesChange = (field: keyof CandidateProfile['preferences'], value: any) => {
+    setProfile(prev => ({
+      ...prev,
+      preferences: {
+        ...prev.preferences,
+        [field]: value,
+      }
+    }));
   };
 
   const handleScreeningChange = (field: keyof CandidateProfile['screeningAnswers'], value: any) => {
@@ -69,13 +92,13 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h2 className="text-xl font-bold text-white">Meu Perfil de Candidato & Copiloto</h2>
-            <span className="px-2 py-0.5 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
-              Base do Assistente
+            <h2 className="text-xl font-bold text-white">Meu Perfil de Especialista & Copiloto</h2>
+            <span className="px-2 py-0.5 text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded">
+              AI Ops • RevOps • Produto
             </span>
           </div>
           <p className="text-xs text-slate-400">
-            Estes dados alimentam o cálculo de compatibilidade (Match %) e geram suas cartas e respostas de triagem automáticas.
+            Seu background fixo de alto impacto está calibrado para gerar pitches e respostas que convertem em entrevistas.
           </p>
         </div>
 
@@ -97,253 +120,228 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </button>
       </div>
 
-      {/* Grid of Settings */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* 1. Dados Pessoais & Contato */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-            <User className="w-4 h-4 text-emerald-400" />
-            <span>Dados de Identificação</span>
+      {/* Background Fixo Injetado no Copiloto */}
+      <div className="bg-gradient-to-br from-slate-900 to-slate-900/90 border border-cyan-500/30 rounded-2xl p-5 space-y-4">
+        <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-cyan-300">
+          <Target className="w-4 h-4 text-cyan-400" />
+          <span>Background Profissional Fixo (Injetado nas Cartas e Respostas do Copiloto)</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1">Formação Acadêmica</label>
+            <input
+              type="text"
+              value={profile.background.education}
+              onChange={(e) => handleBackgroundChange('education', e.target.value)}
+              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+            />
           </div>
 
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1">Experiência Empreendedora</label>
+            <input
+              type="text"
+              value={profile.background.entrepreneurship}
+              onChange={(e) => handleBackgroundChange('entrepreneurship', e.target.value)}
+              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1">Case de Impacto (Métrica Chave)</label>
+            <input
+              type="text"
+              value={profile.background.keyMetricCase}
+              onChange={(e) => handleBackgroundChange('keyMetricCase', e.target.value)}
+              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Preferências de Localidade & Vagas Afirmativas */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
+          <MapPin className="w-4 h-4 text-emerald-400" />
+          <span>Preferências de Localidade & Filtro de Afirmativas</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Nome Completo</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Cidade Base de Referência</label>
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  value={profile.preferences.referenceCity}
+                  onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
+                  className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                />
+                <input
+                  type="text"
+                  value={profile.preferences.referenceState}
+                  onChange={(e) => handlePreferencesChange('referenceState', e.target.value)}
+                  className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Raio Máximo Híbrido (KM)</label>
+                <input
+                  type="number"
+                  value={profile.preferences.maxHybridDistanceKm}
+                  onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Máx. Dias Híbridos/Semana</label>
+                <input
+                  type="number"
+                  value={profile.preferences.maxHybridDaysPerWeek}
+                  onChange={(e) => handlePreferencesChange('maxHybridDaysPerWeek', Number(e.target.value))}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold text-white mb-1">
+                <EyeOff className="w-4 h-4 text-rose-400" />
+                <span>Ocultar Vagas Afirmativas por Padrão</span>
+              </div>
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                Remove do radar automático vagas destinadas exclusivamente a ações afirmativas (PCD, gênero, grupos minoritários), focando 100% em vagas de ampla concorrência.
+              </p>
+            </div>
+
+            <div className="pt-3">
+              <label className="inline-flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={profile.preferences.hideAffirmativeJobs}
+                  onChange={(e) => handlePreferencesChange('hideAffirmativeJobs', e.target.checked)}
+                  className="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-400 bg-slate-900 border-slate-700"
+                />
+                <span className="text-xs font-semibold text-slate-200">
+                  {profile.preferences.hideAffirmativeJobs ? 'Ativo (Vagas afirmativas ocultadas)' : 'Inativo (Exibir todas as vagas)'}
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Grid of Identification and Stacks */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        {/* Identificação */}
+        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
+            <User className="w-4 h-4 text-emerald-400" />
+            <span>Dados de Identificação & Contato</span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1">Nome</label>
+            <input
+              type="text"
+              value={profile.fullName}
+              onChange={(e) => handleChange('fullName', e.target.value)}
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">E-mail</label>
               <input
-                type="text"
-                value={profile.fullName}
-                onChange={(e) => handleChange('fullName', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                type="email"
+                value={profile.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">E-mail</label>
-                <input
-                  type="email"
-                  value={profile.email}
-                  onChange={(e) => handleChange('email', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Telefone / WhatsApp</label>
-                <input
-                  type="text"
-                  value={profile.phone}
-                  onChange={(e) => handleChange('phone', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Cidade</label>
-                <input
-                  type="text"
-                  value={profile.city}
-                  onChange={(e) => handleChange('city', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Estado (UF)</label>
-                <input
-                  type="text"
-                  value={profile.state}
-                  onChange={(e) => handleChange('state', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-            </div>
-
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">LinkedIn URL</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Telefone</label>
+              <input
+                type="text"
+                value={profile.phone}
+                onChange={(e) => handleChange('phone', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">LinkedIn</label>
               <input
                 type="text"
                 value={profile.linkedinUrl}
                 onChange={(e) => handleChange('linkedinUrl', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
-
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">GitHub / Portfólio</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">GitHub</label>
               <input
                 type="text"
                 value={profile.githubUrl}
                 onChange={(e) => handleChange('githubUrl', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
           </div>
         </div>
 
-        {/* 2. Experiência e Preferências */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+        {/* Stacks do Nicho */}
+        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
           <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-            <Briefcase className="w-4 h-4 text-cyan-400" />
-            <span>Perfil Técnico & Pretensões</span>
+            <Code2 className="w-4 h-4 text-cyan-400" />
+            <span>Suas Stacks Principais (AI Ops / RevOps / N8N)</span>
           </div>
 
-          <div className="space-y-3">
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Título Profissional Atual</label>
-              <input
-                type="text"
-                value={profile.title}
-                onChange={(e) => handleChange('title', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Senioridade</label>
-                <select
-                  value={profile.seniority}
-                  onChange={(e) => handleChange('seniority', e.target.value as SeniorityLevel)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                >
-                  <option value="estagio">Estágio</option>
-                  <option value="junior">Júnior</option>
-                  <option value="pleno">Pleno</option>
-                  <option value="senior">Sênior</option>
-                  <option value="especialista">Especialista / Lead</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Anos de Experiência</label>
-                <input
-                  type="number"
-                  value={profile.yearsOfExperience}
-                  onChange={(e) => handleChange('yearsOfExperience', Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Pretensão Salarial CLT</label>
-                <input
-                  type="text"
-                  value={profile.salaryExpectationClt}
-                  onChange={(e) => handleChange('salaryExpectationClt', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Pretensão Salarial PJ</label>
-                <input
-                  type="text"
-                  value={profile.salaryExpectationPj}
-                  onChange={(e) => handleChange('salaryExpectationPj', e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Resumo Profissional (Mini Bio)</label>
-              <textarea
-                rows={3}
-                value={profile.summary}
-                onChange={(e) => handleChange('summary', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-emerald-500"
-              />
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* 3. Stacks Principais */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div className="flex items-center gap-2 text-sm font-bold text-white">
-            <Code2 className="w-4 h-4 text-emerald-400" />
-            <span>Suas Principais Tecnologias e Stacks (Usadas no Match %)</span>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-3">
-          {profile.primaryStacks.map(stack => (
-            <span
-              key={stack}
-              className="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5"
-            >
-              <span>{stack}</span>
-              <button
-                onClick={() => handleRemoveStack(stack)}
-                className="hover:text-rose-400 transition-colors"
+          <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto">
+            {profile.primaryStacks.map(stack => (
+              <span
+                key={stack}
+                className="px-2.5 py-1 rounded-md text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1"
               >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </span>
-          ))}
-        </div>
+                <span>{stack}</span>
+                <button
+                  onClick={() => handleRemoveStack(stack)}
+                  className="hover:text-rose-400 transition-colors"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </span>
+            ))}
+          </div>
 
-        <form onSubmit={handleAddStack} className="flex gap-2 max-w-sm">
-          <input
-            type="text"
-            value={newStackInput}
-            onChange={(e) => setNewStackInput(e.target.value)}
-            placeholder="Adicionar tecnologia (ex: GraphQL, Rust)..."
-            className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
-          />
-          <button
-            type="submit"
-            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white flex items-center gap-1"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            Adicionar
-          </button>
-        </form>
-      </div>
-
-      {/* 4. Perguntas Frequentes de Triagem (Copiloto) */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-          <HelpCircle className="w-4 h-4 text-amber-400" />
-          <span>Respostas Padrão para Triagens dos ATSs</span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Disponibilidade para Início</label>
+          <form onSubmit={handleAddStack} className="flex gap-2 pt-2">
             <input
               type="text"
-              value={profile.screeningAnswers.availability}
-              onChange={(e) => handleScreeningChange('availability', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              value={newStackInput}
+              onChange={(e) => setNewStackInput(e.target.value)}
+              placeholder="Adicionar stack (ex: LangChain, Pipedrive)..."
+              className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-400"
             />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Nível de Inglês</label>
-            <input
-              type="text"
-              value={profile.screeningAnswers.englishLevel}
-              onChange={(e) => handleScreeningChange('englishLevel', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-            />
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block text-xs font-medium text-slate-400 mb-1">Experiência com Liderança Técnica / Squads</label>
-            <textarea
-              rows={2}
-              value={profile.screeningAnswers.leadershipExperience}
-              onChange={(e) => handleScreeningChange('leadershipExperience', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-            />
-          </div>
+            <button
+              type="submit"
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white flex items-center gap-1"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              Add
+            </button>
+          </form>
         </div>
+
       </div>
 
     </div>

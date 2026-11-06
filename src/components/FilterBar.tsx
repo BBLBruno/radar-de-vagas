@@ -1,7 +1,6 @@
 import React from 'react';
-import { Search, X, Filter, Sparkles } from 'lucide-react';
-import { ATSPlatform, FilterState, SeniorityLevel, WorkplaceType } from '../types';
-import { BRAZIL_STATES } from '../engine/normalizer';
+import { Search, X, Filter, Sparkles, MapPin, EyeOff, CheckSquare, Square, Bot } from 'lucide-react';
+import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
 interface FilterBarProps {
   filters: FilterState;
@@ -10,11 +9,19 @@ interface FilterBarProps {
 }
 
 const DAY_OPTIONS = [
-  { value: 1, label: 'Últimas 24h' },
-  { value: 3, label: 'Até 3 dias' },
-  { value: 7, label: 'Até 7 dias (Recomendado)' },
-  { value: 14, label: 'Até 14 dias' },
-  { value: 30, label: 'Até 30 dias' },
+  { value: 1, label: '24h' },
+  { value: 3, label: '3 dias' },
+  { value: 7, label: '7 dias (Recomendado)' },
+  { value: 14, label: '14 dias' },
+  { value: 30, label: '30 dias' },
+];
+
+const NICHE_OPTIONS: Array<{ value: 'todas' | NicheCategory; label: string }> = [
+  { value: 'todas', label: 'Todos do Nicho' },
+  { value: 'ai_ops', label: '🤖 AI Ops' },
+  { value: 'revops', label: '📈 RevOps & Sales Ops' },
+  { value: 'automacao', label: '⚡ N8N & Automação' },
+  { value: 'produto', label: '🎯 Produto & Requisitos' },
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks }) => {
@@ -39,17 +46,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       platform: 'todas',
       selectedStacks: [],
       stateFilter: '',
+      hideAffirmative: true,
+      onlyMuzambinhoRadiusOrRemote: true,
+      selectedNicheCategory: 'todas',
     });
   };
-
-  const isFiltered = 
-    filters.searchQuery !== '' || 
-    filters.maxDays !== 7 || 
-    filters.workplaceType !== 'todos' || 
-    filters.seniority !== 'todos' || 
-    filters.platform !== 'todas' || 
-    filters.selectedStacks.length > 0 || 
-    filters.stateFilter !== '';
 
   return (
     <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
@@ -62,7 +63,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             type="text"
             value={filters.searchQuery}
             onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
-            placeholder="Buscar por cargo (ex: Full Stack, Frontend), empresa (Nubank, iFood) ou stack..."
+            placeholder="Buscar por N8N, RevOps, AI Ops, Product Owner, CRM, HubSpot..."
             className="w-full pl-11 pr-10 py-2.5 bg-slate-950/70 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
           />
           {filters.searchQuery && (
@@ -75,25 +76,43 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           )}
         </div>
 
-        {isFiltered && (
-          <button
-            onClick={resetFilters}
-            className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 transition-all flex items-center justify-center gap-1.5"
-          >
-            <X className="w-3.5 h-3.5" />
-            Limpar filtros
-          </button>
-        )}
+        <button
+          onClick={resetFilters}
+          className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition-all flex items-center justify-center gap-1.5"
+        >
+          Redefinir
+        </button>
       </div>
 
-      {/* Primary Filter Row: Max Days & Workplace */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-800/60">
+      {/* Niche Categories Pill Row */}
+      <div className="flex flex-wrap items-center gap-1.5 pt-1 border-t border-slate-800/60">
+        <span className="text-xs font-semibold text-slate-400 mr-1 flex items-center gap-1">
+          <Bot className="w-3.5 h-3.5 text-cyan-400" />
+          Nicho:
+        </span>
+        {NICHE_OPTIONS.map(opt => (
+          <button
+            key={opt.value}
+            onClick={() => setFilters(prev => ({ ...prev, selectedNicheCategory: opt.value }))}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+              filters.selectedNicheCategory === opt.value
+                ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Primary Filter Row: Max Days & Geo Checkboxes */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800/60">
         
         {/* Controle Rigoroso de Dias em Aberto */}
-        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+        <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-xs font-semibold text-slate-400 flex items-center gap-1 mr-1">
             <Filter className="w-3.5 h-3.5 text-emerald-400" />
-            Dias em aberto:
+            Abertura:
           </span>
           {DAY_OPTIONS.map(opt => (
             <button
@@ -110,82 +129,47 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           ))}
         </div>
 
-        {/* Modalidade */}
-        <div className="flex items-center gap-1.5">
-          <span className="text-xs font-semibold text-slate-400 mr-1">Modelo:</span>
-          {(['todos', 'remoto', 'hibrido', 'presencial'] as Array<'todos' | WorkplaceType>).map(type => (
-            <button
-              key={type}
-              onClick={() => setFilters(prev => ({ ...prev, workplaceType: type }))}
-              className={`px-2.5 py-1 rounded-lg text-xs capitalize font-medium transition-all ${
-                filters.workplaceType === type
-                  ? 'bg-cyan-500 text-slate-950 font-bold'
-                  : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700/80'
-              }`}
-            >
-              {type === 'todos' ? 'Todos' : type}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Secondary Row: Seniority, Platform, State */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-800/60">
-        
-        {/* Senioridade */}
-        <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Senioridade</label>
-          <select
-            value={filters.seniority}
-            onChange={(e) => setFilters(prev => ({ ...prev, seniority: e.target.value as SeniorityLevel }))}
-            className="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+        {/* Toggles Especiais: Ocultar Afirmativas & Raio Muzambinho */}
+        <div className="flex flex-wrap items-center gap-2">
+          
+          {/* Toggle: Ocultar vagas afirmativas */}
+          <button
+            onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+              filters.hideAffirmative
+                ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+                : 'bg-slate-800/80 text-slate-400 border-slate-700/60 hover:text-slate-200'
+            }`}
+            title="Oculta vagas destinadas exclusivamente a ações afirmativas (PCD, gênero, etc)"
           >
-            <option value="todos">Todas as senioridades</option>
-            <option value="estagio">Estágio</option>
-            <option value="junior">Júnior</option>
-            <option value="pleno">Pleno</option>
-            <option value="senior">Sênior</option>
-            <option value="especialista">Especialista / Lead</option>
-          </select>
+            <EyeOff className="w-3.5 h-3.5 text-rose-400" />
+            <span>Ocultar Afirmativas</span>
+            {filters.hideAffirmative ? <CheckSquare className="w-3.5 h-3.5 text-rose-400" /> : <Square className="w-3.5 h-3.5" />}
+          </button>
+
+          {/* Toggle: Raio Muzambinho (150km) ou Remoto */}
+          <button
+            onClick={() => setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: !prev.onlyMuzambinhoRadiusOrRemote }))}
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border transition-all ${
+              filters.onlyMuzambinhoRadiusOrRemote
+                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                : 'bg-slate-800/80 text-slate-400 border-slate-700/60 hover:text-slate-200'
+            }`}
+            title="Apenas vagas 100% Remotas ou Híbridas em raio de 150km de Muzambinho (<= 2 dias)"
+          >
+            <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Remoto ou Raio Muzambinho (150km)</span>
+            {filters.onlyMuzambinhoRadiusOrRemote ? <CheckSquare className="w-3.5 h-3.5 text-emerald-400" /> : <Square className="w-3.5 h-3.5" />}
+          </button>
         </div>
 
-        {/* Plataforma de ATS */}
-        <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Plataforma ATS</label>
-          <select
-            value={filters.platform}
-            onChange={(e) => setFilters(prev => ({ ...prev, platform: e.target.value as 'todas' | ATSPlatform }))}
-            className="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
-          >
-            <option value="todas">Todos os ATSs (Gupy, Lever, etc.)</option>
-            <option value="gupy">Gupy</option>
-            <option value="lever">Lever</option>
-            <option value="greenhouse">Greenhouse</option>
-            <option value="inhire">InHire</option>
-          </select>
-        </div>
-
-        {/* Estado Brasileiro */}
-        <div>
-          <label className="block text-xs font-medium text-slate-400 mb-1">Estado (Filtro Brasil)</label>
-          <select
-            value={filters.stateFilter}
-            onChange={(e) => setFilters(prev => ({ ...prev, stateFilter: e.target.value }))}
-            className="w-full bg-slate-950/80 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
-          >
-            <option value="">Todo o Brasil (inclui 100% Remotas)</option>
-            {BRAZIL_STATES.map(uf => (
-              <option key={uf} value={uf}>{uf} - {uf === 'SP' ? 'São Paulo' : uf === 'RJ' ? 'Rio de Janeiro' : uf === 'MG' ? 'Minas Gerais' : uf}</option>
-            ))}
-          </select>
-        </div>
       </div>
 
       {/* Tech Stacks Tags */}
       <div className="pt-2 border-t border-slate-800/60">
         <div className="flex items-center gap-1.5 mb-2">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span className="text-xs font-semibold text-slate-400">Filtrar por Stacks em Alta:</span>
+          <span className="text-xs font-semibold text-slate-400">Stacks do seu Nicho:</span>
         </div>
         <div className="flex flex-wrap gap-1.5">
           {popularStacks.map(stack => {
@@ -194,7 +178,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               <button
                 key={stack}
                 onClick={() => toggleStack(stack)}
-                className={`px-2 py-0.5 rounded-md text-xs font-medium transition-all ${
+                className={`px-2.5 py-0.5 rounded-md text-xs font-medium transition-all ${
                   isSelected
                     ? 'bg-emerald-500 text-slate-950 font-bold border border-emerald-400'
                     : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border border-slate-700/60'
