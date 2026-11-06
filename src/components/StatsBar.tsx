@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Globe2, ShieldCheck, Zap } from 'lucide-react';
+import { Globe2, ShieldCheck, Zap, Building2 } from 'lucide-react';
 import { Job } from '../types';
 
 interface StatsBarProps {
@@ -10,58 +10,53 @@ interface StatsBarProps {
 
 export const StatsBar: React.FC<StatsBarProps> = ({ totalJobs, filteredJobs, maxDays }) => {
   const remoteCount = filteredJobs.filter(j => j.workplaceType === 'remoto').length;
-  const remotePercent = filteredJobs.length > 0 
-    ? Math.round((remoteCount / filteredJobs.length) * 100) 
-    : 0;
-
-  const avgDaysOpen = filteredJobs.length > 0 
-    ? (filteredJobs.reduce((acc, curr) => acc + curr.daysOpen, 0) / filteredJobs.length).toFixed(1)
-    : '0';
+  const hybridPresencialCount = filteredJobs.filter(j => j.workplaceType !== 'remoto').length;
+  const intlCount = filteredJobs.filter(j => j.isInternational).length;
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 my-6">
-      
-      {/* Vagas Ativas */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 my-4">
+      {/* Vagas Exibidas */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 flex items-center gap-3.5 hover:border-slate-700 transition-colors">
         <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
           <Zap className="w-5 h-5" />
         </div>
         <div>
           <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-            {filteredJobs.length}
+            {filteredJobs.length}{' '}
+            <span className="text-xs font-normal text-slate-400">/ {totalJobs}</span>
           </div>
           <div className="text-xs text-slate-400 font-medium">
-            Vagas ativas (≤ {maxDays} {maxDays === 1 ? 'dia' : 'dias'})
+            Vagas filtradas (≤ {maxDays}d)
           </div>
         </div>
       </div>
 
-      {/* Vagas Remotas */}
+      {/* Vagas 100% Remotas */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 flex items-center gap-3.5 hover:border-slate-700 transition-colors">
         <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
           <Globe2 className="w-5 h-5" />
         </div>
         <div>
           <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-            {remoteCount} <span className="text-xs font-normal text-cyan-400">({remotePercent}%)</span>
+            {remoteCount}
           </div>
           <div className="text-xs text-slate-400 font-medium">
-            Vagas 100% Remotas
+            100% Remotas ({intlCount} globais)
           </div>
         </div>
       </div>
 
-      {/* Frescor Médio */}
+      {/* Vagas Híbridas e Presenciais */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 flex items-center gap-3.5 hover:border-slate-700 transition-colors">
         <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
-          <Clock className="w-5 h-5" />
+          <Building2 className="w-5 h-5" />
         </div>
         <div>
           <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-            {avgDaysOpen} <span className="text-xs font-normal text-slate-400">dias</span>
+            {hybridPresencialCount}
           </div>
           <div className="text-xs text-slate-400 font-medium">
-            Média de publicação
+            Híbridas & Presenciais (BR)
           </div>
         </div>
       </div>
@@ -76,11 +71,10 @@ export const StatsBar: React.FC<StatsBarProps> = ({ totalJobs, filteredJobs, max
             100%
           </div>
           <div className="text-xs text-slate-400 font-medium">
-            Links canônicos diretos
+            Links diretos sem intermediários
           </div>
         </div>
       </div>
-
     </div>
   );
 };

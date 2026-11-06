@@ -27,11 +27,11 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
                 Radar Vagas TI
               </span>
               <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded">
-                BR
+                BR + GLOBAL
               </span>
             </div>
             <p className="text-xs text-slate-400 hidden sm:block">
-              Vagas diretas nos ATSs • Link canônico sem intermediários
+              Agregador de Vagas Diretas (Gupy, InHire, EmpregosTec, GitHub BR & Remoto Global)
             </p>
           </div>
         </div>

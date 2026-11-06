@@ -8,7 +8,6 @@ export const MUZAMBINHO_COORDS = {
   maxRadiusKm: 150,
 };
 
-// Dicionário de distâncias aproximadas de cidades para Muzambinho (em KM)
 const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'muzambinho': 0,
   'guaxupé': 18,
@@ -35,28 +34,24 @@ const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'leme': 130,
   'pirassununga': 115,
   'rio claro': 150,
-  // Cidades fora do raio de 150km:
   'limeira': 168,
   'campinas': 195,
   'jundiaí': 230,
   'jundiai': 230,
   'são paulo': 285,
   'sao paulo': 285,
-  'sp': 285, // Default capital
   'santos': 340,
   'belo horizonte': 380,
   'rio de janeiro': 450,
   'curitiba': 540,
+  'porto alegre': 950,
 };
 
-// Stacks especializadas no nicho: AI Ops, RevOps, Automação & Produto
-export const NICHE_TECH_STACKS = [
-  'N8N', 'Make', 'Zapier', 'OpenAI API', 'Claude API', 'LangChain', 'AI Agents',
-  'HubSpot', 'Salesforce', 'Pipedrive', 'RD Station', 'ActiveCampaign',
-  'CRM', 'Webhooks', 'REST APIs', 'Postman', 'Typeform', 'WhatsApp API',
-  'Jira', 'Confluence', 'Figma', 'Miro', 'Notion', 'Product Discovery',
-  'SQL', 'PostgreSQL', 'Python', 'Node.js', 'TypeScript', 'Metabase',
-  'Mixpanel', 'Google Analytics', 'Amplitude', 'BPMN', 'RPA', 'Prompt Engineering'
+export const POPULAR_FILTER_STACKS = [
+  'Implantação', 'Suporte N2', 'SQL', 'Power BI', 'CRM', 'HubSpot',
+  'Sales Ops', 'RevOps', 'N8N', 'APIs / Webhooks', 'IA / LLMs',
+  'BPMN / Processos', 'Excel / Sheets', 'Jira', 'Python', 'React',
+  'Node.js', 'TypeScript', 'Java', 'C# / .NET', 'PHP', 'QA / Testes', 'AWS', 'Docker'
 ];
 
 export const BRAZIL_STATES = [
@@ -66,61 +61,47 @@ export const BRAZIL_STATES = [
 ];
 
 /**
- * Filtro Rigoroso de Nicho:
- * Reter apenas se contiver: N8N, Automação, AI Ops, RevOps, Sales Ops, CRM,
- * Product Owner, Analista de Requisitos ou Analista de Produto.
- * Descarta desenvolvedores puros (backend puro, frontend puro).
+ * Lista negra de senioridade executiva/alta no título (usada quando o filtro "Foco Entrada/Júnior/Pleno" está ativo)
  */
-export function isNicheJob(title: string, description: string = ''): { isMatch: boolean; categories: NicheCategory[] } {
+export function isExecutiveOrSeniorTitle(title: string): boolean {
+  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|vp|chief|architect|arquiteto|iii)\b/i.test(title);
+}
+
+/**
+ * Classifica a vaga nas áreas de atuação do mercado
+ */
+export function classifyJobCategories(title: string, description: string = ''): NicheCategory[] {
+  const t = title.toLowerCase();
   const combined = `${title} ${description}`.toLowerCase();
-  const titleLower = title.toLowerCase();
-
-  // 1. Descarte explícito de desenvolvedores puros (a menos que a vaga seja explicitamente de Automação/AI Ops)
-  const isPureDevTitle = 
-    (titleLower.includes('desenvolvedor backend') || 
-     titleLower.includes('backend developer') ||
-     titleLower.includes('desenvolvedor front-end') ||
-     titleLower.includes('frontend developer') ||
-     titleLower.includes('dev backend') ||
-     titleLower.includes('dev frontend') ||
-     titleLower.includes('desenvolvedor react') ||
-     titleLower.includes('desenvolvedor angular') ||
-     titleLower.includes('desenvolvedor flutter') ||
-     titleLower.includes('desenvolvedor ios') ||
-     titleLower.includes('desenvolvedor android') ||
-     titleLower.includes('desenvolvedor java') ||
-     titleLower.includes('desenvolvedor golang') ||
-     titleLower.includes('desenvolvedor php') ||
-     titleLower.includes('desenvolvedor c#') ||
-     titleLower.includes('desenvolvedor .net'));
-
-  const hasExplicitAutomationFocus = 
-    combined.includes('n8n') || 
-    combined.includes('ai ops') || 
-    combined.includes('aiops') || 
-    combined.includes('revops') || 
-    combined.includes('automação de processos') ||
-    combined.includes('automacao de processos');
-
-  if (isPureDevTitle && !hasExplicitAutomationFocus) {
-    return { isMatch: false, categories: [] };
-  }
-
-  // 2. Termos obrigatórios do nicho
   const categories: NicheCategory[] = [];
 
-  const aiOpsTerms = ['ai ops', 'aiops', 'ia ops', 'ai operations', 'inteligência artificial aplicada', 'prompt engineering', 'ai agents', 'agentes de ia'];
-  const revOpsTerms = ['revops', 'revenue operations', 'sales ops', 'sales operations', 'marketing ops', 'crm', 'hubspot', 'salesforce', 'operações de vendas'];
-  const automacaoTerms = ['n8n', 'make.com', 'zapier', 'automação', 'automacao', 'automation', 'rpa', 'automatização', 'process automation', 'bpm', 'bpmn'];
-  const produtoTerms = ['product owner', ' po ', 'analista de produto', 'analista de requisitos', 'product manager', ' pm ', 'gestão de produto', 'gestor de produto'];
+  if (/\b(implanta[çc][ãa]o|onboarding|implementation|ativac[ãa]o|customer success|setup)\b/i.test(combined)) {
+    categories.push('implantacao');
+  }
+  if (/\b(suporte|support|service desk|help desk|n1|n2|n3|sustenta[çc][ãa]o|atendimento t[ée]cnico)\b/i.test(combined)) {
+    categories.push('suporte');
+  }
+  if (/\b(dados|data|bi\b|business intelligence|power bi|looker|metabase|analytics|sql|etl)\b/i.test(combined)) {
+    categories.push('dados_bi');
+  }
+  if (/\b(revops|revenue operations|sales ops|sales operations|crm|hubspot|salesforce|pipedrive|rd station|opera[çc][õo]es comerciais)\b/i.test(combined)) {
+    categories.push('crm_revops');
+  }
+  if (/\b(n8n|zapier|make\.com|automa[çc][ãa]o|automation|rpa|ai ops|aiops|agentes de ia|ai agents|processos|bpm|bpmn|prompt)\b/i.test(combined)) {
+    categories.push('automacao_ia');
+  }
+  if (/\b(product owner|\bpo\b|product manager|\bpm\b|analista de produto|analista de requisitos|analista de neg[óo]cios|business analyst|discovery)\b/i.test(combined)) {
+    categories.push('produto');
+  }
+  if (/\b(desenvolvedor|developer|software engineer|engenheiro de software|frontend|front-end|backend|back-end|full stack|fullstack|mobile|react|node|java|python|php|dotnet|\.net|golang)\b/i.test(t)) {
+    categories.push('desenvolvimento');
+  }
+  if (/\b(qa|quality assurance|testes|tester|devops|sre|cloud|infraestrutura|seguran[çc]a|cybersecurity|redes)\b/i.test(t)) {
+    categories.push('qa_infra');
+  }
 
-  if (aiOpsTerms.some(term => combined.includes(term))) categories.push('ai_ops');
-  if (revOpsTerms.some(term => combined.includes(term))) categories.push('revops');
-  if (automacaoTerms.some(term => combined.includes(term))) categories.push('automacao');
-  if (produtoTerms.some(term => combined.includes(term))) categories.push('produto');
-
-  const isMatch = categories.length > 0;
-  return { isMatch, categories };
+  if (categories.length === 0) categories.push('geral');
+  return categories;
 }
 
 /**
@@ -135,7 +116,7 @@ export function detectAffirmative(title: string, description: string = ''): { is
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(negr[ao]s?|pret[ao]s?|pard[ao]s?)\b/i, reason: 'Afirmativa Pessoas Negras/Pretas' },
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(lgbt|lgbtqia\+|trans|transg[êe]nero)\b/i, reason: 'Afirmativa LGBTQIA+' },
     { regex: /\b(afirmativ[ao]s?|exclusiv[ao]s?)\b.*?\b(50\+|60\+|s[êe]nioridade et[áa]ria)\b/i, reason: 'Afirmativa 50+' },
-    { regex: /\bvaga\s+afirmativa\b|\bprograma\s+afirmativo\b|\bbanco\s+afirmativo\b/i, reason: 'Programa Afirmativo Geral' }
+    { regex: /\bvaga\s+afirmativa\b|\bprograma\s+afirmativo\b|\bbanco\s+afirmativo\b/i, reason: 'Programa Afirmativo' }
   ];
 
   for (const p of patterns) {
@@ -147,9 +128,6 @@ export function detectAffirmative(title: string, description: string = ''): { is
   return { isAffirmative: false };
 }
 
-/**
- * Calcula a distância até Muzambinho - MG e valida raio geográfico
- */
 export function calculateDistanceToMuzambinho(location: string): number | null {
   if (!location) return null;
   const locLower = location.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -161,113 +139,37 @@ export function calculateDistanceToMuzambinho(location: string): number | null {
     }
   }
 
-  // Se for explicitamente São Paulo capital / Rio / BH / Curitiba
-  if (locLower.includes('sao paulo') || locLower.includes('capital') || locLower.includes('sp - brasil')) {
+  if (locLower.includes('sao paulo') || locLower.includes('capital')) {
     return 285;
   }
 
-  return null; // Localidade não mapeada diretamente
-}
-
-/**
- * Extrai frequência presencial em vagas híbridas (ex: "1x na semana", "2 dias", etc.)
- */
-export function extractHybridFrequency(text: string): number {
-  const t = text.toLowerCase();
-  if (t.includes('1x') || t.includes('1 vez') || t.includes('1 dia') || t.includes('um dia')) return 1;
-  if (t.includes('2x') || t.includes('2 vezes') || t.includes('2 dias') || t.includes('dois dias')) return 2;
-  if (t.includes('3x') || t.includes('3 vezes') || t.includes('3 dias') || t.includes('três dias')) return 3;
-  if (t.includes('4x') || t.includes('4 vezes') || t.includes('4 dias')) return 4;
-  return 2; // Default seguro para híbrido
-}
-
-/**
- * Validação de Localidade / Modelo solicitada pelo usuário:
- * "Vagas somente remota ou híbrida (2 ou menos dias e num raio de 150km de Muzambinho)"
- */
-export function validateWorkplaceAndRadius(
-  workplaceType: WorkplaceType, 
-  location: string, 
-  title: string, 
-  description: string = '', 
-  maxRadiusKm: number = 150
-): { isValid: boolean; distanceKm?: number; hybridDays?: number; rejectionReason?: string } {
-  
-  // 1. Presencial é descartado
-  if (workplaceType === 'presencial') {
-    return { isValid: false, rejectionReason: 'Vaga 100% presencial descartada' };
-  }
-
-  // 2. Remoto é sempre aceito
-  if (workplaceType === 'remoto') {
-    return { isValid: true, distanceKm: 0, hybridDays: 0 };
-  }
-
-  // 3. Híbrido: Deve ter <= 2 dias presenciais E estar dentro do raio de 150km de Muzambinho
-  if (workplaceType === 'hibrido') {
-    const hybridDays = extractHybridFrequency(`${title} ${description}`);
-    if (hybridDays > 2) {
-      return { isValid: false, hybridDays, rejectionReason: `Híbrido exige mais de 2 dias (${hybridDays} dias)` };
-    }
-
-    const distance = calculateDistanceToMuzambinho(location);
-    if (distance !== null && distance > maxRadiusKm) {
-      return { isValid: false, distanceKm: distance, hybridDays, rejectionReason: `Distância de ${distance}km excede o limite de ${maxRadiusKm}km de Muzambinho` };
-    }
-
-    return { isValid: true, distanceKm: distance ?? undefined, hybridDays };
-  }
-
-  return { isValid: false, rejectionReason: 'Modelo incompatível' };
+  return null;
 }
 
 export function calculateDaysOpen(publishedAtIso: string): number {
   const publishedDate = new Date(publishedAtIso);
+  if (isNaN(publishedDate.getTime())) return 1;
   const now = new Date();
-  const diffTime = Math.abs(now.getTime() - publishedDate.getTime());
+  const diffTime = Math.max(0, now.getTime() - publishedDate.getTime());
   return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 }
 
-export function isBrazilJob(location: string, workplaceType: WorkplaceType): boolean {
-  if (!location) return workplaceType === 'remoto';
-  const normalized = location.toLowerCase();
-
-  const foreignExclusions = [
-    'portugal', 'lisboa', 'porto', 'united states', 'usa', 'estados unidos', 
-    'españa', 'spain', 'germany', 'uk', 'argentina', 'colombia', 'mexico'
-  ];
-
-  for (const foreign of foreignExclusions) {
-    if (normalized.includes(foreign) && !normalized.includes('brasil') && !normalized.includes('brazil')) {
-      return false;
-    }
-  }
-
-  if (
-    normalized.includes('brasil') ||
-    normalized.includes('brazil') ||
-    normalized.includes('remoto') ||
-    normalized.includes('remote') ||
-    normalized.includes('home office')
-  ) {
-    return true;
-  }
-
-  for (const uf of BRAZIL_STATES) {
-    const regex = new RegExp(`\\b${uf}\\b`, 'i');
-    if (regex.test(location)) return true;
-  }
-
-  return true;
-}
-
 export function detectSeniority(title: string, description: string = ''): SeniorityLevel {
+  const t = title.toLowerCase();
   const text = `${title} ${description}`.toLowerCase();
-  if (text.includes('estágio') || text.includes('estagio') || text.includes('intern')) return 'estagio';
-  if (text.includes('especialista') || text.includes('staff') || text.includes('principal') || text.includes('lead') || text.includes('coordenador') || text.includes('head')) return 'especialista';
-  if (text.includes('sênior') || text.includes('senior') || text.includes('sr.') || text.includes('sr ')) return 'senior';
-  if (text.includes('pleno') || text.includes('pl.') || text.includes('pl ') || text.includes('mid')) return 'pleno';
-  if (text.includes('júnior') || text.includes('junior') || text.includes('jr.') || text.includes('jr ')) return 'junior';
+
+  if (isExecutiveOrSeniorTitle(title)) {
+    if (/\b(sênior|senior|sr\.?|iii)\b/i.test(t) && !/\b(staff|principal|director|diretor|head|lead|líder|especialista|manager|gerente|coordenador)\b/i.test(t)) {
+      return 'senior';
+    }
+    return 'especialista';
+  }
+  if (/\b(estágio|estagio|estagiário|estagiario|intern|trainee)\b/i.test(t)) return 'estagio';
+  if (/\b(júnior|junior|jr\.?|assistente|auxiliar|entry|associate|nível 1|n1)\b/i.test(t)) return 'junior';
+  if (/\b(pleno|pl\.?|mid|ii|nível 2|n2)\b/i.test(t)) return 'pleno';
+
+  if (text.includes('júnior') || text.includes('junior')) return 'junior';
+  if (text.includes('sênior') || text.includes('senior')) return 'senior';
   return 'pleno';
 }
 
@@ -277,23 +179,4 @@ export function detectWorkplaceType(title: string, location: string = '', workpl
   if (combined.includes('remoto') || combined.includes('remote') || combined.includes('home office') || combined.includes('teletrabalho')) return 'remoto';
   if (combined.includes('presencial') || combined.includes('on-site') || combined.includes('onsite')) return 'presencial';
   return 'remoto';
-}
-
-export function extractStacks(text: string): string[] {
-  const found: string[] = [];
-  const normalized = text.toLowerCase();
-
-  for (const stack of NICHE_TECH_STACKS) {
-    const stackLower = stack.toLowerCase();
-    const regex = new RegExp(`(^|[^a-zA-Z0-9#+])${escapeRegExp(stackLower)}([^a-zA-Z0-9#+]|$)`, 'i');
-    if (regex.test(normalized)) {
-      found.push(stack);
-    }
-  }
-
-  return Array.from(new Set(found));
-}
-
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

@@ -1,10 +1,11 @@
 import { Job } from '../types';
 import liveJobsData from '../data/liveJobs.json';
 
-// APENAS VAGAS 100% REAIS E VALIDADAS DOS ATSs (ZERO MOCK / ZERO LINKS FALSOS)
+// VAGAS 100% REAIS E VALIDADAS DOS ATSs E PORTAIS GLOBAIS (ZERO MOCK / ZERO LINKS FALSOS)
 export const SEED_JOBS: Job[] = (liveJobsData as Job[]).filter(j => {
-  // Garante que não possui link mockado
-  const isMockUrl = 
+  if (!j.canonicalUrl) return false;
+
+  const isMockUrl =
     j.canonicalUrl.includes('fintechhub') ||
     j.canonicalUrl.includes('saasgrowth') ||
     j.canonicalUrl.includes('omnichannel') ||
@@ -12,12 +13,21 @@ export const SEED_JOBS: Job[] = (liveJobsData as Job[]).filter(j => {
     j.canonicalUrl.includes('nextgendigital') ||
     j.canonicalUrl.includes('logistica.gupy');
 
-  // Garante que é no Brasil e possui URL válida
-  const isBrazil = !j.title.toLowerCase().includes('argentina') && 
-                   !j.location.toLowerCase().includes('argentina') &&
-                   !j.location.toLowerCase().includes('buenos aires') &&
-                   !j.location.toLowerCase().includes('mexico') &&
-                   !j.location.toLowerCase().includes('chile');
+  if (isMockUrl) return false;
 
-  return !isMockUrl && isBrazil && Boolean(j.canonicalUrl);
+  // Vagas internacionais 100% remotas são sempre permitidas
+  if (j.isInternational || j.platform === 'remotive_intl') {
+    return true;
+  }
+
+  // Para vagas nacionais, descarta posições restritas a outros países da Latam
+  const locLower = (j.location || '').toLowerCase();
+  const titleLower = (j.title || '').toLowerCase();
+  const isOtherLatamOnly =
+    titleLower.includes('argentina') ||
+    locLower.includes('buenos aires') ||
+    locLower.includes('mexico city') ||
+    locLower.includes('santiago, chile');
+
+  return !isOtherLatamOnly;
 });

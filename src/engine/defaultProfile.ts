@@ -9,49 +9,52 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   portfolioUrl: 'https://radar-concursos-ti.vercel.app',
   city: 'Muzambinho',
   state: 'MG',
-  title: 'Especialista em Automações (N8N), AI Ops & RevOps',
-  summary: 'Bacharel em Ciência da Computação e ex-cofundador de operação de e-commerce que faturou R$ 2.5M. Especialista em otimização de fluxos operacionais de alta escala, arquitetura com N8N, integrações com LLMs/IA e orquestração de CRM (HubSpot/Salesforce). Case comprovado de redução de 60% do SAC por meio de agentes inteligentes e automações orientadas a eventos.',
-  seniority: 'senior',
+  title: 'Analista de Sistemas, Automação (N8N/IA), Dados & Operações (RevOps/Implantação)',
+  summary: 'Bacharel em Ciência da Computação e ex-cofundador de operação de e-commerce que faturou R$ 2.5M. Experiência prática na otimização de processos, automações via N8N e IA (case real de redução de 60% do SAC), integrações via API/Webhooks, SQL, BI e estruturação de operações de CRM, Suporte Técnico e Implantação.',
+  seniority: 'pleno',
   primaryStacks: [
-    'N8N', 'Make', 'AI Ops', 'RevOps', 'Sales Ops', 'CRM', 
-    'HubSpot', 'Salesforce', 'Webhooks', 'REST APIs', 'OpenAI API', 
-    'Product Owner', 'Analista de Produto', 'SQL', 'Python', 'BPMN'
+    'SQL', 'Python', 'Power BI', 'N8N', 'Automação', 'IA / AI',
+    'CRM', 'HubSpot', 'Salesforce', 'API REST', 'Implantação',
+    'Onboarding', 'Customer Success', 'Suporte Técnico', 'Scrum / Agile',
+    'JavaScript', 'TypeScript', 'Node.js', 'Git'
   ],
-  yearsOfExperience: 5,
-  preferredWorkplace: 'remoto',
-  salaryExpectationClt: 'R$ 12.000,00',
-  salaryExpectationPj: 'R$ 16.000,00',
+  yearsOfExperience: 3,
+  preferredWorkplace: 'qualquer',
+  salaryExpectationClt: 'A combinar',
+  salaryExpectationPj: 'A combinar',
   background: {
     education: 'Bacharel em Ciência da Computação',
     entrepreneurship: 'Ex-cofundador de e-commerce de R$ 2.5M',
     keyMetricCase: 'Case comprovado de redução de 60% no volume de SAC via N8N e IA',
-    nicheFocus: ['N8N', 'Automação', 'AI Ops', 'RevOps', 'Revenue Operations', 'Sales Ops', 'CRM', 'Product Owner', 'Analista de Produto']
+    nicheFocus: [
+      'Implantação', 'Onboarding', 'Suporte Técnico', 'Dados & BI', 'SQL',
+      'CRM', 'RevOps', 'Sales Ops', 'N8N', 'Automação', 'Produto', 'Desenvolvimento'
+    ]
   },
   preferences: {
-    hideAffirmativeJobs: true, // Ocultar vagas afirmativas por padrão
-    maxHybridDistanceKm: 150, // Até 150km de Muzambinho
-    maxHybridDaysPerWeek: 2, // No máximo 2 dias presenciais na semana
+    hideAffirmativeJobs: false,
+    maxHybridDistanceKm: 150,
+    maxHybridDaysPerWeek: 2,
     referenceCity: 'Muzambinho',
     referenceState: 'MG',
   },
   screeningAnswers: {
-    availability: 'Disponibilidade imediata para atuação 100% remota ou modelo híbrido (até 2 dias/semana) na região.',
-    englishLevel: 'Avançado para leitura técnica, documentação e comunicação assíncrona corporativa.',
+    availability: 'Disponibilidade imediata para atuação remota, híbrida ou presencial.',
+    englishLevel: 'Intermediário/Avançado para leitura técnica, documentação e comunicação.',
     pcd: 'nao',
-    willingToRelocate: false,
-    leadershipExperience: 'Experiência como cofundador liderando operações, alinhamento entre times de vendas, marketing e engenharia, e implementação de esteiras de automação de ponta a ponta.',
-    customBio: 'Profissional com visão holística de negócio e profundidade técnica para desenhar e executar automações que geram receita e cortam custos operacionais.',
+    willingToRelocate: true,
+    leadershipExperience: 'Experiência como cofundador estruturando atendimento, implantação de ferramentas, análise de dados e automação de processos de ponta a ponta.',
+    customBio: 'Profissional com base sólida em Ciência da Computação e vivência real de negócio, focado em resolver gargalos operacionais com tecnologia, dados, integrações e automação.',
   }
 };
 
-const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v2';
+const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v3';
 
 export function loadStoredProfile(): CandidateProfile {
   try {
     const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // Garante migração dos novos campos
       return {
         ...DEFAULT_PROFILE,
         ...parsed,

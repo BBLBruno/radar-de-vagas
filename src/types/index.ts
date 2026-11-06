@@ -1,10 +1,12 @@
 export type ATSPlatform = 
   | 'gupy' 
-  | 'lever' 
-  | 'greenhouse' 
   | 'inhire' 
+  | 'greenhouse' 
+  | 'lever' 
   | 'solides' 
-  | 'linkedin_index';
+  | 'empregostec'
+  | 'github_vagas'
+  | 'remotive_intl';
 
 export type WorkplaceType = 'remoto' | 'hibrido' | 'presencial';
 
@@ -16,7 +18,16 @@ export type SeniorityLevel =
   | 'especialista'
   | 'todos';
 
-export type NicheCategory = 'ai_ops' | 'revops' | 'automacao' | 'produto' | 'geral';
+export type NicheCategory = 
+  | 'implantacao'
+  | 'suporte'
+  | 'dados_bi'
+  | 'crm_revops'
+  | 'automacao_ia'
+  | 'produto'
+  | 'desenvolvimento'
+  | 'qa_infra'
+  | 'geral';
 
 export interface Job {
   id: string;
@@ -43,13 +54,13 @@ export interface Job {
   matchedKeywords?: string[];
   missingKeywords?: string[];
   
-  // Novos campos de nicho e filtros avançados
   nicheCategories?: NicheCategory[];
   isAffirmative: boolean; // Vagas afirmativas (PCD, gênero, raça/etnia, 50+)
   affirmativeReason?: string;
-  hybridDaysPerWeek?: number; // Ex: 1 ou 2 dias na semana
-  distanceFromMuzambinhoKm?: number; // Distância calculada em KM
+  hybridDaysPerWeek?: number;
+  distanceFromMuzambinhoKm?: number;
   isWithinAllowedRadius?: boolean;
+  isInternational?: boolean; // Vagas internacionais (100% remotas)
 }
 
 export interface CandidateProfile {
@@ -59,31 +70,30 @@ export interface CandidateProfile {
   linkedinUrl: string;
   githubUrl: string;
   portfolioUrl: string;
-  city: string; // Padrão: Muzambinho
-  state: string; // Padrão: MG
-  title: string; // ex: Especialista em AI Ops, RevOps & Automações
+  city: string;
+  state: string;
+  title: string;
   summary: string;
   seniority: SeniorityLevel;
   primaryStacks: string[];
   yearsOfExperience: number;
-  preferredWorkplace: 'remoto' | 'hibrido' | 'ambos';
+  preferredWorkplace: 'remoto' | 'hibrido' | 'presencial' | 'todos';
   salaryExpectationClt: string;
   salaryExpectationPj: string;
   
-  // Background profissional fixo de alto impacto
   background: {
-    education: string; // Bacharel em Ciência da Computação
-    entrepreneurship: string; // Ex-cofundador de e-commerce de R$ 2.5M
-    keyMetricCase: string; // Redução de 60% do SAC com N8N e fluxos inteligentes com IA
-    nicheFocus: string[]; // ['N8N', 'AI Ops', 'RevOps', 'Sales Ops', 'CRM', 'Product Owner']
+    education: string;
+    entrepreneurship: string;
+    keyMetricCase: string;
+    nicheFocus: string[];
   };
 
   preferences: {
-    hideAffirmativeJobs: boolean; // Ocultar vagas afirmativas
-    maxHybridDistanceKm: number; // 150 km
-    maxHybridDaysPerWeek: number; // 2 dias
-    referenceCity: string; // Muzambinho
-    referenceState: string; // MG
+    hideAffirmativeJobs: boolean;
+    maxHybridDistanceKm: number;
+    maxHybridDaysPerWeek: number;
+    referenceCity: string;
+    referenceState: string;
   };
 
   screeningAnswers: {
@@ -100,22 +110,24 @@ export interface FilterState {
   searchQuery: string;
   maxDays: number; // 1, 3, 7, 14, 30
   workplaceType: 'todos' | WorkplaceType;
+  scopeFilter: 'todos' | 'nacional' | 'internacional';
   seniority: SeniorityLevel;
+  hideExecutiveSenior: boolean; // Trava opcional contra cargos executivos/sênior (Staff, Head, Director, Sr, Especialista, Manager)
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   stateFilter: string;
-  hideAffirmative: boolean; // Oculta vagas afirmativas
-  onlyMuzambinhoRadiusOrRemote: boolean; // Remoto ou Híbrido <= 150km de Muzambinho com <= 2 dias
+  hideAffirmative: boolean;
+  onlyMuzambinhoRadiusOrRemote: boolean;
   selectedNicheCategory: 'todas' | NicheCategory;
 }
 
-export interface ScraperSourceConfig {
+export interface GlobalAggregatorStats {
   id: string;
   name: string;
-  platform: ATSPlatform;
-  endpoint: string;
-  companySlug: string;
-  enabled: boolean;
-  lastScrapedAt?: string;
-  jobsFound?: number;
+  description: string;
+  platformKey: ATSPlatform | 'all';
+  scope: 'Brasil (Todas as Empresas)' | 'Internacional (100% Remoto)';
+  workplacesSupported: string[];
+  jobsCount: number;
+  status: 'online' | 'syncing';
 }
