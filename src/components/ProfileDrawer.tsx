@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { 
-  User, 
-  Briefcase, 
-  Code2, 
-  DollarSign, 
-  HelpCircle, 
-  Save, 
-  Check, 
-  Plus, 
+import React, { useState, useRef } from 'react';
+import {
+  User,
+  Code2,
+  Save,
+  Check,
+  Plus,
   X,
   Target,
-  ShieldCheck,
   MapPin,
-  EyeOff
+  Copy,
+  ExternalLink,
+  FileText,
+  Upload,
+  Trash2,
+  BookmarkCheck,
+  Sparkles,
+  Download,
+  Link2,
 } from 'lucide-react';
-import { CandidateProfile, SeniorityLevel } from '../types';
+import { ApplicationPortalLink, CandidateProfile } from '../types';
 import { saveStoredProfile } from '../engine/defaultProfile';
 
 interface ProfileDrawerProps {
@@ -22,9 +26,70 @@ interface ProfileDrawerProps {
   setProfile: React.Dispatch<React.SetStateAction<CandidateProfile>>;
 }
 
+const MARKET_PRESETS = [
+  {
+    id: 'preset_geral',
+    label: 'Padrão Completo (BizOps + Dados + Automação)',
+    title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados',
+    education:
+      'Bacharel em Ciência da Computação — base analítica sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
+    entrepreneurship:
+      'Ex-cofundador de operação de e-commerce (faturamento de R$ 2.5M) — visão executiva de dono sobre P&L, eficiência operacional, funil de vendas, retenção e margem.',
+    keyMetricCase:
+      'Case de Eficiência Operacional: Redução de 60% no volume de chamados manuais do SAC através do redesenho de processos, automações em N8N e triagem inteligente com IA.',
+    operationalPillars:
+      'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e implantação/onboarding de clientes.',
+  },
+  {
+    id: 'preset_bizops',
+    label: 'Foco Operações & Processos (BizOps)',
+    title: 'Analista de Operações de Negócios (BizOps) & Melhoria de Processos',
+    education:
+      'Bacharel em Ciência da Computação com foco em modelagem de processos (BPMN), arquitetura operacional, automação de fluxos e análise de indicadores (KPIs/SLAs).',
+    entrepreneurship:
+      'Ex-cofundador de e-commerce de R$ 2.5M — estruturei do zero as áreas de operações, logística, atendimento, compras e controle financeiro, garantindo escalabilidade com equipe enxuta.',
+    keyMetricCase:
+      'Eliminação de 60% do retrabalho operacional e chamados repetitivos no atendimento através do mapeamento As-Is / To-Be e automação ponta a ponta com N8N e IA.',
+    operationalPillars:
+      'Diagnóstico de gargalos operacionais, documentação de POPs/playbooks, padronização de rotinas, acompanhamento de OKRs/KPIs e integração entre sistemas via Webhooks/APIs.',
+  },
+  {
+    id: 'preset_comercial_crm',
+    label: 'Foco Inteligência Comercial, CRM & RevOps',
+    title: 'Analista de Inteligência Comercial, CRM & Revenue Operations (RevOps)',
+    education:
+      'Bacharel em Ciência da Computação — forte domínio técnico em estruturação de bases de dados, integrações de CRM, funil de conversão e automação de jornada.',
+    entrepreneurship:
+      'Ex-cofundador de operação digital de R$ 2.5M — gestão direta de aquisição, conversão, retenção (LTV/CAC), precificação e inteligência de mercado.',
+    keyMetricCase:
+      'Automação de esteira comercial e atendimento com redução de 60% no tempo de resposta ao cliente, integrando CRM, canais de comunicação e enriquecimento de dados.',
+    operationalPillars:
+      'Gestão de pipeline e higiene de dados no CRM (HubSpot / Salesforce), estudos de mercado e concorrência, criação de relatórios de performance comercial e suporte estratégico ao time de vendas/CS.',
+  },
+  {
+    id: 'preset_dados_bi',
+    label: 'Foco Dados, BI & Indicadores (SQL / Power BI)',
+    title: 'Analista de Dados, Business Intelligence (BI) & Indicadores Operacionais',
+    education:
+      'Bacharel em Ciência da Computação — domínio de SQL, modelagem de dados, lógica de programação (Python), ETL e estruturação de indicadores de negócio.',
+    entrepreneurship:
+      'Ex-cofundador de e-commerce de R$ 2.5M — tomada de decisão 100% orientada por dados financeiros, operacionais, curva ABC, giro de estoque e performance de mídia.',
+    keyMetricCase:
+      'Estruturação de pipelines automatizados de coleta e análise de dados operacionais, gerando redução de 60% em demandas manuais e visibilidade em tempo real de KPIs.',
+    operationalPillars:
+      'Construção de dashboards executivos (Power BI / Looker / Excel Avançado), consultas SQL, análise exploratória de dados, acompanhamento de metas e geração de insights acionáveis.',
+  },
+];
+
 export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfile }) => {
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [newStackInput, setNewStackInput] = useState('');
+  const [newTrackerName, setNewTrackerName] = useState('');
+  const [newTrackerPlatform, setNewTrackerPlatform] = useState('GUPY');
+  const [newTrackerUrl, setNewTrackerUrl] = useState('');
+  const [newTrackerNotes, setNewTrackerNotes] = useState('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (field: keyof CandidateProfile, value: any) => {
     setProfile(prev => ({ ...prev, [field]: value }));
@@ -36,7 +101,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
       background: {
         ...prev.background,
         [field]: value,
-      }
+      },
     }));
   };
 
@@ -46,18 +111,29 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
       preferences: {
         ...prev.preferences,
         [field]: value,
-      }
+      },
     }));
   };
 
-  const handleScreeningChange = (field: keyof CandidateProfile['screeningAnswers'], value: any) => {
+  const applyMarketPreset = (preset: (typeof MARKET_PRESETS)[number]) => {
     setProfile(prev => ({
       ...prev,
-      screeningAnswers: {
-        ...prev.screeningAnswers,
-        [field]: value,
-      }
+      title: preset.title,
+      background: {
+        ...prev.background,
+        education: preset.education,
+        entrepreneurship: preset.entrepreneurship,
+        keyMetricCase: preset.keyMetricCase,
+        operationalPillars: preset.operationalPillars,
+      },
     }));
+  };
+
+  const copyText = (text: string, id: string) => {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   const handleAddStack = (e: React.FormEvent) => {
@@ -66,7 +142,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     if (trimmed && !profile.primaryStacks.includes(trimmed)) {
       setProfile(prev => ({
         ...prev,
-        primaryStacks: [...prev.primaryStacks, trimmed]
+        primaryStacks: [...prev.primaryStacks, trimmed],
       }));
       setNewStackInput('');
     }
@@ -75,8 +151,84 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   const handleRemoveStack = (stack: string) => {
     setProfile(prev => ({
       ...prev,
-      primaryStacks: prev.primaryStacks.filter(s => s !== stack)
+      primaryStacks: prev.primaryStacks.filter(s => s !== stack),
     }));
+  };
+
+  const handlePdfUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) {
+      alert('O arquivo PDF deve ter no máximo 4MB para armazenamento rápido no navegador.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      setProfile(prev => {
+        const updated = {
+          ...prev,
+          resumePdfName: file.name,
+          resumePdfDataUrl: dataUrl,
+        };
+        saveStoredProfile(updated);
+        return updated;
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemovePdf = () => {
+    setProfile(prev => {
+      const updated = {
+        ...prev,
+        resumePdfName: '',
+        resumePdfDataUrl: '',
+      };
+      saveStoredProfile(updated);
+      return updated;
+    });
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const handleAddTracker = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTrackerName.trim() || !newTrackerUrl.trim()) return;
+    const formattedUrl = newTrackerUrl.startsWith('http')
+      ? newTrackerUrl.trim()
+      : `https://${newTrackerUrl.trim()}`;
+
+    const newItem: ApplicationPortalLink = {
+      id: `trk_${Date.now()}`,
+      name: newTrackerName.trim(),
+      platformLabel: newTrackerPlatform,
+      url: formattedUrl,
+      notes: newTrackerNotes.trim() || 'Acompanhamento manual de candidatura',
+    };
+
+    setProfile(prev => {
+      const updated = {
+        ...prev,
+        applicationTrackers: [...(prev.applicationTrackers || []), newItem],
+      };
+      saveStoredProfile(updated);
+      return updated;
+    });
+
+    setNewTrackerName('');
+    setNewTrackerUrl('');
+    setNewTrackerNotes('');
+  };
+
+  const handleRemoveTracker = (id: string) => {
+    setProfile(prev => {
+      const updated = {
+        ...prev,
+        applicationTrackers: (prev.applicationTrackers || []).filter(t => t.id !== id),
+      };
+      saveStoredProfile(updated);
+      return updated;
+    });
   };
 
   const handleSave = () => {
@@ -86,264 +238,545 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      
+    <div className="max-w-5xl mx-auto space-y-6">
       {/* Top Banner */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <h2 className="text-xl font-bold text-white">Meu Perfil de Especialista & Copiloto</h2>
-            <span className="px-2 py-0.5 text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded">
-              AI Ops • RevOps • Produto
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <h2 className="text-xl font-bold text-white">Meu Perfil & Kit de Aplicação Rápida</h2>
+            <span className="px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md">
+              BizOps • Inteligência • CRM • Dados & IA
             </span>
           </div>
-          <p className="text-xs text-slate-400">
-            Seu background fixo de alto impacto está calibrado para gerar pitches e respostas que convertem em entrevistas.
+          <p className="text-xs sm:text-sm text-slate-400">
+            Configure seu background no padrão STAR de mercado, guarde seu currículo PDF e acesse seus painéis de candidatura.
           </p>
         </div>
 
         <button
+          type="button"
           onClick={handleSave}
-          className="px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/15 shrink-0"
+          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/15 shrink-0"
         >
           {savedSuccess ? (
             <>
               <Check className="w-4 h-4" />
-              <span>Salvo com sucesso!</span>
+              <span>Alterações Salvas!</span>
             </>
           ) : (
             <>
               <Save className="w-4 h-4" />
-              <span>Salvar Alterações</span>
+              <span>Salvar Perfil</span>
             </>
           )}
         </button>
       </div>
 
-      {/* Background Fixo Injetado no Copiloto */}
-      <div className="bg-gradient-to-br from-slate-900 to-slate-900/90 border border-cyan-500/30 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-cyan-300">
-          <Target className="w-4 h-4 text-cyan-400" />
-          <span>Background Profissional Fixo (Injetado nas Cartas e Respostas do Copiloto)</span>
+      {/* 1. Background Profissional Fixo (Padrão de Mercado STAR + Templates Rápidos) */}
+      <div className="bg-slate-900/90 border border-cyan-500/30 rounded-2xl p-6 space-y-5 shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
+          <div>
+            <div className="flex items-center gap-2 text-base font-bold text-white">
+              <Target className="w-5 h-5 text-cyan-400" />
+              <span>Background Profissional Fixo (Injetado no Copiloto)</span>
+            </div>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Estruturado com base nos critérios que recrutadores de Operações, Dados, CRM e Negócios avaliam em triagens.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Formação Acadêmica</label>
-            <input
-              type="text"
+        {/* Presets de Mercado em 1 Clique */}
+        <div className="space-y-2">
+          <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            Modelos de Posicionamento por Área (Clique para preencher e adapte se desejar):
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {MARKET_PRESETS.map(preset => (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => applyMarketPreset(preset)}
+                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-cyan-500/15 text-slate-300 hover:text-cyan-300 border border-slate-800 hover:border-cyan-500/40 transition-all"
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Título Profissional Alvo */}
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+            Título / Posicionamento Profissional Principal
+          </label>
+          <input
+            type="text"
+            value={profile.title}
+            onChange={(e) => handleChange('title', e.target.value)}
+            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400"
+          />
+        </div>
+
+        {/* 4 Blocos de Texto Amplos (Padrão Mercado) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 space-y-2">
+            <label className="block text-xs font-bold text-cyan-300 uppercase tracking-wider">
+              1. Formação Acadêmica & Base Analítica
+            </label>
+            <textarea
+              rows={3}
               value={profile.background.education}
               onChange={(e) => handleBackgroundChange('education', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-cyan-400"
             />
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Experiência Empreendedora</label>
-            <input
-              type="text"
+          <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 space-y-2">
+            <label className="block text-xs font-bold text-emerald-300 uppercase tracking-wider">
+              2. Visão de Negócio & Experiência Prática
+            </label>
+            <textarea
+              rows={3}
               value={profile.background.entrepreneurship}
               onChange={(e) => handleBackgroundChange('entrepreneurship', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-emerald-400"
             />
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Case de Impacto (Métrica Chave)</label>
-            <input
-              type="text"
+          <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 space-y-2">
+            <label className="block text-xs font-bold text-amber-300 uppercase tracking-wider">
+              3. Case de Impacto Quantitativo (Método STAR)
+            </label>
+            <textarea
+              rows={3}
               value={profile.background.keyMetricCase}
               onChange={(e) => handleBackgroundChange('keyMetricCase', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-amber-400"
+            />
+          </div>
+
+          <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 space-y-2">
+            <label className="block text-xs font-bold text-purple-300 uppercase tracking-wider">
+              4. Entregáveis de Rotina, Ferramentas & Processos
+            </label>
+            <textarea
+              rows={3}
+              value={profile.background.operationalPillars || ''}
+              onChange={(e) => handleBackgroundChange('operationalPillars', e.target.value)}
+              placeholder="Ex: Mapeamento BPMN, dashboards em Power BI, consultas SQL, CRM HubSpot/Salesforce..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-purple-400"
             />
           </div>
         </div>
       </div>
 
-      {/* Preferências de Localidade & Vagas Afirmativas */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-          <MapPin className="w-4 h-4 text-emerald-400" />
-          <span>Preferências de Localidade & Filtro de Afirmativas</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Cidade Base de Referência</label>
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="text"
-                  value={profile.preferences.referenceCity}
-                  onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
-                  className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
-                />
-                <input
-                  type="text"
-                  value={profile.preferences.referenceState}
-                  onChange={(e) => handlePreferencesChange('referenceState', e.target.value)}
-                  className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Raio Máximo Híbrido (KM)</label>
-                <input
-                  type="number"
-                  value={profile.preferences.maxHybridDistanceKm}
-                  onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Máx. Dias Híbridos/Semana</label>
-                <input
-                  type="number"
-                  value={profile.preferences.maxHybridDaysPerWeek}
-                  onChange={(e) => handlePreferencesChange('maxHybridDaysPerWeek', Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-bold text-white mb-1">
-                <EyeOff className="w-4 h-4 text-rose-400" />
-                <span>Ocultar Vagas Afirmativas por Padrão</span>
-              </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
-                Remove do radar automático vagas destinadas exclusivamente a ações afirmativas (PCD, gênero, grupos minoritários), focando 100% em vagas de ampla concorrência.
-              </p>
-            </div>
-
-            <div className="pt-3">
-              <label className="inline-flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={profile.preferences.hideAffirmativeJobs}
-                  onChange={(e) => handlePreferencesChange('hideAffirmativeJobs', e.target.checked)}
-                  className="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-400 bg-slate-900 border-slate-700"
-                />
-                <span className="text-xs font-semibold text-slate-200">
-                  {profile.preferences.hideAffirmativeJobs ? 'Ativo (Vagas afirmativas ocultadas)' : 'Inativo (Exibir todas as vagas)'}
-                </span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Grid of Identification and Stacks */}
+      {/* 2. Grid de Identificação & Habilidades Principais */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* Identificação */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
+        {/* Identificação & Contato */}
+        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3.5">
           <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
             <User className="w-4 h-4 text-emerald-400" />
-            <span>Dados de Identificação & Contato</span>
+            <span>Dados de Identificação, Contato & Localidade</span>
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Nome</label>
-            <input
-              type="text"
-              value={profile.fullName}
-              onChange={(e) => handleChange('fullName', e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">E-mail</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Nome Completo</label>
               <input
-                type="email"
-                value={profile.email}
-                onChange={(e) => handleChange('email', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                type="text"
+                value={profile.fullName}
+                onChange={(e) => handleChange('fullName', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Telefone</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Telefone / WhatsApp</label>
               <input
                 type="text"
                 value={profile.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-400 mb-1">E-mail Principal</label>
+            <input
+              type="email"
+              value={profile.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
+            />
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 pt-1">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1 flex items-center gap-1">
+                <MapPin className="w-3 h-3 text-emerald-400" />
+                Cidade Base
+              </label>
+              <input
+                type="text"
+                value={profile.preferences.referenceCity}
+                onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">UF</label>
+              <input
+                type="text"
+                value={profile.preferences.referenceState}
+                onChange={(e) => handlePreferencesChange('referenceState', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Raio Híbrido (km)</label>
+              <input
+                type="number"
+                value={profile.preferences.maxHybridDistanceKm}
+                onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">LinkedIn</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Pretensão CLT</label>
               <input
                 type="text"
-                value={profile.linkedinUrl}
-                onChange={(e) => handleChange('linkedinUrl', e.target.value)}
+                value={profile.salaryExpectationClt}
+                onChange={(e) => handleChange('salaryExpectationClt', e.target.value)}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">GitHub</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1">Pretensão PJ</label>
               <input
                 type="text"
-                value={profile.githubUrl}
-                onChange={(e) => handleChange('githubUrl', e.target.value)}
+                value={profile.salaryExpectationPj}
+                onChange={(e) => handleChange('salaryExpectationPj', e.target.value)}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
           </div>
         </div>
 
-        {/* Stacks do Nicho */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-            <Code2 className="w-4 h-4 text-cyan-400" />
-            <span>Suas Stacks Principais (AI Ops / RevOps / N8N)</span>
-          </div>
+        {/* Habilidades & Competências Principais */}
+        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
+              <Code2 className="w-4 h-4 text-cyan-400" />
+              <span>Habilidades & Ferramentas do Perfil (BizOps, Dados, CRM & IA)</span>
+            </div>
 
-          <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto">
-            {profile.primaryStacks.map(stack => (
-              <span
-                key={stack}
-                className="px-2.5 py-1 rounded-md text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1"
-              >
-                <span>{stack}</span>
-                <button
-                  onClick={() => handleRemoveStack(stack)}
-                  className="hover:text-rose-400 transition-colors"
+            <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto p-1">
+              {profile.primaryStacks.map(stack => (
+                <span
+                  key={stack}
+                  className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5"
                 >
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            ))}
+                  <span>{stack}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveStack(stack)}
+                    className="hover:text-rose-400 transition-colors"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
           </div>
 
-          <form onSubmit={handleAddStack} className="flex gap-2 pt-2">
+          <form onSubmit={handleAddStack} className="flex gap-2 pt-2 border-t border-slate-800/70">
             <input
               type="text"
               value={newStackInput}
               onChange={(e) => setNewStackInput(e.target.value)}
-              placeholder="Adicionar stack (ex: LangChain, Pipedrive)..."
-              className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-400"
+              placeholder="Adicionar competência (ex: Looker Studio, Pipedrive, BPMN)..."
+              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400"
             />
             <button
               type="submit"
-              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white flex items-center gap-1"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1.5 shrink-0"
             >
-              <Plus className="w-3.5 h-3.5" />
-              Add
+              <Plus className="w-4 h-4" />
+              <span>Adicionar</span>
             </button>
           </form>
         </div>
-
       </div>
 
+      {/* 3. Abaixo dos Dados e Stacks: LinkedIn, GitHub e Currículo em PDF (Facilitador de Aplicação) */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+          <div>
+            <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
+              <FileText className="w-4 h-4 text-emerald-400" />
+              <span>Links Profissionais & Currículo em PDF (Acesso Rápido para Aplicar)</span>
+            </div>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Copie seus links em 1 clique ou baixe seu currículo em PDF rapidamente durante o preenchimento nos ATSs.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* LinkedIn */}
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5">
+            <label className="block text-xs font-bold text-slate-300">URL do LinkedIn</label>
+            <input
+              type="text"
+              value={profile.linkedinUrl}
+              onChange={(e) => handleChange('linkedinUrl', e.target.value)}
+              placeholder="https://linkedin.com/in/seu-perfil"
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+            />
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => copyText(profile.linkedinUrl, 'linkedin')}
+                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-emerald-400 flex items-center justify-center gap-1.5 transition-all"
+              >
+                {copiedId === 'linkedin' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copiedId === 'linkedin' ? 'Copiado!' : 'Copiar Link'}</span>
+              </button>
+              {profile.linkedinUrl && (
+                <a
+                  href={profile.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                  title="Abrir LinkedIn"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* GitHub / Portfólio */}
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5">
+            <label className="block text-xs font-bold text-slate-300">URL do GitHub / Portfólio</label>
+            <input
+              type="text"
+              value={profile.githubUrl}
+              onChange={(e) => handleChange('githubUrl', e.target.value)}
+              placeholder="https://github.com/seu-usuario"
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+            />
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => copyText(profile.githubUrl, 'github')}
+                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center justify-center gap-1.5 transition-all"
+              >
+                {copiedId === 'github' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copiedId === 'github' ? 'Copiado!' : 'Copiar Link'}</span>
+              </button>
+              {profile.githubUrl && (
+                <a
+                  href={profile.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                  title="Abrir GitHub/Portfólio"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Upload / Gerenciamento de Currículo PDF */}
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5 flex flex-col justify-between">
+            <div>
+              <label className="block text-xs font-bold text-slate-300 mb-1">
+                Arquivo do Currículo (PDF)
+              </label>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/pdf"
+                onChange={handlePdfUpload}
+                className="hidden"
+              />
+              {profile.resumePdfName ? (
+                <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 truncate">
+                    <FileText className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="text-xs font-semibold text-emerald-300 truncate">
+                      {profile.resumePdfName}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRemovePdf}
+                    title="Remover PDF"
+                    className="text-slate-400 hover:text-rose-400 shrink-0"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ) : (
+                <p className="text-[11px] text-slate-400">
+                  Anexe seu currículo em PDF para tê-lo sempre pronto para download/envio rápido nas vagas.
+                </p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center gap-1.5 transition-all"
+              >
+                <Upload className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{profile.resumePdfName ? 'Trocar PDF' : 'Anexar PDF'}</span>
+              </button>
+
+              {profile.resumePdfDataUrl && (
+                <a
+                  href={profile.resumePdfDataUrl}
+                  download={profile.resumePdfName || 'Curriculo.pdf'}
+                  className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1 transition-all"
+                  title="Baixar Currículo PDF"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Baixar</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Central Manual de Links para Acompanhar Candidaturas nas Fontes (Gupy, InHire, Greenhouse, etc.) */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+          <div>
+            <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
+              <BookmarkCheck className="w-5 h-5 text-cyan-400" />
+              <span>Acompanhamento Manual de Candidaturas nas Fontes (Gupy, InHire, Greenhouse...)</span>
+            </div>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Atalhos diretos para você acessar manualmente seus painéis de candidato nas plataformas ou salvar links de processos específicos.
+            </p>
+          </div>
+        </div>
+
+        {/* Lista de Links de Acompanhamento */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {(profile.applicationTrackers || []).map(tracker => (
+            <div
+              key={tracker.id}
+              className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-slate-700 flex flex-col justify-between gap-3 transition-all"
+            >
+              <div>
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <span className="px-2 py-0.5 text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded">
+                    {tracker.platformLabel}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTracker(tracker.id)}
+                    title="Remover atalho"
+                    className="text-slate-500 hover:text-rose-400 transition-colors"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+                <h4 className="text-sm font-bold text-white mt-1">{tracker.name}</h4>
+                {tracker.notes && (
+                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{tracker.notes}</p>
+                )}
+              </div>
+
+              <a
+                href={tracker.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-3 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-emerald-500 text-slate-200 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>Abrir Painel de Candidaturas</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Formulário para Adicionar Novo Link de Acompanhamento Manual */}
+        <form
+          onSubmit={handleAddTracker}
+          className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 space-y-3"
+        >
+          <div className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+            <Link2 className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Adicionar Novo Link de Acompanhamento Manual (Portal ou Vaga Aplicada)</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+            <div className="sm:col-span-3">
+              <input
+                type="text"
+                value={newTrackerName}
+                onChange={(e) => setNewTrackerName(e.target.value)}
+                placeholder="Nome (ex: Processo VTEX / Gupy)"
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+
+            <div className="sm:col-span-2">
+              <select
+                value={newTrackerPlatform}
+                onChange={(e) => setNewTrackerPlatform(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              >
+                <option value="GUPY">Gupy</option>
+                <option value="INHIRE">InHire</option>
+                <option value="GREENHOUSE">Greenhouse</option>
+                <option value="LEVER">Lever</option>
+                <option value="SÓLIDES">Sólides</option>
+                <option value="INTERNACIONAL">Internacional</option>
+                <option value="OUTRO">Outro</option>
+              </select>
+            </div>
+
+            <div className="sm:col-span-4">
+              <input
+                type="text"
+                value={newTrackerUrl}
+                onChange={(e) => setNewTrackerUrl(e.target.value)}
+                placeholder="URL do painel ou da vaga aplicada..."
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              />
+            </div>
+
+            <div className="sm:col-span-3 flex gap-2">
+              <input
+                type="text"
+                value={newTrackerNotes}
+                onChange={(e) => setNewTrackerNotes(e.target.value)}
+                placeholder="Status (ex: Teste enviado)"
+                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              />
+              <button
+                type="submit"
+                className="px-3.5 py-2 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1 shrink-0"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Salvar</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

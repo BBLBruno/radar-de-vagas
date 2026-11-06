@@ -5,15 +5,13 @@ import {
   Sparkles,
   MapPin,
   EyeOff,
-  CheckSquare,
-  Square,
   Layers,
   Globe,
   Building2,
   Briefcase,
   ChevronDown,
   ChevronUp,
-  Wifi,
+  Home,
   Clock,
   Database,
   TrendingUp,
@@ -22,7 +20,12 @@ import {
   Cpu,
   Workflow,
   RotateCcw,
-  SlidersHorizontal,
+  HelpCircle,
+  GraduationCap,
+  Rocket,
+  Zap,
+  Award,
+  UserCheck,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -49,13 +52,14 @@ const DAY_OPTIONS = [
   { value: 45, label: 'Todas' },
 ];
 
+// Internacional movido para o final como solicitado
 const PLATFORM_OPTIONS: Array<{ value: 'todas' | ATSPlatform; label: string }> = [
   { value: 'todas', label: 'Todas as Fontes' },
   { value: 'gupy', label: 'Gupy' },
-  { value: 'remotive_intl', label: 'Internacional' },
   { value: 'greenhouse', label: 'Greenhouse' },
   { value: 'inhire', label: 'InHire' },
   { value: 'lever', label: 'Lever' },
+  { value: 'remotive_intl', label: 'Internacional' },
 ];
 
 const CATEGORY_OPTIONS: Array<{
@@ -71,31 +75,32 @@ const CATEGORY_OPTIONS: Array<{
   { value: 'automacao_ia', label: 'Automação & IA (N8N)', icon: Cpu },
 ];
 
+// Símbolo de Remoto alterado para Casa (Home)
 const WORKPLACE_OPTIONS: Array<{
   value: 'todos' | WorkplaceType;
   label: string;
   icon: React.FC<{ className?: string }>;
 }> = [
   { value: 'todos', label: 'Todas Modalidades', icon: Layers },
-  { value: 'remoto', label: '100% Remoto', icon: Wifi },
+  { value: 'remoto', label: '100% Remoto', icon: Home },
   { value: 'hibrido', label: 'Híbrido', icon: Building2 },
   { value: 'presencial', label: 'Presencial', icon: MapPin },
 ];
 
 const SENIORITY_OPTIONS: Array<{
-  value: 'todos' | SeniorityLevel;
+  value: 'todos' | 'entrada_jr_pleno' | SeniorityLevel;
   label: string;
+  icon: React.FC<{ className?: string }>;
 }> = [
-  { value: 'todos', label: 'Todas' },
-  { value: 'estagio', label: 'Estágio / Trainee' },
-  { value: 'junior', label: 'Júnior / Entrada' },
-  { value: 'pleno', label: 'Pleno' },
-  { value: 'senior', label: 'Sênior' },
-  { value: 'especialista', label: 'Especialista / Lead' },
+  { value: 'todos', label: 'Todas', icon: Layers },
+  { value: 'entrada_jr_pleno', label: 'Foco Jr / Pleno', icon: UserCheck },
+  { value: 'estagio', label: 'Estágio / Trainee', icon: GraduationCap },
+  { value: 'junior', label: 'Júnior / Entrada', icon: Rocket },
+  { value: 'pleno', label: 'Pleno', icon: Zap },
+  { value: 'senior', label: 'Sênior / Lead', icon: Award },
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks }) => {
-  // Estado único compartilhado: quando Área ou Habilidades expande, os dois expandem juntos!
   const [areDrawersExpanded, setAreDrawersExpanded] = useState(false);
 
   const toggleStack = (stack: string) => {
@@ -110,41 +115,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
-  const handleSelectSeniority = (level: 'todos' | SeniorityLevel) => {
-    setFilters(prev => {
-      // Se o usuário clicou especificamente em Sênior ou Especialista, desativa a trava que oculta Sênior/Executivo
-      const shouldDisableExecLock = level === 'senior' || level === 'especialista';
-      return {
-        ...prev,
-        seniority: level,
-        hideExecutiveSenior: shouldDisableExecLock ? false : prev.hideExecutiveSenior,
-      };
-    });
-  };
-
-  const handleToggleExecLock = () => {
-    setFilters(prev => {
-      const nextLock = !prev.hideExecutiveSenior;
-      // Se ativou a trava anti-sênior mas o filtro de senioridade estava em Sênior/Especialista, volta senioridade para 'todos'
-      const nextSeniority =
-        nextLock && (prev.seniority === 'senior' || prev.seniority === 'especialista')
-          ? 'todos'
-          : prev.seniority;
-      return {
-        ...prev,
-        hideExecutiveSenior: nextLock,
-        seniority: nextSeniority,
-      };
-    });
+  const handleSelectSeniority = (level: 'todos' | 'entrada_jr_pleno' | SeniorityLevel) => {
+    setFilters(prev => ({
+      ...prev,
+      seniority: level,
+      hideExecutiveSenior: level === 'entrada_jr_pleno',
+    }));
   };
 
   const resetFilters = () => {
     setFilters({
       searchQuery: '',
-      maxDays: 45,
+      maxDays: 30,
       workplaceType: 'todos',
       scopeFilter: 'todas',
-      seniority: 'todos',
+      seniority: 'entrada_jr_pleno',
       hideExecutiveSenior: true,
       platform: 'todas',
       selectedStacks: [],
@@ -234,15 +219,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </button>
       </div>
 
-      {/* Linha 2: Modalidade (Em Botões) & Senioridade (Em Botões) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-3 border-t border-slate-800/60">
-        {/* Modalidade (5 colunas) */}
-        <div className="lg:col-span-5">
-          <label className="text-[11px] font-semibold text-slate-400 mb-2 flex items-center gap-1.5">
-            <Building2 className="w-3.5 h-3.5 text-emerald-400" />
-            Modalidade (Remoto / Híbrido / Presencial)
-          </label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-1.5">
+      {/* Linha 2: Separação Visual Clara em 2 Painéis Distintos (Modalidade vs Nível de Senioridade) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* Painel 1: Modalidade (5 colunas - Card com borda lateral esmeralda e fundo próprio) */}
+        <div className="lg:col-span-5 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-emerald-500 rounded-xl p-3.5">
+          <div className="flex items-center justify-between mb-2.5">
+            <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Home className="w-3.5 h-3.5" />
+              1. Modalidade de Trabalho
+            </span>
+            <span className="text-[11px] text-slate-500">Formato presencial ou remoto</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
             {WORKPLACE_OPTIONS.map(opt => {
               const Icon = opt.icon;
               const isSelected = filters.workplaceType === opt.value;
@@ -251,13 +239,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                   key={opt.value}
                   type="button"
                   onClick={() => setFilters(prev => ({ ...prev, workplaceType: opt.value }))}
-                  className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
+                  className={`px-3 py-2 rounded-lg text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
                     isSelected
-                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold shadow-sm'
-                      : 'bg-slate-950/60 text-slate-300 border-slate-800 hover:bg-slate-800/70 hover:text-white'
+                      ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold shadow-sm'
+                      : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-slate-950' : 'text-emerald-400'}`} />
                   <span className="truncate">{opt.label}</span>
                 </button>
               );
@@ -265,26 +253,31 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </div>
         </div>
 
-        {/* Nível de Senioridade em Botões (7 colunas) */}
-        <div className="lg:col-span-7">
-          <label className="text-[11px] font-semibold text-slate-400 mb-2 flex items-center gap-1.5">
-            <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
-            Nível de Senioridade
-          </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+        {/* Painel 2: Nível de Senioridade (7 colunas - Card com borda lateral ciano e ícones dedicados) */}
+        <div className="lg:col-span-7 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-cyan-500 rounded-xl p-3.5">
+          <div className="flex items-center justify-between mb-2.5">
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5" />
+              2. Nível de Senioridade
+            </span>
+            <span className="text-[11px] text-slate-500">Momento de carreira</span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {SENIORITY_OPTIONS.map(opt => {
+              const Icon = opt.icon;
               const isSelected = filters.seniority === opt.value;
               return (
                 <button
                   key={opt.value}
                   type="button"
                   onClick={() => handleSelectSeniority(opt.value)}
-                  className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
+                  className={`px-3 py-2 rounded-lg text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
                     isSelected
-                      ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold shadow-sm'
-                      : 'bg-slate-950/60 text-slate-300 border-slate-800 hover:bg-slate-800/70 hover:text-white'
+                      ? 'bg-cyan-500 text-slate-950 border-cyan-400 font-bold shadow-sm'
+                      : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
+                  <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-slate-950' : 'text-cyan-400'}`} />
                   <span className="truncate">{opt.label}</span>
                 </button>
               );
@@ -293,12 +286,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
       </div>
 
-      {/* Linha 3: Destaque Principal para FONTE e TEMPO DA VAGA + Menor Destaque (Discreto/Responsivo) para os 3 Toggles */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pt-3 border-t border-slate-800/60">
-        {/* Esquerda (MAIOR DESTAQUE): Fonte da Vaga & Tempo de Publicação */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 flex-wrap">
-          {/* Seletor de Fonte em Destaque */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+      {/* Linha 3: Fonte + Publicação à esquerda | Sem Afirmativas + Raio 150km no mesmo formato e colados na direita com Tooltips */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1">
+        {/* Esquerda: Fonte & Publicação */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          {/* Bloco Fonte (Internacional no final) */}
+          <div className="flex flex-wrap items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
             <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1 px-2">
               <Database className="w-3.5 h-3.5" />
               Fonte:
@@ -322,8 +315,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Seletor de Tempo da Vaga em Destaque */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+          {/* Bloco Publicação */}
+          <div className="flex flex-wrap items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
             <span className="text-xs font-semibold text-cyan-400 flex items-center gap-1 px-2">
               <Clock className="w-3.5 h-3.5" />
               Publicação:
@@ -348,70 +341,59 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </div>
         </div>
 
-        {/* Direita (MENOR DESTAQUE, Discreto e Responsivo): Os 3 Toggles Auxiliares */}
-        <div className="flex flex-wrap items-center gap-1.5 xl:justify-end">
-          <button
-            type="button"
-            onClick={handleToggleExecLock}
-            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
-              filters.hideExecutiveSenior
-                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
-                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
-            }`}
-            title="Oculta cargos Sênior, Staff, Head, Director, Gerente, Supervisor e Especialista"
-          >
-            <SlidersHorizontal className="w-3 h-3 text-slate-400 shrink-0" />
-            <span>Ocultar Sênior/Exec</span>
-            {filters.hideExecutiveSenior ? (
-              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
-            ) : (
-              <Square className="w-3 h-3 text-slate-600 shrink-0" />
-            )}
-          </button>
+        {/* Direita: Sem Afirmativas & Raio 150km / Remoto no MESMO formato/estilo de pílula e com Tooltips explicativos */}
+        <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
+          {/* Botão 1: Sem Afirmativas + Tooltip */}
+          <div className="relative group">
+            <button
+              type="button"
+              onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
+              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                filters.hideAffirmative
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+              }`}
+            >
+              <EyeOff className="w-3.5 h-3.5" />
+              <span>Sem Afirmativas</span>
+              <HelpCircle className={`w-3 h-3 opacity-75 ${filters.hideAffirmative ? 'text-slate-900' : 'text-slate-400'}`} />
+            </button>
 
-          <button
-            type="button"
-            onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
-            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
-              filters.hideAffirmative
-                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
-                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
-            }`}
-            title="Oculta vagas exclusivas para ações afirmativas"
-          >
-            <EyeOff className="w-3 h-3 text-slate-400 shrink-0" />
-            <span>Sem Afirmativas</span>
-            {filters.hideAffirmative ? (
-              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
-            ) : (
-              <Square className="w-3 h-3 text-slate-600 shrink-0" />
-            )}
-          </button>
+            {/* Tooltip Sem Afirmativas */}
+            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+              <strong className="text-emerald-400 block mb-1">Filtro Sem Vagas Afirmativas</strong>
+              Oculta vagas destinadas exclusivamente a recortes afirmativos específicos (PcD, mulheres, pessoas negras, LGBTQIA+, 50+), exibindo apenas processos de ampla concorrência.
+            </div>
+          </div>
 
-          <button
-            type="button"
-            onClick={() =>
-              setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: !prev.onlyMuzambinhoRadiusOrRemote }))
-            }
-            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium flex items-center gap-1.5 border transition-all ${
-              filters.onlyMuzambinhoRadiusOrRemote
-                ? 'bg-slate-800/90 text-slate-200 border-slate-700'
-                : 'bg-slate-950/40 text-slate-500 border-slate-800/70 hover:text-slate-300'
-            }`}
-            title="Exibe apenas vagas 100% Remotas ou presenciais/híbridas em até 150km de Muzambinho-MG"
-          >
-            <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-            <span>Raio 150km / Remoto</span>
-            {filters.onlyMuzambinhoRadiusOrRemote ? (
-              <CheckSquare className="w-3 h-3 text-emerald-400 shrink-0" />
-            ) : (
-              <Square className="w-3 h-3 text-slate-600 shrink-0" />
-            )}
-          </button>
+          {/* Botão 2: Raio 150km / Remoto + Tooltip */}
+          <div className="relative group">
+            <button
+              type="button"
+              onClick={() =>
+                setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: !prev.onlyMuzambinhoRadiusOrRemote }))
+              }
+              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                filters.onlyMuzambinhoRadiusOrRemote
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Raio 150km / Remoto</span>
+              <HelpCircle className={`w-3 h-3 opacity-75 ${filters.onlyMuzambinhoRadiusOrRemote ? 'text-slate-900' : 'text-slate-400'}`} />
+            </button>
+
+            {/* Tooltip Raio 150km / Remoto */}
+            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+              <strong className="text-cyan-400 block mb-1">Filtro Geográfico (Muzambinho-MG)</strong>
+              Mantém todas as vagas 100% Remotas e filtra as vagas Híbridas/Presenciais para mostrar apenas cidades num raio de até 150km de Muzambinho (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, etc.).
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Linha 4: Seções Recolhidas Sincronizadas (Quando uma expande, a outra expande junto!) */}
+      {/* Linha 4: Seções Recolhidas Sincronizadas (Área & Habilidades expandem juntas) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/60 items-stretch">
         {/* Coluna 1: Filtro por Área */}
         <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden flex flex-col">

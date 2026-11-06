@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Building2,
   MapPin,
@@ -10,10 +10,8 @@ import {
   ShieldAlert,
   Globe,
   Briefcase,
-  Wifi,
+  Home,
   Banknote,
-  ChevronDown,
-  ChevronUp,
 } from 'lucide-react';
 import { Job } from '../types';
 
@@ -79,8 +77,6 @@ export const JobCard: React.FC<JobCardProps> = ({
   onOpenDetails,
   onOpenCopilot,
 }) => {
-  const [showSummary, setShowSummary] = useState(false);
-
   const platform = PLATFORM_CONFIG[job.platform] || {
     label: job.platform,
     badgeClass: 'bg-slate-700 text-slate-300 border-slate-600',
@@ -104,10 +100,10 @@ export const JobCard: React.FC<JobCardProps> = ({
   const cleanLocation = job.location.replace(/^🌎\s*/, '');
 
   return (
-    <div className="bg-slate-900/70 border border-slate-800 hover:border-slate-700/80 rounded-2xl p-5 sm:p-6 transition-all duration-200 hover:shadow-xl hover:shadow-slate-950/40 flex flex-col justify-between group">
+    <div className="h-full bg-slate-900/70 border border-slate-800 hover:border-slate-700/80 rounded-2xl p-5 sm:p-6 transition-all duration-200 hover:shadow-xl hover:shadow-slate-950/40 flex flex-col justify-between group">
       <div>
         {/* Top Badges Row */}
-        <div className="flex items-start justify-between gap-2 mb-3">
+        <div className="flex items-start justify-between gap-2 mb-3 min-h-[3.25rem]">
           <div className="flex flex-wrap items-center gap-1.5">
             {job.isInternational ? (
               <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1">
@@ -116,7 +112,7 @@ export const JobCard: React.FC<JobCardProps> = ({
               </span>
             ) : job.workplaceType === 'remoto' ? (
               <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                <Wifi className="w-3 h-3" />
+                <Home className="w-3 h-3" />
                 100% Remoto
               </span>
             ) : job.workplaceType === 'hibrido' ? (
@@ -167,26 +163,28 @@ export const JobCard: React.FC<JobCardProps> = ({
           </button>
         </div>
 
-        {/* Title & Company */}
+        {/* Title (Altura padronizada de 2 linhas) */}
         <h3
           onClick={() => onOpenDetails(job)}
-          className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors cursor-pointer line-clamp-2 leading-snug"
+          className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors cursor-pointer line-clamp-2 leading-snug h-[3.25rem]"
+          title={job.title}
         >
           {job.title}
         </h3>
 
-        <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-slate-400 mt-2 mb-3">
-          <span className="flex items-center gap-1.5 font-medium text-slate-200">
+        {/* Company & Location (1 linha padronizada) */}
+        <div className="flex items-center gap-3 text-xs text-slate-400 mt-2 mb-3 truncate">
+          <span className="flex items-center gap-1.5 font-medium text-slate-200 truncate">
             <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            {job.company}
+            <span className="truncate">{job.company}</span>
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 truncate">
             <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            {cleanLocation}
+            <span className="truncate">{cleanLocation}</span>
           </span>
         </div>
 
-        {/* Faixa Salarial + Indicador de Compatibilidade (Sem exibir %) */}
+        {/* Faixa Salarial + Indicador de Compatibilidade */}
         <div className="mb-3 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/90 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 text-xs truncate">
             <Banknote className={`w-3.5 h-3.5 shrink-0 ${job.salary ? 'text-emerald-400' : 'text-slate-500'}`} />
@@ -205,70 +203,35 @@ export const JobCard: React.FC<JobCardProps> = ({
           )}
         </div>
 
-        {/* Chips de Habilidades (Clicáveis para filtrar!) */}
-        {job.stacks.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-3">
-            {job.stacks.slice(0, 4).map(stack => {
-              const isSelectedFilter = selectedStacks.includes(stack);
-              const isMatched = job.matchedKeywords?.includes(stack);
-              return (
-                <button
-                  key={stack}
-                  type="button"
-                  onClick={() => onToggleStack && onToggleStack(stack)}
-                  title={`Filtrar por ${stack}`}
-                  className={`px-2 py-0.5 rounded text-[11px] font-medium border transition-all ${
-                    isSelectedFilter
-                      ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold'
-                      : isMatched
-                      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-semibold hover:bg-emerald-500/25'
-                      : 'bg-slate-800/80 text-slate-300 border-slate-700/50 hover:bg-slate-700'
-                  }`}
-                >
-                  {stack}
-                </button>
-              );
-            })}
-            {job.stacks.length > 4 && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-500 bg-slate-800/40">
-                +{job.stacks.length - 4}
-              </span>
-            )}
-          </div>
-        )}
-
-        {/* Botão de Resumo Rápido Recolhido */}
-        {job.description && (
-          <div className="mb-3">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowSummary(prev => !prev);
-              }}
-              className="w-full px-3 py-1.5 rounded-lg bg-slate-950/50 hover:bg-slate-800/70 border border-slate-800/80 text-[11px] font-medium text-slate-300 hover:text-white flex items-center justify-between transition-all cursor-pointer"
-            >
-              <span>{showSummary ? 'Ocultar resumo rápido da vaga' : 'Ver resumo rápido da vaga'}</span>
-              {showSummary ? (
-                <ChevronUp className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              ) : (
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-              )}
-            </button>
-            {showSummary && (
-              <div className="mt-2 p-3 rounded-xl bg-slate-950/90 border border-slate-800 text-xs text-slate-300 leading-relaxed space-y-2">
-                <p>{job.description}</p>
-                <button
-                  type="button"
-                  onClick={() => onOpenDetails(job)}
-                  className="text-[11px] font-semibold text-emerald-400 hover:underline inline-flex items-center gap-1"
-                >
-                  <span>Abrir visualização completa</span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+        {/* Chips de Habilidades (Altura fixa padronizada) */}
+        <div className="flex flex-wrap gap-1.5 mb-4 h-7 overflow-hidden">
+          {job.stacks.slice(0, 3).map(stack => {
+            const isSelectedFilter = selectedStacks.includes(stack);
+            const isMatched = job.matchedKeywords?.includes(stack);
+            return (
+              <button
+                key={stack}
+                type="button"
+                onClick={() => onToggleStack && onToggleStack(stack)}
+                title={`Filtrar por ${stack}`}
+                className={`px-2 py-0.5 rounded text-[11px] font-medium border transition-all truncate max-w-[160px] ${
+                  isSelectedFilter
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold'
+                    : isMatched
+                    ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-semibold hover:bg-emerald-500/25'
+                    : 'bg-slate-800/80 text-slate-300 border-slate-700/50 hover:bg-slate-700'
+                }`}
+              >
+                {stack}
+              </button>
+            );
+          })}
+          {job.stacks.length > 3 && (
+            <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-500 bg-slate-800/40 self-center">
+              +{job.stacks.length - 3}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Action Buttons */}

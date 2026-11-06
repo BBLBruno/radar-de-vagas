@@ -37,6 +37,7 @@ export interface Job {
   salary?: string;
   description: string;
   requirements: string[];
+  benefits?: string[];
   isActive: boolean;
   isAffirmative?: boolean;
   affirmativeReason?: string;
@@ -50,6 +51,14 @@ export interface Job {
   missingKeywords?: string[];
 }
 
+export interface ApplicationPortalLink {
+  id: string;
+  name: string;
+  platformLabel: string;
+  url: string;
+  notes?: string;
+}
+
 export interface CandidateProfile {
   fullName: string;
   email: string;
@@ -57,6 +66,9 @@ export interface CandidateProfile {
   linkedinUrl: string;
   githubUrl: string;
   portfolioUrl: string;
+  resumeExternalUrl?: string;
+  resumePdfName?: string;
+  resumePdfDataUrl?: string;
   city: string;
   state: string;
   title: string;
@@ -71,6 +83,7 @@ export interface CandidateProfile {
     education: string;
     entrepreneurship: string;
     keyMetricCase: string;
+    operationalPillars?: string;
     nicheFocus: string[];
   };
   preferences: {
@@ -88,6 +101,7 @@ export interface CandidateProfile {
     leadershipExperience: string;
     customBio: string;
   };
+  applicationTrackers?: ApplicationPortalLink[];
 }
 
 export interface FilterState {
@@ -95,7 +109,7 @@ export interface FilterState {
   maxDays: number;
   workplaceType: 'todos' | WorkplaceType;
   scopeFilter: 'todas' | 'nacional' | 'internacional';
-  seniority: 'todos' | SeniorityLevel;
+  seniority: 'todos' | 'entrada_jr_pleno' | SeniorityLevel;
   hideExecutiveSenior: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];

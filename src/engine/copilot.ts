@@ -17,67 +17,89 @@ export interface CopilotKit {
 
 export function generateCopilotKit(job: Job, profile: CandidateProfile | null): CopilotKit {
   const candidateName = profile?.fullName || 'Bruno';
-  const roleTitle = profile?.title || 'Especialista em Automações, AI Ops & RevOps';
-  const matchedStacks = job.matchedKeywords && job.matchedKeywords.length > 0 
-    ? job.matchedKeywords.join(', ')
-    : job.stacks.slice(0, 4).join(', ');
+  const roleTitle =
+    profile?.title || 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados';
+  const matchedStacks =
+    job.matchedKeywords && job.matchedKeywords.length > 0
+      ? job.matchedKeywords.join(', ')
+      : job.stacks.slice(0, 4).join(', ');
 
-  // Dados do background fixo de alto impacto do usuário
-  const education = profile?.background?.education || 'Bacharel em Ciência da Computação';
-  const entrepreneurship = profile?.background?.entrepreneurship || 'Ex-cofundador de e-commerce de R$ 2.5M';
-  const keyMetric = profile?.background?.keyMetricCase || 'Case comprovado de redução de 60% no volume de SAC via N8N e IA';
+  const education =
+    profile?.background?.education ||
+    'Bacharel em Ciência da Computação — base analítica em SQL, BI, integrações e modelagem de processos (BPMN).';
+  const entrepreneurship =
+    profile?.background?.entrepreneurship ||
+    'Ex-cofundador de operação de e-commerce que faturou R$ 2.5M — visão prática de P&L, funil comercial, retenção e SLA.';
+  const keyMetric =
+    profile?.background?.keyMetricCase ||
+    'Redução comprovada de 60% na demanda manual do SAC através do redesenho de processos, automações em N8N e agentes de IA.';
+  const operationalPillars =
+    profile?.background?.operationalPillars ||
+    'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e onboarding de clientes.';
 
-  // 1. Pitch / Cover Letter de Alta Conversão focado no Background Fixo
-  const tailoredPitch = `Olá, time de recrutamento e liderança da ${job.company}!
+  const linksFooter = [
+    profile?.linkedinUrl ? `LinkedIn: ${profile.linkedinUrl}` : '',
+    profile?.githubUrl ? `GitHub / Portfólio: ${profile.githubUrl}` : '',
+    profile?.resumeExternalUrl ? `Currículo (PDF): ${profile.resumeExternalUrl}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
 
-Me chamo ${candidateName}, sou ${education} e atuo focado na interseção entre tecnologia, automação de processos e resultado de negócio (${roleTitle}).
+  const tailoredPitch = `Olá, time de recrutamento e gestão da ${job.company}!
 
-Acompanhando os desafios da oportunidade de "${job.title}", identifiquei sinergia direta com a minha trajetória prática:
+Me chamo ${candidateName} e atuo focado em Operações de Negócios (BizOps), Processos, Inteligência Comercial/Dados e Automação (${roleTitle}).
 
-• Visão de Negócio & Produto: Como ${entrepreneurship}, entendo na pele como a eficiência operacional e o alinhamento de processos impactam o faturamento, CAC, LTV e a experiência do cliente.
-• Automação & AI Ops na Prática: Construo arquiteturas escaláveis conectando CRMs, ferramentas de produto e fluxos inteligentes com N8N e IA generativa. Tenho como marco um ${keyMetric}, eliminando gargalos manuais e acelerando respostas.
-• Domínio das Stacks da Vaga: Experiência sólida e hands-on com ${matchedStacks}.
+Ao analisar os desafios da posição de "${job.title}", identifiquei forte alinhamento com minha bagagem prática de mercado:
 
-Estou 100% estruturado para o modelo ${job.workplaceType === 'remoto' ? '100% Remoto' : 'Híbrido flexível'} e pronto para gerar valor imediato na operação da ${job.company}.
+1. Formação Analítica & Técnica: ${education}
+2. Vivência Real de Negócio e Operação: ${entrepreneurship}
+3. Resultados Mensuráveis (Método STAR): ${keyMetric}
+4. Domínio Prático das Competências da Vaga: Experiência direta com ${matchedStacks}. ${operationalPillars}
 
-Fico à disposição para batermos um papo técnico sobre como posso acelerar as iniciativas da equipe!
+Tenho disponibilidade imediata para atuar no modelo ${
+    job.workplaceType === 'remoto'
+      ? '100% Remoto'
+      : job.workplaceType === 'hibrido'
+      ? 'Híbrido'
+      : 'Presencial'
+  } e foco total em gerar ganho de eficiência, visibilidade de indicadores (KPIs) e escala para a operação da ${job.company}.
+
+Fico à disposição para conversarmos sobre como posso agregar ao time desde as primeiras semanas!
 
 Atenciosamente,
 ${candidateName}
-${profile?.linkedinUrl ? `LinkedIn: ${profile.linkedinUrl}` : ''}
-${profile?.githubUrl ? `GitHub: ${profile.githubUrl}` : ''}`;
+${linksFooter}`;
 
-  // 2. Respostas Estratégicas para Perguntas de Triagem dos ATSs
   const screeningAnswers: CopilotScreeningAnswer[] = [
     {
-      question: 'Qual o seu background profissional e formação acadêmica?',
-      suggestedAnswer: `${education}. ${entrepreneurship}. Atuação focada em AI Ops, RevOps, fluxos de automação com N8N e gestão de produtos digitais com foco em métricas de eficiência.`,
-      tip: 'Destaca de imediato a base técnica sólida e a experiência real de gestão de negócio/produto.'
+      question: 'Fale sobre sua trajetória profissional, formação e diferencial para a vaga (Pitch Resumido):',
+      suggestedAnswer: `${education} ${entrepreneurship} Atuo conectando processos operacionais, inteligência de dados (SQL / Power BI / KPIs) e automação (CRM / N8N / IA) para eliminar trabalho manual e destravar crescimento.`,
+      tip: 'Padrão de mercado: combina base analítica (Computação) + visão de dono (R$ 2.5M) + foco em eficiência.',
     },
     {
-      question: 'Possui experiência comprovada com N8N, integrações e Inteligência Artificial?',
-      suggestedAnswer: `Sim. Crio e opero pipelines completos no N8N integrando APIs, webhooks, CRMs e modelos de LLM/OpenAI. Um dos meus principais cases foi a redução de 60% do atendimento do SAC através de agentes autônomos e triagem inteligente de chamados.`,
-      tip: 'Apresentar métrica quantitativa (60% de redução) aumenta drasticamente a taxa de resposta.'
+      question: 'Compartilhe um case prático onde você otimizou processos, reduziu custos ou gerou eficiência:',
+      suggestedAnswer: `${keyMetric} Mapeei os principais motivos de contato (As-Is), desenhei fluxos automatizados de triagem e integração via N8N e IA (To-Be) e implementei indicadores de acompanhamento, liberando a equipe para demandas estratégicas.`,
+      tip: 'Estruturado no método STAR (Situação, Tarefa, Ação e Resultado com métrica de 60%).',
     },
     {
-      question: 'Como você conecta operações (RevOps / AI Ops) aos objetivos de negócio?',
-      suggestedAnswer: `Por ter sido cofundador de operação que faturou R$ 2.5M, não enxergo automações como meros scripts, mas como alavancas de receita e retenção. Mapeio a jornada, elimino fricções no CRM/funil e orquestro os dados para tomadas de decisão ágeis.`,
-      tip: 'Excelente resposta para vagas de RevOps, Sales Ops e Product Owner.'
+      question: 'Como você atua com análise de dados, indicadores (KPIs), CRM e rotina operacional?',
+      suggestedAnswer: `${operationalPillars} Utilizo dados para diagnosticar gargalos de conversão, retenção e SLA, garantindo que os processos rodem com previsibilidade e documentação clara.`,
+      tip: 'Ideal para perguntas técnicas de BizOps, Inteligência Comercial, Dados, CRM e Implantação/Onboarding.',
     },
     {
-      question: 'Qual a sua pretensão salarial (CLT e PJ)?',
-      suggestedAnswer: profile?.salaryExpectationClt 
-        ? `CLT: ${profile.salaryExpectationClt} | PJ: ${profile.salaryExpectationPj || 'A combinar'}`
-        : 'Aberto a negociação compatível com o impacto estratégico da função.',
-      tip: 'Evite deixar em branco; use sua faixa de mercado.'
+      question: 'Qual a sua pretensão salarial (CLT / PJ)?',
+      suggestedAnswer: profile?.salaryExpectationClt
+        ? `CLT: ${profile.salaryExpectationClt} | PJ: ${profile.salaryExpectationPj || 'A combinar'} (flexível conforme pacote de benefícios e escopo do cargo).`
+        : 'Aberto à faixa salarial praticada pela empresa para o nível da posição.',
+      tip: 'Mostra transparência e flexibilidade para avançar à etapa de entrevista.',
     },
     {
-      question: 'Disponibilidade e modelo de trabalho (' + job.workplaceType.toUpperCase() + '):',
-      suggestedAnswer: job.workplaceType === 'remoto'
-        ? 'Disponibilidade imediata em regime 100% remoto, com infraestrutura completa de home office e comunicação assíncrona.'
-        : `Disponibilidade imediata para modelo híbrido de até 2 dias presenciais na semana, dentro do raio de atuação compatível.`,
-      tip: 'Confirmação direta dos critérios estabelecidos para a vaga.'
-    }
+      question: `Disponibilidade para início e aderência ao modelo (${job.workplaceType.toUpperCase()}):`,
+      suggestedAnswer:
+        profile?.screeningAnswers?.availability ||
+        'Disponibilidade imediata, com estrutura completa para atuação remota ou híbrida e facilidade de adaptação a ferramentas globais.',
+      tip: 'Responde de forma objetiva ao critério logístico da triagem.',
+    },
   ];
 
   return {
@@ -85,12 +107,12 @@ ${profile?.githubUrl ? `GitHub: ${profile.githubUrl}` : ''}`;
     screeningAnswers,
     atsKeywordsToHighlight: job.stacks,
     canonicalUrl: job.canonicalUrl,
-    recommendedSalary: profile?.salaryExpectationClt || 'R$ 10.000,00',
+    recommendedSalary: profile?.salaryExpectationClt || 'A combinar',
     nicheHighlights: [
       'Bacharel em Ciência da Computação',
       'Ex-cofundador e-commerce R$ 2.5M',
-      'Case: Redução 60% SAC com N8N e IA',
-      'Foco: AI Ops, RevOps, Automação & Produto'
-    ]
+      'Case: -60% demanda manual via N8N & IA',
+      'Foco: BizOps, Processos, Dados/BI, CRM & Onboarding',
+    ],
   };
 }

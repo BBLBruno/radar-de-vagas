@@ -29,7 +29,7 @@ import {
   X,
   SlidersHorizontal,
   Globe,
-  Wifi,
+  Home,
   Briefcase,
   Layers,
   Database,
@@ -49,10 +49,11 @@ const SHORT_CATEGORY_LABELS: Record<NicheCategory, string> = {
 };
 
 const SHORT_SENIORITY_LABELS: Record<string, string> = {
+  entrada_jr_pleno: 'Jr / Pleno',
   estagio: 'Estágio / Trainee',
   junior: 'Júnior',
   pleno: 'Pleno',
-  senior: 'Sênior',
+  senior: 'Sênior / Lead',
   especialista: 'Especialista / Lead',
 };
 
@@ -108,7 +109,7 @@ export const App: React.FC = () => {
     maxDays: 30,
     workplaceType: 'todos',
     scopeFilter: 'todas',
-    seniority: 'todos',
+    seniority: 'entrada_jr_pleno',
     hideExecutiveSenior: true,
     platform: 'todas',
     selectedStacks: [],
@@ -167,11 +168,20 @@ export const App: React.FC = () => {
       .filter(job => {
         if (isBlacklistedTitle(job.title)) return false;
 
-        if (filters.hideExecutiveSenior) {
+        // Senioridade e filtro Entrada / Jr / Pleno
+        if (filters.seniority === 'entrada_jr_pleno' || filters.hideExecutiveSenior) {
           if (job.seniority === 'senior' || job.seniority === 'especialista') {
             return false;
           }
           if (isExecutiveOrSeniorTitle(job.title)) {
+            return false;
+          }
+        } else if (filters.seniority === 'senior') {
+          if (job.seniority !== 'senior' && job.seniority !== 'especialista') {
+            return false;
+          }
+        } else if (filters.seniority !== 'todos') {
+          if (job.seniority !== filters.seniority) {
             return false;
           }
         }
@@ -222,15 +232,10 @@ export const App: React.FC = () => {
           return false;
         }
 
-        if (filters.seniority !== 'todos' && job.seniority !== filters.seniority) {
-          return false;
-        }
-
         if (filters.platform !== 'todas' && job.platform !== filters.platform) {
           return false;
         }
 
-        // Filtro por Habilidades & Ferramentas (OR / Qualquer uma das habilidades selecionadas)
         if (filters.selectedStacks.length > 0) {
           const hasAnySelectedStack = filters.selectedStacks.some(
             s =>
@@ -296,16 +301,22 @@ export const App: React.FC = () => {
                   <strong>{jobs.length}</strong> vagas
                 </span>
 
-                {/* Tags Resumidas Dinâmicas dos Filtros Ativos */}
-                {filters.hideExecutiveSenior && (
+                {/* Tag Resumida de Senioridade Ativa */}
+                {filters.seniority !== 'todos' && (
                   <button
                     type="button"
-                    onClick={() => setFilters(prev => ({ ...prev, hideExecutiveSenior: false }))}
-                    title="Clique para remover filtro"
+                    onClick={() =>
+                      setFilters(prev => ({
+                        ...prev,
+                        seniority: 'todos',
+                        hideExecutiveSenior: false,
+                      }))
+                    }
+                    title="Clique para mostrar todas as senioridades"
                     className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
                   >
                     <SlidersHorizontal className="w-3 h-3" />
-                    <span>Jr / Pleno</span>
+                    <span>{SHORT_SENIORITY_LABELS[filters.seniority] || filters.seniority}</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -328,20 +339,8 @@ export const App: React.FC = () => {
                     onClick={() => setFilters(prev => ({ ...prev, workplaceType: 'todos' }))}
                     className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
                   >
-                    <Wifi className="w-3 h-3" />
+                    <Home className="w-3 h-3" />
                     <span className="capitalize">{filters.workplaceType}</span>
-                    <X className="w-3 h-3 ml-0.5 opacity-70" />
-                  </button>
-                )}
-
-                {filters.seniority !== 'todos' && (
-                  <button
-                    type="button"
-                    onClick={() => setFilters(prev => ({ ...prev, seniority: 'todos' }))}
-                    className="text-[11px] px-2 py-0.5 bg-sky-500/15 text-sky-300 border border-sky-500/30 rounded-md flex items-center gap-1 hover:bg-sky-500/25 transition-all"
-                  >
-                    <Briefcase className="w-3 h-3" />
-                    <span>{SHORT_SENIORITY_LABELS[filters.seniority]}</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -352,7 +351,7 @@ export const App: React.FC = () => {
                     onClick={() => setFilters(prev => ({ ...prev, selectedNicheCategory: 'todas' }))}
                     className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
                   >
-                    <Layers className="w-3 h-3" />
+                    <Layers className="w-3.5 h-3.5" />
                     <span>{SHORT_CATEGORY_LABELS[filters.selectedNicheCategory]}</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
@@ -450,9 +449,9 @@ export const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Job Cards Grid (items-start para que expandir o resumo de 1 card não estique os outros!) */}
+            {/* Job Cards Grid (Todos do mesmo tamanho com h-full) */}
             {filteredJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredJobs.map(job => (
                   <JobCard
                     key={job.id}
@@ -476,7 +475,7 @@ export const App: React.FC = () => {
                     Nenhuma vaga encontrada com os filtros atuais
                   </h3>
                   <p className="text-xs text-slate-400 mt-1">
-                    Limpe os filtros ou desative a trava de cargos Sênior/Executivos para visualizar todas as {jobs.length} vagas.
+                    Limpe os filtros ou selecione "Todas" na Senioridade para visualizar todas as {jobs.length} vagas.
                   </p>
                 </div>
                 <button
@@ -519,7 +518,7 @@ export const App: React.FC = () => {
             </div>
 
             {savedJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {savedJobs.map(job => (
                   <JobCard
                     key={job.id}

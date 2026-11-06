@@ -7,11 +7,14 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   linkedinUrl: 'https://linkedin.com/in/bruno-automacoes',
   githubUrl: 'https://github.com/BBLBruno',
   portfolioUrl: 'https://radar-concursos-ti.vercel.app',
+  resumeExternalUrl: '',
+  resumePdfName: '',
+  resumePdfDataUrl: '',
   city: 'Muzambinho',
   state: 'MG',
-  title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial, Dados & Automação (N8N)',
+  title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados',
   summary:
-    'Bacharel em Ciência da Computação e ex-cofundador de operação de e-commerce que faturou R$ 2.5M. Forte vivência prática em Operações de Negócios (BizOps), mapeamento e otimização de processos, Inteligência de Mercado/Comercial, estruturação de CRM/RevOps, Onboarding, análise de dados (SQL/Power BI/KPIs) e automação de fluxos via N8N e IA (case de redução de 60% na demanda operacional do SAC).',
+    'Bacharel em Ciência da Computação e ex-cofundador de operação digital que faturou R$ 2.5M. Atuo na interseção entre Operações de Negócios (BizOps), Inteligência Comercial, Dados/BI e Automação de Processos. Experiência prática no diagnóstico de gargalos operacionais (As-Is / To-Be), acompanhamento de KPIs (CAC, LTV, Conversão, SLA), estruturação de CRM/Onboarding e implementação de fluxos automatizados via N8N, SQL e IA (case real de redução de 60% na demanda operacional de atendimento).',
   seniority: 'pleno',
   primaryStacks: [
     'Inteligência de Mercado',
@@ -34,12 +37,17 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   ],
   yearsOfExperience: 3,
   preferredWorkplace: 'qualquer',
-  salaryExpectationClt: 'A combinar',
-  salaryExpectationPj: 'A combinar',
+  salaryExpectationClt: 'R$ 5.500,00 - R$ 8.500,00 (A combinar)',
+  salaryExpectationPj: 'R$ 7.000,00 - R$ 11.000,00 (A combinar)',
   background: {
-    education: 'Bacharel em Ciência da Computação',
-    entrepreneurship: 'Ex-cofundador de e-commerce de R$ 2.5M',
-    keyMetricCase: 'Case comprovado de redução de 60% no volume de SAC via N8N e IA',
+    education:
+      'Bacharel em Ciência da Computação — base analítica sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
+    entrepreneurship:
+      'Ex-cofundador de operação de e-commerce (faturamento de R$ 2.5M) — visão executiva de dono sobre P&L, eficiência operacional, funil de vendas, retenção e margem.',
+    keyMetricCase:
+      'Case de Eficiência Operacional: Redução de 60% no volume de chamados manuais do SAC através do redesenho de processos, automações em N8N e triagem inteligente com IA.',
+    operationalPillars:
+      'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e implantação/onboarding técnico de clientes.',
     nicheFocus: [
       'Operações / BizOps',
       'Processos / BPMN',
@@ -58,18 +66,55 @@ export const DEFAULT_PROFILE: CandidateProfile = {
     referenceState: 'MG',
   },
   screeningAnswers: {
-    availability: 'Disponibilidade imediata para atuação remota, híbrida ou presencial.',
-    englishLevel: 'Intermediário/Avançado para leitura técnica, ferramentas globais e comunicação assíncrona.',
+    availability: 'Disponibilidade imediata para início em modelo 100% remoto ou híbrido.',
+    englishLevel: 'Intermediário a Avançado (leitura técnica fluente, ferramentas globais e comunicação escrita).',
     pcd: 'nao',
     willingToRelocate: true,
     leadershipExperience:
-      'Experiência como cofundador estruturando operações comerciais, indicadores (KPIs), implantação de ferramentas de CRM e automação de processos de ponta a ponta.',
+      'Vivência prática como cofundador liderando operações ponta a ponta, alinhamento entre áreas comercial, atendimento e tecnologia, e acompanhamento de metas e indicadores (KPIs/OKRs).',
     customBio:
-      'Profissional com formação analítica em Ciência da Computação e vivência real de dono de negócio, focado em alavancar eficiência operacional, receita e inteligência de dados.',
+      'Profissional analítico com formação em Ciência da Computação e mentalidade orientada a negócios, focado em transformar processos manuais em operações escaláveis e orientadas por dados.',
   },
+  applicationTrackers: [
+    {
+      id: 'trk_gupy',
+      name: 'Gupy — Painel do Candidato',
+      platformLabel: 'GUPY',
+      url: 'https://portal.gupy.io/candidates/applications',
+      notes: 'Acompanhar andamento das inscrições e testes nas empresas da Gupy',
+    },
+    {
+      id: 'trk_inhire',
+      name: 'InHire — Minhas Candidaturas',
+      platformLabel: 'INHIRE',
+      url: 'https://app.inhire.com.br/',
+      notes: 'Vagas de consultorias, startups e scale-ups brasileiras',
+    },
+    {
+      id: 'trk_greenhouse',
+      name: 'Greenhouse — My Applications',
+      platformLabel: 'GREENHOUSE',
+      url: 'https://my.greenhouse.io/',
+      notes: 'Histórico de aplicações em empresas nacionais e globais no Greenhouse',
+    },
+    {
+      id: 'trk_solides',
+      name: 'Sólides Vagas — Área do Candidato',
+      platformLabel: 'SÓLIDES',
+      url: 'https://vagas.solides.com.br/',
+      notes: 'Acompanhamento de processos seletivos via Sólides',
+    },
+    {
+      id: 'trk_linkedin',
+      name: 'LinkedIn — Vagas Aplicadas & Salvas',
+      platformLabel: 'LINKEDIN',
+      url: 'https://www.linkedin.com/my-items/saved-jobs/',
+      notes: 'Controle externo de networking e recrutadores abordados',
+    },
+  ],
 };
 
-const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v4';
+const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v5';
 
 export function loadStoredProfile(): CandidateProfile {
   try {
@@ -81,6 +126,10 @@ export function loadStoredProfile(): CandidateProfile {
         ...parsed,
         background: { ...DEFAULT_PROFILE.background, ...parsed.background },
         preferences: { ...DEFAULT_PROFILE.preferences, ...parsed.preferences },
+        applicationTrackers:
+          parsed.applicationTrackers && parsed.applicationTrackers.length > 0
+            ? parsed.applicationTrackers
+            : DEFAULT_PROFILE.applicationTrackers,
       };
     }
   } catch (err) {
