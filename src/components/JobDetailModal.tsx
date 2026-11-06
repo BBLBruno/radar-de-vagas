@@ -1,14 +1,15 @@
 import React from 'react';
-import { 
-  X, 
-  Building2, 
-  MapPin, 
-  Clock, 
-  ExternalLink, 
-  Sparkles, 
-  DollarSign, 
-  CheckCircle2, 
-  Gift 
+import {
+  X,
+  Building2,
+  MapPin,
+  ExternalLink,
+  Sparkles,
+  Banknote,
+  CheckCircle2,
+  Briefcase,
+  Globe,
+  Wifi,
 } from 'lucide-react';
 import { Job } from '../types';
 
@@ -25,46 +26,57 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
 }) => {
   if (!job) return null;
 
+  const cleanLocation = job.location.replace(/^🌎\s*/, '');
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-        
         {/* Header */}
         <div className="p-6 border-b border-slate-800 bg-slate-900/90 flex items-start justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 {job.platform.toUpperCase()}
               </span>
               <span className="px-2.5 py-0.5 text-xs font-medium rounded-md bg-slate-800 text-slate-300">
                 {job.daysOpen === 0 ? 'Publicada hoje' : `Publicada há ${job.daysOpen} dias`}
               </span>
-              {job.workplaceType === 'remoto' && (
-                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+              {job.isInternational ? (
+                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1">
+                  <Globe className="w-3 h-3" />
+                  Internacional • 100% Remoto
+                </span>
+              ) : job.workplaceType === 'remoto' ? (
+                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                  <Wifi className="w-3 h-3" />
                   100% Remoto
                 </span>
-              )}
+              ) : null}
+              <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-sky-500/15 text-sky-300 border border-sky-500/30 flex items-center gap-1">
+                <Briefcase className="w-3 h-3" />
+                {job.seniority.toUpperCase()}
+              </span>
             </div>
 
             <h2 className="text-xl font-bold text-white leading-tight">
               {job.title}
             </h2>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400 mt-2">
-              <span className="flex items-center gap-1 font-semibold text-slate-200">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 mt-2">
+              <span className="flex items-center gap-1.5 font-semibold text-slate-200">
                 <Building2 className="w-3.5 h-3.5 text-slate-400" />
                 {job.company}
               </span>
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                {job.location}
+                {cleanLocation}
               </span>
-              {job.salary && (
-                <span className="flex items-center gap-1 text-emerald-400 font-medium">
-                  <DollarSign className="w-3.5 h-3.5" />
-                  {job.salary}
+              <span className="flex items-center gap-1 font-medium">
+                <Banknote className={`w-3.5 h-3.5 ${job.salary ? 'text-emerald-400' : 'text-slate-500'}`} />
+                <span className={job.salary ? 'text-emerald-400' : 'text-slate-400'}>
+                  {job.salary || 'Salário não informado'}
                 </span>
-              )}
+              </span>
             </div>
           </div>
 
@@ -78,11 +90,10 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
 
         {/* Body Content */}
         <div className="p-6 overflow-y-auto space-y-6">
-          
-          {/* Stacks Chips */}
+          {/* Habilidades */}
           <div>
             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
-              Tecnologias Identificadas
+              Habilidades & Ferramentas Identificadas
             </h4>
             <div className="flex flex-wrap gap-1.5">
               {job.stacks.map(stack => (
@@ -123,27 +134,6 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
               </ul>
             </div>
           )}
-
-          {/* Benefits */}
-          {job.benefits && job.benefits.length > 0 && (
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <Gift className="w-4 h-4 text-purple-400" />
-                Benefícios Oferecidos
-              </h4>
-              <div className="flex flex-wrap gap-1.5">
-                {job.benefits.map((ben, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2.5 py-1 rounded-md text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20"
-                  >
-                    {ben}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
         </div>
 
         {/* Footer Actions */}
@@ -153,7 +143,7 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
               onClose();
               onOpenCopilot(job);
             }}
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-750 text-emerald-400 border border-emerald-500/30 transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/30 transition-all flex items-center justify-center gap-2"
           >
             <Sparkles className="w-4 h-4 text-amber-400" />
             <span>Abrir Copiloto de Candidatura</span>
@@ -169,7 +159,6 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
             <ExternalLink className="w-4 h-4" />
           </a>
         </div>
-
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ import {
   isBlacklistedTitle,
   detectAffirmative,
   calculateDistanceToMuzambinho,
+  POPULAR_FILTER_STACKS,
 } from './engine/normalizer';
 import { calculateJobMatch } from './engine/matcher';
 import { deduplicateJobs } from './engine/deduplicator';
@@ -25,6 +26,7 @@ import {
   SearchX,
   ArrowUpDown,
   Bookmark,
+  ShieldCheck,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
@@ -33,7 +35,6 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved' | 'crawlers'>('radar');
   const [profile, setProfile] = useState<CandidateProfile>(() => loadStoredProfile());
 
-  // Inicializa as vagas reais aplicando a Blacklist contra Suporte/Dev/Infra
   const [jobs, setJobs] = useState<Job[]>(() => {
     const enriched = SEED_JOBS.filter(j => !isBlacklistedTitle(j.title)).map(j => {
       const categories =
@@ -70,7 +71,7 @@ export const App: React.FC = () => {
 
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
-    maxDays: 45,
+    maxDays: 30,
     workplaceType: 'todos',
     scopeFilter: 'todas',
     seniority: 'todos',
@@ -118,10 +119,8 @@ export const App: React.FC = () => {
   const filteredJobs = useMemo(() => {
     return jobsWithMatch
       .filter(job => {
-        // 0. Blacklist estrita (Garantia dupla contra TI / Dev / Suporte)
         if (isBlacklistedTitle(job.title)) return false;
 
-        // 1. Trava de Senioridade Executiva / Sênior
         if (filters.hideExecutiveSenior) {
           if (job.seniority === 'senior' || job.seniority === 'especialista') {
             return false;
@@ -131,12 +130,10 @@ export const App: React.FC = () => {
           }
         }
 
-        // 2. Filtro de Afirmativas
         if (filters.hideAffirmative && job.isAffirmative) {
           return false;
         }
 
-        // 3. Escopo (Brasil vs Internacional 100% Remoto)
         if (filters.scopeFilter === 'nacional' && job.isInternational) {
           return false;
         }
@@ -144,7 +141,6 @@ export const App: React.FC = () => {
           return false;
         }
 
-        // 4. Filtro Geográfico Opcional: Apenas Remoto ou Raio 150km de Muzambinho
         if (filters.onlyMuzambinhoRadiusOrRemote) {
           if (job.workplaceType !== 'remoto') {
             const dist = job.distanceFromMuzambinhoKm ?? 999;
@@ -152,7 +148,6 @@ export const App: React.FC = () => {
           }
         }
 
-        // 5. Categoria / Área Profissional
         if (filters.selectedNicheCategory !== 'todas') {
           const cats = job.nicheCategories || [];
           if (!cats.includes(filters.selectedNicheCategory)) {
@@ -160,12 +155,10 @@ export const App: React.FC = () => {
           }
         }
 
-        // 6. Dias em aberto
         if (job.daysOpen > filters.maxDays) {
           return false;
         }
 
-        // 7. Busca textual livre
         if (filters.searchQuery.trim()) {
           const query = filters.searchQuery.toLowerCase();
           const matchesTitle = job.title.toLowerCase().includes(query);
@@ -179,19 +172,26 @@ export const App: React.FC = () => {
           }
         }
 
-        // 8. Modalidade (Remoto, Híbrido, Presencial)
         if (filters.workplaceType !== 'todos' && job.workplaceType !== filters.workplaceType) {
           return false;
         }
 
-        // 9. Senioridade específica
         if (filters.seniority !== 'todos' && job.seniority !== filters.seniority) {
           return false;
         }
 
-        // 10. Plataforma / Fonte
         if (filters.platform !== 'todas' && job.platform !== filters.platform) {
           return false;
+        }
+
+        if (filters.selectedStacks.length > 0) {
+          const hasAllStacks = filters.selectedStacks.every(
+            s =>
+              job.stacks.some(js => js.toLowerCase() === s.toLowerCase()) ||
+              job.title.toLowerCase().includes(s.toLowerCase()) ||
+              job.description.toLowerCase().includes(s.toLowerCase())
+          );
+          if (!hasAllStacks) return false;
         }
 
         return true;
@@ -230,23 +230,36 @@ export const App: React.FC = () => {
         savedCount={savedJobIds.length}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {activeTab === 'radar' && (
-          <div className="space-y-6">
+          <div className="space-y-5">
             <StatsBar totalJobs={jobs.length} filteredJobs={filteredJobs} />
 
-            <FilterBar filters={filters} setFilters={setFilters} />
+            <FilterBar
+              filters={filters}
+              setFilters={setFilters}
+              popularStacks={POPULAR_FILTER_STACKS}
+            />
 
-            {/* Barra de Ordenação Limpa */}
+            {/* Sub-header: Count and Sort (Sem exibir % de compatibilidade) */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-              <div className="text-sm text-slate-300">
-                Mostrando <strong className="text-white font-bold">{filteredJobs.length}</strong> oportunidades
+              <div className="text-sm font-semibold text-slate-300 flex flex-wrap items-center gap-2">
+                <span>
+                  Exibindo <strong className="text-emerald-400">{filteredJobs.length}</strong> de{' '}
+                  <strong>{jobs.length}</strong> vagas
+                </span>
+                {filters.hideExecutiveSenior && (
+                  <span className="text-xs px-2.5 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    Foco Entrada / Jr / Pleno
+                  </span>
+                )}
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-400 flex items-center gap-1 mr-1">
+              <div className="flex items-center gap-2 self-end sm:self-auto">
+                <span className="text-xs text-slate-400 flex items-center gap-1">
                   <ArrowUpDown className="w-3.5 h-3.5 text-slate-500" />
-                  Ordenar:
+                  Ordenar por:
                 </span>
                 <button
                   onClick={() => setSortBy('recent')}
@@ -267,14 +280,14 @@ export const App: React.FC = () => {
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  Maior Match
+                  Compatibilidade com Perfil
                 </button>
               </div>
             </div>
 
-            {/* Grid de Vagas com Espaçamento Confortável */}
+            {/* Job Cards Grid */}
             {filteredJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredJobs.map(job => (
                   <JobCard
                     key={job.id}
@@ -293,10 +306,10 @@ export const App: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">
-                    Nenhuma vaga encontrada com os filtros selecionados
+                    Nenhuma vaga encontrada com os filtros atuais
                   </h3>
-                  <p className="text-sm text-slate-400 mt-1">
-                    Limpe os filtros ou desative a trava de cargos Sênior/Executivos para ver todas as {jobs.length} vagas.
+                  <p className="text-xs text-slate-400 mt-1">
+                    Limpe os filtros ou desative a trava de cargos Sênior/Executivos para visualizar todas as {jobs.length} vagas.
                   </p>
                 </div>
                 <button
@@ -316,9 +329,9 @@ export const App: React.FC = () => {
                       selectedNicheCategory: 'todas',
                     })
                   }
-                  className="px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-flex items-center gap-2"
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-flex items-center gap-1.5"
                 >
-                  Ver todas as {jobs.length} vagas
+                  Mostrar todas as {jobs.length} vagas
                 </button>
               </div>
             )}
@@ -332,13 +345,13 @@ export const App: React.FC = () => {
                 <Bookmark className="w-5 h-5 text-emerald-400" />
                 Vagas Salvas ({savedJobs.length})
               </h2>
-              <p className="text-sm text-slate-400 mt-1">
-                Oportunidades salvas para candidatura rápida com o Copiloto.
+              <p className="text-xs text-slate-400 mt-1">
+                Acompanhe suas oportunidades selecionadas e gere pitches personalizados com o Copiloto.
               </p>
             </div>
 
             {savedJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {savedJobs.map(job => (
                   <JobCard
                     key={job.id}
@@ -354,7 +367,7 @@ export const App: React.FC = () => {
               <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center space-y-3">
                 <Bookmark className="w-8 h-8 text-slate-500 mx-auto" />
                 <h3 className="text-base font-bold text-white">Nenhuma vaga salva ainda</h3>
-                <p className="text-sm text-slate-400">
+                <p className="text-xs text-slate-400">
                   Clique no ícone de marcador nos cards para salvar suas vagas favoritas.
                 </p>
               </div>
@@ -397,7 +410,7 @@ export const App: React.FC = () => {
 
       <footer className="border-t border-slate-900 bg-slate-950 py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
-          <strong>Radar de Vagas</strong> • Operações (BizOps), Processos, Inteligência de Mercado/Comercial, CRM/RevOps, Onboarding, Dados/BI & Automação (N8N)
+          <strong>Radar BizOps & Dados</strong> • Operações, Processos, Inteligência de Mercado/Comercial, CRM/RevOps, Onboarding, BI & Automação (N8N)
         </div>
       </footer>
     </div>
