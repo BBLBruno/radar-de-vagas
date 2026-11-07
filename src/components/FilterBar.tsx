@@ -75,7 +75,7 @@ const CATEGORY_OPTIONS: Array<{
   { value: 'automacao_ia', label: 'Automação & IA (N8N)', icon: Cpu },
 ];
 
-// Símbolo de Remoto como Casa (Home)
+// Símbolo de Remoto como Casa (Home) + suporte a seleção múltipla
 const WORKPLACE_OPTIONS: Array<{
   value: 'todos' | WorkplaceType;
   label: string;
@@ -112,6 +112,31 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         selectedStacks: exists
           ? prev.selectedStacks.filter(s => s !== stack)
           : [...prev.selectedStacks, stack],
+      };
+    });
+  };
+
+  // Suporte para selecionar mais de uma opção de Modalidade
+  const handleSelectWorkplace = (mode: 'todos' | WorkplaceType) => {
+    setFilters(prev => {
+      if (mode === 'todos') {
+        return {
+          ...prev,
+          workplaceType: 'todos',
+          selectedWorkplaces: [],
+        };
+      }
+
+      const current = prev.selectedWorkplaces || [];
+      const exists = current.includes(mode);
+      const nextSelected = exists
+        ? current.filter(item => item !== mode)
+        : [...current, mode];
+
+      return {
+        ...prev,
+        workplaceType: nextSelected.length === 1 ? nextSelected[0] : 'todos',
+        selectedWorkplaces: nextSelected,
       };
     });
   };
@@ -175,11 +200,29 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
+  const handleToggleRadiusOrRemote = () => {
+    setFilters(prev => {
+      const nextActive = !prev.onlyMuzambinhoRadiusOrRemote;
+      // Se ativou o filtro de Remoto + Híbrido <=150km e estava filtrado apenas em Presencial, limpa Presencial
+      const cleanedWorkplaces = nextActive
+        ? (prev.selectedWorkplaces || []).filter(w => w !== 'presencial')
+        : prev.selectedWorkplaces || [];
+
+      return {
+        ...prev,
+        onlyMuzambinhoRadiusOrRemote: nextActive,
+        selectedWorkplaces: cleanedWorkplaces,
+        workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+      };
+    });
+  };
+
   const resetFilters = () => {
     setFilters({
       searchQuery: '',
       maxDays: 30,
       workplaceType: 'todos',
+      selectedWorkplaces: [],
       scopeFilter: 'todas',
       seniority: 'todos',
       selectedSeniorities: [],
@@ -196,6 +239,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
   const selectedAreaLabel =
     CATEGORY_OPTIONS.find(c => c.value === filters.selectedNicheCategory)?.label || 'Todas as Áreas';
 
+  const selectedWorkplaces = filters.selectedWorkplaces || [];
   const selectedSeniorities = filters.selectedSeniorities || [];
 
   return (
@@ -274,26 +318,33 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </button>
       </div>
 
-      {/* Linha 2: Separação Visual em 2 Painéis (Sem numeração "1." e "2.") */}
+      {/* Linha 2: Separação Visual em 2 Painéis (Ambos com suporte a Múltipla Escolha) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        {/* Painel Modalidade de Trabalho */}
+        {/* Painel Modalidade de Trabalho (Múltipla Escolha) */}
         <div className="lg:col-span-5 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-emerald-500 rounded-xl p-3.5">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
               <Home className="w-3.5 h-3.5" />
               Modalidade de Trabalho
             </span>
-            <span className="text-[11px] text-slate-500">Formato presencial ou remoto</span>
+            <span className="text-[11px] text-slate-400">
+              {selectedWorkplaces.length > 0
+                ? `${selectedWorkplaces.length} selecionada(s)`
+                : 'Múltipla escolha'}
+            </span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             {WORKPLACE_OPTIONS.map(opt => {
               const Icon = opt.icon;
-              const isSelected = filters.workplaceType === opt.value;
+              const isSelected =
+                opt.value === 'todos'
+                  ? selectedWorkplaces.length === 0
+                  : selectedWorkplaces.includes(opt.value);
               return (
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setFilters(prev => ({ ...prev, workplaceType: opt.value }))}
+                  onClick={() => handleSelectWorkplace(opt.value)}
                   className={`px-3 py-2 rounded-lg text-xs font-semibold border transition-all flex items-center justify-center gap-1.5 truncate ${
                     isSelected
                       ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold shadow-sm'
@@ -348,7 +399,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
       </div>
 
-      {/* Linha 3: Esquerda (Fonte em cima e Publicação embaixo, igual estava) | Direita (Sem Afirmativas e Raio 150km no mesmo padrão de layout do Fonte/Publicação) */}
+      {/* Linha 3: Esquerda (Fonte em cima e Publicação embaixo) | Direita (Sem Afirmativas e Raio 150km / Remoto) */}
       <div className="space-y-2 pt-1">
         {/* Sub-linha 3.1: Fonte (Esquerda) + Sem Afirmativas (Direita no mesmo padrão de container) */}
         <div className="flex flex-wrap items-center justify-between gap-2.5">
@@ -377,7 +428,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Direita: Sem Afirmativas no mesmo padrão de layout de Fonte/Publicação + Tooltip */}
+          {/* Direita: Sem Afirmativas + Tooltip */}
           <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
             <button
               type="button"
@@ -427,13 +478,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Direita: Raio 150km / Remoto no mesmo padrão de layout de Fonte/Publicação + Tooltip */}
+          {/* Direita: Raio 150km / Remoto (100% Remoto + Híbridas até 150km) */}
           <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
             <button
               type="button"
-              onClick={() =>
-                setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: !prev.onlyMuzambinhoRadiusOrRemote }))
-              }
+              onClick={handleToggleRadiusOrRemote}
               className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
                 filters.onlyMuzambinhoRadiusOrRemote
                   ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
@@ -446,8 +495,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             </button>
 
             <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
-              <strong className="text-cyan-400 block mb-1">Filtro Geográfico (Muzambinho-MG)</strong>
-              Mantém todas as vagas 100% Remotas e filtra as vagas Híbridas/Presenciais para mostrar apenas cidades num raio de até 150km de Muzambinho (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, etc.).
+              <strong className="text-cyan-400 block mb-1">100% Remoto + Híbrido Próximo (≤ 150km)</strong>
+              Exibe somente vagas <strong>100% Remotas</strong> e vagas <strong>Híbridas num raio de até 150km de Muzambinho-MG</strong> (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, Franca, Campinas, Limeira, Paulínia, etc.), ocultando presenciais e híbridas distantes.
             </div>
           </div>
         </div>

@@ -7,12 +7,21 @@ import { JobDetailModal } from './components/JobDetailModal';
 import { CopilotModal } from './components/CopilotModal';
 import { ProfileDrawer } from './components/ProfileDrawer';
 import { CrawlerControlModal } from './components/CrawlerControlModal';
-import { AppliedJobInfo, Job, FilterState, CandidateProfile, NicheCategory, SeniorityLevel } from './types';
+import {
+  AppliedJobInfo,
+  Job,
+  FilterState,
+  CandidateProfile,
+  NicheCategory,
+  SeniorityLevel,
+  WorkplaceType,
+} from './types';
 import { SEED_JOBS } from './engine/seedJobs';
 import {
   calculateDaysOpen,
   classifyJobCategories,
   detectSeniority,
+  detectWorkplaceType,
   isBlacklistedTitle,
   detectAffirmative,
   calculateDistanceToMuzambinho,
@@ -39,6 +48,7 @@ import {
   Bookmark,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
@@ -58,6 +68,12 @@ const SHORT_SENIORITY_LABELS: Record<string, string> = {
   pleno: 'Pleno',
   senior: 'Sênior',
   especialista: 'Especialista / Liderança',
+};
+
+const SHORT_WORKPLACE_LABELS: Record<WorkplaceType, string> = {
+  remoto: '100% Remoto',
+  hibrido: 'Híbrido',
+  presencial: 'Presencial',
 };
 
 const SHORT_PLATFORM_LABELS: Record<string, string> = {
@@ -88,7 +104,6 @@ function getPaginationItems(currentPage: number, totalPages: number): Array<numb
 
   const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [];
 
-  // Caso 1: No início (mostra 1 até 5 + ... + última)
   if (currentPage <= 3) {
     for (let p = 1; p <= Math.min(5, totalPages - 1); p++) {
       items.push(p);
@@ -100,7 +115,6 @@ function getPaginationItems(currentPage: number, totalPages: number): Array<numb
     return items;
   }
 
-  // Caso 2: No final (mostra 1 + ... + últimas 5 páginas)
   if (currentPage >= totalPages - 4) {
     items.push(1);
     items.push('ellipsis-start');
@@ -110,7 +124,6 @@ function getPaginationItems(currentPage: number, totalPages: number): Array<numb
     return items;
   }
 
-  // Caso 3: No meio (mostra 1 + ... + atual e +4 + ... + final)
   items.push(1);
   items.push('ellipsis-start');
   const endWindow = Math.min(totalPages - 1, currentPage + 4);
@@ -137,18 +150,26 @@ export const App: React.FC = () => {
           : classifyJobCategories(j.title, j.description);
       const affirmative = detectAffirmative(j.title, j.description);
       const distKm =
-        j.distanceFromMuzambinhoKm ?? calculateDistanceToMuzambinho(j.location) ?? undefined;
+        calculateDistanceToMuzambinho(j.location) ?? j.distanceFromMuzambinhoKm ?? undefined;
       const computedSeniority = detectSeniority(j.title, j.description);
+      const computedWorkplace: WorkplaceType = j.isInternational
+        ? 'remoto'
+        : j.workplaceType === 'presencial' &&
+          (j.location.trim().toLowerCase() === 'brasil' || j.location.trim().toLowerCase() === 'brazil')
+        ? 'remoto'
+        : j.workplaceType || detectWorkplaceType(j.title, j.location);
 
       return {
         ...j,
         seniority: computedSeniority,
+        workplaceType: computedWorkplace,
         daysOpen: calculateDaysOpen(j.publishedAt),
         isAffirmative: j.isAffirmative ?? affirmative.isAffirmative,
         affirmativeReason: j.affirmativeReason ?? affirmative.reason,
         distanceFromMuzambinhoKm: distKm,
         isWithinAllowedRadius:
-          j.workplaceType === 'remoto' || (distKm !== undefined && distKm <= 150),
+          computedWorkplace === 'remoto' ||
+          (computedWorkplace === 'hibrido' && distKm !== undefined && distKm <= 150),
         nicheCategories: categories,
       };
     });
@@ -178,6 +199,7 @@ export const App: React.FC = () => {
     searchQuery: '',
     maxDays: 30,
     workplaceType: 'todos',
+    selectedWorkplaces: [],
     scopeFilter: 'todas',
     seniority: 'todos',
     selectedSeniorities: [],
@@ -212,7 +234,6 @@ export const App: React.FC = () => {
     }
   }, [appliedJobsMap]);
 
-  // Volta para a página 1 sempre que os filtros, ordenação ou tamanho da página mudarem
   useEffect(() => {
     setCurrentPage(1);
   }, [filters, sortBy, itemsPerPage]);
@@ -271,6 +292,17 @@ export const App: React.FC = () => {
     });
   };
 
+  const removeWorkplaceFilter = (wp: WorkplaceType) => {
+    setFilters(prev => {
+      const next = (prev.selectedWorkplaces || []).filter(w => w !== wp);
+      return {
+        ...prev,
+        selectedWorkplaces: next,
+        workplaceType: next.length === 1 ? next[0] : 'todos',
+      };
+    });
+  };
+
   const removeSeniorityFilter = (sen: SeniorityLevel) => {
     setFilters(prev => {
       const next = (prev.selectedSeniorities || []).filter(s => s !== sen);
@@ -324,11 +356,15 @@ export const App: React.FC = () => {
           return false;
         }
 
-        // 4. Filtro Geográfico (Raio 150km de Muzambinho ou 100% Remoto)
+        // 4. Filtro Geográfico (Raio 150km / Remoto): Somente 100% Remoto e/ou Híbrido num raio de até 150km
         if (filters.onlyMuzambinhoRadiusOrRemote) {
-          if (job.workplaceType !== 'remoto') {
+          const maxRadius = profile?.preferences?.maxHybridDistanceKm || 150;
+          if (job.workplaceType === 'presencial') {
+            return false;
+          }
+          if (job.workplaceType === 'hibrido') {
             const dist = job.distanceFromMuzambinhoKm ?? 999;
-            if (dist > 150) return false;
+            if (dist > maxRadius) return false;
           }
         }
 
@@ -359,8 +395,13 @@ export const App: React.FC = () => {
           }
         }
 
-        // 8. Filtro de Modalidade (Remoto / Híbrido / Presencial)
-        if (filters.workplaceType !== 'todos' && job.workplaceType !== filters.workplaceType) {
+        // 8. Filtro de Modalidade (Múltipla escolha: Remoto / Híbrido / Presencial)
+        const selectedWps = filters.selectedWorkplaces || [];
+        if (selectedWps.length > 0) {
+          if (!selectedWps.includes(job.workplaceType)) {
+            return false;
+          }
+        } else if (filters.workplaceType !== 'todos' && job.workplaceType !== filters.workplaceType) {
           return false;
         }
 
@@ -390,7 +431,7 @@ export const App: React.FC = () => {
         }
         return a.daysOpen - b.daysOpen;
       });
-  }, [jobsWithMatch, filters, sortBy]);
+  }, [jobsWithMatch, filters, sortBy, profile]);
 
   const totalPages = Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage));
   const safeCurrentPage = Math.min(currentPage, totalPages);
@@ -455,6 +496,21 @@ export const App: React.FC = () => {
                   <strong>{jobs.length}</strong> vagas
                 </span>
 
+                {/* Tags Resumidas de Modalidades Ativas (Múltipla Escolha) */}
+                {(filters.selectedWorkplaces || []).map(wp => (
+                  <button
+                    key={wp}
+                    type="button"
+                    onClick={() => removeWorkplaceFilter(wp)}
+                    title="Clique para remover esta modalidade"
+                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
+                  >
+                    <Home className="w-3 h-3" />
+                    <span>{SHORT_WORKPLACE_LABELS[wp] || wp}</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                ))}
+
                 {/* Tags Resumidas de Senioridades Ativas (Múltipla Escolha) */}
                 {(filters.selectedSeniorities || []).map(sen => (
                   <button
@@ -478,18 +534,6 @@ export const App: React.FC = () => {
                   >
                     <Globe className="w-3 h-3" />
                     <span>{filters.scopeFilter === 'nacional' ? 'Brasil' : 'Internacional'}</span>
-                    <X className="w-3 h-3 ml-0.5 opacity-70" />
-                  </button>
-                )}
-
-                {filters.workplaceType !== 'todos' && (
-                  <button
-                    type="button"
-                    onClick={() => setFilters(prev => ({ ...prev, workplaceType: 'todos' }))}
-                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
-                  >
-                    <Home className="w-3 h-3" />
-                    <span className="capitalize">{filters.workplaceType}</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -534,10 +578,10 @@ export const App: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: false }))}
-                    className="text-[11px] px-2 py-0.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1 hover:bg-emerald-500/25 transition-all"
+                    className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
                   >
                     <MapPin className="w-3 h-3" />
-                    <span>Raio 150km / Remoto</span>
+                    <span>Remoto + Híbrido (≤150km)</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -619,9 +663,8 @@ export const App: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Barra de Paginação embaixo (Sem recarregar a janela) */}
+                {/* Barra de Paginação embaixo */}
                 <div className="mt-8 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                  {/* Esquerda: Seletor de vagas por página + intervalo exibido */}
                   <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
                     <div className="flex items-center gap-2 bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
                       <span className="font-semibold text-slate-300">Vagas por página:</span>
@@ -643,7 +686,6 @@ export const App: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Direita: Botões Voltar, Números de Página (inicial/atual, +4 e final) e Avançar */}
                   <div className="flex flex-wrap items-center gap-1.5">
                     <button
                       type="button"
@@ -713,6 +755,7 @@ export const App: React.FC = () => {
                       searchQuery: '',
                       maxDays: 45,
                       workplaceType: 'todos',
+                      selectedWorkplaces: [],
                       scopeFilter: 'todas',
                       seniority: 'todos',
                       selectedSeniorities: [],
@@ -849,9 +892,63 @@ export const App: React.FC = () => {
         }}
       />
 
-      <footer className="border-t border-slate-900 bg-slate-950 py-6 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
-          <strong>Radar BizOps & Dados</strong> • Operações, Processos, Inteligência de Mercado/Comercial, CRM/RevOps, Onboarding, BI & Automação (N8N)
+      {/* Rodapé no padrão do Radar de Concursos adaptado para o Radar de Vagas */}
+      <footer className="border-t border-slate-800/80 bg-slate-950 py-8 mt-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Linha Superior: Nome + Formação + Descrição à esquerda | Botões LinkedIn e GitHub à direita */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800/70">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="text-sm sm:text-base font-bold text-white tracking-tight">
+                  Bruno Bianchi Leo
+                </span>
+                <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                  Bacharel em Ciência da Computação
+                </span>
+              </div>
+              <p className="text-xs text-slate-400">
+                Operações de Negócios (BizOps), Processos, Inteligência Comercial, CRM/RevOps, Dados & Automação (N8N) • Projeto de Portfólio (TypeScript + Multi-ATS Discovery + CI/CD)
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={profile.linkedinUrl || 'https://www.linkedin.com/in/bruno-bianchi-leo/'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full text-xs font-bold bg-[#0a66c2] hover:bg-[#004182] text-white transition-all flex items-center gap-1.5 shadow-sm"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
+                <span>LinkedIn</span>
+                <ExternalLink className="w-3 h-3 opacity-80" />
+              </a>
+
+              <a
+                href={profile.githubUrl || 'https://github.com/BBLBruno'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                </svg>
+                <span>GitHub</span>
+                <ExternalLink className="w-3 h-3 opacity-80" />
+              </a>
+            </div>
+          </div>
+
+          {/* Linha Inferior: Status do Monitoramento à esquerda | Origem, Raio e Fontes à direita */}
+          <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-400">
+            <span>
+              Radar de Vagas BizOps & Dados • Monitoramento Automatizado (Segunda, Quarta e Sexta)
+            </span>
+            <span className="font-mono text-[11px] sm:text-xs text-slate-400">
+              Origem: {profile.preferences.referenceCity || 'Muzambinho'} - {profile.preferences.referenceState || 'MG'} • Raio: {profile.preferences.maxHybridDistanceKm || 150}km • Fontes: 11 canais
+            </span>
+          </div>
         </div>
       </footer>
     </div>

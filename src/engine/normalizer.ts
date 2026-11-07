@@ -8,6 +8,7 @@ export const MUZAMBINHO_COORDS = {
   maxRadiusKm: 150,
 };
 
+// Distância geográfica em raio (km) a partir de Muzambinho-MG
 const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'muzambinho': 0,
   'guaxupé': 18,
@@ -15,8 +16,11 @@ const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'monte belo': 25,
   'juruaia': 30,
   'cabo verde': 32,
+  'caconde': 35,
   'mococa': 45,
   'nova resende': 46,
+  'são sebastião do paraíso': 52,
+  'sao sebastiao do paraiso': 52,
   'poços de caldas': 55,
   'pocos de caldas': 55,
   'são josé do rio pardo': 60,
@@ -26,25 +30,49 @@ const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
   'passos': 85,
   'são joão da boa vista': 85,
   'sao joao da boa vista': 85,
+  'espírito santo do pinhal': 92,
+  'espirito santo do pinhal': 92,
+  'machado': 78,
+  'paraguaçu': 82,
+  'paraguacu': 82,
+  'mogi guaçu': 108,
+  'mogi guacu': 108,
+  'mogi mirim': 112,
+  'itapira': 110,
   'varginha': 115,
+  'pirassununga': 115,
   'pouso alegre': 120,
+  'santa rita do sapucaí': 125,
+  'santa rita do sapucai': 125,
+  'itajubá': 148,
+  'itajuba': 148,
+  'três corações': 132,
+  'tres coracoes': 132,
+  'três pontas': 105,
+  'tres pontas': 105,
+  'lavras': 145,
+  'franca': 128,
+  'leme': 130,
   'ribeirão preto': 135,
   'ribeirao preto': 135,
   'araras': 140,
-  'leme': 130,
-  'pirassununga': 115,
-  'rio claro': 150,
-  'limeira': 168,
-  'campinas': 195,
-  'jundiaí': 230,
-  'jundiai': 230,
-  'são paulo': 285,
-  'sao paulo': 285,
-  'santos': 340,
-  'belo horizonte': 380,
-  'rio de janeiro': 450,
-  'curitiba': 540,
-  'porto alegre': 950,
+  'rio claro': 145,
+  'são carlos': 148,
+  'sao carlos': 148,
+  'limeira': 148,
+  'paulínia': 149,
+  'paulinia': 149,
+  'campinas': 150,
+  'vinhedo': 165,
+  'jundiaí': 210,
+  'jundiai': 210,
+  'são paulo': 260,
+  'sao paulo': 260,
+  'santos': 320,
+  'belo horizonte': 360,
+  'rio de janeiro': 430,
+  'curitiba': 520,
+  'porto alegre': 940,
 };
 
 // Chips de Habilidades de Negócios, Operações, Inteligência, Dados, CRM e Automação (Sem TI/Dev/Suporte)
@@ -113,7 +141,7 @@ export function isBlacklistedTitle(title: string): boolean {
 }
 
 /**
- * Lista negra de senioridade executiva/alta no título (usada quando o filtro de ocultar executivos/sênior está ativo)
+ * Lista negra de senioridade executiva/alta no título
  */
 export function isExecutiveOrSeniorTitle(title: string): boolean {
   return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|supervisor|supervisora|vp|chief|architect|arquiteto|iii)\b/i.test(
@@ -212,7 +240,7 @@ export function calculateDistanceToMuzambinho(location: string): number | null {
   }
 
   if (locLower.includes('sao paulo') || locLower.includes('capital')) {
-    return 285;
+    return 260;
   }
 
   return null;
@@ -249,10 +277,19 @@ export function detectSeniority(title: string, description: string = ''): Senior
 }
 
 export function detectWorkplaceType(title: string, location: string = '', workplaceRaw: string = ''): WorkplaceType {
+  const locTrim = (location || '').trim().toLowerCase();
   const combined = `${title} ${location} ${workplaceRaw}`.toLowerCase();
   if (combined.includes('híbrido') || combined.includes('hibrido') || combined.includes('hybrid')) return 'hibrido';
-  if (combined.includes('remoto') || combined.includes('remote') || combined.includes('home office') || combined.includes('teletrabalho'))
+  if (
+    combined.includes('remoto') ||
+    combined.includes('remote') ||
+    combined.includes('home office') ||
+    combined.includes('teletrabalho') ||
+    locTrim === 'brasil' ||
+    locTrim === 'brazil'
+  ) {
     return 'remoto';
+  }
   if (combined.includes('presencial') || combined.includes('on-site') || combined.includes('onsite')) return 'presencial';
   return 'remoto';
 }

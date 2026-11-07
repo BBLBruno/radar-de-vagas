@@ -1,10 +1,10 @@
 import { CandidateProfile } from '../types';
 
 export const DEFAULT_PROFILE: CandidateProfile = {
-  fullName: 'Bruno',
-  email: 'bruno@example.com',
-  phone: '(35) 99876-5432',
-  linkedinUrl: 'https://linkedin.com/in/bruno-automacoes',
+  fullName: 'Bruno Bianchi Leo',
+  email: '',
+  phone: '',
+  linkedinUrl: 'https://www.linkedin.com/in/bruno-bianchi-leo/',
   githubUrl: 'https://github.com/BBLBruno',
   portfolioUrl: 'https://radar-concursos-ti.vercel.app',
   resumeExternalUrl: '',
@@ -14,7 +14,7 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   state: 'MG',
   title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados',
   summary:
-    'Bacharel em Ciência da Computação e ex-cofundador de operação digital que faturou R$ 2.5M. Atuo na interseção entre Operações de Negócios (BizOps), Inteligência Comercial, Dados/BI e Automação de Processos. Experiência prática no diagnóstico de gargalos operacionais (As-Is / To-Be), acompanhamento de KPIs (CAC, LTV, Conversão, SLA), estruturação de CRM/Onboarding e implementação de fluxos automatizados via N8N, SQL e IA (case real de redução de 60% na demanda operacional de atendimento).',
+    'Bacharel em Ciência da Computação com atuação na interseção entre Operações de Negócios (BizOps), Inteligência Comercial, Dados/BI e Automação de Processos. Experiência prática no diagnóstico de gargalos operacionais (As-Is / To-Be), acompanhamento de KPIs (CAC, LTV, Conversão, SLA), estruturação de CRM/Onboarding e implementação de fluxos automatizados via N8N, SQL e IA.',
   seniority: 'pleno',
   primaryStacks: [
     'Inteligência de Mercado',
@@ -37,15 +37,15 @@ export const DEFAULT_PROFILE: CandidateProfile = {
   ],
   yearsOfExperience: 3,
   preferredWorkplace: 'qualquer',
-  salaryExpectationClt: 'R$ 5.500,00 - R$ 8.500,00 (A combinar)',
-  salaryExpectationPj: 'R$ 7.000,00 - R$ 11.000,00 (A combinar)',
+  salaryExpectationClt: 'A combinar',
+  salaryExpectationPj: 'A combinar',
   background: {
     education:
       'Bacharel em Ciência da Computação — base analítica sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
     entrepreneurship:
-      'Ex-cofundador de operação de e-commerce (faturamento de R$ 2.5M) — visão executiva de dono sobre P&L, eficiência operacional, funil de vendas, retenção e margem.',
+      'Experiência prática em gestão e operação de e-commerce — visão executiva de negócio sobre P&L, eficiência operacional, funil de vendas, retenção e margem.',
     keyMetricCase:
-      'Case de Eficiência Operacional: Redução de 60% no volume de chamados manuais do SAC através do redesenho de processos, automações em N8N e triagem inteligente com IA.',
+      'Case de Eficiência Operacional: Redução expressiva no volume de chamados manuais de atendimento através do redesenho de processos, automações em N8N e triagem inteligente com IA.',
     operationalPillars:
       'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e implantação/onboarding técnico de clientes.',
     nicheFocus: [
@@ -71,15 +71,14 @@ export const DEFAULT_PROFILE: CandidateProfile = {
     pcd: 'nao',
     willingToRelocate: true,
     leadershipExperience:
-      'Vivência prática como cofundador liderando operações ponta a ponta, alinhamento entre áreas comercial, atendimento e tecnologia, e acompanhamento de metas e indicadores (KPIs/OKRs).',
+      'Vivência prática liderando operações ponta a ponta, alinhamento entre áreas comercial, atendimento e tecnologia, e acompanhamento de metas e indicadores (KPIs/OKRs).',
     customBio:
       'Profissional analítico com formação em Ciência da Computação e mentalidade orientada a negócios, focado em transformar processos manuais em operações escaláveis e orientadas por dados.',
   },
-  // Sem links pré-feitos: apenas os que o usuário adicionar manualmente
   applicationTrackers: [],
 };
 
-const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v6';
+const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v7';
 const LEGACY_PREMADE_IDS = new Set([
   'trk_gupy',
   'trk_inhire',
@@ -92,6 +91,7 @@ export function loadStoredProfile(): CandidateProfile {
   try {
     const raw =
       localStorage.getItem(PROFILE_STORAGE_KEY) ||
+      localStorage.getItem('radar_vagas_candidate_profile_v6') ||
       localStorage.getItem('radar_vagas_candidate_profile_v5');
     if (raw) {
       const parsed = JSON.parse(raw);
@@ -105,9 +105,15 @@ export function loadStoredProfile(): CandidateProfile {
               url: t.url || '',
             }))
         : [];
+      // Remove e-mail/telefone fictícios antigos se ainda forem os de exemplo
+      const cleanEmail = parsed.email === 'bruno@example.com' ? '' : parsed.email || '';
+      const cleanPhone = parsed.phone === '(35) 99876-5432' ? '' : parsed.phone || '';
+
       return {
         ...DEFAULT_PROFILE,
         ...parsed,
+        email: cleanEmail,
+        phone: cleanPhone,
         background: { ...DEFAULT_PROFILE.background, ...parsed.background },
         preferences: { ...DEFAULT_PROFILE.preferences, ...parsed.preferences },
         applicationTrackers: customTrackers,

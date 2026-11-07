@@ -16,26 +16,26 @@ export interface CopilotKit {
 }
 
 export function generateCopilotKit(job: Job, profile: CandidateProfile | null): CopilotKit {
-  const candidateName = profile?.fullName || 'Bruno';
+  const candidateName = profile?.fullName?.trim() || 'Candidato(a)';
   const roleTitle =
-    profile?.title || 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados';
+    profile?.title?.trim() || 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados';
   const matchedStacks =
     job.matchedKeywords && job.matchedKeywords.length > 0
       ? job.matchedKeywords.join(', ')
       : job.stacks.slice(0, 4).join(', ');
 
   const education =
-    profile?.background?.education ||
-    'Bacharel em Ciência da Computação — base analítica em SQL, BI, integrações e modelagem de processos (BPMN).';
+    profile?.background?.education?.trim() ||
+    'Formação analítica sólida com domínio em banco de dados (SQL), ferramentas de BI, integrações e modelagem de processos (BPMN).';
   const entrepreneurship =
-    profile?.background?.entrepreneurship ||
-    'Ex-cofundador de operação de e-commerce que faturou R$ 2.5M — visão prática de P&L, funil comercial, retenção e SLA.';
+    profile?.background?.entrepreneurship?.trim() ||
+    'Vivência prática em operações de negócios, acompanhamento de indicadores financeiros/operacionais, funil comercial, retenção e SLA.';
   const keyMetric =
-    profile?.background?.keyMetricCase ||
-    'Redução comprovada de 60% na demanda manual do SAC através do redesenho de processos, automações em N8N e agentes de IA.';
+    profile?.background?.keyMetricCase?.trim() ||
+    'Redução comprovada de demandas operacionais manuais através do redesenho de processos, automações de fluxo e uso estratégico de dados.';
   const operationalPillars =
-    profile?.background?.operationalPillars ||
-    'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e onboarding de clientes.';
+    profile?.background?.operationalPillars?.trim() ||
+    'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM e onboarding de clientes.';
 
   const linksFooter = [
     profile?.linkedinUrl ? `LinkedIn: ${profile.linkedinUrl}` : '',
@@ -47,7 +47,7 @@ export function generateCopilotKit(job: Job, profile: CandidateProfile | null): 
 
   const tailoredPitch = `Olá, time de recrutamento e gestão da ${job.company}!
 
-Me chamo ${candidateName} e atuo focado em Operações de Negócios (BizOps), Processos, Inteligência Comercial/Dados e Automação (${roleTitle}).
+Me chamo ${candidateName} e atuo focado em ${roleTitle}.
 
 Ao analisar os desafios da posição de "${job.title}", identifiquei forte alinhamento com minha bagagem prática de mercado:
 
@@ -67,19 +67,18 @@ Tenho disponibilidade imediata para atuar no modelo ${
 Fico à disposição para conversarmos sobre como posso agregar ao time desde as primeiras semanas!
 
 Atenciosamente,
-${candidateName}
-${linksFooter}`;
+${candidateName}${linksFooter ? `\n${linksFooter}` : ''}`;
 
   const screeningAnswers: CopilotScreeningAnswer[] = [
     {
       question: 'Fale sobre sua trajetória profissional, formação e diferencial para a vaga (Pitch Resumido):',
       suggestedAnswer: `${education} ${entrepreneurship} Atuo conectando processos operacionais, inteligência de dados (SQL / Power BI / KPIs) e automação (CRM / N8N / IA) para eliminar trabalho manual e destravar crescimento.`,
-      tip: 'Padrão de mercado: combina base analítica (Computação) + visão de dono (R$ 2.5M) + foco em eficiência.',
+      tip: 'Padrão de mercado: combina base analítica + visão de negócio + foco em eficiência operacional.',
     },
     {
       question: 'Compartilhe um case prático onde você otimizou processos, reduziu custos ou gerou eficiência:',
-      suggestedAnswer: `${keyMetric} Mapeei os principais motivos de contato (As-Is), desenhei fluxos automatizados de triagem e integração via N8N e IA (To-Be) e implementei indicadores de acompanhamento, liberando a equipe para demandas estratégicas.`,
-      tip: 'Estruturado no método STAR (Situação, Tarefa, Ação e Resultado com métrica de 60%).',
+      suggestedAnswer: `${keyMetric} Mapeei os principais gargalos operacionais (As-Is), desenhei fluxos automatizados de triagem e integração (To-Be) e implementei indicadores de acompanhamento, liberando a equipe para demandas estratégicas.`,
+      tip: 'Estruturado no método STAR (Situação, Tarefa, Ação e Resultado mensurável).',
     },
     {
       question: 'Como você atua com análise de dados, indicadores (KPIs), CRM e rotina operacional?',
@@ -88,9 +87,10 @@ ${linksFooter}`;
     },
     {
       question: 'Qual a sua pretensão salarial (CLT / PJ)?',
-      suggestedAnswer: profile?.salaryExpectationClt
-        ? `CLT: ${profile.salaryExpectationClt} | PJ: ${profile.salaryExpectationPj || 'A combinar'} (flexível conforme pacote de benefícios e escopo do cargo).`
-        : 'Aberto à faixa salarial praticada pela empresa para o nível da posição.',
+      suggestedAnswer:
+        profile?.salaryExpectationClt && profile.salaryExpectationClt !== 'A combinar'
+          ? `CLT: ${profile.salaryExpectationClt} | PJ: ${profile.salaryExpectationPj || 'A combinar'} (flexível conforme pacote de benefícios e escopo do cargo).`
+          : 'Aberto à faixa salarial praticada pela empresa para o nível da posição, buscando alinhamento com as responsabilidades do cargo.',
       tip: 'Mostra transparência e flexibilidade para avançar à etapa de entrevista.',
     },
     {
@@ -109,10 +109,9 @@ ${linksFooter}`;
     canonicalUrl: job.canonicalUrl,
     recommendedSalary: profile?.salaryExpectationClt || 'A combinar',
     nicheHighlights: [
-      'Bacharel em Ciência da Computação',
-      'Ex-cofundador e-commerce R$ 2.5M',
-      'Case: -60% demanda manual via N8N & IA',
-      'Foco: BizOps, Processos, Dados/BI, CRM & Onboarding',
+      roleTitle,
+      `Competências em destaque: ${matchedStacks}`,
+      'Foco: BizOps, Processos, Dados/BI, CRM & Automação',
     ],
   };
 }

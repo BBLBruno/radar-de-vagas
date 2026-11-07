@@ -17,6 +17,8 @@ import {
   Sparkles,
   Download,
   Link2,
+  RotateCcw,
+  ShieldCheck,
 } from 'lucide-react';
 import { ApplicationPortalLink, CandidateProfile } from '../types';
 import { saveStoredProfile } from '../engine/defaultProfile';
@@ -34,9 +36,9 @@ const MARKET_PRESETS = [
     education:
       'Bacharel em Ciência da Computação — base analítica sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
     entrepreneurship:
-      'Ex-cofundador de operação de e-commerce (faturamento de R$ 2.5M) — visão executiva de dono sobre P&L, eficiência operacional, funil de vendas, retenção e margem.',
+      'Vivência prática em gestão e operação de negócios digitais — visão executiva sobre eficiência operacional, funil de vendas, retenção, indicadores financeiros e SLA.',
     keyMetricCase:
-      'Case de Eficiência Operacional: Redução de 60% no volume de chamados manuais do SAC através do redesenho de processos, automações em N8N e triagem inteligente com IA.',
+      'Case de Eficiência Operacional: Redução expressiva no volume de demandas manuais de atendimento através do redesenho de processos (As-Is / To-Be), automações em N8N e triagem inteligente com IA.',
     operationalPillars:
       'Mapeamento e otimização de processos (Lean / BPMN), análise de dados e construção de dashboards (SQL, Power BI, Excel Avançado), gestão de funil em CRM (HubSpot / Salesforce) e implantação/onboarding de clientes.',
   },
@@ -45,11 +47,11 @@ const MARKET_PRESETS = [
     label: 'Foco Operações & Processos (BizOps)',
     title: 'Analista de Operações de Negócios (BizOps) & Melhoria de Processos',
     education:
-      'Bacharel em Ciência da Computação com foco em modelagem de processos (BPMN), arquitetura operacional, automação de fluxos e análise de indicadores (KPIs/SLAs).',
+      'Formação em Ciência da Computação com foco em modelagem de processos (BPMN), arquitetura operacional, automação de fluxos e análise de indicadores (KPIs/SLAs).',
     entrepreneurship:
-      'Ex-cofundador de e-commerce de R$ 2.5M — estruturei do zero as áreas de operações, logística, atendimento, compras e controle financeiro, garantindo escalabilidade com equipe enxuta.',
+      'Experiência prática estruturando rotinas de operações, logística, atendimento e controle de indicadores, garantindo escalabilidade e padronização com processos enxutos.',
     keyMetricCase:
-      'Eliminação de 60% do retrabalho operacional e chamados repetitivos no atendimento através do mapeamento As-Is / To-Be e automação ponta a ponta com N8N e IA.',
+      'Eliminação de retrabalho operacional e chamados repetitivos no atendimento através do mapeamento As-Is / To-Be e automação ponta a ponta com N8N e IA.',
     operationalPillars:
       'Diagnóstico de gargalos operacionais, documentação de POPs/playbooks, padronização de rotinas, acompanhamento de OKRs/KPIs e integração entre sistemas via Webhooks/APIs.',
   },
@@ -58,11 +60,11 @@ const MARKET_PRESETS = [
     label: 'Foco Inteligência Comercial, CRM & RevOps',
     title: 'Analista de Inteligência Comercial, CRM & Revenue Operations (RevOps)',
     education:
-      'Bacharel em Ciência da Computação — forte domínio técnico em estruturação de bases de dados, integrações de CRM, funil de conversão e automação de jornada.',
+      'Formação analítica e técnica com domínio em estruturação de bases de dados, integrações de CRM, funil de conversão e automação de jornada do cliente.',
     entrepreneurship:
-      'Ex-cofundador de operação digital de R$ 2.5M — gestão direta de aquisição, conversão, retenção (LTV/CAC), precificação e inteligência de mercado.',
+      'Experiência direta em operação comercial e digital — acompanhamento de aquisição, conversão, retenção (LTV/CAC), precificação e inteligência de mercado.',
     keyMetricCase:
-      'Automação de esteira comercial e atendimento com redução de 60% no tempo de resposta ao cliente, integrando CRM, canais de comunicação e enriquecimento de dados.',
+      'Automação de esteira comercial e atendimento com redução significativa no tempo de resposta ao cliente, integrando CRM, canais de comunicação e enriquecimento de dados.',
     operationalPillars:
       'Gestão de pipeline e higiene de dados no CRM (HubSpot / Salesforce), estudos de mercado e concorrência, criação de relatórios de performance comercial e suporte estratégico ao time de vendas/CS.',
   },
@@ -73,9 +75,9 @@ const MARKET_PRESETS = [
     education:
       'Bacharel em Ciência da Computação — domínio de SQL, modelagem de dados, lógica de programação (Python), ETL e estruturação de indicadores de negócio.',
     entrepreneurship:
-      'Ex-cofundador de e-commerce de R$ 2.5M — tomada de decisão 100% orientada por dados financeiros, operacionais, curva ABC, giro de estoque e performance de mídia.',
+      'Atuação orientada por dados financeiros e operacionais, análise de curva ABC, performance de funil, retenção e diagnóstico de causa-raiz.',
     keyMetricCase:
-      'Estruturação de pipelines automatizados de coleta e análise de dados operacionais, gerando redução de 60% em demandas manuais e visibilidade em tempo real de KPIs.',
+      'Estruturação de pipelines automatizados de coleta e análise de dados operacionais, reduzindo tarefas manuais em planilhas e gerando visibilidade em tempo real de KPIs.',
     operationalPillars:
       'Construção de dashboards executivos (Power BI / Looker / Excel Avançado), consultas SQL, análise exploratória de dados, acompanhamento de metas e geração de insights acionáveis.',
   },
@@ -126,6 +128,34 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         operationalPillars: preset.operationalPillars,
       },
     }));
+  };
+
+  const handleClearForNewUser = () => {
+    const blankProfile: CandidateProfile = {
+      ...profile,
+      fullName: '',
+      email: '',
+      phone: '',
+      linkedinUrl: '',
+      githubUrl: '',
+      portfolioUrl: '',
+      resumeExternalUrl: '',
+      resumePdfName: '',
+      resumePdfDataUrl: '',
+      salaryExpectationClt: '',
+      salaryExpectationPj: '',
+      title: 'Analista de Operações (BizOps), Processos & Dados',
+      background: {
+        ...profile.background,
+        education: '',
+        entrepreneurship: '',
+        keyMetricCase: '',
+        operationalPillars: '',
+      },
+      applicationTrackers: [],
+    };
+    setProfile(blankProfile);
+    saveStoredProfile(blankProfile);
   };
 
   const copyText = (text: string, id: string) => {
@@ -242,32 +272,45 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         <div>
           <div className="flex flex-wrap items-center gap-2 mb-1">
             <h2 className="text-xl font-bold text-white">Meu Perfil & Kit de Aplicação Rápida</h2>
-            <span className="px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md">
-              BizOps • Inteligência • CRM • Dados & IA
+            <span className="px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Salvo apenas neste navegador
             </span>
           </div>
           <p className="text-xs sm:text-sm text-slate-400">
-            Configure seu background no padrão STAR de mercado, guarde seu currículo PDF e salve seus links favoritos.
+            Configure seu background no padrão STAR de mercado, anexe seu currículo PDF e gerencie seus favoritos locais.
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={handleSave}
-          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/15 shrink-0"
-        >
-          {savedSuccess ? (
-            <>
-              <Check className="w-4 h-4" />
-              <span>Alterações Salvas!</span>
-            </>
-          ) : (
-            <>
-              <Save className="w-4 h-4" />
-              <span>Salvar Perfil</span>
-            </>
-          )}
-        </button>
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={handleClearForNewUser}
+            title="Limpar campos para preencher um novo perfil do zero neste navegador"
+            className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-all flex items-center gap-1.5"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Limpar Campos</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleSave}
+            className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/15"
+          >
+            {savedSuccess ? (
+              <>
+                <Check className="w-4 h-4" />
+                <span>Alterações Salvas!</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>Salvar Perfil</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* 1. Background Profissional Fixo (Padrão de Mercado STAR + Templates Rápidos) */}
@@ -276,7 +319,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
           <div>
             <div className="flex items-center gap-2 text-base font-bold text-white">
               <Target className="w-5 h-5 text-cyan-400" />
-              <span>Background Profissional Fixo (Injetado no Copiloto)</span>
+              <span>Background Profissional (Injetado no Copiloto)</span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
               Estruturado com base nos critérios que recrutadores de Operações, Dados, CRM e Negócios avaliam em triagens.
@@ -288,7 +331,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         <div className="space-y-2">
           <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Modelos de Posicionamento por Área (Clique para preencher e adapte se desejar):
+            Modelos de Posicionamento por Área (Clique para preencher e adapte livremente):
           </span>
           <div className="flex flex-wrap gap-2">
             {MARKET_PRESETS.map(preset => (
@@ -313,6 +356,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
             type="text"
             value={profile.title}
             onChange={(e) => handleChange('title', e.target.value)}
+            placeholder="Ex: Analista de Operações (BizOps), Processos & Dados"
             className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400"
           />
         </div>
@@ -327,6 +371,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.education}
               onChange={(e) => handleBackgroundChange('education', e.target.value)}
+              placeholder="Descreva sua graduação, cursos e base técnica (SQL, BI, Processos)..."
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-cyan-400"
             />
           </div>
@@ -339,6 +384,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.entrepreneurship}
               onChange={(e) => handleBackgroundChange('entrepreneurship', e.target.value)}
+              placeholder="Descreva sua experiência prática com operações, clientes, funil de vendas ou projetos..."
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-emerald-400"
             />
           </div>
@@ -351,6 +397,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.keyMetricCase}
               onChange={(e) => handleBackgroundChange('keyMetricCase', e.target.value)}
+              placeholder="Ex: Redução de X% em tempo/chamados através de automação e melhoria de processos..."
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-amber-400"
             />
           </div>
@@ -386,6 +433,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
+                placeholder="Seu nome completo"
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
               />
             </div>
@@ -395,6 +443,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
+                placeholder="(00) 90000-0000"
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
               />
             </div>
@@ -406,6 +455,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               type="email"
               value={profile.email}
               onChange={(e) => handleChange('email', e.target.value)}
+              placeholder="seu.email@exemplo.com"
               className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
             />
           </div>
@@ -450,6 +500,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.salaryExpectationClt}
                 onChange={(e) => handleChange('salaryExpectationClt', e.target.value)}
+                placeholder="Ex: R$ 4.500 - R$ 6.500"
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
@@ -459,6 +510,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.salaryExpectationPj}
                 onChange={(e) => handleChange('salaryExpectationPj', e.target.value)}
+                placeholder="Ex: R$ 6.000 - R$ 8.500"
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
               />
             </div>
@@ -655,7 +707,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </div>
       </div>
 
-      {/* 4. Favoritos de Candidaturas & Portais (100% Manual: Apenas Nome, Descrição e Link, sem tags) */}
+      {/* 4. Favoritos de Candidaturas & Portais (100% Manual: Apenas Nome, Descrição e Link) */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
           <div>
@@ -669,7 +721,6 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
           </div>
         </div>
 
-        {/* Lista de Favoritos Adicionados pelo Usuário (Sem Tags) */}
         {(profile.applicationTrackers || []).length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {(profile.applicationTrackers || []).map(tracker => (
@@ -713,7 +764,6 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
           </div>
         )}
 
-        {/* Formulário Manual: Somente Nome, Descrição e Link */}
         <form
           onSubmit={handleAddTracker}
           className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 space-y-3"

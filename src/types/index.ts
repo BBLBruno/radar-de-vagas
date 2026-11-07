@@ -113,6 +113,7 @@ export interface FilterState {
   searchQuery: string;
   maxDays: number;
   workplaceType: 'todos' | WorkplaceType;
+  selectedWorkplaces: WorkplaceType[];
   scopeFilter: 'todas' | 'nacional' | 'internacional';
   seniority: 'todos' | SeniorityLevel;
   selectedSeniorities: SeniorityLevel[];
