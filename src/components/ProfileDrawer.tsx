@@ -21,7 +21,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { ApplicationPortalLink, CandidateProfile } from '../types';
-import { saveStoredProfile } from '../engine/defaultProfile';
+import { DEFAULT_PROFILE, saveStoredProfile } from '../engine/defaultProfile';
 
 interface ProfileDrawerProps {
   profile: CandidateProfile;
@@ -34,7 +34,7 @@ const MARKET_PRESETS = [
     label: 'Padrão Completo (BizOps + Dados + Automação)',
     title: 'Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados',
     education:
-      'Bacharel em Ciência da Computação — base analítica sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
+      'Formação superior analítica com base sólida em bancos de dados (SQL), lógica de sistemas, integração de APIs e modelagem de processos (BPMN).',
     entrepreneurship:
       'Vivência prática em gestão e operação de negócios digitais — visão executiva sobre eficiência operacional, funil de vendas, retenção, indicadores financeiros e SLA.',
     keyMetricCase:
@@ -47,7 +47,7 @@ const MARKET_PRESETS = [
     label: 'Foco Operações & Processos (BizOps)',
     title: 'Analista de Operações de Negócios (BizOps) & Melhoria de Processos',
     education:
-      'Formação em Ciência da Computação com foco em modelagem de processos (BPMN), arquitetura operacional, automação de fluxos e análise de indicadores (KPIs/SLAs).',
+      'Formação com foco em modelagem de processos (BPMN), arquitetura operacional, automação de fluxos e análise de indicadores (KPIs/SLAs).',
     entrepreneurship:
       'Experiência prática estruturando rotinas de operações, logística, atendimento e controle de indicadores, garantindo escalabilidade e padronização com processos enxutos.',
     keyMetricCase:
@@ -73,7 +73,7 @@ const MARKET_PRESETS = [
     label: 'Foco Dados, BI & Indicadores (SQL / Power BI)',
     title: 'Analista de Dados, Business Intelligence (BI) & Indicadores Operacionais',
     education:
-      'Bacharel em Ciência da Computação — domínio de SQL, modelagem de dados, lógica de programação (Python), ETL e estruturação de indicadores de negócio.',
+      'Formação analítica — domínio de SQL, modelagem de dados, lógica de programação (Python), ETL e estruturação de indicadores de negócio.',
     entrepreneurship:
       'Atuação orientada por dados financeiros e operacionais, análise de curva ABC, performance de funil, retenção e diagnóstico de causa-raiz.',
     keyMetricCase:
@@ -131,31 +131,9 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   };
 
   const handleClearForNewUser = () => {
-    const blankProfile: CandidateProfile = {
-      ...profile,
-      fullName: '',
-      email: '',
-      phone: '',
-      linkedinUrl: '',
-      githubUrl: '',
-      portfolioUrl: '',
-      resumeExternalUrl: '',
-      resumePdfName: '',
-      resumePdfDataUrl: '',
-      salaryExpectationClt: '',
-      salaryExpectationPj: '',
-      title: 'Analista de Operações (BizOps), Processos & Dados',
-      background: {
-        ...profile.background,
-        education: '',
-        entrepreneurship: '',
-        keyMetricCase: '',
-        operationalPillars: '',
-      },
-      applicationTrackers: [],
-    };
-    setProfile(blankProfile);
-    saveStoredProfile(blankProfile);
+    setProfile(DEFAULT_PROFILE);
+    saveStoredProfile(DEFAULT_PROFILE);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   const copyText = (text: string, id: string) => {
@@ -286,7 +264,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
           <button
             type="button"
             onClick={handleClearForNewUser}
-            title="Limpar campos para preencher um novo perfil do zero neste navegador"
+            title="Limpar todos os campos do perfil neste navegador"
             className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-all flex items-center gap-1.5"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -331,7 +309,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         <div className="space-y-2">
           <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Modelos de Posicionamento por Área (Clique para preencher e adapte livremente):
+            Modelos de Posicionamento por Área (Clique para preencher um modelo ou digite abaixo):
           </span>
           <div className="flex flex-wrap gap-2">
             {MARKET_PRESETS.map(preset => (
@@ -356,12 +334,12 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
             type="text"
             value={profile.title}
             onChange={(e) => handleChange('title', e.target.value)}
-            placeholder="Ex: Analista de Operações (BizOps), Processos & Dados"
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400"
+            placeholder="Ex: Analista de Operações (BizOps), Processos, Inteligência Comercial & Dados"
+            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
           />
         </div>
 
-        {/* 4 Blocos de Texto Amplos (Padrão Mercado) */}
+        {/* 4 Blocos de Texto Amplos (Somente Placeholders por padrão) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-slate-950/60 border border-slate-800/90 rounded-xl p-4 space-y-2">
             <label className="block text-xs font-bold text-cyan-300 uppercase tracking-wider">
@@ -371,8 +349,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.education}
               onChange={(e) => handleBackgroundChange('education', e.target.value)}
-              placeholder="Descreva sua graduação, cursos e base técnica (SQL, BI, Processos)..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-cyan-400"
+              placeholder="Ex: Bacharel em Ciência da Computação — base analítica em SQL, BI, integrações e modelagem de processos (BPMN)..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 placeholder-slate-500 leading-relaxed focus:outline-none focus:border-cyan-400"
             />
           </div>
 
@@ -384,8 +362,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.entrepreneurship}
               onChange={(e) => handleBackgroundChange('entrepreneurship', e.target.value)}
-              placeholder="Descreva sua experiência prática com operações, clientes, funil de vendas ou projetos..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-emerald-400"
+              placeholder="Ex: Experiência prática em operações digitais, acompanhamento de P&L, funil de vendas, retenção e SLA..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 placeholder-slate-500 leading-relaxed focus:outline-none focus:border-emerald-400"
             />
           </div>
 
@@ -397,8 +375,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.keyMetricCase}
               onChange={(e) => handleBackgroundChange('keyMetricCase', e.target.value)}
-              placeholder="Ex: Redução de X% em tempo/chamados através de automação e melhoria de processos..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-amber-400"
+              placeholder="Ex: Redução de 60% em demandas manuais através do redesenho de processos, automações em N8N e triagem com IA..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 placeholder-slate-500 leading-relaxed focus:outline-none focus:border-amber-400"
             />
           </div>
 
@@ -410,8 +388,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               rows={3}
               value={profile.background.operationalPillars || ''}
               onChange={(e) => handleBackgroundChange('operationalPillars', e.target.value)}
-              placeholder="Ex: Mapeamento BPMN, dashboards em Power BI, consultas SQL, CRM HubSpot/Salesforce..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 leading-relaxed focus:outline-none focus:border-purple-400"
+              placeholder="Ex: Mapeamento BPMN, dashboards em Power BI, consultas SQL, CRM HubSpot/Salesforce e onboarding de clientes..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs sm:text-sm text-slate-200 placeholder-slate-500 leading-relaxed focus:outline-none focus:border-purple-400"
             />
           </div>
         </div>
@@ -433,8 +411,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
-                placeholder="Seu nome completo"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
+                placeholder="Ex: Bruno Bianchi Léo"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white placeholder-slate-500"
               />
             </div>
             <div>
@@ -443,8 +421,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
-                placeholder="(00) 90000-0000"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
+                placeholder="Ex: (35) 99999-9999"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white placeholder-slate-500"
               />
             </div>
           </div>
@@ -455,8 +433,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               type="email"
               value={profile.email}
               onChange={(e) => handleChange('email', e.target.value)}
-              placeholder="seu.email@exemplo.com"
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white"
+              placeholder="Ex: seu.email@dominio.com"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs sm:text-sm text-white placeholder-slate-500"
             />
           </div>
 
@@ -470,7 +448,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.preferences.referenceCity}
                 onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                placeholder="Ex: Muzambinho"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
             </div>
             <div>
@@ -479,16 +458,18 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={profile.preferences.referenceState}
                 onChange={(e) => handlePreferencesChange('referenceState', e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                placeholder="Ex: MG"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
             </div>
             <div>
               <label className="block text-xs font-medium text-slate-400 mb-1">Raio Híbrido (km)</label>
               <input
                 type="number"
-                value={profile.preferences.maxHybridDistanceKm}
+                value={profile.preferences.maxHybridDistanceKm || ''}
                 onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                placeholder="Ex: 150"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
             </div>
           </div>
@@ -501,7 +482,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 value={profile.salaryExpectationClt}
                 onChange={(e) => handleChange('salaryExpectationClt', e.target.value)}
                 placeholder="Ex: R$ 4.500 - R$ 6.500"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
             </div>
             <div>
@@ -511,7 +492,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 value={profile.salaryExpectationPj}
                 onChange={(e) => handleChange('salaryExpectationPj', e.target.value)}
                 placeholder="Ex: R$ 6.000 - R$ 8.500"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
             </div>
           </div>
@@ -525,23 +506,29 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               <span>Habilidades & Ferramentas do Perfil (BizOps, Dados, CRM & IA)</span>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto p-1">
-              {profile.primaryStacks.map(stack => (
-                <span
-                  key={stack}
-                  className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5"
-                >
-                  <span>{stack}</span>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveStack(stack)}
-                    className="hover:text-rose-400 transition-colors"
+            {profile.primaryStacks.length > 0 ? (
+              <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto p-1">
+                {profile.primaryStacks.map(stack => (
+                  <span
+                    key={stack}
+                    className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5"
                   >
-                    <X className="w-3 h-3" />
-                  </button>
-                </span>
-              ))}
-            </div>
+                    <span>{stack}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveStack(stack)}
+                      className="hover:text-rose-400 transition-colors"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs text-slate-500 py-4">
+                Nenhuma habilidade adicionada ainda. Digite abaixo (ex: SQL, Power BI, N8N, CRM, BPMN, Operações) para calcular sua afinidade com as vagas.
+              </p>
+            )}
           </div>
 
           <form onSubmit={handleAddStack} className="flex gap-2 pt-2 border-t border-slate-800/70">
@@ -549,8 +536,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               type="text"
               value={newStackInput}
               onChange={(e) => setNewStackInput(e.target.value)}
-              placeholder="Adicionar competência (ex: Looker Studio, Pipedrive, BPMN)..."
-              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400"
+              placeholder="Adicionar competência (ex: SQL, Power BI, HubSpot, N8N, BPMN)..."
+              className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
             />
             <button
               type="submit"
@@ -586,7 +573,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               value={profile.linkedinUrl}
               onChange={(e) => handleChange('linkedinUrl', e.target.value)}
               placeholder="https://linkedin.com/in/seu-perfil"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
             />
             <div className="flex items-center gap-2">
               <button
@@ -619,7 +606,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               value={profile.githubUrl}
               onChange={(e) => handleChange('githubUrl', e.target.value)}
               placeholder="https://github.com/seu-usuario"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
             />
             <div className="flex items-center gap-2">
               <button
@@ -675,7 +662,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                   </button>
                 </div>
               ) : (
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-slate-500">
                   Anexe seu currículo em PDF para tê-lo sempre pronto para download/envio rápido nas vagas.
                 </p>
               )}
@@ -759,7 +746,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
             ))}
           </div>
         ) : (
-          <div className="p-4 rounded-xl bg-slate-950/40 border border-slate-800/60 text-center text-xs text-slate-400">
+          <div className="p-4 rounded-xl bg-slate-950/40 border border-slate-800/60 text-center text-xs text-slate-500">
             Nenhum favorito adicionado ainda. Utilize os campos abaixo para salvar seus links manualmente.
           </div>
         )}
@@ -780,7 +767,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 value={newTrackerName}
                 onChange={(e) => setNewTrackerName(e.target.value)}
                 placeholder="Nome (ex: Minhas Vagas Gupy)"
-                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
             </div>
 
@@ -790,7 +777,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 value={newTrackerDesc}
                 onChange={(e) => setNewTrackerDesc(e.target.value)}
                 placeholder="Descrição (ex: Painel de acompanhamento)"
-                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
             </div>
 
@@ -800,7 +787,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 value={newTrackerUrl}
                 onChange={(e) => setNewTrackerUrl(e.target.value)}
                 placeholder="Link (https://...)"
-                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
+                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
               <button
                 type="submit"

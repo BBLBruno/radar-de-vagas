@@ -495,8 +495,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             </button>
 
             <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
-              <strong className="text-cyan-400 block mb-1">100% Remoto + Híbrido Próximo (≤ 150km)</strong>
-              Exibe somente vagas <strong>100% Remotas</strong> e vagas <strong>Híbridas num raio de até 150km de Muzambinho-MG</strong> (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, Franca, Campinas, Limeira, Paulínia, etc.), ocultando presenciais e híbridas distantes.
+              <strong className="text-cyan-400 block mb-1">Raio Fixo 150km (Muzambinho-MG) + Remoto</strong>
+              Filtro geográfico fixo a partir de <strong>Muzambinho - MG (150km)</strong>. Exibe apenas vagas <strong>100% Remotas</strong> e vagas <strong>Híbridas na região</strong> (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, Franca, Campinas, Limeira, Paulínia, etc.), ocultando presenciais e híbridas distantes.
             </div>
           </div>
         </div>

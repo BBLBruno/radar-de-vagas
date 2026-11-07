@@ -356,15 +356,14 @@ export const App: React.FC = () => {
           return false;
         }
 
-        // 4. Filtro Geográfico (Raio 150km / Remoto): Somente 100% Remoto e/ou Híbrido num raio de até 150km
+        // 4. Filtro Geográfico Fixo (Raio 150km de Muzambinho-MG / Remoto): Somente 100% Remoto e/ou Híbrido num raio fixo de até 150km
         if (filters.onlyMuzambinhoRadiusOrRemote) {
-          const maxRadius = profile?.preferences?.maxHybridDistanceKm || 150;
           if (job.workplaceType === 'presencial') {
             return false;
           }
           if (job.workplaceType === 'hibrido') {
             const dist = job.distanceFromMuzambinhoKm ?? 999;
-            if (dist > maxRadius) return false;
+            if (dist > 150) return false;
           }
         }
 
@@ -900,7 +899,7 @@ export const App: React.FC = () => {
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="text-sm sm:text-base font-bold text-white tracking-tight">
-                  Bruno Bianchi Leo
+                  Bruno Bianchi Léo
                 </span>
                 <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
                   Bacharel em Ciência da Computação
@@ -913,7 +912,7 @@ export const App: React.FC = () => {
 
             <div className="flex items-center gap-2.5 shrink-0">
               <a
-                href={profile.linkedinUrl || 'https://www.linkedin.com/in/bruno-bianchi-leo/'}
+                href="https://www.linkedin.com/in/bruno-bianchi-leo/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full text-xs font-bold bg-[#0a66c2] hover:bg-[#004182] text-white transition-all flex items-center gap-1.5 shadow-sm"
@@ -926,7 +925,7 @@ export const App: React.FC = () => {
               </a>
 
               <a
-                href={profile.githubUrl || 'https://github.com/BBLBruno'}
+                href="https://github.com/BBLBruno"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm"
@@ -940,13 +939,28 @@ export const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Linha Inferior: Status do Monitoramento à esquerda | Origem, Raio e Fontes à direita */}
+          {/* Linha Inferior: Status do Monitoramento à esquerda | Fontes e Última atualização à direita */}
           <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-400">
             <span>
-              Radar de Vagas BizOps & Dados • Monitoramento Automatizado (Segunda, Quarta e Sexta)
+              Radar de Vagas BizOps & Dados • Monitoramento Automatizado (Segunda a Sexta às 08h)
             </span>
             <span className="font-mono text-[11px] sm:text-xs text-slate-400">
-              Origem: {profile.preferences.referenceCity || 'Muzambinho'} - {profile.preferences.referenceState || 'MG'} • Raio: {profile.preferences.maxHybridDistanceKm || 150}km • Fontes: 11 canais
+              Fontes: 11 plataformas (57 canais) • Última atualização:{' '}
+              {(() => {
+                let maxTime = 0;
+                for (const j of jobs) {
+                  if (j.publishedAt) {
+                    const t = new Date(j.publishedAt).getTime();
+                    if (!Number.isNaN(t) && t > maxTime) maxTime = t;
+                  }
+                }
+                const d = maxTime > 0 ? new Date(maxTime) : new Date();
+                return d.toLocaleDateString('pt-BR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                });
+              })()}
             </span>
           </div>
         </div>
