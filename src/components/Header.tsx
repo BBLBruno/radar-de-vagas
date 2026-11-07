@@ -1,9 +1,9 @@
 import React from 'react';
-import { Radar, User, Bookmark, Cpu } from 'lucide-react';
+import { Radar, User, BookmarkCheck } from 'lucide-react';
 
 interface HeaderProps {
-  activeTab: 'radar' | 'profile' | 'saved' | 'crawlers';
-  setActiveTab: (tab: 'radar' | 'profile' | 'saved' | 'crawlers') => void;
+  activeTab: 'radar' | 'profile' | 'saved';
+  setActiveTab: (tab: 'radar' | 'profile' | 'saved') => void;
   savedCount: number;
 }
 
@@ -34,13 +34,14 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Tabs (Sem Fontes no cabeçalho; Salvas renomeado para Minhas Vagas) */}
         <nav className="flex items-center gap-1.5 sm:gap-2">
           <button
+            type="button"
             onClick={() => setActiveTab('radar')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'radar'
-                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
@@ -48,44 +49,40 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           </button>
 
           <button
+            type="button"
             onClick={() => setActiveTab('saved')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'saved'
-                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
-            <Bookmark className="w-4 h-4" />
-            <span className="hidden sm:inline">Salvas</span>
+            <BookmarkCheck className="w-4 h-4" />
+            <span>Minhas Vagas</span>
             {savedCount > 0 && (
-              <span className="px-1.5 py-0.2 text-xs font-bold bg-slate-950/20 rounded-full">
+              <span
+                className={`px-1.5 py-0.5 text-xs font-bold rounded-full ${
+                  activeTab === 'saved'
+                    ? 'bg-slate-950/25 text-slate-950'
+                    : 'bg-emerald-500/20 text-emerald-300'
+                }`}
+              >
                 {savedCount}
               </span>
             )}
           </button>
 
           <button
+            type="button"
             onClick={() => setActiveTab('profile')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'profile'
-                ? 'bg-emerald-500 text-slate-950 shadow-sm'
+                ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'
             }`}
           >
             <User className="w-4 h-4" />
             <span className="hidden sm:inline">Perfil & Copiloto</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('crawlers')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
-              activeTab === 'crawlers'
-                ? 'bg-emerald-500 text-slate-950 shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-900'
-            }`}
-          >
-            <Cpu className="w-4 h-4" />
-            <span className="hidden sm:inline">Fontes ({savedCount >= 0 ? '7 Globais + BR' : ''})</span>
           </button>
         </nav>
       </div>

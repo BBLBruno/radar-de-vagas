@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Building2,
   MapPin,
@@ -12,15 +12,25 @@ import {
   Briefcase,
   Home,
   Banknote,
+  CheckCircle2,
+  Link2,
+  Eye,
+  Pencil,
+  Check,
+  X,
 } from 'lucide-react';
-import { Job } from '../types';
+import { AppliedJobInfo, Job } from '../types';
 
 interface JobCardProps {
   job: Job;
   isSaved: boolean;
+  appliedInfo?: AppliedJobInfo;
+  showAppliedOption?: boolean;
   selectedStacks?: string[];
   onToggleStack?: (stack: string) => void;
   onToggleSave: (job: Job) => void;
+  onToggleApplied?: (job: Job, trackingUrl?: string) => void;
+  onUpdateTrackingUrl?: (jobId: string, trackingUrl: string) => void;
   onOpenDetails: (job: Job) => void;
   onOpenCopilot: (job: Job) => void;
 }
@@ -55,28 +65,36 @@ const PLATFORM_CONFIG: Record<string, { label: string; badgeClass: string }> = {
     badgeClass: 'bg-slate-700/60 text-slate-200 border-slate-600/50',
   },
   remotive_intl: {
-    label: 'Remoto Global',
+    label: 'Internacional',
     badgeClass: 'bg-teal-500/15 text-teal-300 border-teal-500/30',
   },
 };
 
 const SENIORITY_LABELS: Record<string, { label: string; className: string }> = {
   estagio: { label: 'Estágio / Trainee', className: 'bg-teal-500/15 text-teal-300 border-teal-500/30' },
-  junior: { label: 'Júnior', className: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
+  junior: { label: 'Júnior / Assistente', className: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
   pleno: { label: 'Pleno', className: 'bg-sky-500/15 text-sky-300 border-sky-500/30' },
   senior: { label: 'Sênior', className: 'bg-amber-500/15 text-amber-300 border-amber-500/30' },
-  especialista: { label: 'Especialista / Lead', className: 'bg-rose-500/15 text-rose-300 border-rose-500/30' },
+  especialista: { label: 'Especialista / Liderança', className: 'bg-rose-500/15 text-rose-300 border-rose-500/30' },
 };
 
 export const JobCard: React.FC<JobCardProps> = ({
   job,
   isSaved,
+  appliedInfo,
+  showAppliedOption = false,
   selectedStacks = [],
   onToggleStack,
   onToggleSave,
+  onToggleApplied,
+  onUpdateTrackingUrl,
   onOpenDetails,
   onOpenCopilot,
 }) => {
+  const isApplied = Boolean(appliedInfo);
+  const [isEditingLink, setIsEditingLink] = useState(false);
+  const [linkDraft, setLinkDraft] = useState(appliedInfo?.trackingUrl || '');
+
   const platform = PLATFORM_CONFIG[job.platform] || {
     label: job.platform,
     badgeClass: 'bg-slate-700 text-slate-300 border-slate-600',
@@ -99,61 +117,81 @@ export const JobCard: React.FC<JobCardProps> = ({
 
   const cleanLocation = job.location.replace(/^🌎\s*/, '');
 
+  const handleSaveTrackingLink = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!onUpdateTrackingUrl) return;
+    const raw = linkDraft.trim();
+    const formatted = raw && !raw.startsWith('http') ? `https://${raw}` : raw;
+    onUpdateTrackingUrl(job.id, formatted);
+    setIsEditingLink(false);
+  };
+
   return (
-    <div className="h-full bg-slate-900/70 border border-slate-800 hover:border-slate-700/80 rounded-2xl p-5 sm:p-6 transition-all duration-200 hover:shadow-xl hover:shadow-slate-950/40 flex flex-col justify-between group">
+    <div
+      className={`h-full bg-slate-900/70 border rounded-2xl p-5 sm:p-6 transition-all duration-200 hover:shadow-xl hover:shadow-slate-950/40 flex flex-col justify-between group ${
+        isApplied
+          ? 'border-emerald-500/40 bg-slate-900/90'
+          : 'border-slate-800 hover:border-slate-700/80'
+      }`}
+    >
       <div>
-        {/* Top Badges Row */}
-        <div className="flex items-start justify-between gap-2 mb-3 min-h-[3.25rem]">
-          <div className="flex flex-wrap items-center gap-1.5">
+        {/* Top Badges Row + Ícone de Salvar Aumentado e Alinhado */}
+        <div className="flex items-center justify-between gap-2.5 mb-3.5 min-h-[2.5rem]">
+          <div className="flex flex-wrap items-center gap-1.5 flex-1">
             {job.isInternational ? (
-              <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1">
-                <Globe className="w-3 h-3" />
-                Internacional • 100% Remoto
+              <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1">
+                <Globe className="w-3.5 h-3.5" />
+                Internacional • Remoto
               </span>
             ) : job.workplaceType === 'remoto' ? (
-              <span className="px-2.5 py-0.5 text-xs font-semibold rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                <Home className="w-3 h-3" />
+              <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                <Home className="w-3.5 h-3.5" />
                 100% Remoto
               </span>
             ) : job.workplaceType === 'hibrido' ? (
-              <span className="px-2.5 py-0.5 text-xs font-medium rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1">
-                <Building2 className="w-3 h-3" />
+              <span className="px-2.5 py-1 text-xs font-medium rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1">
+                <Building2 className="w-3.5 h-3.5" />
                 Híbrido
               </span>
             ) : (
-              <span className="px-2.5 py-0.5 text-xs font-medium rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20 flex items-center gap-1">
-                <MapPin className="w-3 h-3" />
+              <span className="px-2.5 py-1 text-xs font-medium rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5" />
                 Presencial
               </span>
             )}
 
-            <span className={`px-2 py-0.5 text-xs font-semibold rounded-md border flex items-center gap-1 ${seniorityBadge.className}`}>
-              <Briefcase className="w-3 h-3" />
+            <span className={`px-2.5 py-1 text-xs font-semibold rounded-lg border flex items-center gap-1 ${seniorityBadge.className}`}>
+              <Briefcase className="w-3.5 h-3.5" />
               {seniorityBadge.label}
             </span>
 
-            <span className={`px-2 py-0.5 text-[11px] font-medium rounded-md border flex items-center gap-1 ${freshnessColor}`}>
+            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border flex items-center gap-1 ${freshnessColor}`}>
               <Clock className="w-3 h-3" />
               {daysLabel}
             </span>
 
-            <span className={`px-2 py-0.5 text-[11px] font-medium rounded-md border ${platform.badgeClass}`}>
+            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border ${platform.badgeClass}`}>
               {platform.label}
             </span>
 
             {job.isAffirmative && (
-              <span className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1">
+              <span className="px-2 py-1 text-[10px] font-semibold rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1">
                 <ShieldAlert className="w-3 h-3" />
                 {job.affirmativeReason || 'Afirmativa'}
               </span>
             )}
           </div>
 
+          {/* Botão de Salvar Vaga Aumentado e Alinhado com as Tags */}
           <button
             type="button"
             onClick={() => onToggleSave(job)}
-            title={isSaved ? 'Remover dos salvos' : 'Salvar vaga'}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-400 hover:bg-slate-800 transition-colors shrink-0"
+            title={isSaved ? 'Remover de Minhas Vagas' : 'Salvar em Minhas Vagas'}
+            className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all shrink-0 self-center ${
+              isSaved
+                ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400 shadow-sm'
+                : 'bg-slate-800/60 border-slate-700/70 text-slate-300 hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-slate-800'
+            }`}
           >
             {isSaved ? (
               <BookmarkCheck className="w-5 h-5 text-emerald-400" />
@@ -234,35 +272,154 @@ export const JobCard: React.FC<JobCardProps> = ({
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="pt-3 border-t border-slate-800/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-        <a
-          href={job.canonicalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/10"
-        >
-          <span>Candidatar-se na {platform.label}</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
+      {/* Rodapé do Card: Muda se "Já me candidatei" estiver marcado (retirando Candidatar-se, Copiloto e Ver vaga) */}
+      <div className="pt-3 border-t border-slate-800/70">
+        {isApplied ? (
+          <div className="space-y-2.5 bg-emerald-500/5 border border-emerald-500/25 rounded-xl p-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>Já me candidatei</span>
+              </div>
 
-        <button
-          type="button"
-          onClick={() => onOpenCopilot(job)}
-          className="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex items-center justify-center gap-1.5"
-          title="Abrir Copiloto com respostas e carta prontas"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Copiloto</span>
-        </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => onOpenDetails(job)}
+                  className="text-[11px] font-medium text-slate-400 hover:text-white flex items-center gap-1"
+                  title="Ver detalhes da vaga"
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Detalhes</span>
+                </button>
+                {onToggleApplied && (
+                  <button
+                    type="button"
+                    onClick={() => onToggleApplied(job)}
+                    className="text-[11px] font-medium text-slate-500 hover:text-rose-400 transition-colors"
+                    title="Desmarcar candidatura"
+                  >
+                    Desmarcar
+                  </button>
+                )}
+              </div>
+            </div>
 
-        <button
-          type="button"
-          onClick={() => onOpenDetails(job)}
-          className="px-3 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all text-center"
-        >
-          Ver vaga
-        </button>
+            {/* Link para acompanhar candidatura (se houver) */}
+            {!isEditingLink && appliedInfo?.trackingUrl ? (
+              <div className="flex items-center gap-2">
+                <a
+                  href={appliedInfo.trackingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 px-3 py-2 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                >
+                  <Link2 className="w-3.5 h-3.5" />
+                  <span>Acompanhar Candidatura</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLinkDraft(appliedInfo.trackingUrl || '');
+                    setIsEditingLink(true);
+                  }}
+                  className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
+                  title="Editar link de acompanhamento"
+                >
+                  <Pencil className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : isEditingLink ? (
+              <form onSubmit={handleSaveTrackingLink} className="flex items-center gap-1.5">
+                <input
+                  type="text"
+                  value={linkDraft}
+                  onChange={(e) => setLinkDraft(e.target.value)}
+                  placeholder="Cole o link para acompanhar a candidatura..."
+                  className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                />
+                <button
+                  type="submit"
+                  className="p-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950"
+                  title="Salvar link"
+                >
+                  <Check className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsEditingLink(false)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400"
+                  title="Cancelar"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </form>
+            ) : (
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLinkDraft(job.canonicalUrl || '');
+                    setIsEditingLink(true);
+                  }}
+                  className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/90 hover:bg-slate-800 text-slate-300 hover:text-emerald-300 border border-slate-700/80 transition-all flex items-center justify-center gap-1.5"
+                >
+                  <Link2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>+ Adicionar link para acompanhar candidatura</span>
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {/* Linha 1: Somente os 2 botões (Candidatar-se com texto maior e Copiloto no mesmo tamanho) */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <a
+                href={job.canonicalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-3 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/10 truncate"
+              >
+                <span className="truncate">Candidatar-se</span>
+                <ExternalLink className="w-4 h-4 shrink-0" />
+              </a>
+
+              <button
+                type="button"
+                onClick={() => onOpenCopilot(job)}
+                className="w-full px-3 py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/25 hover:border-emerald-500/50 transition-all flex items-center justify-center gap-1.5 truncate"
+                title="Abrir Copiloto com respostas e carta prontas"
+              >
+                <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+                <span className="truncate">Copiloto</span>
+              </button>
+            </div>
+
+            {/* Linha 2: Embaixo -> Mais detalhes da vaga (+ botão "Já me candidatei" quando em Minhas Vagas ou salvo) */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => onOpenDetails(job)}
+                className="flex-1 py-2 px-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-950/50 hover:bg-slate-800/80 border border-slate-800/80 transition-all text-center"
+              >
+                Mais detalhes da vaga
+              </button>
+
+              {(showAppliedOption || isSaved) && onToggleApplied && (
+                <button
+                  type="button"
+                  onClick={() => onToggleApplied(job)}
+                  className="py-2 px-3 rounded-xl text-xs font-semibold text-emerald-400 hover:text-slate-950 bg-emerald-500/10 hover:bg-emerald-500 border border-emerald-500/30 transition-all flex items-center justify-center gap-1.5 shrink-0"
+                  title="Marcar que já se candidatou nesta vaga"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Já me candidatei</span>
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

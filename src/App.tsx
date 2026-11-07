@@ -7,12 +7,12 @@ import { JobDetailModal } from './components/JobDetailModal';
 import { CopilotModal } from './components/CopilotModal';
 import { ProfileDrawer } from './components/ProfileDrawer';
 import { CrawlerControlModal } from './components/CrawlerControlModal';
-import { Job, FilterState, CandidateProfile, NicheCategory } from './types';
+import { AppliedJobInfo, Job, FilterState, CandidateProfile, NicheCategory } from './types';
 import { SEED_JOBS } from './engine/seedJobs';
 import {
   calculateDaysOpen,
   classifyJobCategories,
-  isExecutiveOrSeniorTitle,
+  detectSeniority,
   isBlacklistedTitle,
   detectAffirmative,
   calculateDistanceToMuzambinho,
@@ -25,20 +25,22 @@ import {
   Sparkles,
   SearchX,
   ArrowUpDown,
-  Bookmark,
+  BookmarkCheck,
   X,
   SlidersHorizontal,
   Globe,
   Home,
-  Briefcase,
   Layers,
   Database,
   Clock,
   MapPin,
   EyeOff,
+  CheckCircle2,
+  Bookmark,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
+const APPLIED_STORAGE_KEY = 'radar_vagas_applied_jobs_v1';
 
 const SHORT_CATEGORY_LABELS: Record<NicheCategory, string> = {
   bizops_processos: 'BizOps & Processos',
@@ -49,12 +51,11 @@ const SHORT_CATEGORY_LABELS: Record<NicheCategory, string> = {
 };
 
 const SHORT_SENIORITY_LABELS: Record<string, string> = {
-  entrada_jr_pleno: 'Jr / Pleno',
   estagio: 'Estágio / Trainee',
-  junior: 'Júnior',
+  junior: 'Júnior / Assistente',
   pleno: 'Pleno',
-  senior: 'Sênior / Lead',
-  especialista: 'Especialista / Lead',
+  senior: 'Sênior',
+  especialista: 'Especialista / Liderança',
 };
 
 const SHORT_PLATFORM_LABELS: Record<string, string> = {
@@ -66,11 +67,19 @@ const SHORT_PLATFORM_LABELS: Record<string, string> = {
   lever: 'Lever',
 };
 
+function normalizeSearchText(text: string): string {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved' | 'crawlers'>('radar');
+  const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved'>('radar');
+  const [savedFilterMode, setSavedFilterMode] = useState<'todas' | 'pendentes' | 'candidatadas'>('todas');
   const [profile, setProfile] = useState<CandidateProfile>(() => loadStoredProfile());
 
-  const [jobs, setJobs] = useState<Job[]>(() => {
+  const [jobs] = useState<Job[]>(() => {
     const enriched = SEED_JOBS.filter(j => !isBlacklistedTitle(j.title)).map(j => {
       const categories =
         j.nicheCategories && j.nicheCategories.length > 0
@@ -79,9 +88,11 @@ export const App: React.FC = () => {
       const affirmative = detectAffirmative(j.title, j.description);
       const distKm =
         j.distanceFromMuzambinhoKm ?? calculateDistanceToMuzambinho(j.location) ?? undefined;
+      const computedSeniority = detectSeniority(j.title, j.description);
 
       return {
         ...j,
+        seniority: computedSeniority,
         daysOpen: calculateDaysOpen(j.publishedAt),
         isAffirmative: j.isAffirmative ?? affirmative.isAffirmative,
         affirmativeReason: j.affirmativeReason ?? affirmative.reason,
@@ -104,13 +115,22 @@ export const App: React.FC = () => {
     }
   });
 
+  const [appliedJobsMap, setAppliedJobsMap] = useState<Record<string, AppliedJobInfo>>(() => {
+    try {
+      const stored = localStorage.getItem(APPLIED_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  });
+
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
     maxDays: 30,
     workplaceType: 'todos',
     scopeFilter: 'todas',
-    seniority: 'entrada_jr_pleno',
-    hideExecutiveSenior: true,
+    seniority: 'todos',
+    hideExecutiveSenior: false,
     platform: 'todas',
     selectedStacks: [],
     stateFilter: '',
@@ -122,8 +142,6 @@ export const App: React.FC = () => {
   const [sortBy, setSortBy] = useState<'match' | 'recent'>('recent');
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
-  const [isSyncing, setIsSyncing] = useState(false);
-  const [lastSyncTime, setLastSyncTime] = useState<string | null>('Atualizado agora');
 
   useEffect(() => {
     try {
@@ -133,10 +151,55 @@ export const App: React.FC = () => {
     }
   }, [savedJobIds]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(APPLIED_STORAGE_KEY, JSON.stringify(appliedJobsMap));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [appliedJobsMap]);
+
   const toggleSaveJob = (job: Job) => {
     setSavedJobIds(prev =>
       prev.includes(job.id) ? prev.filter(id => id !== job.id) : [...prev, job.id]
     );
+  };
+
+  const handleToggleApplied = (job: Job, trackingUrl?: string) => {
+    setAppliedJobsMap(prev => {
+      if (prev[job.id]) {
+        const next = { ...prev };
+        delete next[job.id];
+        return next;
+      }
+      return {
+        ...prev,
+        [job.id]: {
+          jobId: job.id,
+          appliedAt: new Date().toISOString(),
+          trackingUrl: trackingUrl || '',
+        },
+      };
+    });
+
+    // Garante que a vaga marcada como "Já me candidatei" esteja em Minhas Vagas
+    setSavedJobIds(prev => (prev.includes(job.id) ? prev : [...prev, job.id]));
+  };
+
+  const handleUpdateTrackingUrl = (jobId: string, trackingUrl: string) => {
+    setAppliedJobsMap(prev => {
+      const existing = prev[jobId] || {
+        jobId,
+        appliedAt: new Date().toISOString(),
+      };
+      return {
+        ...prev,
+        [jobId]: {
+          ...existing,
+          trackingUrl,
+        },
+      };
+    });
   };
 
   const toggleStackFilter = (stack: string) => {
@@ -168,28 +231,19 @@ export const App: React.FC = () => {
       .filter(job => {
         if (isBlacklistedTitle(job.title)) return false;
 
-        // Senioridade e filtro Entrada / Jr / Pleno
-        if (filters.seniority === 'entrada_jr_pleno' || filters.hideExecutiveSenior) {
-          if (job.seniority === 'senior' || job.seniority === 'especialista') {
-            return false;
-          }
-          if (isExecutiveOrSeniorTitle(job.title)) {
-            return false;
-          }
-        } else if (filters.seniority === 'senior') {
-          if (job.seniority !== 'senior' && job.seniority !== 'especialista') {
-            return false;
-          }
-        } else if (filters.seniority !== 'todos') {
+        // 1. Filtro de Senioridade (100% determinístico para cada uma das 6 opções)
+        if (filters.seniority !== 'todos') {
           if (job.seniority !== filters.seniority) {
             return false;
           }
         }
 
+        // 2. Filtro Sem Afirmativas
         if (filters.hideAffirmative && job.isAffirmative) {
           return false;
         }
 
+        // 3. Filtro de Localidade (Brasil vs Internacional)
         if (filters.scopeFilter === 'nacional' && job.isInternational) {
           return false;
         }
@@ -197,6 +251,7 @@ export const App: React.FC = () => {
           return false;
         }
 
+        // 4. Filtro Geográfico (Raio 150km de Muzambinho ou 100% Remoto)
         if (filters.onlyMuzambinhoRadiusOrRemote) {
           if (job.workplaceType !== 'remoto') {
             const dist = job.distanceFromMuzambinhoKm ?? 999;
@@ -204,6 +259,7 @@ export const App: React.FC = () => {
           }
         }
 
+        // 5. Filtro de Área de Atuação
         if (filters.selectedNicheCategory !== 'todas') {
           const cats = job.nicheCategories || [];
           if (!cats.includes(filters.selectedNicheCategory)) {
@@ -211,38 +267,45 @@ export const App: React.FC = () => {
           }
         }
 
+        // 6. Filtro de Data de Publicação
         if (job.daysOpen > filters.maxDays) {
           return false;
         }
 
+        // 7. Filtro de Busca Textual (Ignora acentos e maiúsculas/minúsculas)
         if (filters.searchQuery.trim()) {
-          const query = filters.searchQuery.toLowerCase();
-          const matchesTitle = job.title.toLowerCase().includes(query);
-          const matchesCompany = job.company.toLowerCase().includes(query);
-          const matchesDesc = job.description.toLowerCase().includes(query);
-          const matchesLocation = job.location.toLowerCase().includes(query);
-          const matchesStack = job.stacks.some(s => s.toLowerCase().includes(query));
+          const query = normalizeSearchText(filters.searchQuery.trim());
+          const matchesTitle = normalizeSearchText(job.title).includes(query);
+          const matchesCompany = normalizeSearchText(job.company).includes(query);
+          const matchesDesc = normalizeSearchText(job.description).includes(query);
+          const matchesLocation = normalizeSearchText(job.location).includes(query);
+          const matchesStack = job.stacks.some(s => normalizeSearchText(s).includes(query));
 
           if (!matchesTitle && !matchesCompany && !matchesDesc && !matchesLocation && !matchesStack) {
             return false;
           }
         }
 
+        // 8. Filtro de Modalidade (Remoto / Híbrido / Presencial)
         if (filters.workplaceType !== 'todos' && job.workplaceType !== filters.workplaceType) {
           return false;
         }
 
+        // 9. Filtro de Fonte / Plataforma
         if (filters.platform !== 'todas' && job.platform !== filters.platform) {
           return false;
         }
 
+        // 10. Filtro Rápido por Habilidades & Ferramentas
         if (filters.selectedStacks.length > 0) {
-          const hasAnySelectedStack = filters.selectedStacks.some(
-            s =>
-              job.stacks.some(js => js.toLowerCase() === s.toLowerCase()) ||
-              job.title.toLowerCase().includes(s.toLowerCase()) ||
-              job.description.toLowerCase().includes(s.toLowerCase())
-          );
+          const hasAnySelectedStack = filters.selectedStacks.some(s => {
+            const normS = normalizeSearchText(s);
+            return (
+              job.stacks.some(js => normalizeSearchText(js) === normS) ||
+              normalizeSearchText(job.title).includes(normS) ||
+              normalizeSearchText(job.description).includes(normS)
+            );
+          });
           if (!hasAnySelectedStack) return false;
         }
 
@@ -256,30 +319,32 @@ export const App: React.FC = () => {
       });
   }, [jobsWithMatch, filters, sortBy]);
 
-  const savedJobs = useMemo(() => {
-    return jobsWithMatch.filter(j => savedJobIds.includes(j.id));
-  }, [jobsWithMatch, savedJobIds]);
+  const allMyJobs = useMemo(() => {
+    const allIds = new Set([...savedJobIds, ...Object.keys(appliedJobsMap)]);
+    return jobsWithMatch.filter(j => allIds.has(j.id));
+  }, [jobsWithMatch, savedJobIds, appliedJobsMap]);
 
-  const handleTriggerSync = async () => {
-    setIsSyncing(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setJobs(prev => {
-      const refreshed = prev.map(j => ({
-        ...j,
-        daysOpen: calculateDaysOpen(j.publishedAt),
-      }));
-      return deduplicateJobs(refreshed);
-    });
-    setLastSyncTime(new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }));
-    setIsSyncing(false);
-  };
+  const displayedMyJobs = useMemo(() => {
+    if (savedFilterMode === 'candidatadas') {
+      return allMyJobs.filter(j => Boolean(appliedJobsMap[j.id]));
+    }
+    if (savedFilterMode === 'pendentes') {
+      return allMyJobs.filter(j => !appliedJobsMap[j.id]);
+    }
+    return allMyJobs;
+  }, [allMyJobs, appliedJobsMap, savedFilterMode]);
+
+  const appliedCount = useMemo(
+    () => allMyJobs.filter(j => Boolean(appliedJobsMap[j.id])).length,
+    [allMyJobs, appliedJobsMap]
+  );
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        savedCount={savedJobIds.length}
+        savedCount={allMyJobs.length}
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -457,9 +522,12 @@ export const App: React.FC = () => {
                     key={job.id}
                     job={job}
                     isSaved={savedJobIds.includes(job.id)}
+                    appliedInfo={appliedJobsMap[job.id]}
                     selectedStacks={filters.selectedStacks}
                     onToggleStack={toggleStackFilter}
                     onToggleSave={toggleSaveJob}
+                    onToggleApplied={handleToggleApplied}
+                    onUpdateTrackingUrl={handleUpdateTrackingUrl}
                     onOpenDetails={setDetailJob}
                     onOpenCopilot={setCopilotJob}
                   />
@@ -505,28 +573,74 @@ export const App: React.FC = () => {
           </div>
         )}
 
+        {/* Aba Minhas Vagas (Substitui Vagas Salvas + Inclui "Já me candidatei" + Fontes embaixo de tudo) */}
         {activeTab === 'saved' && (
-          <div className="space-y-6 max-w-5xl mx-auto">
-            <div>
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <Bookmark className="w-5 h-5 text-emerald-400" />
-                Vagas Salvas ({savedJobs.length})
-              </h2>
-              <p className="text-xs text-slate-400 mt-1">
-                Acompanhe suas oportunidades selecionadas e gere pitches personalizados com o Copiloto.
-              </p>
+          <div className="space-y-6 max-w-6xl mx-auto">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                  <BookmarkCheck className="w-5 h-5 text-emerald-400" />
+                  Minhas Vagas & Candidaturas ({allMyJobs.length})
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                  Gerencie as vagas que você separou para aplicar e acompanhe aquelas em que já se candidatou.
+                </p>
+              </div>
+
+              {/* Filtro rápido dentro de Minhas Vagas */}
+              <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setSavedFilterMode('todas')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    savedFilterMode === 'todas'
+                      ? 'bg-emerald-500 text-slate-950 font-bold'
+                      : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  Todas ({allMyJobs.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSavedFilterMode('pendentes')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${
+                    savedFilterMode === 'pendentes'
+                      ? 'bg-cyan-500 text-slate-950 font-bold'
+                      : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  <Bookmark className="w-3.5 h-3.5" />
+                  <span>Para Aplicar ({allMyJobs.length - appliedCount})</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSavedFilterMode('candidatadas')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${
+                    savedFilterMode === 'candidatadas'
+                      ? 'bg-emerald-500 text-slate-950 font-bold'
+                      : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Já me candidatei ({appliedCount})</span>
+                </button>
+              </div>
             </div>
 
-            {savedJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {savedJobs.map(job => (
+            {displayedMyJobs.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {displayedMyJobs.map(job => (
                   <JobCard
                     key={job.id}
                     job={job}
-                    isSaved={true}
+                    isSaved={savedJobIds.includes(job.id)}
+                    appliedInfo={appliedJobsMap[job.id]}
+                    showAppliedOption={true}
                     selectedStacks={filters.selectedStacks}
                     onToggleStack={toggleStackFilter}
                     onToggleSave={toggleSaveJob}
+                    onToggleApplied={handleToggleApplied}
+                    onUpdateTrackingUrl={handleUpdateTrackingUrl}
                     onOpenDetails={setDetailJob}
                     onOpenCopilot={setCopilotJob}
                   />
@@ -534,27 +648,25 @@ export const App: React.FC = () => {
               </div>
             ) : (
               <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center space-y-3">
-                <Bookmark className="w-8 h-8 text-slate-500 mx-auto" />
-                <h3 className="text-base font-bold text-white">Nenhuma vaga salva ainda</h3>
-                <p className="text-xs text-slate-400">
-                  Clique no ícone de marcador nos cards para salvar suas vagas favoritas.
+                <BookmarkCheck className="w-8 h-8 text-slate-500 mx-auto" />
+                <h3 className="text-base font-bold text-white">
+                  {savedFilterMode === 'candidatadas'
+                    ? 'Nenhuma vaga marcada como "Já me candidatei" ainda'
+                    : 'Nenhuma vaga salva em Minhas Vagas'}
+                </h3>
+                <p className="text-xs text-slate-400 max-w-md mx-auto">
+                  Clique no ícone de salvar nos cards da tela principal e marque "Já me candidatei" para anexar o link de acompanhamento da sua inscrição.
                 </p>
               </div>
             )}
+
+            {/* Embaixo de tudo na aba Minhas Vagas: Ecossistema de Fontes bem dividido e sem botão de atualização */}
+            <CrawlerControlModal jobs={jobs} />
           </div>
         )}
 
         {activeTab === 'profile' && (
           <ProfileDrawer profile={profile} setProfile={setProfile} />
-        )}
-
-        {activeTab === 'crawlers' && (
-          <CrawlerControlModal
-            onTriggerSync={handleTriggerSync}
-            isSyncing={isSyncing}
-            lastSyncTime={lastSyncTime}
-            jobs={jobs}
-          />
         )}
       </main>
 

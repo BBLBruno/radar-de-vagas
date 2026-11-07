@@ -25,7 +25,7 @@ import {
   Rocket,
   Zap,
   Award,
-  UserCheck,
+  Crown,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -52,7 +52,7 @@ const DAY_OPTIONS = [
   { value: 45, label: 'Todas' },
 ];
 
-// Internacional movido para o final como solicitado
+// Internacional posicionado no final
 const PLATFORM_OPTIONS: Array<{ value: 'todas' | ATSPlatform; label: string }> = [
   { value: 'todas', label: 'Todas as Fontes' },
   { value: 'gupy', label: 'Gupy' },
@@ -75,7 +75,7 @@ const CATEGORY_OPTIONS: Array<{
   { value: 'automacao_ia', label: 'Automação & IA (N8N)', icon: Cpu },
 ];
 
-// Símbolo de Remoto alterado para Casa (Home)
+// Símbolo de Remoto como Casa (Home)
 const WORKPLACE_OPTIONS: Array<{
   value: 'todos' | WorkplaceType;
   label: string;
@@ -87,17 +87,18 @@ const WORKPLACE_OPTIONS: Array<{
   { value: 'presencial', label: 'Presencial', icon: MapPin },
 ];
 
+// 6 opções claras e sem sobreposição/repetição de nomes
 const SENIORITY_OPTIONS: Array<{
-  value: 'todos' | 'entrada_jr_pleno' | SeniorityLevel;
+  value: 'todos' | SeniorityLevel;
   label: string;
   icon: React.FC<{ className?: string }>;
 }> = [
   { value: 'todos', label: 'Todas', icon: Layers },
-  { value: 'entrada_jr_pleno', label: 'Foco Jr / Pleno', icon: UserCheck },
   { value: 'estagio', label: 'Estágio / Trainee', icon: GraduationCap },
-  { value: 'junior', label: 'Júnior / Entrada', icon: Rocket },
+  { value: 'junior', label: 'Júnior / Assistente', icon: Rocket },
   { value: 'pleno', label: 'Pleno', icon: Zap },
-  { value: 'senior', label: 'Sênior / Lead', icon: Award },
+  { value: 'senior', label: 'Sênior', icon: Award },
+  { value: 'especialista', label: 'Especialista / Liderança', icon: Crown },
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks }) => {
@@ -115,12 +116,44 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
-  const handleSelectSeniority = (level: 'todos' | 'entrada_jr_pleno' | SeniorityLevel) => {
+  const handleSelectSeniority = (level: 'todos' | SeniorityLevel) => {
     setFilters(prev => ({
       ...prev,
       seniority: level,
-      hideExecutiveSenior: level === 'entrada_jr_pleno',
+      hideExecutiveSenior: false,
     }));
+  };
+
+  const handleSelectScope = (scope: 'todas' | 'nacional' | 'internacional') => {
+    setFilters(prev => {
+      let nextPlatform = prev.platform;
+      if (scope === 'nacional' && prev.platform === 'remotive_intl') {
+        nextPlatform = 'todas';
+      } else if (scope === 'internacional' && prev.platform !== 'todas' && prev.platform !== 'remotive_intl') {
+        nextPlatform = 'todas';
+      }
+      return {
+        ...prev,
+        scopeFilter: scope,
+        platform: nextPlatform,
+      };
+    });
+  };
+
+  const handleSelectPlatform = (platform: 'todas' | ATSPlatform) => {
+    setFilters(prev => {
+      let nextScope = prev.scopeFilter;
+      if (platform === 'remotive_intl' && prev.scopeFilter === 'nacional') {
+        nextScope = 'todas';
+      } else if (platform !== 'todas' && platform !== 'remotive_intl' && prev.scopeFilter === 'internacional') {
+        nextScope = 'todas';
+      }
+      return {
+        ...prev,
+        platform,
+        scopeFilter: nextScope,
+      };
+    });
   };
 
   const resetFilters = () => {
@@ -129,8 +162,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       maxDays: 30,
       workplaceType: 'todos',
       scopeFilter: 'todas',
-      seniority: 'entrada_jr_pleno',
-      hideExecutiveSenior: true,
+      seniority: 'todos',
+      hideExecutiveSenior: false,
       platform: 'todas',
       selectedStacks: [],
       stateFilter: '',
@@ -145,16 +178,16 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
 
   return (
     <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
-      {/* Linha 1: Busca + Seletor de Local (Brasil / Internacional com Ícones) + Limpar Filtros */}
-      <div className="flex flex-col lg:flex-row gap-3">
-        <div className="relative flex-1">
+      {/* Linha 1: Busca + Seletor de Localidade + Limpar Filtros (Todos exatamente na mesma espessura h-11) */}
+      <div className="flex flex-col lg:flex-row items-stretch gap-3">
+        <div className="relative flex-1 h-11">
           <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             value={filters.searchQuery}
             onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
             placeholder="Buscar cargo, empresa ou habilidade (ex: Operações, Processos, CRM, BI, Onboarding, Júnior)..."
-            className="w-full pl-11 pr-10 py-2.5 bg-slate-950/70 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+            className="w-full h-11 pl-11 pr-10 bg-slate-950/70 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
           />
           {filters.searchQuery && (
             <button
@@ -167,12 +200,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           )}
         </div>
 
-        {/* Seletor de Local com Ícones (Bandeira do Brasil SVG e Globo) */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/70 p-1 rounded-xl border border-slate-800">
+        {/* Seletor de Localidade com mesma espessura (h-11) e borda da busca e do limpar filtros */}
+        <div className="min-h-11 lg:h-11 flex flex-wrap sm:flex-nowrap items-center gap-1 bg-slate-950/70 p-1 rounded-xl border border-slate-700/80 shrink-0">
           <button
             type="button"
-            onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'todas' }))}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+            onClick={() => handleSelectScope('todas')}
+            className={`h-full px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
               filters.scopeFilter === 'todas'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
@@ -184,8 +217,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
 
           <button
             type="button"
-            onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'nacional' }))}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+            onClick={() => handleSelectScope('nacional')}
+            className={`h-full px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
               filters.scopeFilter === 'nacional'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
@@ -197,14 +230,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
 
           <button
             type="button"
-            onClick={() => setFilters(prev => ({ ...prev, scopeFilter: 'internacional' }))}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+            onClick={() => handleSelectScope('internacional')}
+            className={`h-full px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
               filters.scopeFilter === 'internacional'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <Globe className="w-3.5 h-3.5 text-cyan-400" />
+            <Globe className={`w-3.5 h-3.5 ${filters.scopeFilter === 'internacional' ? 'text-slate-950' : 'text-cyan-400'}`} />
             <span>Internacional (100% Remoto)</span>
           </button>
         </div>
@@ -212,21 +245,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         <button
           type="button"
           onClick={resetFilters}
-          className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition-all flex items-center justify-center gap-1.5 shrink-0"
+          className="h-11 px-4 rounded-xl text-xs font-semibold bg-slate-800/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 transition-all flex items-center justify-center gap-1.5 shrink-0"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Limpar Filtros</span>
         </button>
       </div>
 
-      {/* Linha 2: Separação Visual Clara em 2 Painéis Distintos (Modalidade vs Nível de Senioridade) */}
+      {/* Linha 2: Separação Visual em 2 Painéis (Sem numeração "1." e "2.") */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        {/* Painel 1: Modalidade (5 colunas - Card com borda lateral esmeralda e fundo próprio) */}
+        {/* Painel Modalidade de Trabalho */}
         <div className="lg:col-span-5 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-emerald-500 rounded-xl p-3.5">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
               <Home className="w-3.5 h-3.5" />
-              1. Modalidade de Trabalho
+              Modalidade de Trabalho
             </span>
             <span className="text-[11px] text-slate-500">Formato presencial ou remoto</span>
           </div>
@@ -253,12 +286,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </div>
         </div>
 
-        {/* Painel 2: Nível de Senioridade (7 colunas - Card com borda lateral ciano e ícones dedicados) */}
+        {/* Painel Nível de Senioridade */}
         <div className="lg:col-span-7 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-cyan-500 rounded-xl p-3.5">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5" />
-              2. Nível de Senioridade
+              Nível de Senioridade
             </span>
             <span className="text-[11px] text-slate-500">Momento de carreira</span>
           </div>
@@ -286,11 +319,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
       </div>
 
-      {/* Linha 3: Fonte + Publicação à esquerda | Sem Afirmativas + Raio 150km no mesmo formato e colados na direita com Tooltips */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5 pt-1">
-        {/* Esquerda: Fonte & Publicação */}
-        <div className="flex flex-wrap items-center gap-2.5">
-          {/* Bloco Fonte (Internacional no final) */}
+      {/* Linha 3: Esquerda (Fonte em cima e Publicação embaixo, igual estava) | Direita (Sem Afirmativas e Raio 150km no mesmo padrão de layout do Fonte/Publicação) */}
+      <div className="space-y-2 pt-1">
+        {/* Sub-linha 3.1: Fonte (Esquerda) + Sem Afirmativas (Direita no mesmo padrão de container) */}
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          {/* Esquerda: Fonte */}
           <div className="flex flex-wrap items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
             <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1 px-2">
               <Database className="w-3.5 h-3.5" />
@@ -302,7 +335,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setFilters(prev => ({ ...prev, platform: opt.value }))}
+                  onClick={() => handleSelectPlatform(opt.value)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
                     active
                       ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
@@ -315,7 +348,32 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Bloco Publicação */}
+          {/* Direita: Sem Afirmativas no mesmo padrão de layout de Fonte/Publicação + Tooltip */}
+          <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
+            <button
+              type="button"
+              onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
+              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                filters.hideAffirmative
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+              }`}
+            >
+              <EyeOff className="w-3.5 h-3.5" />
+              <span>Sem Afirmativas</span>
+              <HelpCircle className={`w-3.5 h-3.5 ${filters.hideAffirmative ? 'text-slate-950/80' : 'text-slate-400'}`} />
+            </button>
+
+            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+              <strong className="text-emerald-400 block mb-1">Filtro Sem Vagas Afirmativas</strong>
+              Oculta vagas destinadas exclusivamente a recortes afirmativos específicos (PcD, mulheres, pessoas negras, LGBTQIA+, 50+), exibindo apenas processos de ampla concorrência.
+            </div>
+          </div>
+        </div>
+
+        {/* Sub-linha 3.2: Publicação (Esquerda) + Raio 150km / Remoto (Direita no mesmo padrão de container) */}
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          {/* Esquerda: Publicação */}
           <div className="flex flex-wrap items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
             <span className="text-xs font-semibold text-cyan-400 flex items-center gap-1 px-2">
               <Clock className="w-3.5 h-3.5" />
@@ -339,35 +397,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               );
             })}
           </div>
-        </div>
 
-        {/* Direita: Sem Afirmativas & Raio 150km / Remoto no MESMO formato/estilo de pílula e com Tooltips explicativos */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
-          {/* Botão 1: Sem Afirmativas + Tooltip */}
-          <div className="relative group">
-            <button
-              type="button"
-              onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                filters.hideAffirmative
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
-              }`}
-            >
-              <EyeOff className="w-3.5 h-3.5" />
-              <span>Sem Afirmativas</span>
-              <HelpCircle className={`w-3 h-3 opacity-75 ${filters.hideAffirmative ? 'text-slate-900' : 'text-slate-400'}`} />
-            </button>
-
-            {/* Tooltip Sem Afirmativas */}
-            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
-              <strong className="text-emerald-400 block mb-1">Filtro Sem Vagas Afirmativas</strong>
-              Oculta vagas destinadas exclusivamente a recortes afirmativos específicos (PcD, mulheres, pessoas negras, LGBTQIA+, 50+), exibindo apenas processos de ampla concorrência.
-            </div>
-          </div>
-
-          {/* Botão 2: Raio 150km / Remoto + Tooltip */}
-          <div className="relative group">
+          {/* Direita: Raio 150km / Remoto no mesmo padrão de layout de Fonte/Publicação + Tooltip */}
+          <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
             <button
               type="button"
               onClick={() =>
@@ -375,16 +407,15 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
               }
               className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
                 filters.onlyMuzambinhoRadiusOrRemote
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
               }`}
             >
               <MapPin className="w-3.5 h-3.5" />
               <span>Raio 150km / Remoto</span>
-              <HelpCircle className={`w-3 h-3 opacity-75 ${filters.onlyMuzambinhoRadiusOrRemote ? 'text-slate-900' : 'text-slate-400'}`} />
+              <HelpCircle className={`w-3.5 h-3.5 ${filters.onlyMuzambinhoRadiusOrRemote ? 'text-slate-950/80' : 'text-slate-400'}`} />
             </button>
 
-            {/* Tooltip Raio 150km / Remoto */}
             <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
               <strong className="text-cyan-400 block mb-1">Filtro Geográfico (Muzambinho-MG)</strong>
               Mantém todas as vagas 100% Remotas e filtra as vagas Híbridas/Presenciais para mostrar apenas cidades num raio de até 150km de Muzambinho (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, etc.).

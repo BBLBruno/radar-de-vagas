@@ -1,125 +1,200 @@
 import React from 'react';
 import {
-  Cpu,
-  RefreshCw,
-  CheckCircle2,
   Database,
-  Globe2,
+  Globe,
+  Building2,
+  CheckCircle2,
+  Layers,
 } from 'lucide-react';
 import { Job } from '../types';
 
 interface CrawlerControlModalProps {
-  onTriggerSync: () => Promise<void>;
-  isSyncing: boolean;
-  lastSyncTime: string | null;
   jobs: Job[];
 }
 
-export const CrawlerControlModal: React.FC<CrawlerControlModalProps> = ({
-  onTriggerSync,
-  isSyncing,
-  lastSyncTime,
-  jobs,
-}) => {
-  const countByPlatform = (platforms: string[]) =>
-    jobs.filter(j => platforms.includes(j.platform)).length;
+export const CrawlerControlModal: React.FC<CrawlerControlModalProps> = ({ jobs }) => {
+  const countByPlatform = (platform: string) =>
+    jobs.filter(j => j.platform === platform).length;
 
-  const globalAggregators = [
+  const totalBr = jobs.filter(j => !j.isInternational).length;
+  const totalIntl = jobs.filter(j => j.isInternational).length;
+
+  const nationalSources = [
     {
-      id: 'agg_intl_remote',
-      name: '7 Motores Internacionais 100% Remotos (The Muse, Remotive, Jobicy, Himalayas, Working Nomads, WeWorkRemotely & Global Greenhouse)',
-      badge: 'GLOBAL 100% REMOTO',
-      description:
-        'Varredura internacional focada em Business Operations (BizOps), Market/Sales Intelligence, Revenue Operations (RevOps), CRM, Onboarding/CS, Data/BI e Automation em empresas remote-first globais (HubSpot, Zapier, GitLab, Remote.com, ClickUp, Airtable, Notion, Miro, Klaviyo, etc.).',
-      jobsCount: countByPlatform(['remotive_intl']),
-      status: 'Ativo • 7 Fontes Globais',
+      id: 'src_gupy',
+      name: 'Gupy',
+      type: 'Portal Nacional • Login Único',
+      description: 'Vagas de Analista de Operações, Processos, Inteligência Comercial, CRM, Dados e Onboarding em empresas brasileiras.',
+      count: countByPlatform('gupy'),
     },
     {
-      id: 'agg_gupy_global',
-      name: 'Gupy Global Discovery (Brasil Multi-Empresas)',
-      badge: 'BRASIL • GUPY',
-      description:
-        'Busca nacional aberta para Analista de Operações Júnior/Pleno, Analista de Processos, Inteligência de Mercado, Inteligência Comercial, Analista de Negócios, CRM, Implantação/Onboarding, Dados/BI e Automação (N8N).',
-      jobsCount: countByPlatform(['gupy']),
-      status: 'Ativo • Nacional',
+      id: 'src_greenhouse_br',
+      name: 'Greenhouse Brasil',
+      type: 'ATS Direto • Formulário Rápido',
+      description: 'Aplicação direta via formulário de 1 página (Nome, E-mail, LinkedIn e Currículo PDF) sem necessidade de criar conta.',
+      count: countByPlatform('greenhouse'),
     },
     {
-      id: 'agg_greenhouse_lever_br',
-      name: 'Greenhouse, Lever, InHire & EmpregosTec Brasil',
-      badge: 'BRASIL • ATSs DIRETOS',
-      description:
-        'Coleta direta sem intermediários nos portais de carreira no Brasil, com bloqueio automático de vagas de Suporte Técnico, Help Desk, Infraestrutura e Desenvolvimento puro.',
-      jobsCount: countByPlatform(['greenhouse', 'lever', 'inhire', 'empregostec', 'solides']),
-      status: 'Ativo • Link Canônico',
+      id: 'src_inhire',
+      name: 'InHire',
+      type: 'ATS Tech & Consultorias BR',
+      description: 'Focado em startups, scale-ups e consultorias de negócios, operações, dados e transformação digital no Brasil.',
+      count: countByPlatform('inhire'),
+    },
+    {
+      id: 'src_lever_br',
+      name: 'Lever Brasil',
+      type: 'ATS Direto • Fast-Apply',
+      description: 'Formulário canônico enxuto com preenchimento rápido de links profissionais, currículo PDF e carta de apresentação.',
+      count: countByPlatform('lever'),
+    },
+  ];
+
+  const internationalSources = [
+    {
+      id: 'intl_greenhouse',
+      name: 'Greenhouse Global Boards',
+      tag: 'Fast-Apply Global',
+      detail: '26 empresas remote-first globais (GitLab, HubSpot, Zapier, Remote, Deel, Twilio, etc.).',
+    },
+    {
+      id: 'intl_themuse',
+      name: 'The Muse (Flexible / Remote)',
+      tag: 'Curadoria Global',
+      detail: 'Operações de negócios (BizOps), Business Analytics, Project/Process Management e RevOps.',
+    },
+    {
+      id: 'intl_remotive',
+      name: 'Remotive',
+      tag: '100% Remoto',
+      detail: 'Vagas remotas globais em Business Operations, Data Analysis, Marketing/Sales Ops e Customer Success.',
+    },
+    {
+      id: 'intl_jobicy',
+      name: 'Jobicy Remote',
+      tag: '100% Remoto',
+      detail: 'Oportunidades remotas internacionais em Business, Data Science/BI, CRM e Process Automation.',
+    },
+    {
+      id: 'intl_himalayas',
+      name: 'Himalayas.app',
+      tag: 'Global Remote',
+      detail: 'Startups globais contratando remotamente para Operations, Strategy, Analytics e Revenue Operations.',
+    },
+    {
+      id: 'intl_workingnomads',
+      name: 'Working Nomads & WeWorkRemotely',
+      tag: 'Work From Anywhere',
+      detail: 'Posições 100% remotas sem restrição geográfica em gestão de processos, BI, CRM e automação.',
     },
   ];
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <section className="pt-8 mt-10 border-t border-slate-800/90 space-y-6">
+      {/* Cabeçalho da Seção de Fontes (Sem botão de atualização) */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <Cpu className="w-5 h-5 text-emerald-400" />
-            <h2 className="text-xl font-bold text-white">
-              Fontes de Coleta (Brasil & Internacional 100% Remoto)
-            </h2>
+          <div className="flex items-center gap-2">
+            <Database className="w-5 h-5 text-emerald-400" />
+            <h3 className="text-lg font-bold text-white">
+               Ecossistema de Fontes & Plataformas Monitoradas
+            </h3>
           </div>
-          <p className="text-sm text-slate-400">
-            Foco 100% em BizOps, Processos, Inteligência Comercial/Mercado, CRM/RevOps, Onboarding, Dados/BI e Automação.
-            {lastSyncTime && <span> • {lastSyncTime}</span>}
+          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+            Visão estruturada das plataformas nacionais e internacionais integradas ao radar ({jobs.length} vagas ativas).
           </p>
         </div>
 
-        <button
-          onClick={onTriggerSync}
-          disabled={isSyncing}
-          className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 disabled:bg-slate-800 text-slate-950 disabled:text-slate-500 transition-all flex items-center gap-2 shrink-0"
-        >
-          <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`} />
-          <span>{isSyncing ? 'Sincronizando...' : 'Atualizar Lista'}</span>
-        </button>
-      </div>
-
-      <div className="space-y-3">
-        <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
-          <Database className="w-4 h-4 text-emerald-400" />
-          Motores Ativos ({jobs.length} vagas qualificadas • 0% ruído de Suporte/Dev)
-        </h3>
-
-        <div className="grid grid-cols-1 gap-4">
-          {globalAggregators.map(agg => (
-            <div
-              key={agg.id}
-              className="p-5 rounded-2xl bg-slate-900/75 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-            >
-              <div className="space-y-1.5">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-base font-bold text-white">{agg.name}</span>
-                  <span className="px-2.5 py-0.5 text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-md">
-                    {agg.badge}
-                  </span>
-                </div>
-                <p className="text-sm text-slate-400 leading-relaxed max-w-3xl">
-                  {agg.description}
-                </p>
-              </div>
-
-              <div className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-2 shrink-0 border-t sm:border-t-0 border-slate-800 pt-3 sm:pt-0">
-                <div className="text-right">
-                  <span className="text-2xl font-extrabold text-emerald-400">
-                    {agg.jobsCount}
-                  </span>
-                  <span className="text-xs text-slate-400 block">vagas ativas</span>
-                </div>
-                <span className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  {agg.status}
-                </span>
-              </div>
-            </div>
-          ))}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 flex items-center gap-1.5">
+            <Building2 className="w-3.5 h-3.5" />
+            {totalBr} Vagas Brasil
+          </span>
+          <span className="px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 flex items-center gap-1.5">
+            <Globe className="w-3.5 h-3.5" />
+            {totalIntl} Vagas Internacionais
+          </span>
         </div>
       </div>
-    </div>
+
+      {/* Divisão em 2 Colunas: 1. Fontes Nacionais (Brasil) | 2. Fontes Internacionais (100% Remoto) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Coluna 1: Plataformas Nacionais */}
+        <div className="bg-slate-900/70 border border-slate-800 border-t-4 border-t-emerald-500 rounded-2xl p-5 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 text-emerald-400" />
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+                Fontes Nacionais (Brasil)
+              </h4>
+            </div>
+            <span className="text-xs font-semibold text-emerald-400">
+              4 ATSs Diretos • {totalBr} vagas
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {nationalSources.map(src => (
+              <div
+                key={src.id}
+                className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 flex flex-col justify-between gap-2.5"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-bold text-white">{src.name}</span>
+                    <span className="px-2 py-0.5 rounded-md text-xs font-extrabold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                      {src.count} vagas
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-semibold text-emerald-400/90 block mt-0.5">
+                    {src.type}
+                  </span>
+                  <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                    {src.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Coluna 2: Plataformas Internacionais (100% Remoto) */}
+        <div className="bg-slate-900/70 border border-slate-800 border-t-4 border-t-cyan-500 rounded-2xl p-5 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4 text-cyan-400" />
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+                Fontes Internacionais (100% Remoto)
+              </h4>
+            </div>
+            <span className="text-xs font-semibold text-cyan-400">
+              7 Motores Globais • {totalIntl} vagas
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {internationalSources.map(intl => (
+              <div
+                key={intl.id}
+                className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 flex flex-col justify-between gap-1.5"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-white truncate">{intl.name}</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  </div>
+                  <span className="text-[10px] font-semibold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-1.5 py-0.5 rounded inline-block mt-1">
+                    {intl.tag}
+                  </span>
+                  <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                    {intl.detail}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };

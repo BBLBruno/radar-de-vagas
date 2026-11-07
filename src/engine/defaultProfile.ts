@@ -75,61 +75,42 @@ export const DEFAULT_PROFILE: CandidateProfile = {
     customBio:
       'Profissional analítico com formação em Ciência da Computação e mentalidade orientada a negócios, focado em transformar processos manuais em operações escaláveis e orientadas por dados.',
   },
-  applicationTrackers: [
-    {
-      id: 'trk_gupy',
-      name: 'Gupy — Painel do Candidato',
-      platformLabel: 'GUPY',
-      url: 'https://portal.gupy.io/candidates/applications',
-      notes: 'Acompanhar andamento das inscrições e testes nas empresas da Gupy',
-    },
-    {
-      id: 'trk_inhire',
-      name: 'InHire — Minhas Candidaturas',
-      platformLabel: 'INHIRE',
-      url: 'https://app.inhire.com.br/',
-      notes: 'Vagas de consultorias, startups e scale-ups brasileiras',
-    },
-    {
-      id: 'trk_greenhouse',
-      name: 'Greenhouse — My Applications',
-      platformLabel: 'GREENHOUSE',
-      url: 'https://my.greenhouse.io/',
-      notes: 'Histórico de aplicações em empresas nacionais e globais no Greenhouse',
-    },
-    {
-      id: 'trk_solides',
-      name: 'Sólides Vagas — Área do Candidato',
-      platformLabel: 'SÓLIDES',
-      url: 'https://vagas.solides.com.br/',
-      notes: 'Acompanhamento de processos seletivos via Sólides',
-    },
-    {
-      id: 'trk_linkedin',
-      name: 'LinkedIn — Vagas Aplicadas & Salvas',
-      platformLabel: 'LINKEDIN',
-      url: 'https://www.linkedin.com/my-items/saved-jobs/',
-      notes: 'Controle externo de networking e recrutadores abordados',
-    },
-  ],
+  // Sem links pré-feitos: apenas os que o usuário adicionar manualmente
+  applicationTrackers: [],
 };
 
-const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v5';
+const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v6';
+const LEGACY_PREMADE_IDS = new Set([
+  'trk_gupy',
+  'trk_inhire',
+  'trk_greenhouse',
+  'trk_solides',
+  'trk_linkedin',
+]);
 
 export function loadStoredProfile(): CandidateProfile {
   try {
-    const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
+    const raw =
+      localStorage.getItem(PROFILE_STORAGE_KEY) ||
+      localStorage.getItem('radar_vagas_candidate_profile_v5');
     if (raw) {
       const parsed = JSON.parse(raw);
+      const customTrackers = Array.isArray(parsed.applicationTrackers)
+        ? parsed.applicationTrackers
+            .filter((t: any) => t && t.id && !LEGACY_PREMADE_IDS.has(t.id))
+            .map((t: any) => ({
+              id: t.id,
+              name: t.name || '',
+              description: t.description ?? t.notes ?? '',
+              url: t.url || '',
+            }))
+        : [];
       return {
         ...DEFAULT_PROFILE,
         ...parsed,
         background: { ...DEFAULT_PROFILE.background, ...parsed.background },
         preferences: { ...DEFAULT_PROFILE.preferences, ...parsed.preferences },
-        applicationTrackers:
-          parsed.applicationTrackers && parsed.applicationTrackers.length > 0
-            ? parsed.applicationTrackers
-            : DEFAULT_PROFILE.applicationTrackers,
+        applicationTrackers: customTrackers,
       };
     }
   } catch (err) {

@@ -86,9 +86,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [newStackInput, setNewStackInput] = useState('');
   const [newTrackerName, setNewTrackerName] = useState('');
-  const [newTrackerPlatform, setNewTrackerPlatform] = useState('GUPY');
+  const [newTrackerDesc, setNewTrackerDesc] = useState('');
   const [newTrackerUrl, setNewTrackerUrl] = useState('');
-  const [newTrackerNotes, setNewTrackerNotes] = useState('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (field: keyof CandidateProfile, value: any) => {
@@ -194,16 +193,15 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   const handleAddTracker = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTrackerName.trim() || !newTrackerUrl.trim()) return;
-    const formattedUrl = newTrackerUrl.startsWith('http')
+    const formattedUrl = newTrackerUrl.trim().startsWith('http')
       ? newTrackerUrl.trim()
       : `https://${newTrackerUrl.trim()}`;
 
     const newItem: ApplicationPortalLink = {
-      id: `trk_${Date.now()}`,
+      id: `fav_${Date.now()}`,
       name: newTrackerName.trim(),
-      platformLabel: newTrackerPlatform,
+      description: newTrackerDesc.trim(),
       url: formattedUrl,
-      notes: newTrackerNotes.trim() || 'Acompanhamento manual de candidatura',
     };
 
     setProfile(prev => {
@@ -216,8 +214,8 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     });
 
     setNewTrackerName('');
+    setNewTrackerDesc('');
     setNewTrackerUrl('');
-    setNewTrackerNotes('');
   };
 
   const handleRemoveTracker = (id: string) => {
@@ -249,7 +247,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
             </span>
           </div>
           <p className="text-xs sm:text-sm text-slate-400">
-            Configure seu background no padrão STAR de mercado, guarde seu currículo PDF e acesse seus painéis de candidatura.
+            Configure seu background no padrão STAR de mercado, guarde seu currículo PDF e salve seus links favoritos.
           </p>
         </div>
 
@@ -513,7 +511,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </div>
       </div>
 
-      {/* 3. Abaixo dos Dados e Stacks: LinkedIn, GitHub e Currículo em PDF (Facilitador de Aplicação) */}
+      {/* 3. Links Profissionais & Currículo em PDF (Facilitador de Aplicação) */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
           <div>
@@ -657,68 +655,72 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </div>
       </div>
 
-      {/* 4. Central Manual de Links para Acompanhar Candidaturas nas Fontes (Gupy, InHire, Greenhouse, etc.) */}
+      {/* 4. Favoritos de Candidaturas & Portais (100% Manual: Apenas Nome, Descrição e Link, sem tags) */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
           <div>
             <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
               <BookmarkCheck className="w-5 h-5 text-cyan-400" />
-              <span>Acompanhamento Manual de Candidaturas nas Fontes (Gupy, InHire, Greenhouse...)</span>
+              <span>Meus Links & Favoritos de Candidatura</span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Atalhos diretos para você acessar manualmente seus painéis de candidato nas plataformas ou salvar links de processos específicos.
+              Salve manualmente seus links úteis, portais de candidato ou processos em andamento (como favoritos do navegador).
             </p>
           </div>
         </div>
 
-        {/* Lista de Links de Acompanhamento */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {(profile.applicationTrackers || []).map(tracker => (
-            <div
-              key={tracker.id}
-              className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-slate-700 flex flex-col justify-between gap-3 transition-all"
-            >
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <span className="px-2 py-0.5 text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded">
-                    {tracker.platformLabel}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveTracker(tracker.id)}
-                    title="Remover atalho"
-                    className="text-slate-500 hover:text-rose-400 transition-colors"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-                <h4 className="text-sm font-bold text-white mt-1">{tracker.name}</h4>
-                {tracker.notes && (
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{tracker.notes}</p>
-                )}
-              </div>
-
-              <a
-                href={tracker.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-3 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-emerald-500 text-slate-200 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5"
+        {/* Lista de Favoritos Adicionados pelo Usuário (Sem Tags) */}
+        {(profile.applicationTrackers || []).length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {(profile.applicationTrackers || []).map(tracker => (
+              <div
+                key={tracker.id}
+                className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-slate-700 flex flex-col justify-between gap-3 transition-all"
               >
-                <span>Abrir Painel de Candidaturas</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          ))}
-        </div>
+                <div>
+                  <div className="flex items-start justify-between gap-2">
+                    <h4 className="text-sm font-bold text-white truncate">{tracker.name}</h4>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveTracker(tracker.id)}
+                      title="Remover favorito"
+                      className="text-slate-500 hover:text-rose-400 transition-colors shrink-0"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  {tracker.description && (
+                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{tracker.description}</p>
+                  )}
+                  <p className="text-[11px] text-slate-500 mt-1.5 truncate">{tracker.url}</p>
+                </div>
 
-        {/* Formulário para Adicionar Novo Link de Acompanhamento Manual */}
+                <a
+                  href={tracker.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-3 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-emerald-500 text-slate-200 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5"
+                >
+                  <span>Abrir Link</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="p-4 rounded-xl bg-slate-950/40 border border-slate-800/60 text-center text-xs text-slate-400">
+            Nenhum favorito adicionado ainda. Utilize os campos abaixo para salvar seus links manualmente.
+          </div>
+        )}
+
+        {/* Formulário Manual: Somente Nome, Descrição e Link */}
         <form
           onSubmit={handleAddTracker}
           className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 space-y-3"
         >
           <div className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
             <Link2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Adicionar Novo Link de Acompanhamento Manual (Portal ou Vaga Aplicada)</span>
+            <span>Adicionar Novo Link aos Favoritos</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
@@ -727,51 +729,35 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 type="text"
                 value={newTrackerName}
                 onChange={(e) => setNewTrackerName(e.target.value)}
-                placeholder="Nome (ex: Processo VTEX / Gupy)"
+                placeholder="Nome (ex: Minhas Vagas Gupy)"
                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
               />
-            </div>
-
-            <div className="sm:col-span-2">
-              <select
-                value={newTrackerPlatform}
-                onChange={(e) => setNewTrackerPlatform(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
-              >
-                <option value="GUPY">Gupy</option>
-                <option value="INHIRE">InHire</option>
-                <option value="GREENHOUSE">Greenhouse</option>
-                <option value="LEVER">Lever</option>
-                <option value="SÓLIDES">Sólides</option>
-                <option value="INTERNACIONAL">Internacional</option>
-                <option value="OUTRO">Outro</option>
-              </select>
             </div>
 
             <div className="sm:col-span-4">
               <input
                 type="text"
-                value={newTrackerUrl}
-                onChange={(e) => setNewTrackerUrl(e.target.value)}
-                placeholder="URL do painel ou da vaga aplicada..."
+                value={newTrackerDesc}
+                onChange={(e) => setNewTrackerDesc(e.target.value)}
+                placeholder="Descrição (ex: Painel de acompanhamento)"
                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
 
-            <div className="sm:col-span-3 flex gap-2">
+            <div className="sm:col-span-5 flex gap-2">
               <input
                 type="text"
-                value={newTrackerNotes}
-                onChange={(e) => setNewTrackerNotes(e.target.value)}
-                placeholder="Status (ex: Teste enviado)"
+                value={newTrackerUrl}
+                onChange={(e) => setNewTrackerUrl(e.target.value)}
+                placeholder="Link (https://...)"
                 className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500"
               />
               <button
                 type="submit"
-                className="px-3.5 py-2 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1 shrink-0"
+                className="px-4 py-2 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1 shrink-0"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>Salvar</span>
+                <span>Adicionar</span>
               </button>
             </div>
           </div>

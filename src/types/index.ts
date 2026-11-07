@@ -54,9 +54,14 @@ export interface Job {
 export interface ApplicationPortalLink {
   id: string;
   name: string;
-  platformLabel: string;
+  description: string;
   url: string;
-  notes?: string;
+}
+
+export interface AppliedJobInfo {
+  jobId: string;
+  appliedAt: string;
+  trackingUrl?: string;
 }
 
 export interface CandidateProfile {
@@ -109,7 +114,7 @@ export interface FilterState {
   maxDays: number;
   workplaceType: 'todos' | WorkplaceType;
   scopeFilter: 'todas' | 'nacional' | 'internacional';
-  seniority: 'todos' | 'entrada_jr_pleno' | SeniorityLevel;
+  seniority: 'todos' | SeniorityLevel;
   hideExecutiveSenior: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
