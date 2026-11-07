@@ -87,7 +87,7 @@ const WORKPLACE_OPTIONS: Array<{
   { value: 'presencial', label: 'Presencial', icon: MapPin },
 ];
 
-// 6 opções claras e sem sobreposição/repetição de nomes
+// 6 opções de Senioridade com suporte a seleção múltipla
 const SENIORITY_OPTIONS: Array<{
   value: 'todos' | SeniorityLevel;
   label: string;
@@ -116,12 +116,31 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
+  // Suporte para selecionar mais de uma opção de Senioridade
   const handleSelectSeniority = (level: 'todos' | SeniorityLevel) => {
-    setFilters(prev => ({
-      ...prev,
-      seniority: level,
-      hideExecutiveSenior: false,
-    }));
+    setFilters(prev => {
+      if (level === 'todos') {
+        return {
+          ...prev,
+          seniority: 'todos',
+          selectedSeniorities: [],
+          hideExecutiveSenior: false,
+        };
+      }
+
+      const current = prev.selectedSeniorities || [];
+      const exists = current.includes(level);
+      const nextSelected = exists
+        ? current.filter(item => item !== level)
+        : [...current, level];
+
+      return {
+        ...prev,
+        seniority: nextSelected.length === 1 ? nextSelected[0] : 'todos',
+        selectedSeniorities: nextSelected,
+        hideExecutiveSenior: false,
+      };
+    });
   };
 
   const handleSelectScope = (scope: 'todas' | 'nacional' | 'internacional') => {
@@ -163,6 +182,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       workplaceType: 'todos',
       scopeFilter: 'todas',
       seniority: 'todos',
+      selectedSeniorities: [],
       hideExecutiveSenior: false,
       platform: 'todas',
       selectedStacks: [],
@@ -175,6 +195,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
 
   const selectedAreaLabel =
     CATEGORY_OPTIONS.find(c => c.value === filters.selectedNicheCategory)?.label || 'Todas as Áreas';
+
+  const selectedSeniorities = filters.selectedSeniorities || [];
 
   return (
     <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
@@ -286,19 +308,26 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
           </div>
         </div>
 
-        {/* Painel Nível de Senioridade */}
+        {/* Painel Nível de Senioridade (Múltipla Escolha) */}
         <div className="lg:col-span-7 bg-slate-950/60 border border-slate-800/90 border-l-4 border-l-cyan-500 rounded-xl p-3.5">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5" />
               Nível de Senioridade
             </span>
-            <span className="text-[11px] text-slate-500">Momento de carreira</span>
+            <span className="text-[11px] text-slate-400">
+              {selectedSeniorities.length > 0
+                ? `${selectedSeniorities.length} selecionada(s) • Múltipla escolha`
+                : 'Pode selecionar mais de uma opção'}
+            </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {SENIORITY_OPTIONS.map(opt => {
               const Icon = opt.icon;
-              const isSelected = filters.seniority === opt.value;
+              const isSelected =
+                opt.value === 'todos'
+                  ? selectedSeniorities.length === 0
+                  : selectedSeniorities.includes(opt.value);
               return (
                 <button
                   key={opt.value}

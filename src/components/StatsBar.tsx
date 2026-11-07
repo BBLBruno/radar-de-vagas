@@ -38,10 +38,6 @@ export const StatsBar: React.FC<StatsBarProps> = ({ totalJobs, filteredJobs }) =
           </span>
         </span>
       </div>
-
-      <div className="hidden md:flex items-center gap-2 text-[11px] text-slate-400">
-        <span>Links diretos verificados • Sem ruído de Suporte/Dev</span>
-      </div>
     </div>
   );
 };

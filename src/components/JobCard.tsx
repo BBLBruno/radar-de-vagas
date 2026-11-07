@@ -65,17 +65,17 @@ const PLATFORM_CONFIG: Record<string, { label: string; badgeClass: string }> = {
     badgeClass: 'bg-slate-700/60 text-slate-200 border-slate-600/50',
   },
   remotive_intl: {
-    label: 'Internacional',
+    label: 'Global',
     badgeClass: 'bg-teal-500/15 text-teal-300 border-teal-500/30',
   },
 };
 
 const SENIORITY_LABELS: Record<string, { label: string; className: string }> = {
-  estagio: { label: 'Estágio / Trainee', className: 'bg-teal-500/15 text-teal-300 border-teal-500/30' },
-  junior: { label: 'Júnior / Assistente', className: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
+  estagio: { label: 'Estágio', className: 'bg-teal-500/15 text-teal-300 border-teal-500/30' },
+  junior: { label: 'Júnior', className: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
   pleno: { label: 'Pleno', className: 'bg-sky-500/15 text-sky-300 border-sky-500/30' },
   senior: { label: 'Sênior', className: 'bg-amber-500/15 text-amber-300 border-amber-500/30' },
-  especialista: { label: 'Especialista / Liderança', className: 'bg-rose-500/15 text-rose-300 border-rose-500/30' },
+  especialista: { label: 'Especialista', className: 'bg-rose-500/15 text-rose-300 border-rose-500/30' },
 };
 
 export const JobCard: React.FC<JobCardProps> = ({
@@ -113,7 +113,7 @@ export const JobCard: React.FC<JobCardProps> = ({
       : 'text-slate-300 bg-slate-800/70 border-slate-700/60';
 
   const daysLabel =
-    job.daysOpen === 0 ? 'Hoje' : job.daysOpen === 1 ? 'Há 1 dia' : `Há ${job.daysOpen} dias`;
+    job.daysOpen === 0 ? 'Hoje' : job.daysOpen === 1 ? 'Há 1d' : `Há ${job.daysOpen}d`;
 
   const cleanLocation = job.location.replace(/^🌎\s*/, '');
 
@@ -135,49 +135,49 @@ export const JobCard: React.FC<JobCardProps> = ({
       }`}
     >
       <div>
-        {/* Top Badges Row + Ícone de Salvar Aumentado e Alinhado */}
-        <div className="flex items-center justify-between gap-2.5 mb-3.5 min-h-[2.5rem]">
-          <div className="flex flex-wrap items-center gap-1.5 flex-1">
+        {/* Linha 1: Badges em linha única de altura fixa (h-9) + Botão de Salvar alinhado */}
+        <div className="flex items-center justify-between gap-2 h-9 mb-3.5">
+          <div className="flex items-center gap-1.5 overflow-hidden flex-1">
             {job.isInternational ? (
-              <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1">
-                <Globe className="w-3.5 h-3.5" />
-                Internacional • Remoto
+              <span className="px-2 py-1 text-[11px] font-semibold rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <Globe className="w-3 h-3" />
+                Intl • Remoto
               </span>
             ) : job.workplaceType === 'remoto' ? (
-              <span className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                <Home className="w-3.5 h-3.5" />
+              <span className="px-2 py-1 text-[11px] font-semibold rounded-lg bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <Home className="w-3 h-3" />
                 100% Remoto
               </span>
             ) : job.workplaceType === 'hibrido' ? (
-              <span className="px-2.5 py-1 text-xs font-medium rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1">
-                <Building2 className="w-3.5 h-3.5" />
+              <span className="px-2 py-1 text-[11px] font-medium rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <Building2 className="w-3 h-3" />
                 Híbrido
               </span>
             ) : (
-              <span className="px-2.5 py-1 text-xs font-medium rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" />
+              <span className="px-2 py-1 text-[11px] font-medium rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <MapPin className="w-3 h-3" />
                 Presencial
               </span>
             )}
 
-            <span className={`px-2.5 py-1 text-xs font-semibold rounded-lg border flex items-center gap-1 ${seniorityBadge.className}`}>
-              <Briefcase className="w-3.5 h-3.5" />
+            <span className={`px-2 py-1 text-[11px] font-semibold rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${seniorityBadge.className}`}>
+              <Briefcase className="w-3 h-3" />
               {seniorityBadge.label}
             </span>
 
-            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border flex items-center gap-1 ${freshnessColor}`}>
+            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${freshnessColor}`}>
               <Clock className="w-3 h-3" />
               {daysLabel}
             </span>
 
-            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border ${platform.badgeClass}`}>
+            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border whitespace-nowrap shrink-0 ${platform.badgeClass}`}>
               {platform.label}
             </span>
 
             {job.isAffirmative && (
-              <span className="px-2 py-1 text-[10px] font-semibold rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1">
+              <span className="px-2 py-1 text-[10px] font-semibold rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
                 <ShieldAlert className="w-3 h-3" />
-                {job.affirmativeReason || 'Afirmativa'}
+                Afirmativa
               </span>
             )}
           </div>
@@ -187,7 +187,7 @@ export const JobCard: React.FC<JobCardProps> = ({
             type="button"
             onClick={() => onToggleSave(job)}
             title={isSaved ? 'Remover de Minhas Vagas' : 'Salvar em Minhas Vagas'}
-            className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all shrink-0 self-center ${
+            className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all shrink-0 ${
               isSaved
                 ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400 shadow-sm'
                 : 'bg-slate-800/60 border-slate-700/70 text-slate-300 hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-slate-800'
@@ -201,17 +201,19 @@ export const JobCard: React.FC<JobCardProps> = ({
           </button>
         </div>
 
-        {/* Title (Altura padronizada de 2 linhas) */}
-        <h3
-          onClick={() => onOpenDetails(job)}
-          className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors cursor-pointer line-clamp-2 leading-snug h-[3.25rem]"
-          title={job.title}
-        >
-          {job.title}
-        </h3>
+        {/* Bloco do Título com altura fixa + espaço garantido de ~1 linha (mb-5) antes da Empresa/Localidade */}
+        <div className="h-[3.25rem] mb-5 flex items-start">
+          <h3
+            onClick={() => onOpenDetails(job)}
+            className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors cursor-pointer line-clamp-2 leading-snug"
+            title={job.title}
+          >
+            {job.title}
+          </h3>
+        </div>
 
-        {/* Company & Location (1 linha padronizada) */}
-        <div className="flex items-center gap-3 text-xs text-slate-400 mt-2 mb-3 truncate">
+        {/* Empresa & Localidade (Sempre alinhado na mesma altura em todos os cards) */}
+        <div className="flex items-center gap-3 text-xs text-slate-400 h-5 mb-3 truncate">
           <span className="flex items-center gap-1.5 font-medium text-slate-200 truncate">
             <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <span className="truncate">{job.company}</span>
@@ -222,7 +224,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           </span>
         </div>
 
-        {/* Faixa Salarial + Indicador de Compatibilidade */}
+        {/* Faixa Salarial + Indicador de Compatibilidade (Sempre na mesma linha horizontal) */}
         <div className="mb-3 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/90 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 text-xs truncate">
             <Banknote className={`w-3.5 h-3.5 shrink-0 ${job.salary ? 'text-emerald-400' : 'text-slate-500'}`} />
@@ -241,7 +243,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           )}
         </div>
 
-        {/* Chips de Habilidades (Altura fixa padronizada) */}
+        {/* Chips de Habilidades / Área (Altura fixa padronizada) */}
         <div className="flex flex-wrap gap-1.5 mb-4 h-7 overflow-hidden">
           {job.stacks.slice(0, 3).map(stack => {
             const isSelectedFilter = selectedStacks.includes(stack);
@@ -272,7 +274,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         </div>
       </div>
 
-      {/* Rodapé do Card: Muda se "Já me candidatei" estiver marcado (retirando Candidatar-se, Copiloto e Ver vaga) */}
+      {/* Rodapé do Card: Muda se "Já me candidatei" estiver marcado */}
       <div className="pt-3 border-t border-slate-800/70">
         {isApplied ? (
           <div className="space-y-2.5 bg-emerald-500/5 border border-emerald-500/25 rounded-xl p-3">
@@ -372,14 +374,14 @@ export const JobCard: React.FC<JobCardProps> = ({
             )}
           </div>
         ) : (
-          <div className="space-y-2">
-            {/* Linha 1: Somente os 2 botões (Candidatar-se com texto maior e Copiloto no mesmo tamanho) */}
-            <div className="grid grid-cols-2 gap-2.5">
+          <div className="space-y-2.5">
+            {/* Linha 1: Proporção 62% Candidatar-se / 38% Copiloto */}
+            <div className="flex items-center gap-2.5">
               <a
                 href={job.canonicalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full px-3 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/10 truncate"
+                className="w-[62%] px-3.5 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/10 truncate"
               >
                 <span className="truncate">Candidatar-se</span>
                 <ExternalLink className="w-4 h-4 shrink-0" />
@@ -388,7 +390,7 @@ export const JobCard: React.FC<JobCardProps> = ({
               <button
                 type="button"
                 onClick={() => onOpenCopilot(job)}
-                className="w-full px-3 py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/25 hover:border-emerald-500/50 transition-all flex items-center justify-center gap-1.5 truncate"
+                className="w-[38%] px-3 py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/25 hover:border-emerald-500/50 transition-all flex items-center justify-center gap-1.5 truncate"
                 title="Abrir Copiloto com respostas e carta prontas"
               >
                 <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
@@ -396,12 +398,12 @@ export const JobCard: React.FC<JobCardProps> = ({
               </button>
             </div>
 
-            {/* Linha 2: Embaixo -> Mais detalhes da vaga (+ botão "Já me candidatei" quando em Minhas Vagas ou salvo) */}
+            {/* Linha 2: Embaixo -> Mais detalhes da vaga um pouco mais grosso */}
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => onOpenDetails(job)}
-                className="flex-1 py-2 px-3 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-950/50 hover:bg-slate-800/80 border border-slate-800/80 transition-all text-center"
+                className="flex-1 py-2.5 px-3.5 rounded-xl text-xs sm:text-[13px] font-semibold text-slate-200 hover:text-white bg-slate-950/70 hover:bg-slate-800 border border-slate-700/80 transition-all text-center"
               >
                 Mais detalhes da vaga
               </button>
@@ -410,7 +412,7 @@ export const JobCard: React.FC<JobCardProps> = ({
                 <button
                   type="button"
                   onClick={() => onToggleApplied(job)}
-                  className="py-2 px-3 rounded-xl text-xs font-semibold text-emerald-400 hover:text-slate-950 bg-emerald-500/10 hover:bg-emerald-500 border border-emerald-500/30 transition-all flex items-center justify-center gap-1.5 shrink-0"
+                  className="py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-semibold text-emerald-400 hover:text-slate-950 bg-emerald-500/10 hover:bg-emerald-500 border border-emerald-500/30 transition-all flex items-center justify-center gap-1.5 shrink-0"
                   title="Marcar que já se candidatou nesta vaga"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />

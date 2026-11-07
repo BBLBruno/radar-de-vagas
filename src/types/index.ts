@@ -115,6 +115,7 @@ export interface FilterState {
   workplaceType: 'todos' | WorkplaceType;
   scopeFilter: 'todas' | 'nacional' | 'internacional';
   seniority: 'todos' | SeniorityLevel;
+  selectedSeniorities: SeniorityLevel[];
   hideExecutiveSenior: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];

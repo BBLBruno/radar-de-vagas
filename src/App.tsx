@@ -7,7 +7,7 @@ import { JobDetailModal } from './components/JobDetailModal';
 import { CopilotModal } from './components/CopilotModal';
 import { ProfileDrawer } from './components/ProfileDrawer';
 import { CrawlerControlModal } from './components/CrawlerControlModal';
-import { AppliedJobInfo, Job, FilterState, CandidateProfile, NicheCategory } from './types';
+import { AppliedJobInfo, Job, FilterState, CandidateProfile, NicheCategory, SeniorityLevel } from './types';
 import { SEED_JOBS } from './engine/seedJobs';
 import {
   calculateDaysOpen,
@@ -37,6 +37,8 @@ import {
   EyeOff,
   CheckCircle2,
   Bookmark,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
@@ -67,11 +69,59 @@ const SHORT_PLATFORM_LABELS: Record<string, string> = {
   lever: 'Lever',
 };
 
+const PAGE_SIZE_OPTIONS = [12, 18, 24, 36, 60];
+
 function normalizeSearchText(text: string): string {
   return (text || '')
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Gera os itens de paginação (inicial, atual + 4 e final, adaptando conforme início/meio/fim)
+ */
+function getPaginationItems(currentPage: number, totalPages: number): Array<number | 'ellipsis-start' | 'ellipsis-end'> {
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [];
+
+  // Caso 1: No início (mostra 1 até 5 + ... + última)
+  if (currentPage <= 3) {
+    for (let p = 1; p <= Math.min(5, totalPages - 1); p++) {
+      items.push(p);
+    }
+    if (totalPages > 6) {
+      items.push('ellipsis-end');
+    }
+    items.push(totalPages);
+    return items;
+  }
+
+  // Caso 2: No final (mostra 1 + ... + últimas 5 páginas)
+  if (currentPage >= totalPages - 4) {
+    items.push(1);
+    items.push('ellipsis-start');
+    for (let p = Math.max(2, totalPages - 4); p <= totalPages; p++) {
+      items.push(p);
+    }
+    return items;
+  }
+
+  // Caso 3: No meio (mostra 1 + ... + atual e +4 + ... + final)
+  items.push(1);
+  items.push('ellipsis-start');
+  const endWindow = Math.min(totalPages - 1, currentPage + 4);
+  for (let p = currentPage; p <= endWindow; p++) {
+    items.push(p);
+  }
+  if (endWindow < totalPages - 1) {
+    items.push('ellipsis-end');
+  }
+  items.push(totalPages);
+  return items;
 }
 
 export const App: React.FC = () => {
@@ -130,6 +180,7 @@ export const App: React.FC = () => {
     workplaceType: 'todos',
     scopeFilter: 'todas',
     seniority: 'todos',
+    selectedSeniorities: [],
     hideExecutiveSenior: false,
     platform: 'todas',
     selectedStacks: [],
@@ -140,6 +191,8 @@ export const App: React.FC = () => {
   });
 
   const [sortBy, setSortBy] = useState<'match' | 'recent'>('recent');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(18);
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
 
@@ -158,6 +211,11 @@ export const App: React.FC = () => {
       console.error(e);
     }
   }, [appliedJobsMap]);
+
+  // Volta para a página 1 sempre que os filtros, ordenação ou tamanho da página mudarem
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters, sortBy, itemsPerPage]);
 
   const toggleSaveJob = (job: Job) => {
     setSavedJobIds(prev =>
@@ -182,7 +240,6 @@ export const App: React.FC = () => {
       };
     });
 
-    // Garante que a vaga marcada como "Já me candidatei" esteja em Minhas Vagas
     setSavedJobIds(prev => (prev.includes(job.id) ? prev : [...prev, job.id]));
   };
 
@@ -214,6 +271,17 @@ export const App: React.FC = () => {
     });
   };
 
+  const removeSeniorityFilter = (sen: SeniorityLevel) => {
+    setFilters(prev => {
+      const next = (prev.selectedSeniorities || []).filter(s => s !== sen);
+      return {
+        ...prev,
+        selectedSeniorities: next,
+        seniority: next.length === 1 ? next[0] : 'todos',
+      };
+    });
+  };
+
   const jobsWithMatch = useMemo(() => {
     return jobs.map(job => {
       const match = calculateJobMatch(job, profile);
@@ -231,8 +299,13 @@ export const App: React.FC = () => {
       .filter(job => {
         if (isBlacklistedTitle(job.title)) return false;
 
-        // 1. Filtro de Senioridade (100% determinístico para cada uma das 6 opções)
-        if (filters.seniority !== 'todos') {
+        // 1. Filtro de Senioridade (Múltipla escolha)
+        const selectedSens = filters.selectedSeniorities || [];
+        if (selectedSens.length > 0) {
+          if (!selectedSens.includes(job.seniority)) {
+            return false;
+          }
+        } else if (filters.seniority !== 'todos') {
           if (job.seniority !== filters.seniority) {
             return false;
           }
@@ -319,6 +392,19 @@ export const App: React.FC = () => {
       });
   }, [jobsWithMatch, filters, sortBy]);
 
+  const totalPages = Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage));
+  const safeCurrentPage = Math.min(currentPage, totalPages);
+
+  const paginatedJobs = useMemo(() => {
+    const startIndex = (safeCurrentPage - 1) * itemsPerPage;
+    return filteredJobs.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredJobs, safeCurrentPage, itemsPerPage]);
+
+  const paginationItems = useMemo(
+    () => getPaginationItems(safeCurrentPage, totalPages),
+    [safeCurrentPage, totalPages]
+  );
+
   const allMyJobs = useMemo(() => {
     const allIds = new Set([...savedJobIds, ...Object.keys(appliedJobsMap)]);
     return jobsWithMatch.filter(j => allIds.has(j.id));
@@ -338,6 +424,9 @@ export const App: React.FC = () => {
     () => allMyJobs.filter(j => Boolean(appliedJobsMap[j.id])).length,
     [allMyJobs, appliedJobsMap]
   );
+
+  const startItemNum = filteredJobs.length === 0 ? 0 : (safeCurrentPage - 1) * itemsPerPage + 1;
+  const endItemNum = Math.min(safeCurrentPage * itemsPerPage, filteredJobs.length);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
@@ -366,25 +455,20 @@ export const App: React.FC = () => {
                   <strong>{jobs.length}</strong> vagas
                 </span>
 
-                {/* Tag Resumida de Senioridade Ativa */}
-                {filters.seniority !== 'todos' && (
+                {/* Tags Resumidas de Senioridades Ativas (Múltipla Escolha) */}
+                {(filters.selectedSeniorities || []).map(sen => (
                   <button
+                    key={sen}
                     type="button"
-                    onClick={() =>
-                      setFilters(prev => ({
-                        ...prev,
-                        seniority: 'todos',
-                        hideExecutiveSenior: false,
-                      }))
-                    }
-                    title="Clique para mostrar todas as senioridades"
+                    onClick={() => removeSeniorityFilter(sen)}
+                    title="Clique para remover esta senioridade"
                     className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
                   >
                     <SlidersHorizontal className="w-3 h-3" />
-                    <span>{SHORT_SENIORITY_LABELS[filters.seniority] || filters.seniority}</span>
+                    <span>{SHORT_SENIORITY_LABELS[sen] || sen}</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
-                )}
+                ))}
 
                 {filters.scopeFilter !== 'todas' && (
                   <button
@@ -514,25 +598,101 @@ export const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Job Cards Grid (Todos do mesmo tamanho com h-full) */}
+            {/* Job Cards Grid + Paginação Completa */}
             {filteredJobs.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredJobs.map(job => (
-                  <JobCard
-                    key={job.id}
-                    job={job}
-                    isSaved={savedJobIds.includes(job.id)}
-                    appliedInfo={appliedJobsMap[job.id]}
-                    selectedStacks={filters.selectedStacks}
-                    onToggleStack={toggleStackFilter}
-                    onToggleSave={toggleSaveJob}
-                    onToggleApplied={handleToggleApplied}
-                    onUpdateTrackingUrl={handleUpdateTrackingUrl}
-                    onOpenDetails={setDetailJob}
-                    onOpenCopilot={setCopilotJob}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {paginatedJobs.map(job => (
+                    <JobCard
+                      key={job.id}
+                      job={job}
+                      isSaved={savedJobIds.includes(job.id)}
+                      appliedInfo={appliedJobsMap[job.id]}
+                      selectedStacks={filters.selectedStacks}
+                      onToggleStack={toggleStackFilter}
+                      onToggleSave={toggleSaveJob}
+                      onToggleApplied={handleToggleApplied}
+                      onUpdateTrackingUrl={handleUpdateTrackingUrl}
+                      onOpenDetails={setDetailJob}
+                      onOpenCopilot={setCopilotJob}
+                    />
+                  ))}
+                </div>
+
+                {/* Barra de Paginação embaixo (Sem recarregar a janela) */}
+                <div className="mt-8 bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                  {/* Esquerda: Seletor de vagas por página + intervalo exibido */}
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                    <div className="flex items-center gap-2 bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
+                      <span className="font-semibold text-slate-300">Vagas por página:</span>
+                      <select
+                        value={itemsPerPage}
+                        onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                        className="bg-transparent text-emerald-400 font-bold focus:outline-none cursor-pointer"
+                      >
+                        {PAGE_SIZE_OPTIONS.map(size => (
+                          <option key={size} value={size} className="bg-slate-900 text-white">
+                            {size} vagas
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <span>
+                      Mostrando <strong className="text-white">{startItemNum}–{endItemNum}</strong> de{' '}
+                      <strong className="text-emerald-400">{filteredJobs.length}</strong> vagas
+                    </span>
+                  </div>
+
+                  {/* Direita: Botões Voltar, Números de Página (inicial/atual, +4 e final) e Avançar */}
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage <= 1}
+                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      <span>Anterior</span>
+                    </button>
+
+                    <div className="flex items-center gap-1 px-1">
+                      {paginationItems.map((item, idx) =>
+                        typeof item === 'number' ? (
+                          <button
+                            key={`page_${item}`}
+                            type="button"
+                            onClick={() => setCurrentPage(item)}
+                            className={`min-w-[2.25rem] h-9 px-2.5 rounded-xl text-xs font-bold transition-all border ${
+                              safeCurrentPage === item
+                                ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-sm'
+                                : 'bg-slate-950/80 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
+                            }`}
+                          >
+                            {item}
+                          </button>
+                        ) : (
+                          <span
+                            key={`${item}_${idx}`}
+                            className="px-1.5 text-xs font-bold text-slate-500 select-none"
+                          >
+                            ...
+                          </span>
+                        )
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={safeCurrentPage >= totalPages}
+                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1"
+                    >
+                      <span>Próxima</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </>
             ) : (
               <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center max-w-lg mx-auto my-8 space-y-4">
                 <div className="w-14 h-14 rounded-2xl bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
@@ -555,6 +715,7 @@ export const App: React.FC = () => {
                       workplaceType: 'todos',
                       scopeFilter: 'todas',
                       seniority: 'todos',
+                      selectedSeniorities: [],
                       hideExecutiveSenior: false,
                       platform: 'todas',
                       selectedStacks: [],
@@ -573,7 +734,7 @@ export const App: React.FC = () => {
           </div>
         )}
 
-        {/* Aba Minhas Vagas (Substitui Vagas Salvas + Inclui "Já me candidatei" + Fontes embaixo de tudo) */}
+        {/* Aba Minhas Vagas */}
         {activeTab === 'saved' && (
           <div className="space-y-6 max-w-6xl mx-auto">
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -587,7 +748,6 @@ export const App: React.FC = () => {
                 </p>
               </div>
 
-              {/* Filtro rápido dentro de Minhas Vagas */}
               <div className="flex flex-wrap items-center gap-1.5 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 shrink-0">
                 <button
                   type="button"
@@ -660,7 +820,7 @@ export const App: React.FC = () => {
               </div>
             )}
 
-            {/* Embaixo de tudo na aba Minhas Vagas: Ecossistema de Fontes bem dividido e sem botão de atualização */}
+            {/* Embaixo de tudo na aba Minhas Vagas: Ecossistema de Fontes */}
             <CrawlerControlModal jobs={jobs} />
           </div>
         )}
