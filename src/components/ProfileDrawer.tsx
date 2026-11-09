@@ -174,6 +174,14 @@ function validateUrlFormat(
 export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfile }) => {
   const [savedSectionId, setSavedSectionId] = useState<string | null>(null);
   const [sectionError, setSectionError] = useState<{ section: string; message: string } | null>(null);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [newStackInput, setNewStackInput] = useState('');
+  const [newTrackerName, setNewTrackerName] = useState('');
+  const [newTrackerDesc, setNewTrackerDesc] = useState('');
+  const [newTrackerUrl, setNewTrackerUrl] = useState('');
+  const [trackerFormError, setTrackerFormError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Fecha o modal de confirmação ao pressionar ESC
   useEffect(() => {
@@ -184,14 +192,6 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [showClearConfirm]);
-  const [showClearConfirm, setShowClearConfirm] = useState(false);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [newStackInput, setNewStackInput] = useState('');
-  const [newTrackerName, setNewTrackerName] = useState('');
-  const [newTrackerDesc, setNewTrackerDesc] = useState('');
-  const [newTrackerUrl, setNewTrackerUrl] = useState('');
-  const [trackerFormError, setTrackerFormError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const linkedinValidation = profile.linkedinUrl.trim()
     ? validateUrlFormat(profile.linkedinUrl, 'linkedin')

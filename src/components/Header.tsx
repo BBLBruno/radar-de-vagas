@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
             }`}
           >
             <User className="w-4 h-4" />
-            <span className="hidden sm:inline">Perfil & Copiloto</span>
+            <span>Perfil <span className="hidden sm:inline">& Copiloto</span></span>
           </button>
         </nav>
       </div>
