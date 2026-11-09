@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           <button
             type="button"
             onClick={() => setActiveTab('radar')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'radar'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'
@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           <button
             type="button"
             onClick={() => setActiveTab('saved')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'saved'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           <button
             type="button"
             onClick={() => setActiveTab('profile')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
               activeTab === 'profile'
                 ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-300 hover:text-white hover:bg-slate-900'

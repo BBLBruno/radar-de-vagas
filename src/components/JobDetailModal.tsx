@@ -82,6 +82,9 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
     <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-sm animate-in fade-in duration-200 cursor-pointer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Detalhes da Vaga"
     >
       <div
         onClick={(e) => e.stopPropagation()}

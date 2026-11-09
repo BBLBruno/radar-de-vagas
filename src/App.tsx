@@ -243,6 +243,42 @@ export const App: React.FC = () => {
     setCurrentPage(1);
   }, [filters, sortBy, itemsPerPage]);
 
+  // Trava a rolagem de fundo enquanto qualquer modal estiver visível
+  useEffect(() => {
+    const isAnyModalOpen = Boolean(detailJob || copilotJob || jobToRemoveFromSaved);
+    if (isAnyModalOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [detailJob, copilotJob, jobToRemoveFromSaved]);
+
+  // Permite fechar a confirmação de desmarcação com a tecla Escape
+  useEffect(() => {
+    if (!jobToRemoveFromSaved) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setJobToRemoveFromSaved(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [jobToRemoveFromSaved]);
+
+  const scrollToJobsTop = () => {
+    const el = document.getElementById('jobs-list-top');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    scrollToJobsTop();
+  };
+
   const toggleSaveJob = (job: Job) => {
     const isCurrentlyInMyJobs =
       savedJobIds.includes(job.id) || Boolean(appliedJobsMap[job.id]);
@@ -530,7 +566,7 @@ export const App: React.FC = () => {
             />
 
             {/* Sub-header: Contagem + Tags Resumidas de Filtros Ativos + Ordenação */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
+            <div id="jobs-list-top" className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
               <div className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-slate-300">
                 <span className="mr-1">
                   Exibindo <strong className="text-emerald-400">{filteredJobs.length}</strong> de{' '}
@@ -723,7 +759,11 @@ export const App: React.FC = () => {
                       <span className="font-semibold text-slate-300">Vagas por página:</span>
                       <select
                         value={itemsPerPage}
-                        onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                        onChange={(e) => {
+                          setItemsPerPage(Number(e.target.value));
+                          setCurrentPage(1);
+                          scrollToJobsTop();
+                        }}
                         className="bg-transparent text-emerald-400 font-bold focus:outline-none cursor-pointer"
                       >
                         {PAGE_SIZE_OPTIONS.map(size => (
@@ -743,8 +783,8 @@ export const App: React.FC = () => {
                     <button
                       type="button"
                       disabled={safeCurrentPage <= 1}
-                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1"
+                      onClick={() => handlePageChange(Math.max(1, safeCurrentPage - 1))}
+                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1 cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <span>Anterior</span>
@@ -756,8 +796,8 @@ export const App: React.FC = () => {
                           <button
                             key={`page_${item}`}
                             type="button"
-                            onClick={() => setCurrentPage(item)}
-                            className={`min-w-[2.25rem] h-9 px-2.5 rounded-xl text-xs font-bold transition-all border ${
+                            onClick={() => handlePageChange(item)}
+                            className={`min-w-[2.25rem] h-9 px-2.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                               safeCurrentPage === item
                                 ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-sm'
                                 : 'bg-slate-950/80 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white'
@@ -779,8 +819,8 @@ export const App: React.FC = () => {
                     <button
                       type="button"
                       disabled={safeCurrentPage >= totalPages}
-                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1"
+                      onClick={() => handlePageChange(Math.min(totalPages, safeCurrentPage + 1))}
+                      className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-950/90 hover:bg-slate-800 disabled:opacity-40 disabled:pointer-events-none text-slate-200 border border-slate-800 transition-all flex items-center gap-1 cursor-pointer"
                     >
                       <span>Próxima</span>
                       <ChevronRight className="w-4 h-4" />

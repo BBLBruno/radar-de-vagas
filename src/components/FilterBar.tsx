@@ -135,8 +135,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         ? current.filter(item => item !== mode)
         : [...current, mode];
 
+      // Se o usuário selecionou 'presencial' e o filtro de Raio 150km estava ativo,
+      // desativa o raio para evitar conflito lógico que zera as vagas
+      const shouldDisableRadius = mode === 'presencial' && !exists && prev.onlyMuzambinhoRadiusOrRemote;
+
       return {
         ...prev,
+        onlyMuzambinhoRadiusOrRemote: shouldDisableRadius ? false : prev.onlyMuzambinhoRadiusOrRemote,
         workplaceType: nextSelected.length === 1 ? nextSelected[0] : 'todos',
         selectedWorkplaces: nextSelected,
       };
@@ -222,7 +227,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
   const resetFilters = () => {
     setFilters({
       searchQuery: '',
-      maxDays: 30,
+      maxDays: 999,
       workplaceType: 'todos',
       selectedWorkplaces: [],
       scopeFilter: 'todas',
@@ -233,7 +238,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       platform: 'todas',
       selectedStacks: [],
       stateFilter: '',
-      hideAffirmative: true,
+      hideAffirmative: false,
       onlyMuzambinhoRadiusOrRemote: false,
       selectedNicheCategory: 'todas',
     });
@@ -255,6 +260,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             type="text"
             value={filters.searchQuery}
             onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape' && filters.searchQuery) {
+                setFilters(prev => ({ ...prev, searchQuery: '' }));
+              }
+            }}
             placeholder="Buscar cargo, empresa ou habilidade (ex: Operações, Processos, CRM, BI, Onboarding, Júnior)..."
             className="w-full h-11 pl-11 pr-10 bg-slate-950/70 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
           />

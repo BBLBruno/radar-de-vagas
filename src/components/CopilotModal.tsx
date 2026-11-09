@@ -41,18 +41,28 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
   if (!job) return null;
 
   const kit: CopilotKit = generateCopilotKit(job, profile);
+  const isProfileIncomplete = !profile?.fullName?.trim();
 
   const copyToClipboard = (text: string, fieldId: string) => {
     if (!text) return;
-    navigator.clipboard.writeText(text);
-    setCopiedField(fieldId);
-    setTimeout(() => setCopiedField(null), 2000);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedField(fieldId);
+        setTimeout(() => setCopiedField(null), 2000);
+      })
+      .catch((err) => {
+        console.warn('Falha ao copiar:', err);
+      });
   };
 
   return (
     <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-sm animate-in fade-in duration-200 cursor-pointer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Copiloto de Candidatura"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -90,6 +100,27 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
 
         {/* Scrollable Content */}
         <div className="flex-1 p-6 overflow-y-auto space-y-6">
+          {isProfileIncomplete && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+              <div className="flex items-center gap-2 text-amber-300">
+                <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>
+                  Você está usando respostas padrão de modelo. <strong>Personalize seu Perfil</strong> para preencher com seu nome, histórico e pretensão salarial.
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenProfile();
+                }}
+                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all shrink-0 self-end sm:self-auto cursor-pointer"
+              >
+                Preencher Perfil
+              </button>
+            </div>
+          )}
+
           {/* Target Job Summary + Quick Links Bar */}
           <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">

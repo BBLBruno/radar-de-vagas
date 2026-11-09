@@ -174,6 +174,16 @@ function validateUrlFormat(
 export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfile }) => {
   const [savedSectionId, setSavedSectionId] = useState<string | null>(null);
   const [sectionError, setSectionError] = useState<{ section: string; message: string } | null>(null);
+
+  // Fecha o modal de confirmação ao pressionar ESC
+  useEffect(() => {
+    if (!showClearConfirm) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowClearConfirm(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showClearConfirm]);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [newStackInput, setNewStackInput] = useState('');
@@ -273,9 +283,15 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
 
   const copyText = (text: string, id: string) => {
     if (!text) return;
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 2000);
+      })
+      .catch((err) => {
+        console.warn('Falha ao copiar para o clipboard:', err);
+      });
   };
 
   const handleAddStack = (e: React.FormEvent) => {
@@ -287,15 +303,20 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         primaryStacks: [...profile.primaryStacks, trimmed],
       };
       setProfile(updated);
+      saveStoredProfile(updated);
       setNewStackInput('');
     }
   };
 
   const handleRemoveStack = (stack: string) => {
-    setProfile(prev => ({
-      ...prev,
-      primaryStacks: prev.primaryStacks.filter(s => s !== stack),
-    }));
+    setProfile(prev => {
+      const updated = {
+        ...prev,
+        primaryStacks: prev.primaryStacks.filter(s => s !== stack),
+      };
+      saveStoredProfile(updated);
+      return updated;
+    });
   };
 
   const handlePdfUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -951,7 +972,10 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               Salve manualmente seus links úteis, portais de candidato ou processos em andamento (como favoritos do navegador).
             </p>
           </div>
-          {renderSaveBlockButton('favoritos')}
+          <span className="px-3 py-1.5 text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25 rounded-xl flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+            <Check className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Salvo Automaticamente</span>
+          </span>
         </div>
 
         {(profile.applicationTrackers || []).length > 0 ? (

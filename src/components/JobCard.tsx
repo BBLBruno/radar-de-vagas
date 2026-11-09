@@ -114,8 +114,12 @@ const CardBadgesRow: React.FC<CardBadgesRowProps> = ({ badges }) => {
   useEffect(() => {
     if (!showTooltip) return;
     const handleOutside = () => setShowTooltip(false);
+    window.addEventListener('pointerdown', handleOutside);
     window.addEventListener('click', handleOutside);
-    return () => window.removeEventListener('click', handleOutside);
+    return () => {
+      window.removeEventListener('pointerdown', handleOutside);
+      window.removeEventListener('click', handleOutside);
+    };
   }, [showTooltip]);
 
   const visibleBadges = badges.slice(0, visibleCount);
