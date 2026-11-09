@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, savedCo
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg text-white tracking-tight">
-                Radar BizOps & Dados
+                Radar de Vagas
               </span>
               <span className="px-2 py-0.5 text-[11px] font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/25 rounded-md">
                 BR + GLOBAL

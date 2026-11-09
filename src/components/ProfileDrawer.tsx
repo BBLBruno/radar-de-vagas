@@ -19,6 +19,8 @@ import {
   Link2,
   RotateCcw,
   ShieldCheck,
+  AlertCircle,
+  AlertTriangle,
 } from 'lucide-react';
 import { ApplicationPortalLink, CandidateProfile } from '../types';
 import { DEFAULT_PROFILE, saveStoredProfile } from '../engine/defaultProfile';
@@ -83,16 +85,114 @@ const MARKET_PRESETS = [
   },
 ];
 
+/**
+ * Valida URLs para garantir domínio real, protocolo válido e caminho quando aplicável
+ */
+function validateUrlFormat(
+  rawInput: string,
+  mode: 'linkedin' | 'github_or_portfolio' | 'generic'
+): { valid: boolean; normalized: string; error: string } {
+  const trimmed = (rawInput || '').trim();
+  if (!trimmed) {
+    return { valid: false, normalized: '', error: 'Informe um link válido.' };
+  }
+
+  if (/\s/.test(trimmed)) {
+    return {
+      valid: false,
+      normalized: trimmed,
+      error: 'O link não pode conter espaços em branco.',
+    };
+  }
+
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+
+  let parsed: URL;
+  try {
+    parsed = new URL(withProtocol);
+  } catch {
+    return {
+      valid: false,
+      normalized: trimmed,
+      error: 'Formato de URL inválido. Use ex: https://dominio.com',
+    };
+  }
+
+  if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+    return {
+      valid: false,
+      normalized: trimmed,
+      error: 'O link deve iniciar com https:// ou http://',
+    };
+  }
+
+  const host = parsed.hostname.toLowerCase();
+  const hostParts = host.split('.');
+  const tld = hostParts[hostParts.length - 1] || '';
+  const mainDomain = hostParts.length >= 2 ? hostParts[hostParts.length - 2] : '';
+
+  if (
+    hostParts.length < 2 ||
+    mainDomain.length < 2 ||
+    !/^[a-z]{2,15}$/.test(tld)
+  ) {
+    return {
+      valid: false,
+      normalized: trimmed,
+      error: 'Domínio inválido. Informe uma URL completa (ex: https://portal.gupy.io).',
+    };
+  }
+
+  if (mode === 'linkedin') {
+    const isLinkedinHost = host === 'linkedin.com' || host.endsWith('.linkedin.com');
+    const cleanPath = parsed.pathname.replace(/\/+$/, '');
+    if (!isLinkedinHost || cleanPath.length < 4) {
+      return {
+        valid: false,
+        normalized: trimmed,
+        error: 'Informe um link de perfil do LinkedIn válido (ex: https://linkedin.com/in/seu-perfil).',
+      };
+    }
+  }
+
+  if (mode === 'github_or_portfolio') {
+    if (host === 'github.com' || host.endsWith('.github.com')) {
+      const cleanPath = parsed.pathname.replace(/\/+$/, '');
+      if (cleanPath.length < 2) {
+        return {
+          valid: false,
+          normalized: trimmed,
+          error: 'Informe seu usuário no GitHub (ex: https://github.com/seu-usuario).',
+        };
+      }
+    }
+  }
+
+  return { valid: true, normalized: parsed.toString(), error: '' };
+}
+
 export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfile }) => {
-  const [savedSuccess, setSavedSuccess] = useState(false);
+  const [savedSectionId, setSavedSectionId] = useState<string | null>(null);
+  const [sectionError, setSectionError] = useState<{ section: string; message: string } | null>(null);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [newStackInput, setNewStackInput] = useState('');
   const [newTrackerName, setNewTrackerName] = useState('');
   const [newTrackerDesc, setNewTrackerDesc] = useState('');
   const [newTrackerUrl, setNewTrackerUrl] = useState('');
+  const [trackerFormError, setTrackerFormError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  const linkedinValidation = profile.linkedinUrl.trim()
+    ? validateUrlFormat(profile.linkedinUrl, 'linkedin')
+    : { valid: true, normalized: '', error: '' };
+
+  const githubValidation = profile.githubUrl.trim()
+    ? validateUrlFormat(profile.githubUrl, 'github_or_portfolio')
+    : { valid: true, normalized: '', error: '' };
+
   const handleChange = (field: keyof CandidateProfile, value: any) => {
+    setSectionError(null);
     setProfile(prev => ({ ...prev, [field]: value }));
   };
 
@@ -130,10 +230,45 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     }));
   };
 
-  const handleClearForNewUser = () => {
+  const confirmClearAllFields = () => {
     setProfile(DEFAULT_PROFILE);
     saveStoredProfile(DEFAULT_PROFILE);
+    setNewStackInput('');
+    setNewTrackerName('');
+    setNewTrackerDesc('');
+    setNewTrackerUrl('');
+    setTrackerFormError(null);
+    setSectionError(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
+    setShowClearConfirm(false);
+  };
+
+  const handleSaveSection = (sectionId: string) => {
+    if (sectionId === 'links_pdf') {
+      if (profile.linkedinUrl.trim() && !linkedinValidation.valid) {
+        setSectionError({ section: 'links_pdf', message: linkedinValidation.error });
+        return;
+      }
+      if (profile.githubUrl.trim() && !githubValidation.valid) {
+        setSectionError({ section: 'links_pdf', message: githubValidation.error });
+        return;
+      }
+      const normalizedProfile: CandidateProfile = {
+        ...profile,
+        linkedinUrl: profile.linkedinUrl.trim() ? linkedinValidation.normalized : '',
+        githubUrl: profile.githubUrl.trim() ? githubValidation.normalized : '',
+      };
+      setProfile(normalizedProfile);
+      saveStoredProfile(normalizedProfile);
+    } else {
+      saveStoredProfile(profile);
+    }
+
+    setSectionError(null);
+    setSavedSectionId(sectionId);
+    setTimeout(() => {
+      setSavedSectionId(prev => (prev === sectionId ? null : prev));
+    }, 2500);
   };
 
   const copyText = (text: string, id: string) => {
@@ -147,10 +282,11 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     e.preventDefault();
     const trimmed = newStackInput.trim();
     if (trimmed && !profile.primaryStacks.includes(trimmed)) {
-      setProfile(prev => ({
-        ...prev,
-        primaryStacks: [...prev.primaryStacks, trimmed],
-      }));
+      const updated = {
+        ...profile,
+        primaryStacks: [...profile.primaryStacks, trimmed],
+      };
+      setProfile(updated);
       setNewStackInput('');
     }
   };
@@ -200,16 +336,33 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
 
   const handleAddTracker = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newTrackerName.trim() || !newTrackerUrl.trim()) return;
-    const formattedUrl = newTrackerUrl.trim().startsWith('http')
-      ? newTrackerUrl.trim()
-      : `https://${newTrackerUrl.trim()}`;
+    setTrackerFormError(null);
+
+    const trimmedName = newTrackerName.trim();
+    const trimmedDesc = newTrackerDesc.trim();
+    const trimmedUrl = newTrackerUrl.trim();
+
+    if (!trimmedName || trimmedName.length < 2) {
+      setTrackerFormError('Informe um nome válido para identificar o link (ex: Minhas Vagas Gupy).');
+      return;
+    }
+
+    if (!trimmedUrl) {
+      setTrackerFormError('Preencha o campo de Link (ex: https://portal.gupy.io).');
+      return;
+    }
+
+    const urlCheck = validateUrlFormat(trimmedUrl, 'generic');
+    if (!urlCheck.valid) {
+      setTrackerFormError(urlCheck.error);
+      return;
+    }
 
     const newItem: ApplicationPortalLink = {
       id: `fav_${Date.now()}`,
-      name: newTrackerName.trim(),
-      description: newTrackerDesc.trim(),
-      url: formattedUrl,
+      name: trimmedName,
+      description: trimmedDesc,
+      url: urlCheck.normalized,
     };
 
     setProfile(prev => {
@@ -224,6 +377,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     setNewTrackerName('');
     setNewTrackerDesc('');
     setNewTrackerUrl('');
+    setTrackerFormError(null);
   };
 
   const handleRemoveTracker = (id: string) => {
@@ -237,15 +391,36 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
     });
   };
 
-  const handleSave = () => {
-    saveStoredProfile(profile);
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 2500);
+  const renderSaveBlockButton = (sectionId: string) => {
+    const isSaved = savedSectionId === sectionId;
+    return (
+      <button
+        type="button"
+        onClick={() => handleSaveSection(sectionId)}
+        className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shrink-0 shadow-sm ${
+          isSaved
+            ? 'bg-emerald-500 text-slate-950'
+            : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'
+        }`}
+      >
+        {isSaved ? (
+          <>
+            <Check className="w-3.5 h-3.5" />
+            <span>Informações Salvas!</span>
+          </>
+        ) : (
+          <>
+            <Save className="w-3.5 h-3.5" />
+            <span>Salvar Informações</span>
+          </>
+        )}
+      </button>
+    );
   };
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      {/* Top Banner */}
+      {/* Top Banner (Sem Salvar Perfil no topo; botão Limpar Campos no lugar com confirmação) */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -263,33 +438,60 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         <div className="flex flex-wrap items-center gap-2 shrink-0">
           <button
             type="button"
-            onClick={handleClearForNewUser}
+            onClick={() => setShowClearConfirm(true)}
             title="Limpar todos os campos do perfil neste navegador"
-            className="px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-all flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-800 hover:bg-rose-500/15 text-slate-200 hover:text-rose-300 border border-slate-700 hover:border-rose-500/40 transition-all flex items-center gap-2"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
             <span>Limpar Campos</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleSave}
-            className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/15"
-          >
-            {savedSuccess ? (
-              <>
-                <Check className="w-4 h-4" />
-                <span>Alterações Salvas!</span>
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                <span>Salvar Perfil</span>
-              </>
-            )}
           </button>
         </div>
       </div>
+
+      {/* Modal de Confirmação para Limpar Campos */}
+      {showClearConfirm && (
+        <div
+          onClick={() => setShowClearConfirm(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-150 cursor-pointer"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl cursor-default"
+          >
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white">
+                  Limpar todos os campos do perfil?
+                </h3>
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Tem certeza que deseja apagar todas as informações preenchidas, competências, currículo em PDF e links favoritos salvos neste navegador?
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={() => setShowClearConfirm(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={confirmClearAllFields}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-rose-500 hover:bg-rose-400 text-slate-950 transition-all flex items-center gap-1.5"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Sim, limpar campos</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 1. Background Profissional Fixo (Padrão de Mercado STAR + Templates Rápidos) */}
       <div className="bg-slate-900/90 border border-cyan-500/30 rounded-2xl p-6 space-y-5 shadow-lg">
@@ -303,6 +505,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               Estruturado com base nos critérios que recrutadores de Operações, Dados, CRM e Negócios avaliam em triagens.
             </p>
           </div>
+          {renderSaveBlockButton('background')}
         </div>
 
         {/* Presets de Mercado em 1 Clique */}
@@ -399,9 +602,12 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Identificação & Contato */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 space-y-3.5">
-          <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-            <User className="w-4 h-4 text-emerald-400" />
-            <span>Dados de Identificação, Contato & Localidade</span>
+          <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-800">
+            <div className="flex items-center gap-2 text-sm font-bold text-white">
+              <User className="w-4 h-4 text-emerald-400" />
+              <span>Dados de Identificação & Contato</span>
+            </div>
+            {renderSaveBlockButton('identificacao')}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -501,9 +707,12 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         {/* Habilidades & Competências Principais */}
         <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
           <div className="space-y-3">
-            <div className="flex items-center gap-2 pb-3 border-b border-slate-800 text-sm font-bold text-white">
-              <Code2 className="w-4 h-4 text-cyan-400" />
-              <span>Habilidades & Ferramentas do Perfil (BizOps, Dados, CRM & IA)</span>
+            <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2 text-sm font-bold text-white">
+                <Code2 className="w-4 h-4 text-cyan-400" />
+                <span>Habilidades & Ferramentas do Perfil</span>
+              </div>
+              {renderSaveBlockButton('habilidades')}
             </div>
 
             {profile.primaryStacks.length > 0 ? (
@@ -536,12 +745,12 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               type="text"
               value={newStackInput}
               onChange={(e) => setNewStackInput(e.target.value)}
-              placeholder="Adicionar competência (ex: SQL, Power BI, HubSpot, N8N, BPMN)..."
+              placeholder="Adicionar competência (ex: SQL, Power BI, HubSpot, N8N)..."
               className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center gap-1.5 shrink-0"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 flex items-center gap-1.5 shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>Adicionar</span>
@@ -550,9 +759,9 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </div>
       </div>
 
-      {/* 3. Links Profissionais & Currículo em PDF (Facilitador de Aplicação) */}
+      {/* 3. Links Profissionais & Currículo em PDF (Com validação de links) */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
           <div>
             <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
               <FileText className="w-4 h-4 text-emerald-400" />
@@ -562,31 +771,53 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               Copie seus links em 1 clique ou baixe seu currículo em PDF rapidamente durante o preenchimento nos ATSs.
             </p>
           </div>
+          {renderSaveBlockButton('links_pdf')}
         </div>
+
+        {sectionError?.section === 'links_pdf' && (
+          <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+            <span>{sectionError.message}</span>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* LinkedIn */}
-          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5">
-            <label className="block text-xs font-bold text-slate-300">URL do LinkedIn</label>
-            <input
-              type="text"
-              value={profile.linkedinUrl}
-              onChange={(e) => handleChange('linkedinUrl', e.target.value)}
-              placeholder="https://linkedin.com/in/seu-perfil"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-            />
-            <div className="flex items-center gap-2">
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5 flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-slate-300">URL do LinkedIn</label>
+              <input
+                type="text"
+                value={profile.linkedinUrl}
+                onChange={(e) => handleChange('linkedinUrl', e.target.value)}
+                placeholder="https://linkedin.com/in/seu-perfil"
+                className={`w-full bg-slate-900 border rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none ${
+                  !linkedinValidation.valid
+                    ? 'border-rose-500/80 focus:border-rose-500'
+                    : 'border-slate-800 focus:border-emerald-500'
+                }`}
+              />
+              {!linkedinValidation.valid && (
+                <p className="text-[11px] text-rose-400 flex items-start gap-1 leading-tight">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                  <span>{linkedinValidation.error}</span>
+                </p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
               <button
                 type="button"
-                onClick={() => copyText(profile.linkedinUrl, 'linkedin')}
-                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-emerald-400 flex items-center justify-center gap-1.5 transition-all"
+                disabled={!profile.linkedinUrl.trim() || !linkedinValidation.valid}
+                onClick={() => copyText(linkedinValidation.normalized || profile.linkedinUrl, 'linkedin')}
+                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-emerald-400 flex items-center justify-center gap-1.5 transition-all"
               >
                 {copiedId === 'linkedin' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedId === 'linkedin' ? 'Copiado!' : 'Copiar Link'}</span>
               </button>
-              {profile.linkedinUrl && (
+              {profile.linkedinUrl.trim() && linkedinValidation.valid && (
                 <a
-                  href={profile.linkedinUrl}
+                  href={linkedinValidation.normalized}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
@@ -599,27 +830,41 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
           </div>
 
           {/* GitHub / Portfólio */}
-          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5">
-            <label className="block text-xs font-bold text-slate-300">URL do GitHub / Portfólio</label>
-            <input
-              type="text"
-              value={profile.githubUrl}
-              onChange={(e) => handleChange('githubUrl', e.target.value)}
-              placeholder="https://github.com/seu-usuario"
-              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-            />
-            <div className="flex items-center gap-2">
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 space-y-2.5 flex flex-col justify-between">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-slate-300">URL do GitHub / Portfólio</label>
+              <input
+                type="text"
+                value={profile.githubUrl}
+                onChange={(e) => handleChange('githubUrl', e.target.value)}
+                placeholder="https://github.com/seu-usuario"
+                className={`w-full bg-slate-900 border rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none ${
+                  !githubValidation.valid
+                    ? 'border-rose-500/80 focus:border-rose-500'
+                    : 'border-slate-800 focus:border-emerald-500'
+                }`}
+              />
+              {!githubValidation.valid && (
+                <p className="text-[11px] text-rose-400 flex items-start gap-1 leading-tight">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                  <span>{githubValidation.error}</span>
+                </p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
               <button
                 type="button"
-                onClick={() => copyText(profile.githubUrl, 'github')}
-                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-cyan-400 flex items-center justify-center gap-1.5 transition-all"
+                disabled={!profile.githubUrl.trim() || !githubValidation.valid}
+                onClick={() => copyText(githubValidation.normalized || profile.githubUrl, 'github')}
+                className="flex-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-cyan-400 flex items-center justify-center gap-1.5 transition-all"
               >
                 {copiedId === 'github' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedId === 'github' ? 'Copiado!' : 'Copiar Link'}</span>
               </button>
-              {profile.githubUrl && (
+              {profile.githubUrl.trim() && githubValidation.valid && (
                 <a
-                  href={profile.githubUrl}
+                  href={githubValidation.normalized}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white"
@@ -694,9 +939,9 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
         </div>
       </div>
 
-      {/* 4. Favoritos de Candidaturas & Portais (100% Manual: Apenas Nome, Descrição e Link) */}
+      {/* 4. Favoritos de Candidaturas & Portais (Com validação estrita de preenchimento e link) */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
           <div>
             <div className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
               <BookmarkCheck className="w-5 h-5 text-cyan-400" />
@@ -706,6 +951,7 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               Salve manualmente seus links úteis, portais de candidato ou processos em andamento (como favoritos do navegador).
             </p>
           </div>
+          {renderSaveBlockButton('favoritos')}
         </div>
 
         {(profile.applicationTrackers || []).length > 0 ? (
@@ -765,7 +1011,10 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               <input
                 type="text"
                 value={newTrackerName}
-                onChange={(e) => setNewTrackerName(e.target.value)}
+                onChange={(e) => {
+                  setNewTrackerName(e.target.value);
+                  setTrackerFormError(null);
+                }}
                 placeholder="Nome (ex: Minhas Vagas Gupy)"
                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
@@ -775,7 +1024,10 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               <input
                 type="text"
                 value={newTrackerDesc}
-                onChange={(e) => setNewTrackerDesc(e.target.value)}
+                onChange={(e) => {
+                  setNewTrackerDesc(e.target.value);
+                  setTrackerFormError(null);
+                }}
                 placeholder="Descrição (ex: Painel de acompanhamento)"
                 className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
               />
@@ -785,9 +1037,16 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               <input
                 type="text"
                 value={newTrackerUrl}
-                onChange={(e) => setNewTrackerUrl(e.target.value)}
-                placeholder="Link (https://...)"
-                className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                onChange={(e) => {
+                  setNewTrackerUrl(e.target.value);
+                  setTrackerFormError(null);
+                }}
+                placeholder="Link completo (https://...)"
+                className={`flex-1 bg-slate-900 border rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none ${
+                  trackerFormError
+                    ? 'border-rose-500/80 focus:border-rose-500'
+                    : 'border-slate-800 focus:border-emerald-500'
+                }`}
               />
               <button
                 type="submit"
@@ -798,6 +1057,13 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
               </button>
             </div>
           </div>
+
+          {trackerFormError && (
+            <div className="text-xs text-rose-400 flex items-center gap-1.5 pt-1">
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+              <span>{trackerFormError}</span>
+            </div>
+          )}
         </form>
       </div>
     </div>

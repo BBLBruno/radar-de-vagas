@@ -49,6 +49,8 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  AlertTriangle,
+  Trash2,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
@@ -217,6 +219,7 @@ export const App: React.FC = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(18);
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
+  const [jobToRemoveFromSaved, setJobToRemoveFromSaved] = useState<Job | null>(null);
 
   useEffect(() => {
     try {
@@ -239,9 +242,37 @@ export const App: React.FC = () => {
   }, [filters, sortBy, itemsPerPage]);
 
   const toggleSaveJob = (job: Job) => {
-    setSavedJobIds(prev =>
-      prev.includes(job.id) ? prev.filter(id => id !== job.id) : [...prev, job.id]
-    );
+    const isCurrentlyInMyJobs =
+      savedJobIds.includes(job.id) || Boolean(appliedJobsMap[job.id]);
+
+    if (isCurrentlyInMyJobs) {
+      if (activeTab === 'saved') {
+        setJobToRemoveFromSaved(job);
+        return;
+      }
+      setSavedJobIds(prev => prev.filter(id => id !== job.id));
+      setAppliedJobsMap(prev => {
+        if (!prev[job.id]) return prev;
+        const next = { ...prev };
+        delete next[job.id];
+        return next;
+      });
+    } else {
+      setSavedJobIds(prev => (prev.includes(job.id) ? prev : [...prev, job.id]));
+    }
+  };
+
+  const confirmRemoveSavedJob = () => {
+    if (!jobToRemoveFromSaved) return;
+    const targetId = jobToRemoveFromSaved.id;
+    setSavedJobIds(prev => prev.filter(id => id !== targetId));
+    setAppliedJobsMap(prev => {
+      if (!prev[targetId]) return prev;
+      const next = { ...prev };
+      delete next[targetId];
+      return next;
+    });
+    setJobToRemoveFromSaved(null);
   };
 
   const handleToggleApplied = (job: Job, trackingUrl?: string) => {
@@ -649,7 +680,7 @@ export const App: React.FC = () => {
                     <JobCard
                       key={job.id}
                       job={job}
-                      isSaved={savedJobIds.includes(job.id)}
+                      isSaved={savedJobIds.includes(job.id) || Boolean(appliedJobsMap[job.id])}
                       appliedInfo={appliedJobsMap[job.id]}
                       selectedStacks={filters.selectedStacks}
                       onToggleStack={toggleStackFilter}
@@ -835,7 +866,7 @@ export const App: React.FC = () => {
                   <JobCard
                     key={job.id}
                     job={job}
-                    isSaved={savedJobIds.includes(job.id)}
+                    isSaved={true}
                     appliedInfo={appliedJobsMap[job.id]}
                     showAppliedOption={true}
                     selectedStacks={filters.selectedStacks}
@@ -891,6 +922,51 @@ export const App: React.FC = () => {
         }}
       />
 
+      {/* Modal de Confirmação para Remover Vaga de Minhas Vagas */}
+      {jobToRemoveFromSaved && (
+        <div
+          onClick={() => setJobToRemoveFromSaved(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-150 cursor-pointer"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl cursor-default"
+          >
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white">
+                  Remover vaga de Minhas Vagas?
+                </h3>
+                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  Tem certeza que deseja remover <strong className="text-slate-200">{jobToRemoveFromSaved.title}</strong> ({jobToRemoveFromSaved.company}) da sua lista de vagas salvas?
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 pt-2 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={() => setJobToRemoveFromSaved(null)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={confirmRemoveSavedJob}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-rose-500 hover:bg-rose-400 text-slate-950 transition-all flex items-center gap-1.5"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Sim, remover dos salvos</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Rodapé no padrão do Radar de Concursos adaptado para o Radar de Vagas */}
       <footer className="border-t border-slate-800/80 bg-slate-950 py-8 mt-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -942,7 +1018,7 @@ export const App: React.FC = () => {
           {/* Linha Inferior: Status do Monitoramento à esquerda | Fontes e Última atualização à direita */}
           <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-400">
             <span>
-              Radar de Vagas BizOps & Dados • Monitoramento Automatizado (Segunda a Sexta às 08h)
+              Radar de Vagas • Monitoramento Automatizado (Segunda a Sexta no período da manhã)
             </span>
             <span className="font-mono text-[11px] sm:text-xs text-slate-400">
               Fontes: 11 plataformas (57 canais) • Última atualização:{' '}

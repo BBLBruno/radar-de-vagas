@@ -48,19 +48,37 @@ export const DEFAULT_PROFILE: CandidateProfile = {
 
 const PROFILE_STORAGE_KEY = 'radar_vagas_candidate_profile_v8';
 
+export function isValidSavedUrl(rawUrl: string): boolean {
+  const trimmed = (rawUrl || '').trim();
+  if (!trimmed || /\s/.test(trimmed)) return false;
+  try {
+    const parsed = new URL(/^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return false;
+    const parts = parsed.hostname.toLowerCase().split('.');
+    const tld = parts[parts.length - 1] || '';
+    const domain = parts.length >= 2 ? parts[parts.length - 2] : '';
+    return parts.length >= 2 && domain.length >= 2 && /^[a-z]{2,15}$/.test(tld);
+  } catch {
+    return false;
+  }
+}
+
 export function loadStoredProfile(): CandidateProfile {
   try {
     const raw = localStorage.getItem(PROFILE_STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
+      const validTrackers = Array.isArray(parsed.applicationTrackers)
+        ? parsed.applicationTrackers.filter(
+            (t: any) => t && typeof t.name === 'string' && t.name.trim() && isValidSavedUrl(t.url)
+          )
+        : [];
       return {
         ...DEFAULT_PROFILE,
         ...parsed,
         background: { ...DEFAULT_PROFILE.background, ...parsed.background },
         preferences: { ...DEFAULT_PROFILE.preferences, ...parsed.preferences },
-        applicationTrackers: Array.isArray(parsed.applicationTrackers)
-          ? parsed.applicationTrackers
-          : [],
+        applicationTrackers: validTrackers,
       };
     }
   } catch (err) {

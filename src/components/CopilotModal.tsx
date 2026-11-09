@@ -69,8 +69,8 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
                 <h2 className="text-base sm:text-lg font-bold text-white">
                   Copiloto de Candidatura
                 </h2>
-                <span className="px-2 py-0.5 text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded">
-                  Padrão STAR • BizOps & Dados
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-800 text-slate-200 border border-slate-700 rounded">
+                  Padrão STAR
                 </span>
               </div>
               <p className="text-xs text-slate-400">
@@ -96,7 +96,7 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
               <div>
                 <span className="text-xs text-slate-400">Candidatura para:</span>
                 <div className="text-base font-bold text-white">{job.title}</div>
-                <div className="text-xs text-emerald-400">
+                <div className="text-xs text-slate-300">
                   {job.company} • {job.location.replace(/^🌎\s*/, '')} ({job.platform.toUpperCase()})
                 </div>
               </div>
@@ -175,12 +175,12 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
               <button
                 type="button"
                 onClick={() => copyToClipboard(kit.tailoredPitch, 'pitch')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 flex items-center gap-1.5 transition-all"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all"
               >
                 {copiedField === 'pitch' ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Copiado!</span>
+                    <span className="text-emerald-400">Copiado!</span>
                   </>
                 ) : (
                   <>
@@ -194,7 +194,7 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
               readOnly
               rows={8}
               value={kit.tailoredPitch}
-              className="w-full p-4 bg-slate-950/80 border border-slate-800 rounded-xl text-xs sm:text-sm text-slate-200 font-mono leading-relaxed focus:outline-none"
+              className="w-full p-4 bg-slate-950/80 border border-slate-800 rounded-xl text-xs sm:text-sm text-slate-100 leading-relaxed focus:outline-none"
             />
           </div>
 
@@ -233,7 +233,7 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
                       </button>
                     </div>
 
-                    <div className="text-xs sm:text-sm text-emerald-300 bg-slate-900/90 p-3 rounded-lg border border-slate-800/80 leading-relaxed">
+                    <div className="text-xs sm:text-sm text-slate-100 bg-slate-900/90 p-3 rounded-lg border border-slate-800/80 leading-relaxed">
                       {item.suggestedAnswer}
                     </div>
 

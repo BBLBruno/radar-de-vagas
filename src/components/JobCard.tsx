@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Building2,
   MapPin,
@@ -18,6 +18,7 @@ import {
   Pencil,
   Check,
   X,
+  Plus,
 } from 'lucide-react';
 import { AppliedJobInfo, Job } from '../types';
 
@@ -34,6 +35,181 @@ interface JobCardProps {
   onOpenDetails: (job: Job) => void;
   onOpenCopilot: (job: Job) => void;
 }
+
+interface JobBadgeItem {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+  className: string;
+}
+
+interface CardBadgesRowProps {
+  badges: JobBadgeItem[];
+}
+
+const CardBadgesRow: React.FC<CardBadgesRowProps> = ({ badges }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const measureContainerRef = useRef<HTMLDivElement>(null);
+  const badgeRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const plusMeasureRef = useRef<HTMLSpanElement | null>(null);
+
+  const [visibleCount, setVisibleCount] = useState<number>(badges.length);
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
+
+  const calculateFit = () => {
+    if (!containerRef.current || !measureContainerRef.current) return;
+    const containerWidth = containerRef.current.clientWidth;
+    if (containerWidth <= 0) return;
+
+    const gap = 6; // gap-1.5 = 6px
+    const plusWidth = plusMeasureRef.current?.getBoundingClientRect().width || 34;
+
+    const widths = badges.map((_, i) => {
+      const el = badgeRefs.current[i];
+      return el ? el.getBoundingClientRect().width : 70;
+    });
+
+    let totalAll = 0;
+    for (let i = 0; i < widths.length; i++) {
+      totalAll += widths[i] + (i > 0 ? gap : 0);
+    }
+
+    if (totalAll <= containerWidth) {
+      setVisibleCount(badges.length);
+      return;
+    }
+
+    let currentWidth = 0;
+    let count = 0;
+
+    for (let i = 0; i < widths.length; i++) {
+      const needed = currentWidth + (i > 0 ? gap : 0) + widths[i];
+      if (needed + gap + plusWidth <= containerWidth) {
+        currentWidth = needed;
+        count = i + 1;
+      } else {
+        break;
+      }
+    }
+
+    setVisibleCount(Math.max(1, count));
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    calculateFit();
+
+    const observer = new ResizeObserver(() => {
+      calculateFit();
+    });
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [badges]);
+
+  useEffect(() => {
+    if (!showTooltip) return;
+    const handleOutside = () => setShowTooltip(false);
+    window.addEventListener('click', handleOutside);
+    return () => window.removeEventListener('click', handleOutside);
+  }, [showTooltip]);
+
+  const visibleBadges = badges.slice(0, visibleCount);
+  const remainingBadges = badges.slice(visibleCount);
+
+  return (
+    <div ref={containerRef} className="flex items-center gap-1.5 flex-1 min-w-0 relative">
+      {/* Invisível apenas para medição precisa de larguras */}
+      <div
+        ref={measureContainerRef}
+        aria-hidden="true"
+        className="absolute top-0 left-0 opacity-0 pointer-events-none -z-50 flex items-center gap-1.5 whitespace-nowrap invisible"
+      >
+        {badges.map((b, i) => (
+          <span
+            key={b.id}
+            ref={el => {
+              badgeRefs.current[i] = el;
+            }}
+            className={`px-2 py-1 text-[11px] rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${b.className}`}
+          >
+            {b.icon}
+            <span>{b.label}</span>
+          </span>
+        ))}
+        <span
+          ref={plusMeasureRef}
+          className="px-2 py-1 text-[11px] font-bold rounded-lg border flex items-center gap-0.5 whitespace-nowrap shrink-0"
+        >
+          <Plus className="w-3 h-3 stroke-[2.5]" />
+          <span>+9</span>
+        </span>
+      </div>
+
+      {/* Badges Visíveis */}
+      {visibleBadges.map(badge => (
+        <span
+          key={badge.id}
+          className={`px-2 py-1 text-[11px] rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${badge.className}`}
+        >
+          {badge.icon}
+          <span>{badge.label}</span>
+        </span>
+      ))}
+
+      {/* Botão de + com Tooltip para as tags restantes */}
+      {remainingBadges.length > 0 && (
+        <div
+          className="relative shrink-0"
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+        >
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowTooltip(prev => !prev);
+            }}
+            className="px-2 py-1 text-[11px] font-bold rounded-lg border bg-slate-800/90 text-slate-200 border-slate-700/80 hover:bg-slate-700 hover:text-white hover:border-slate-600 flex items-center gap-0.5 whitespace-nowrap shrink-0 transition-all shadow-sm cursor-pointer"
+            title="Ver tags restantes"
+          >
+            <Plus className="w-3 h-3 text-emerald-400 stroke-[3]" />
+            <span>{remainingBadges.length}</span>
+          </button>
+
+          {showTooltip && (
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`absolute top-full mt-2 z-40 bg-slate-950/95 border border-slate-700/90 rounded-xl p-3 shadow-2xl backdrop-blur-md min-w-[170px] max-w-[280px] flex flex-col gap-2 animate-in fade-in zoom-in-95 duration-150 ${
+                visibleCount <= 1 ? 'left-0' : 'right-0'
+              }`}
+            >
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
+                <span>Tags adicionais</span>
+                <span className="text-[10px] font-semibold text-emerald-400">+{remainingBadges.length}</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 pt-0.5">
+                {remainingBadges.map(b => (
+                  <span
+                    key={b.id}
+                    className={`px-2 py-1 text-[11px] rounded-lg border flex items-center gap-1 whitespace-nowrap ${b.className}`}
+                  >
+                    {b.icon}
+                    <span>{b.label}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const PLATFORM_CONFIG: Record<string, { label: string; badgeClass: string }> = {
   gupy: {
@@ -126,6 +302,67 @@ export const JobCard: React.FC<JobCardProps> = ({
     setIsEditingLink(false);
   };
 
+  const topBadges: JobBadgeItem[] = [];
+
+  if (job.isInternational) {
+    topBadges.push({
+      id: 'workplace_intl',
+      label: 'Intl • Remoto',
+      icon: <Globe className="w-3 h-3" />,
+      className: 'bg-teal-500/15 text-teal-300 border-teal-500/30 font-semibold',
+    });
+  } else if (job.workplaceType === 'remoto') {
+    topBadges.push({
+      id: 'workplace_remoto',
+      label: '100% Remoto',
+      icon: <Home className="w-3 h-3" />,
+      className: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30 font-semibold',
+    });
+  } else if (job.workplaceType === 'hibrido') {
+    topBadges.push({
+      id: 'workplace_hibrido',
+      label: 'Híbrido',
+      icon: <Building2 className="w-3 h-3" />,
+      className: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20 font-medium',
+    });
+  } else {
+    topBadges.push({
+      id: 'workplace_presencial',
+      label: 'Presencial',
+      icon: <MapPin className="w-3 h-3" />,
+      className: 'bg-amber-500/10 text-amber-300 border-amber-500/20 font-medium',
+    });
+  }
+
+  topBadges.push({
+    id: `seniority_${job.seniority}`,
+    label: seniorityBadge.label,
+    icon: <Briefcase className="w-3 h-3" />,
+    className: `${seniorityBadge.className} font-semibold`,
+  });
+
+  topBadges.push({
+    id: `freshness_${job.daysOpen}`,
+    label: daysLabel,
+    icon: <Clock className="w-3 h-3" />,
+    className: `${freshnessColor} font-medium`,
+  });
+
+  topBadges.push({
+    id: `platform_${job.platform}`,
+    label: platform.label,
+    className: `${platform.badgeClass} font-medium`,
+  });
+
+  if (job.isAffirmative) {
+    topBadges.push({
+      id: 'affirmative',
+      label: 'Afirmativa',
+      icon: <ShieldAlert className="w-3 h-3" />,
+      className: 'bg-purple-500/15 text-purple-300 border-purple-500/30 font-semibold',
+    });
+  }
+
   return (
     <div
       className={`h-full bg-slate-900/70 border rounded-2xl p-5 sm:p-6 transition-all duration-200 hover:shadow-xl hover:shadow-slate-950/40 flex flex-col justify-between group ${
@@ -135,52 +372,9 @@ export const JobCard: React.FC<JobCardProps> = ({
       }`}
     >
       <div>
-        {/* Linha 1: Badges em linha única de altura fixa (h-9) + Botão de Salvar alinhado */}
+        {/* Linha 1: Badges inteligentes com símbolo + e tooltip antes de cortar + Botão de Salvar */}
         <div className="flex items-center justify-between gap-2 h-9 mb-3.5">
-          <div className="flex items-center gap-1.5 overflow-hidden flex-1">
-            {job.isInternational ? (
-              <span className="px-2 py-1 text-[11px] font-semibold rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <Globe className="w-3 h-3" />
-                Intl • Remoto
-              </span>
-            ) : job.workplaceType === 'remoto' ? (
-              <span className="px-2 py-1 text-[11px] font-semibold rounded-lg bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <Home className="w-3 h-3" />
-                100% Remoto
-              </span>
-            ) : job.workplaceType === 'hibrido' ? (
-              <span className="px-2 py-1 text-[11px] font-medium rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <Building2 className="w-3 h-3" />
-                Híbrido
-              </span>
-            ) : (
-              <span className="px-2 py-1 text-[11px] font-medium rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/20 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <MapPin className="w-3 h-3" />
-                Presencial
-              </span>
-            )}
-
-            <span className={`px-2 py-1 text-[11px] font-semibold rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${seniorityBadge.className}`}>
-              <Briefcase className="w-3 h-3" />
-              {seniorityBadge.label}
-            </span>
-
-            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border flex items-center gap-1 whitespace-nowrap shrink-0 ${freshnessColor}`}>
-              <Clock className="w-3 h-3" />
-              {daysLabel}
-            </span>
-
-            <span className={`px-2 py-1 text-[11px] font-medium rounded-lg border whitespace-nowrap shrink-0 ${platform.badgeClass}`}>
-              {platform.label}
-            </span>
-
-            {job.isAffirmative && (
-              <span className="px-2 py-1 text-[10px] font-semibold rounded-lg bg-purple-500/15 text-purple-300 border border-purple-500/30 flex items-center gap-1 whitespace-nowrap shrink-0">
-                <ShieldAlert className="w-3 h-3" />
-                Afirmativa
-              </span>
-            )}
-          </div>
+          <CardBadgesRow badges={topBadges} />
 
           {/* Botão de Salvar Vaga Aumentado e Alinhado com as Tags */}
           <button
@@ -267,7 +461,10 @@ export const JobCard: React.FC<JobCardProps> = ({
             );
           })}
           {job.stacks.length > 3 && (
-            <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-500 bg-slate-800/40 self-center">
+            <span
+              title={`Mais competências: ${job.stacks.slice(3).join(', ')}`}
+              className="px-1.5 py-0.5 rounded text-[10px] text-slate-400 bg-slate-800/80 border border-slate-700/60 self-center hover:bg-slate-700 hover:text-white transition-colors cursor-help"
+            >
               +{job.stacks.length - 3}
             </span>
           )}

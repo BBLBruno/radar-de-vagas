@@ -2,9 +2,9 @@ name: Atualização Automatizada de Vagas (Dias Úteis - Seg a Sex)
 
 on:
   schedule:
-    # Executa todo dia útil (Segunda a Sexta) às 11:00 UTC (08:00 BRT - Horário de Brasília)
-    # Sem execuções no fim de semana (sábado e domingo), quando os ATSs não publicam novas vagas
-    - cron: '0 11 * * 1-5'
+    # Executa todo dia útil (Segunda a Sexta) às 10:11 UTC (período da manhã no Brasil)
+    # Horário quebrado (10:11) para evitar sobrecarga/atrasos de fila do GitHub Actions em horários cheios (:00)
+    - cron: '11 10 * * 1-5'
   workflow_dispatch:
 
 permissions:
