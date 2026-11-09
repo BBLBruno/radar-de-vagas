@@ -408,8 +408,8 @@ export const App: React.FC = () => {
           }
         }
 
-        // 6. Filtro de Data de Publicação
-        if (job.daysOpen > filters.maxDays) {
+        // 6. Filtro de Data de Publicação (sem limite quando for Todas / 999)
+        if (filters.maxDays < 999 && job.daysOpen > filters.maxDays) {
           return false;
         }
 
@@ -603,10 +603,10 @@ export const App: React.FC = () => {
                   </button>
                 )}
 
-                {filters.maxDays < 45 && (
+                {filters.maxDays < 999 && (
                   <button
                     type="button"
-                    onClick={() => setFilters(prev => ({ ...prev, maxDays: 45 }))}
+                    onClick={() => setFilters(prev => ({ ...prev, maxDays: 999 }))}
                     className="text-[11px] px-2 py-0.5 bg-slate-800 text-slate-300 border border-slate-700 rounded-md flex items-center gap-1 hover:bg-slate-700 transition-all"
                   >
                     <Clock className="w-3 h-3 text-cyan-400" />
@@ -806,7 +806,7 @@ export const App: React.FC = () => {
                   onClick={() =>
                     setFilters({
                       searchQuery: '',
-                      maxDays: 45,
+                      maxDays: 999,
                       workplaceType: 'todos',
                       selectedWorkplaces: [],
                       scopeFilter: 'todas',

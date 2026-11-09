@@ -51,7 +51,7 @@ const DAY_OPTIONS = [
   { value: 7, label: '7 dias' },
   { value: 14, label: '14 dias' },
   { value: 30, label: '30 dias' },
-  { value: 45, label: 'Todas' },
+  { value: 999, label: 'Todas' },
 ];
 
 // Internacional posicionado no final
