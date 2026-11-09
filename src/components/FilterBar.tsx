@@ -26,6 +26,7 @@ import {
   Zap,
   Award,
   Crown,
+  BookmarkX,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -33,6 +34,7 @@ interface FilterBarProps {
   filters: FilterState;
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   popularStacks: string[];
+  savedCount?: number;
 }
 
 export const BrazilFlagIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
@@ -101,7 +103,7 @@ const SENIORITY_OPTIONS: Array<{
   { value: 'especialista', label: 'Especialista / Liderança', icon: Crown },
 ];
 
-export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks }) => {
+export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks, savedCount = 0 }) => {
   const [areDrawersExpanded, setAreDrawersExpanded] = useState(false);
 
   const toggleStack = (stack: string) => {
@@ -227,6 +229,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       seniority: 'todos',
       selectedSeniorities: [],
       hideExecutiveSenior: false,
+      hideSavedJobs: false,
       platform: 'todas',
       selectedStacks: [],
       stateFilter: '',
@@ -428,25 +431,50 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Direita: Sem Afirmativas + Tooltip */}
-          <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
-            <button
-              type="button"
-              onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                filters.hideAffirmative
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
-              }`}
-            >
-              <EyeOff className="w-3.5 h-3.5" />
-              <span>Sem Afirmativas</span>
-              <HelpCircle className={`w-3.5 h-3.5 ${filters.hideAffirmative ? 'text-slate-950/80' : 'text-slate-400'}`} />
-            </button>
+          {/* Direita: Ocultar Salvas + Sem Afirmativas */}
+          <div className="flex flex-wrap items-center gap-2 ml-auto">
+            {/* Ocultar Vagas Salvas */}
+            <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+              <button
+                type="button"
+                onClick={() => setFilters(prev => ({ ...prev, hideSavedJobs: !prev.hideSavedJobs }))}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                  filters.hideSavedJobs
+                    ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                }`}
+              >
+                <BookmarkX className={`w-3.5 h-3.5 ${filters.hideSavedJobs ? 'text-slate-950' : 'text-amber-400'}`} />
+                <span>Ocultar Salvas{savedCount > 0 ? ` (${savedCount})` : ''}</span>
+                <HelpCircle className={`w-3.5 h-3.5 ${filters.hideSavedJobs ? 'text-slate-950/80' : 'text-slate-400'}`} />
+              </button>
 
-            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
-              <strong className="text-emerald-400 block mb-1">Filtro Sem Vagas Afirmativas</strong>
-              Oculta vagas destinadas exclusivamente a recortes afirmativos específicos (PcD, mulheres, pessoas negras, LGBTQIA+, 50+), exibindo apenas processos de ampla concorrência.
+              <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+                <strong className="text-amber-400 block mb-1">Ocultar Vagas Salvas</strong>
+                Esconde da listagem as vagas que você já favoritou ou já se candidatou em "Minhas Vagas", permitindo focar exclusivamente em oportunidades não exploradas.
+              </div>
+            </div>
+
+            {/* Sem Afirmativas + Tooltip */}
+            <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+              <button
+                type="button"
+                onClick={() => setFilters(prev => ({ ...prev, hideAffirmative: !prev.hideAffirmative }))}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                  filters.hideAffirmative
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                }`}
+              >
+                <EyeOff className="w-3.5 h-3.5" />
+                <span>Sem Afirmativas</span>
+                <HelpCircle className={`w-3.5 h-3.5 ${filters.hideAffirmative ? 'text-slate-950/80' : 'text-slate-400'}`} />
+              </button>
+
+              <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+                <strong className="text-emerald-400 block mb-1">Filtro Sem Vagas Afirmativas</strong>
+                Oculta vagas destinadas exclusivamente a recortes afirmativos específicos (PcD, mulheres, pessoas negras, LGBTQIA+, 50+), exibindo apenas processos de ampla concorrência.
+              </div>
             </div>
           </div>
         </div>

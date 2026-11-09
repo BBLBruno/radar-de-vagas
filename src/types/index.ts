@@ -118,6 +118,7 @@ export interface FilterState {
   seniority: 'todos' | SeniorityLevel;
   selectedSeniorities: SeniorityLevel[];
   hideExecutiveSenior: boolean;
+  hideSavedJobs?: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   stateFilter: string;

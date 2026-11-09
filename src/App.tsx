@@ -51,6 +51,7 @@ import {
   ExternalLink,
   AlertTriangle,
   Trash2,
+  BookmarkX,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
@@ -206,6 +207,7 @@ export const App: React.FC = () => {
     seniority: 'todos',
     selectedSeniorities: [],
     hideExecutiveSenior: false,
+    hideSavedJobs: false,
     platform: 'todas',
     selectedStacks: [],
     stateFilter: '',
@@ -453,6 +455,14 @@ export const App: React.FC = () => {
           if (!hasAnySelectedStack) return false;
         }
 
+        // 11. Filtro Ocultar Vagas Salvas
+        if (filters.hideSavedJobs) {
+          const isSaved = savedJobIds.includes(job.id) || Boolean(appliedJobsMap[job.id]);
+          if (isSaved) {
+            return false;
+          }
+        }
+
         return true;
       })
       .sort((a, b) => {
@@ -461,7 +471,7 @@ export const App: React.FC = () => {
         }
         return a.daysOpen - b.daysOpen;
       });
-  }, [jobsWithMatch, filters, sortBy, profile]);
+  }, [jobsWithMatch, filters, sortBy, profile, savedJobIds, appliedJobsMap]);
 
   const totalPages = Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage));
   const safeCurrentPage = Math.min(currentPage, totalPages);
@@ -516,6 +526,7 @@ export const App: React.FC = () => {
               filters={filters}
               setFilters={setFilters}
               popularStacks={POPULAR_FILTER_STACKS}
+              savedCount={allMyJobs.length}
             />
 
             {/* Sub-header: Contagem + Tags Resumidas de Filtros Ativos + Ordenação */}
@@ -624,6 +635,18 @@ export const App: React.FC = () => {
                   >
                     <EyeOff className="w-3 h-3" />
                     <span>Sem Afirmativas</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.hideSavedJobs && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, hideSavedJobs: false }))}
+                    className="text-[11px] px-2 py-0.5 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-md flex items-center gap-1 hover:bg-amber-500/25 transition-all"
+                  >
+                    <BookmarkX className="w-3 h-3" />
+                    <span>Ocultando Salvas</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -790,6 +813,7 @@ export const App: React.FC = () => {
                       seniority: 'todos',
                       selectedSeniorities: [],
                       hideExecutiveSenior: false,
+                      hideSavedJobs: false,
                       platform: 'todas',
                       selectedStacks: [],
                       stateFilter: '',
