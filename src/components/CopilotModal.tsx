@@ -144,56 +144,75 @@ export const CopilotModal: React.FC<CopilotModalProps> = ({
             </div>
 
             {/* Barra de Cola Rápida (LinkedIn, GitHub, E-mail, PDF) */}
-            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1 mr-1">
-                <Link2 className="w-3.5 h-3.5 text-cyan-400" />
-                Cola Rápida:
-              </span>
+            {Boolean(profile?.linkedinUrl || profile?.githubUrl || profile?.email || profile?.resumePdfDataUrl) ? (
+              <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1 mr-1">
+                  <Link2 className="w-3.5 h-3.5 text-cyan-400" />
+                  Cola Rápida:
+                </span>
 
-              {profile?.linkedinUrl && (
+                {profile?.linkedinUrl && (
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(profile.linkedinUrl, 'quick_in')}
+                    className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    {copiedField === 'quick_in' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
+                    <span>{copiedField === 'quick_in' ? 'LinkedIn Copiado' : 'Copiar LinkedIn'}</span>
+                  </button>
+                )}
+
+                {profile?.githubUrl && (
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(profile.githubUrl, 'quick_gh')}
+                    className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    {copiedField === 'quick_gh' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
+                    <span>{copiedField === 'quick_gh' ? 'GitHub Copiado' : 'Copiar GitHub'}</span>
+                  </button>
+                )}
+
+                {profile?.email && (
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(profile.email, 'quick_email')}
+                    className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    {copiedField === 'quick_email' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
+                    <span>{copiedField === 'quick_email' ? 'E-mail Copiado' : 'Copiar E-mail'}</span>
+                  </button>
+                )}
+
+                {profile?.resumePdfDataUrl && (
+                  <a
+                    href={profile.resumePdfDataUrl}
+                    download={profile.resumePdfName || 'Curriculo.pdf'}
+                    className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Download className="w-3 h-3" />
+                    <span>Baixar Currículo PDF ({profile.resumePdfName})</span>
+                  </a>
+                )}
+              </div>
+            ) : (
+              <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs text-slate-400">
+                <span className="flex items-center gap-1.5 text-[11px] text-slate-500">
+                  <Link2 className="w-3.5 h-3.5 text-slate-500" />
+                  Nenhum link salvo no seu perfil para a barra de cola rápida.
+                </span>
                 <button
                   type="button"
-                  onClick={() => copyToClipboard(profile.linkedinUrl, 'quick_in')}
-                  className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5"
+                  onClick={() => {
+                    onClose();
+                    onOpenProfile();
+                  }}
+                  className="text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 underline cursor-pointer"
                 >
-                  {copiedField === 'quick_in' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
-                  <span>{copiedField === 'quick_in' ? 'LinkedIn Copiado' : 'Copiar LinkedIn'}</span>
+                  Adicionar links no Perfil
                 </button>
-              )}
-
-              {profile?.githubUrl && (
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(profile.githubUrl, 'quick_gh')}
-                  className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5"
-                >
-                  {copiedField === 'quick_gh' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
-                  <span>{copiedField === 'quick_gh' ? 'GitHub Copiado' : 'Copiar GitHub'}</span>
-                </button>
-              )}
-
-              {profile?.email && (
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(profile.email, 'quick_email')}
-                  className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5"
-                >
-                  {copiedField === 'quick_email' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3 text-cyan-400" />}
-                  <span>{copiedField === 'quick_email' ? 'E-mail Copiado' : 'Copiar E-mail'}</span>
-                </button>
-              )}
-
-              {profile?.resumePdfDataUrl && (
-                <a
-                  href={profile.resumePdfDataUrl}
-                  download={profile.resumePdfName || 'Curriculo.pdf'}
-                  className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 flex items-center gap-1.5"
-                >
-                  <Download className="w-3 h-3" />
-                  <span>Baixar Currículo PDF ({profile.resumePdfName})</span>
-                </a>
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           {/* 1. Tailored Pitch / Carta de Apresentação */}

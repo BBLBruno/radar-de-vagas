@@ -609,11 +609,11 @@ export const JobCard: React.FC<JobCardProps> = ({
                 Mais detalhes da vaga
               </button>
 
-              {(showAppliedOption || isSaved) && onToggleApplied && (
+              {onToggleApplied && (
                 <button
                   type="button"
                   onClick={() => onToggleApplied(job)}
-                  className="py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-semibold text-emerald-400 hover:text-slate-950 bg-emerald-500/10 hover:bg-emerald-500 border border-emerald-500/30 transition-all flex items-center justify-center gap-1.5 shrink-0"
+                  className="py-2.5 px-3 rounded-xl text-xs sm:text-[13px] font-semibold text-emerald-400 hover:text-slate-950 bg-emerald-500/10 hover:bg-emerald-500 border border-emerald-500/30 transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer"
                   title="Marcar que já se candidatou nesta vaga"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />

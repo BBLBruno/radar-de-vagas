@@ -48,6 +48,27 @@ export const CrawlerControlModal: React.FC<CrawlerControlModalProps> = ({ jobs }
       description: 'Formulário canônico enxuto com preenchimento rápido de links profissionais, currículo PDF e carta de apresentação.',
       count: countByPlatform('lever'),
     },
+    {
+      id: 'src_solides',
+      name: 'Sólides',
+      type: 'Portal Nacional • PMEs & Scale-ups',
+      description: 'Oportunidades em empresas em expansão no Brasil em gestão operacional, inteligência de dados e atendimento.',
+      count: countByPlatform('solides'),
+    },
+    {
+      id: 'src_empregostec',
+      name: 'EmpregosTec',
+      type: 'Agregador Tech • Vagas Diretas',
+      description: 'Monitoramento contínuo de posições de tecnologia, processos de negócios e operações de produto.',
+      count: countByPlatform('empregostec'),
+    },
+    {
+      id: 'src_github_vagas',
+      name: 'Comunidade BR (GitHub)',
+      type: 'Open Source • Vagas Abertas',
+      description: 'Bancos de vagas comunitários abertos de startups e empresas de tecnologia e automação no Brasil.',
+      count: countByPlatform('github_vagas'),
+    },
   ];
 
   const internationalSources = [
@@ -129,7 +150,7 @@ export const CrawlerControlModal: React.FC<CrawlerControlModalProps> = ({ jobs }
               </h4>
             </div>
             <span className="text-xs font-semibold text-emerald-400">
-              4 ATSs Diretos • {totalBr} vagas
+              {nationalSources.length} Plataformas Integradas • {totalBr} vagas
             </span>
           </div>
 

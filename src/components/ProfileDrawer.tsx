@@ -227,17 +227,25 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
   };
 
   const applyMarketPreset = (preset: (typeof MARKET_PRESETS)[number]) => {
-    setProfile(prev => ({
-      ...prev,
-      title: preset.title,
-      background: {
-        ...prev.background,
-        education: preset.education,
-        entrepreneurship: preset.entrepreneurship,
-        keyMetricCase: preset.keyMetricCase,
-        operationalPillars: preset.operationalPillars,
-      },
-    }));
+    setProfile(prev => {
+      const updated = {
+        ...prev,
+        title: preset.title,
+        background: {
+          ...prev.background,
+          education: preset.education,
+          entrepreneurship: preset.entrepreneurship,
+          keyMetricCase: preset.keyMetricCase,
+          operationalPillars: preset.operationalPillars,
+        },
+      };
+      saveStoredProfile(updated);
+      return updated;
+    });
+    setSavedSectionId('background');
+    setTimeout(() => {
+      setSavedSectionId(prev => (prev === 'background' ? null : prev));
+    }, 2500);
   };
 
   const confirmClearAllFields = () => {
@@ -721,6 +729,40 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
                 placeholder="Ex: R$ 6.000 - R$ 8.500"
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
               />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">
+                Senioridade Atual / Alvo (para afinidade de vagas)
+              </label>
+              <select
+                value={profile.seniority || 'pleno'}
+                onChange={(e) => handleChange('seniority', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white cursor-pointer focus:outline-none focus:border-cyan-400"
+              >
+                <option value="estagio">Estágio / Trainee</option>
+                <option value="junior">Júnior / Assistente</option>
+                <option value="pleno">Pleno</option>
+                <option value="senior">Sênior</option>
+                <option value="especialista">Especialista / Liderança</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1">
+                Modalidade de Trabalho Preferida
+              </label>
+              <select
+                value={profile.preferredWorkplace || 'qualquer'}
+                onChange={(e) => handleChange('preferredWorkplace', e.target.value)}
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white cursor-pointer focus:outline-none focus:border-cyan-400"
+              >
+                <option value="qualquer">Qualquer Modalidade</option>
+                <option value="remoto">100% Remoto</option>
+                <option value="hibrido">Híbrido</option>
+                <option value="presencial">Presencial</option>
+              </select>
             </div>
           </div>
         </div>

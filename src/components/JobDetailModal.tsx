@@ -15,11 +15,17 @@ import {
   Database,
   FileText,
   Compass,
+  Bookmark,
+  BookmarkCheck,
 } from 'lucide-react';
 import { Job, NicheCategory } from '../types';
 
 interface JobDetailModalProps {
   job: Job | null;
+  isSaved?: boolean;
+  isApplied?: boolean;
+  onToggleSave?: (job: Job) => void;
+  onToggleApplied?: (job: Job) => void;
   onClose: () => void;
   onOpenCopilot: (job: Job) => void;
 }
@@ -50,6 +56,10 @@ const PLATFORM_APPLICATION_TIPS: Record<string, string> = {
 
 export const JobDetailModal: React.FC<JobDetailModalProps> = ({
   job,
+  isSaved = false,
+  isApplied = false,
+  onToggleSave,
+  onToggleApplied,
   onClose,
   onOpenCopilot,
 }) => {
@@ -138,14 +148,48 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            title="Fechar (ou clique fora da janela)"
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            {onToggleSave && (
+              <button
+                type="button"
+                onClick={() => onToggleSave(job)}
+                className={`px-3 py-2 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-all cursor-pointer ${
+                  isSaved
+                    ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300'
+                    : 'bg-slate-800/80 border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
+                title={isSaved ? 'Remover de Minhas Vagas' : 'Salvar em Minhas Vagas'}
+              >
+                {isSaved ? <BookmarkCheck className="w-4 h-4 text-emerald-400" /> : <Bookmark className="w-4 h-4" />}
+                <span className="hidden sm:inline">{isSaved ? 'Salva' : 'Salvar'}</span>
+              </button>
+            )}
+
+            {onToggleApplied && (
+              <button
+                type="button"
+                onClick={() => onToggleApplied(job)}
+                className={`px-3 py-2 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-all cursor-pointer ${
+                  isApplied
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold'
+                    : 'bg-slate-800/80 border-slate-700/80 text-emerald-400 hover:bg-emerald-500/20'
+                }`}
+                title={isApplied ? 'Desmarcar candidatura' : 'Marcar como Já me candidatei'}
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                <span className="hidden sm:inline">{isApplied ? 'Já me candidatei' : 'Candidatado'}</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={onClose}
+              title="Fechar (ou clique fora da janela)"
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0 cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable Body Content (Maior espaço vertical e organização em blocos) */}

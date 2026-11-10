@@ -104,7 +104,8 @@ const SENIORITY_OPTIONS: Array<{
 ];
 
 export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks, savedCount = 0 }) => {
-  const [areDrawersExpanded, setAreDrawersExpanded] = useState(false);
+  const [isAreaDrawerExpanded, setIsAreaDrawerExpanded] = useState(false);
+  const [isStackDrawerExpanded, setIsStackDrawerExpanded] = useState(false);
 
   const toggleStack = (stack: string) => {
     setFilters(prev => {
@@ -237,7 +238,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       hideSavedJobs: false,
       platform: 'todas',
       selectedStacks: [],
-      stateFilter: '',
       hideAffirmative: false,
       onlyMuzambinhoRadiusOrRemote: false,
       selectedNicheCategory: 'todas',
@@ -447,16 +447,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
               <button
                 type="button"
+                disabled={savedCount === 0}
                 onClick={() => setFilters(prev => ({ ...prev, hideSavedJobs: !prev.hideSavedJobs }))}
-                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                  filters.hideSavedJobs
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed ${
+                  filters.hideSavedJobs && savedCount > 0
                     ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
                     : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
                 }`}
+                title={savedCount === 0 ? 'Você ainda não salvou nenhuma vaga' : 'Ocultar vagas salvas da listagem'}
               >
-                <BookmarkX className={`w-3.5 h-3.5 ${filters.hideSavedJobs ? 'text-slate-950' : 'text-amber-400'}`} />
+                <BookmarkX className={`w-3.5 h-3.5 ${filters.hideSavedJobs && savedCount > 0 ? 'text-slate-950' : 'text-amber-400'}`} />
                 <span>Ocultar Salvas{savedCount > 0 ? ` (${savedCount})` : ''}</span>
-                <HelpCircle className={`w-3.5 h-3.5 ${filters.hideSavedJobs ? 'text-slate-950/80' : 'text-slate-400'}`} />
+                <HelpCircle className={`w-3.5 h-3.5 ${filters.hideSavedJobs && savedCount > 0 ? 'text-slate-950/80' : 'text-slate-400'}`} />
               </button>
 
               <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
@@ -540,14 +542,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         </div>
       </div>
 
-      {/* Linha 4: Seções Recolhidas Sincronizadas (Área & Habilidades expandem juntas) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/60 items-stretch">
+      {/* Linha 4: Seções Recolhidas Independentes (Área & Habilidades) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/60 items-start">
         {/* Coluna 1: Filtro por Área */}
         <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden flex flex-col">
           <button
             type="button"
-            onClick={() => setAreDrawersExpanded(prev => !prev)}
-            className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+            onClick={() => setIsAreaDrawerExpanded(prev => !prev)}
+            className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2 truncate">
               <Layers className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
@@ -556,14 +558,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                 {selectedAreaLabel}
               </span>
             </div>
-            {areDrawersExpanded ? (
+            {isAreaDrawerExpanded ? (
               <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
             ) : (
               <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
             )}
           </button>
 
-          {areDrawersExpanded && (
+          {isAreaDrawerExpanded && (
             <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap content-start gap-1.5 bg-slate-950/80 flex-1">
               {CATEGORY_OPTIONS.map(opt => {
                 const Icon = opt.icon;
@@ -573,7 +575,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                     key={opt.value}
                     type="button"
                     onClick={() => setFilters(prev => ({ ...prev, selectedNicheCategory: opt.value }))}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                       active
                         ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
                         : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border border-slate-700/50'
@@ -592,8 +594,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         <div className="bg-slate-950/50 border border-slate-800/80 rounded-xl overflow-hidden flex flex-col">
           <button
             type="button"
-            onClick={() => setAreDrawersExpanded(prev => !prev)}
-            className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all"
+            onClick={() => setIsStackDrawerExpanded(prev => !prev)}
+            className="w-full px-3.5 py-2.5 flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-900/60 transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2 truncate">
               <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -604,14 +606,14 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                 </span>
               )}
             </div>
-            {areDrawersExpanded ? (
+            {isStackDrawerExpanded ? (
               <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
             ) : (
               <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
             )}
           </button>
 
-          {areDrawersExpanded && (
+          {isStackDrawerExpanded && (
             <div className="p-3 pt-2 border-t border-slate-800/60 flex flex-wrap content-start gap-1.5 bg-slate-950/80 flex-1">
               {popularStacks.map(stack => {
                 const isSelected = filters.selectedStacks.includes(stack);
@@ -620,7 +622,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
                     key={stack}
                     type="button"
                     onClick={() => toggleStack(stack)}
-                    className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+                    className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-emerald-500 text-slate-950 font-bold border border-emerald-400'
                         : 'bg-slate-800/70 text-slate-300 hover:bg-slate-700 border border-slate-700/60'

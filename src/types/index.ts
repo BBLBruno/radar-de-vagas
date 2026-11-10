@@ -121,7 +121,6 @@ export interface FilterState {
   hideSavedJobs?: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
-  stateFilter: string;
   hideAffirmative: boolean;
   onlyMuzambinhoRadiusOrRemote: boolean;
   selectedNicheCategory: 'todas' | NicheCategory;

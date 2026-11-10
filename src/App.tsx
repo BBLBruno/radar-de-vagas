@@ -98,39 +98,41 @@ function normalizeSearchText(text: string): string {
 }
 
 /**
- * Gera os itens de paginação (inicial, atual + 4 e final, adaptando conforme início/meio/fim)
+ * Gera os itens de paginação com janela centralizada (exibindo página anterior, atual, próximas e pontas)
  */
 function getPaginationItems(currentPage: number, totalPages: number): Array<number | 'ellipsis-start' | 'ellipsis-end'> {
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
-  const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [];
-
-  if (currentPage <= 3) {
-    for (let p = 1; p <= Math.min(5, totalPages - 1); p++) {
+  // Se estiver próximo ao início (páginas 1 a 4)
+  if (currentPage <= 4) {
+    const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [];
+    const end = Math.min(5, totalPages - 1);
+    for (let p = 1; p <= end; p++) {
       items.push(p);
     }
-    if (totalPages > 6) {
+    if (end < totalPages - 1) {
       items.push('ellipsis-end');
     }
     items.push(totalPages);
     return items;
   }
 
-  if (currentPage >= totalPages - 4) {
-    items.push(1);
-    items.push('ellipsis-start');
-    for (let p = Math.max(2, totalPages - 4); p <= totalPages; p++) {
+  // Se estiver próximo ao fim (últimas 4 páginas)
+  if (currentPage >= totalPages - 3) {
+    const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [1, 'ellipsis-start'];
+    for (let p = totalPages - 4; p <= totalPages; p++) {
       items.push(p);
     }
     return items;
   }
 
-  items.push(1);
-  items.push('ellipsis-start');
-  const endWindow = Math.min(totalPages - 1, currentPage + 4);
-  for (let p = currentPage; p <= endWindow; p++) {
+  // No meio: exibe página 1, ellipsis, página anterior (currentPage - 1), atual e até +3 à frente, ellipsis, totalPages
+  const items: Array<number | 'ellipsis-start' | 'ellipsis-end'> = [1, 'ellipsis-start'];
+  const startWindow = currentPage - 1;
+  const endWindow = Math.min(totalPages - 1, currentPage + 3);
+  for (let p = startWindow; p <= endWindow; p++) {
     items.push(p);
   }
   if (endWindow < totalPages - 1) {
@@ -200,7 +202,7 @@ export const App: React.FC = () => {
 
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
-    maxDays: 30,
+    maxDays: 999,
     workplaceType: 'todos',
     selectedWorkplaces: [],
     scopeFilter: 'todas',
@@ -210,8 +212,7 @@ export const App: React.FC = () => {
     hideSavedJobs: false,
     platform: 'todas',
     selectedStacks: [],
-    stateFilter: '',
-    hideAffirmative: true,
+    hideAffirmative: false,
     onlyMuzambinhoRadiusOrRemote: false,
     selectedNicheCategory: 'todas',
   });
@@ -528,14 +529,28 @@ export const App: React.FC = () => {
   }, [jobsWithMatch, savedJobIds, appliedJobsMap]);
 
   const displayedMyJobs = useMemo(() => {
+    let list = allMyJobs;
     if (savedFilterMode === 'candidatadas') {
-      return allMyJobs.filter(j => Boolean(appliedJobsMap[j.id]));
+      list = list.filter(j => Boolean(appliedJobsMap[j.id]));
+    } else if (savedFilterMode === 'pendentes') {
+      list = list.filter(j => !appliedJobsMap[j.id]);
     }
-    if (savedFilterMode === 'pendentes') {
-      return allMyJobs.filter(j => !appliedJobsMap[j.id]);
+
+    if (filters.selectedStacks.length > 0) {
+      list = list.filter(job => {
+        return filters.selectedStacks.some(s => {
+          const normS = normalizeSearchText(s);
+          return (
+            job.stacks.some(js => normalizeSearchText(js) === normS) ||
+            normalizeSearchText(job.title).includes(normS) ||
+            normalizeSearchText(job.description).includes(normS)
+          );
+        });
+      });
     }
-    return allMyJobs;
-  }, [allMyJobs, appliedJobsMap, savedFilterMode]);
+
+    return list;
+  }, [allMyJobs, appliedJobsMap, savedFilterMode, filters.selectedStacks]);
 
   const appliedCount = useMemo(
     () => allMyJobs.filter(j => Boolean(appliedJobsMap[j.id])).length,
@@ -856,7 +871,6 @@ export const App: React.FC = () => {
                       hideSavedJobs: false,
                       platform: 'todas',
                       selectedStacks: [],
-                      stateFilter: '',
                       hideAffirmative: false,
                       onlyMuzambinhoRadiusOrRemote: false,
                       selectedNicheCategory: 'todas',
@@ -924,6 +938,31 @@ export const App: React.FC = () => {
               </div>
             </div>
 
+            {filters.selectedStacks.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 px-1">
+                <span className="text-xs text-slate-400">Filtrando vagas salvas por:</span>
+                {filters.selectedStacks.map(stack => (
+                  <button
+                    key={stack}
+                    type="button"
+                    onClick={() => toggleStackFilter(stack)}
+                    className="text-xs px-2.5 py-1 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 rounded-lg flex items-center gap-1.5 hover:bg-emerald-500/25 transition-all cursor-pointer"
+                    title="Remover filtro desta competência"
+                  >
+                    <span>{stack}</span>
+                    <X className="w-3 h-3 opacity-70" />
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setFilters(prev => ({ ...prev, selectedStacks: [] }))}
+                  className="text-xs text-slate-400 hover:text-white underline ml-1 cursor-pointer"
+                >
+                  Limpar filtro de habilidades
+                </button>
+              </div>
+            )}
+
             {displayedMyJobs.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {displayedMyJobs.map(job => (
@@ -969,6 +1008,10 @@ export const App: React.FC = () => {
 
       <JobDetailModal
         job={detailJob}
+        isSaved={detailJob ? savedJobIds.includes(detailJob.id) || Boolean(appliedJobsMap[detailJob.id]) : false}
+        isApplied={detailJob ? Boolean(appliedJobsMap[detailJob.id]) : false}
+        onToggleSave={toggleSaveJob}
+        onToggleApplied={handleToggleApplied}
         onClose={() => setDetailJob(null)}
         onOpenCopilot={(j) => {
           setDetailJob(null);
