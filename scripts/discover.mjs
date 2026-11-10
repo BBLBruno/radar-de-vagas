@@ -1032,6 +1032,11 @@ async function main() {
 
   const deduplicated = Array.from(new Set(uniqueMap.values()));
 
+  if (deduplicated.length < 50) {
+    console.error(`⚠️ ATENÇÃO: Apenas ${deduplicated.length} vagas coletadas. Possível falha temporária de rede ou ATS indisponível. Abortando gravação para preservar a base anterior intacta.`);
+    process.exit(1);
+  }
+
   const outDir = path.resolve('src/data');
   await fs.mkdir(outDir, { recursive: true });
   await fs.writeFile(path.join(outDir, 'liveJobs.json'), JSON.stringify(deduplicated, null, 2), 'utf-8');

@@ -2,9 +2,12 @@ name: Atualização Automatizada de Vagas (Dias Úteis - Seg a Sex)
 
 on:
   schedule:
-    # Executa todo dia útil (Segunda a Sexta) às 10:11 UTC (período da manhã no Brasil)
-    # Horário quebrado (10:11) para evitar sobrecarga/atrasos de fila do GitHub Actions em horários cheios (:00)
-    - cron: '11 10 * * 1-5'
+    # Executa todo dia útil (Segunda a Sexta) no período da manhã
+    # Horários quebrados e fora do topo da hora (:00) para evitar descarte de fila do GitHub Actions
+    # Disparo 1 (Início da manhã BR): 07:18 BRT = 10:18 UTC
+    - cron: '18 10 * * 1-5'
+    # Disparo 2 (Garantia/Segunda chance caso o GitHub atrase na Segunda): 10:24 BRT = 13:24 UTC
+    - cron: '24 13 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Configurar Node.js 20
         uses: actions/setup-node@v4
@@ -30,5 +35,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add src/data/liveJobs.json
-          git diff --staged --quiet || git commit -m "chore(data): atualização diária automática de vagas (Seg-Sex)"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): atualização diária automática de vagas (Seg-Sex)"
+            git push
+          else
+            echo "Nenhuma alteração encontrada nas vagas coletadas hoje."
+          fi
