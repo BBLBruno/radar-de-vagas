@@ -1009,9 +1009,7 @@ export const App: React.FC = () => {
       <JobDetailModal
         job={detailJob}
         isSaved={detailJob ? savedJobIds.includes(detailJob.id) || Boolean(appliedJobsMap[detailJob.id]) : false}
-        isApplied={detailJob ? Boolean(appliedJobsMap[detailJob.id]) : false}
         onToggleSave={toggleSaveJob}
-        onToggleApplied={handleToggleApplied}
         onClose={() => setDetailJob(null)}
         onOpenCopilot={(j) => {
           setDetailJob(null);

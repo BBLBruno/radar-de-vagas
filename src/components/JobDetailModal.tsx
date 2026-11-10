@@ -23,9 +23,7 @@ import { Job, NicheCategory } from '../types';
 interface JobDetailModalProps {
   job: Job | null;
   isSaved?: boolean;
-  isApplied?: boolean;
   onToggleSave?: (job: Job) => void;
-  onToggleApplied?: (job: Job) => void;
   onClose: () => void;
   onOpenCopilot: (job: Job) => void;
 }
@@ -57,9 +55,7 @@ const PLATFORM_APPLICATION_TIPS: Record<string, string> = {
 export const JobDetailModal: React.FC<JobDetailModalProps> = ({
   job,
   isSaved = false,
-  isApplied = false,
   onToggleSave,
-  onToggleApplied,
   onClose,
   onOpenCopilot,
 }) => {
@@ -162,22 +158,6 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
               >
                 {isSaved ? <BookmarkCheck className="w-4 h-4 text-emerald-400" /> : <Bookmark className="w-4 h-4" />}
                 <span className="hidden sm:inline">{isSaved ? 'Salva' : 'Salvar'}</span>
-              </button>
-            )}
-
-            {onToggleApplied && (
-              <button
-                type="button"
-                onClick={() => onToggleApplied(job)}
-                className={`px-3 py-2 rounded-xl text-xs font-semibold border flex items-center gap-1.5 transition-all cursor-pointer ${
-                  isApplied
-                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-bold'
-                    : 'bg-slate-800/80 border-slate-700/80 text-emerald-400 hover:bg-emerald-500/20'
-                }`}
-                title={isApplied ? 'Desmarcar candidatura' : 'Marcar como Já me candidatei'}
-              >
-                <CheckCircle2 className="w-4 h-4" />
-                <span className="hidden sm:inline">{isApplied ? 'Já me candidatei' : 'Candidatado'}</span>
               </button>
             )}
 

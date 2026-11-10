@@ -609,7 +609,7 @@ export const JobCard: React.FC<JobCardProps> = ({
                 Mais detalhes da vaga
               </button>
 
-              {onToggleApplied && (
+              {showAppliedOption && onToggleApplied && (
                 <button
                   type="button"
                   onClick={() => onToggleApplied(job)}
