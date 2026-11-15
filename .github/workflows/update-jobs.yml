@@ -9,6 +9,12 @@ on:
     # Disparo 2 (Garantia/Segunda chance caso o GitHub atrase na Segunda): 10:24 BRT = 13:24 UTC
     - cron: '24 13 * * 1-5'
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - '.github/workflows/update-jobs.yml'
 
 permissions:
   contents: write
@@ -37,6 +43,7 @@ jobs:
           git add src/data/liveJobs.json
           if ! git diff --staged --quiet; then
             git commit -m "chore(data): atualização diária automática de vagas (Seg-Sex)"
+            git pull --rebase origin ${{ github.ref_name }}
             git push
           else
             echo "Nenhuma alteração encontrada nas vagas coletadas hoje."
