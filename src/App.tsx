@@ -646,7 +646,7 @@ export const App: React.FC = () => {
   const endItemNum = Math.min(safeCurrentPage * itemsPerPage, filteredJobs.length);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col overflow-x-hidden">
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
