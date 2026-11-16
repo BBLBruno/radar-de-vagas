@@ -29,7 +29,7 @@ import {
 } from './engine/normalizer';
 import { calculateJobMatch } from './engine/matcher';
 import { deduplicateJobs } from './engine/deduplicator';
-import { loadStoredProfile } from './engine/defaultProfile';
+import { loadStoredProfile, saveStoredProfile } from './engine/defaultProfile';
 import {
   Sparkles,
   SearchX,
@@ -56,6 +56,83 @@ import {
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
 const APPLIED_STORAGE_KEY = 'radar_vagas_applied_jobs_v1';
+const FILTERS_STORAGE_KEY = 'radar_vagas_filters_v1';
+const UI_PREFS_STORAGE_KEY = 'radar_vagas_ui_prefs_v1';
+
+const DEFAULT_FILTERS: FilterState = {
+  searchQuery: '',
+  maxDays: 999,
+  workplaceType: 'todos',
+  selectedWorkplaces: [],
+  scopeFilter: 'todas',
+  seniority: 'todos',
+  selectedSeniorities: [],
+  hideExecutiveSenior: false,
+  hideSavedJobs: false,
+  platform: 'todas',
+  selectedStacks: [],
+  hideAffirmative: false,
+  onlyMuzambinhoRadiusOrRemote: false,
+  selectedNicheCategory: 'todas',
+};
+
+function loadStoredFilters(): FilterState {
+  try {
+    const raw = localStorage.getItem(FILTERS_STORAGE_KEY);
+    if (!raw) return DEFAULT_FILTERS;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return DEFAULT_FILTERS;
+    return {
+      ...DEFAULT_FILTERS,
+      ...parsed,
+      selectedWorkplaces: Array.isArray(parsed.selectedWorkplaces) ? parsed.selectedWorkplaces : [],
+      selectedSeniorities: Array.isArray(parsed.selectedSeniorities) ? parsed.selectedSeniorities : [],
+      selectedStacks: Array.isArray(parsed.selectedStacks) ? parsed.selectedStacks : [],
+    };
+  } catch {
+    return DEFAULT_FILTERS;
+  }
+}
+
+interface StoredUiPrefs {
+  activeTab: 'radar' | 'profile' | 'saved';
+  savedFilterMode: 'todas' | 'pendentes' | 'candidatadas';
+  sortBy: 'match' | 'recent';
+  itemsPerPage: number;
+}
+
+function loadStoredUiPrefs(): StoredUiPrefs {
+  const defaults: StoredUiPrefs = {
+    activeTab: 'radar',
+    savedFilterMode: 'todas',
+    sortBy: 'recent',
+    itemsPerPage: 18,
+  };
+  try {
+    const raw = localStorage.getItem(UI_PREFS_STORAGE_KEY);
+    if (!raw) return defaults;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return defaults;
+    return {
+      activeTab:
+        parsed.activeTab === 'radar' || parsed.activeTab === 'profile' || parsed.activeTab === 'saved'
+          ? parsed.activeTab
+          : defaults.activeTab,
+      savedFilterMode:
+        parsed.savedFilterMode === 'todas' ||
+        parsed.savedFilterMode === 'pendentes' ||
+        parsed.savedFilterMode === 'candidatadas'
+          ? parsed.savedFilterMode
+          : defaults.savedFilterMode,
+      sortBy: parsed.sortBy === 'match' || parsed.sortBy === 'recent' ? parsed.sortBy : defaults.sortBy,
+      itemsPerPage: PAGE_SIZE_OPTIONS.includes(Number(parsed.itemsPerPage))
+        ? Number(parsed.itemsPerPage)
+        : defaults.itemsPerPage,
+    };
+  } catch {
+    return defaults;
+  }
+}
 
 const SHORT_CATEGORY_LABELS: Record<NicheCategory, string> = {
   bizops_processos: 'BizOps & Processos',
@@ -143,8 +220,8 @@ function getPaginationItems(currentPage: number, totalPages: number): Array<numb
 }
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved'>('radar');
-  const [savedFilterMode, setSavedFilterMode] = useState<'todas' | 'pendentes' | 'candidatadas'>('todas');
+  const [activeTab, setActiveTab] = useState<'radar' | 'profile' | 'saved'>(() => loadStoredUiPrefs().activeTab);
+  const [savedFilterMode, setSavedFilterMode] = useState<'todas' | 'pendentes' | 'candidatadas'>(() => loadStoredUiPrefs().savedFilterMode);
   const [profile, setProfile] = useState<CandidateProfile>(() => loadStoredProfile());
 
   const [jobs] = useState<Job[]>(() => {
@@ -200,26 +277,11 @@ export const App: React.FC = () => {
     }
   });
 
-  const [filters, setFilters] = useState<FilterState>({
-    searchQuery: '',
-    maxDays: 999,
-    workplaceType: 'todos',
-    selectedWorkplaces: [],
-    scopeFilter: 'todas',
-    seniority: 'todos',
-    selectedSeniorities: [],
-    hideExecutiveSenior: false,
-    hideSavedJobs: false,
-    platform: 'todas',
-    selectedStacks: [],
-    hideAffirmative: false,
-    onlyMuzambinhoRadiusOrRemote: false,
-    selectedNicheCategory: 'todas',
-  });
+  const [filters, setFilters] = useState<FilterState>(() => loadStoredFilters());
 
-  const [sortBy, setSortBy] = useState<'match' | 'recent'>('recent');
+  const [sortBy, setSortBy] = useState<'match' | 'recent'>(() => loadStoredUiPrefs().sortBy);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(18);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(() => loadStoredUiPrefs().itemsPerPage);
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
   const [jobToRemoveFromSaved, setJobToRemoveFromSaved] = useState<Job | null>(null);
@@ -239,6 +301,29 @@ export const App: React.FC = () => {
       console.error(e);
     }
   }, [appliedJobsMap]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify(filters));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [filters]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        UI_PREFS_STORAGE_KEY,
+        JSON.stringify({ activeTab, savedFilterMode, sortBy, itemsPerPage })
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  }, [activeTab, savedFilterMode, sortBy, itemsPerPage]);
+
+  useEffect(() => {
+    saveStoredProfile(profile);
+  }, [profile]);
 
   useEffect(() => {
     setCurrentPage(1);
