@@ -38,7 +38,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://cvccorp.gupy.io/job/eyJqb2JJZCI6MTI3NjI1NjUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T21:01:02.319Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "presencial",
     "location": "Santo André, São Paulo",
     "city": "Santo André",
@@ -214,7 +214,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://gruposunojobs.gupy.io/job/eyJqb2JJZCI6MTI4MzA2MDgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-03T20:32:26.002Z",
-    "daysOpen": 14,
+    "daysOpen": 15,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -291,7 +291,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://cvccorp.gupy.io/job/eyJqb2JJZCI6MTI3MzI0OTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-26T20:05:53.869Z",
-    "daysOpen": 22,
+    "daysOpen": 23,
     "workplaceType": "presencial",
     "location": "Santo André, São Paulo",
     "city": "Santo André",
@@ -714,7 +714,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://wiz.gupy.io/job/eyJqb2JJZCI6MTI5MDYxMDMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T19:23:45.036Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "Recife, Pernambuco",
     "city": "Recife",
@@ -886,38 +886,6 @@
     "isInternational": false
   },
   {
-    "id": "gupy_12825525",
-    "title": "ANALISTA DE OPERAÇÃO JR - PIRACICABA/SP",
-    "company": "LM Mobilidade",
-    "companyLogo": "https://attachments.gupy.io/production/companies/37195/career/77857/images/2024-08-06_12-32_companyLogoUrl.jpg",
-    "platform": "gupy",
-    "canonicalUrl": "https://lmvagas.gupy.io/job/eyJqb2JJZCI6MTI4MjU1MjUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-16T17:06:57.937Z",
-    "daysOpen": 2,
-    "workplaceType": "presencial",
-    "location": "Piracicaba, São Paulo",
-    "city": "Piracicaba",
-    "state": "São Paulo",
-    "seniority": "junior",
-    "stacks": [
-      "Indicadores / KPIs",
-      "Excel / Sheets"
-    ],
-    "description": "Ser um LMer é muito mais do que ser um funcionário da empresa LM Soluções de Mobilidade; é fazer parte de uma organização colaborativa onde todos têm espaço para se desenvolver e compartilhar o melhor de si.Somos uma empresa impulsionada por pessoas, por isso, nosso jeito de Ser e Fazer é fundamentalmente direcionado a como nos relacionamos com todos ao nosso redor: entre funcionários, parceiros, fornecedores, investidores e clientes. Por aqui, valorizamos pessoas curiosas, que buscam aprender s",
-    "requirements": [
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 285,
-    "isInternational": false
-  },
-  {
     "id": "gupy_12769155",
     "title": "Analista Financeiro (Operações Financeiras)| Cresol Confederação CSC",
     "company": "Cresol Oficial",
@@ -987,6 +955,115 @@
       "dados_bi"
     ],
     "distanceFromMuzambinhoKm": 450,
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12849642",
+    "title": "Analista Operações Auditoria I",
+    "company": "Unimed Porto Alegre",
+    "companyLogo": "https://attachments.gupy.io/production/companies/534/career/594/images/2025-11-03_16-04_companyLogoUrl.png",
+    "platform": "gupy",
+    "canonicalUrl": "https://unimedpoa.gupy.io/job/eyJqb2JJZCI6MTI4NDk2NDIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-16T12:11:06.469Z",
+    "daysOpen": 2,
+    "workplaceType": "hibrido",
+    "location": "Porto Alegre, Rio Grande do Sul",
+    "city": "Porto Alegre",
+    "state": "Rio Grande do Sul",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Processos / BPMN",
+      "Indicadores / KPIs",
+      "Excel / Sheets"
+    ],
+    "description": "Para atendermos a todos nossos clientes e cooperados de forma humanizada e ética, contamos com colaboradores que acreditam em nossos valores cooperativistas e estão alinhados com nossa cultura de excelência do cuidar. Enquanto cooperativa, temos o compromisso de capacitar, reter e reconhecer nossos colaboradores, propiciamos sinergia entre nosso capital humano e crescimento ao negócio todos os dias.Atuar na Auditoria Assistencial em solução de problemas, buscando oportunidade de melhoria contínu",
+    "requirements": [
+      "Domínio ou vivência em Operações / BizOps",
+      "Domínio ou vivência em Processos / BPMN",
+      "Domínio ou vivência em Indicadores / KPIs",
+      "Domínio ou vivência em Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 950,
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12907187",
+    "title": "ANALISTA SR DE GOVERNANÇA E PROCESSOS DE TI",
+    "company": "Vem ser Conecter!",
+    "companyLogo": "https://attachments.gupy.io/production/companies/2274/career/38356/images/2022-02-22_14-29_logo.png",
+    "platform": "gupy",
+    "canonicalUrl": "https://conectcar.gupy.io/job/eyJqb2JJZCI6MTI5MDcxODcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-18T20:42:54.669Z",
+    "daysOpen": 0,
+    "workplaceType": "hibrido",
+    "location": "São Paulo, São Paulo",
+    "city": "São Paulo",
+    "state": "São Paulo",
+    "seniority": "senior",
+    "stacks": [
+      "Processos / BPMN",
+      "Onboarding / CS",
+      "Análise de Dados",
+      "Indicadores / KPIs",
+      "Automação / IA",
+      "Excel / Sheets",
+      "APIs / Webhooks"
+    ],
+    "description": "💡 Buscamos uma pessoa com atuação colaborativa, analítica e orientada a resultados, capaz de transitar entre Tecnologia, Finanças, Compras, Jurídico, Segurança da Informação e áreas de negócio.Responsabilidades e atribuições· Transformar necessidades de negócio e problemas identificados em épicos, histórias de usuário e critérios de aceite claros. · Participar dos refinamentos com desenvolvimento, QA, arquitetura e demais envolvidos. · Apoiar o acompanhamento das histórias desde o discovery até",
+    "requirements": [
+      "Domínio ou vivência em Processos / BPMN",
+      "Domínio ou vivência em Onboarding / CS",
+      "Domínio ou vivência em Análise de Dados",
+      "Domínio ou vivência em Indicadores / KPIs",
+      "Domínio ou vivência em Automação / IA",
+      "Domínio ou vivência em Excel / Sheets",
+      "Domínio ou vivência em APIs / Webhooks"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi",
+      "automacao_ia"
+    ],
+    "distanceFromMuzambinhoKm": 285,
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12897693",
+    "title": "Analista Processos Recepção / Hospital Vera Cruz",
+    "company": "Carreiras Vera Cruz Hospital",
+    "companyLogo": "https://attachments.gupy.io/production/companies/2127/career/4058/images/2021-04-14_14-23_logo.png",
+    "platform": "gupy",
+    "canonicalUrl": "https://veracruzhospital.gupy.io/job/eyJqb2JJZCI6MTI4OTc2OTMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-18T19:31:12.344Z",
+    "daysOpen": 0,
+    "workplaceType": "presencial",
+    "location": "Campinas, São Paulo",
+    "city": "Campinas",
+    "state": "São Paulo",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "Em 2017, a Companhia realizou seu primeiro investimento ao adquirir o Vera Cruz Hospital, localizado na cidade Campinas-SP, que com mais de 80 anos de atuação, é um dos mais tradicionais hospitais da cidade. O hospital atualmente conta com 11 salas cirúrgicas, 08 Leitos de Apoio Cirúrgico, 110 leitos de internação, 14 leitos de UTI Adulto, 10 leitos de Unidade Cardiológica, 10 leitos Semi-intensiva, 16 leitos Maternidade/Alojamento Conjunto, 09 leitos Pediatria e Pronto Socorro 24h. Além de aten",
+    "requirements": [
+      "Domínio ou vivência em Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "distanceFromMuzambinhoKm": 195,
     "isInternational": false
   },
   {
@@ -1079,7 +1156,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://sejaelgin.gupy.io/job/eyJqb2JJZCI6MTI5MDQ3NjEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T20:56:44.342Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "presencial",
     "location": "Manaus, Amazonas",
     "city": "Manaus",
@@ -1108,7 +1185,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://carajas.gupy.io/job/eyJqb2JJZCI6MTI5MDgwMzQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T20:17:44.412Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "presencial",
     "location": "Maceió, Alagoas",
     "city": "Maceió",
@@ -1352,69 +1429,6 @@
       "dados_bi"
     ],
     "distanceFromMuzambinhoKm": 285,
-    "isInternational": false
-  },
-  {
-    "id": "gupy_12891732",
-    "title": "Analista de Processos (Curitiba-PR)",
-    "company": "AGROTIS",
-    "companyLogo": "https://attachments.gupy.io/production/companies/401/career/396/images/logo.jpg",
-    "platform": "gupy",
-    "canonicalUrl": "https://agrotis.gupy.io/job/eyJqb2JJZCI6MTI4OTE3MzIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-13T19:56:18.334Z",
-    "daysOpen": 4,
-    "workplaceType": "presencial",
-    "location": "Curitiba, Paraná",
-    "city": "Curitiba",
-    "state": "Paraná",
-    "seniority": "pleno",
-    "stacks": [
-      "Processos / BPMN",
-      "Indicadores / KPIs"
-    ],
-    "description": "Temos uma oportunidade para quem deseja desenvolver sua carreira e contribuir diretamente para a melhoria contínua dos processos da Agrotis! Estamos buscando um profissional para integrar a área de Processos, apoiando o mapeamento, a documentação, a padronização e a melhoria dos processos das diferentes áreas da empresa. Responsabilidades e atribuiçõesApoiar o mapeamento e a documentação dos processos das áreas;Elaborar e atualizar fluxogramas, POPs, manuais e procedimentos;Identificar oportunid",
-    "requirements": [
-      "Domínio ou vivência em Processos / BPMN",
-      "Domínio ou vivência em Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 540,
-    "isInternational": false
-  },
-  {
-    "id": "gupy_12891808",
-    "title": "Analista de PCP | Engenharia de Processos",
-    "company": "Grendene",
-    "companyLogo": "https://attachments.gupy.io/production/companies/2051/career/3291/images/2023-01-31_17-19_companyLogoUrl.png",
-    "platform": "gupy",
-    "canonicalUrl": "https://facapartegrendene.gupy.io/job/eyJqb2JJZCI6MTI4OTE4MDgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-13T19:55:31.043Z",
-    "daysOpen": 4,
-    "workplaceType": "presencial",
-    "location": "Farroupilha, Rio Grande do Sul",
-    "city": "Farroupilha",
-    "state": "Rio Grande do Sul",
-    "seniority": "pleno",
-    "stacks": [
-      "Análise de Dados",
-      "Excel / Sheets"
-    ],
-    "description": "Já pensou em trabalhar em uma das empresas que mais produzem calçados no mundo? E que, além de produzir, ainda realiza sonhos? Este é o seu desejo? Então, a Grendene é o seu lugar! No PCP, cada decisão importa. Aqui, você terá a oportunidade de planejar, coordenar e otimizar o processo produtivo, garantindo que nossos calçados cheguem ao mercado com a qualidade e dentro dos prazos que nossos clientes esperam. Se você é apaixonado por planejamento estratégico, controle de produção e eficiência op",
-    "requirements": [
-      "Domínio ou vivência em Análise de Dados",
-      "Domínio ou vivência em Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
     "isInternational": false
   },
   {
@@ -1707,7 +1721,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vempranexa.gupy.io/job/eyJqb2JJZCI6MTI4Njg3NTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T20:14:14.118Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -1749,7 +1763,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vempranexa.gupy.io/job/eyJqb2JJZCI6MTI4NjgyMzIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T19:59:56.501Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -1889,7 +1903,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://petronas.gupy.io/job/eyJqb2JJZCI6MTI4NzcyMTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-11T20:59:00.318Z",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "hibrido",
     "location": "Contagem, Minas Gerais",
     "city": "Contagem",
@@ -1976,7 +1990,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://empresaconfidencialti.gupy.io/job/eyJqb2JJZCI6MTI4NTEyODAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-06T20:34:39.546Z",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -2153,7 +2167,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://corporacaogpa.gupy.io/job/eyJqb2JJZCI6MTI3MjM1MTcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-25T21:16:45.729Z",
-    "daysOpen": 23,
+    "daysOpen": 24,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -2195,7 +2209,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://positivo.gupy.io/job/eyJqb2JJZCI6MTI2OTQ3NDYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-08T19:13:49.905Z",
-    "daysOpen": 40,
+    "daysOpen": 41,
     "workplaceType": "presencial",
     "location": "Curitiba, Paraná",
     "city": "Curitiba",
@@ -2235,7 +2249,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://tigre.gupy.io/job/eyJqb2JJZCI6MTI2NzkxMjYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-05T18:53:32.088Z",
-    "daysOpen": 43,
+    "daysOpen": 44,
     "workplaceType": "hibrido",
     "location": "Joinville, Santa Catarina",
     "city": "Joinville",
@@ -2392,7 +2406,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vemserblue3.gupy.io/job/eyJqb2JJZCI6MTI5MDgwMDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T20:15:16.466Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "presencial",
     "location": "Ribeirão Preto, São Paulo",
     "city": "Ribeirão Preto",
@@ -2567,7 +2581,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vibra.gupy.io/job/eyJqb2JJZCI6MTI4OTk3OTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T19:46:16.797Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "presencial",
     "location": "Porto Alegre, Rio Grande do Sul",
     "city": "Porto Alegre",
@@ -2586,48 +2600,6 @@
       "bizops_processos"
     ],
     "distanceFromMuzambinhoKm": 950,
-    "isInternational": false
-  },
-  {
-    "id": "gupy_12897095",
-    "title": "Analista de Planejamento SR - PMO | Negócios Integrados em Publicidade",
-    "company": "Globo",
-    "companyLogo": "https://attachments.gupy.io/production/companies/1963/career/40535/images/2025-12-30_15-18_companyLogoUrl.png",
-    "platform": "gupy",
-    "canonicalUrl": "https://globo.gupy.io/job/eyJqb2JJZCI6MTI4OTcwOTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-16T14:47:32.934Z",
-    "daysOpen": 2,
-    "workplaceType": "hibrido",
-    "location": "São Paulo, São Paulo",
-    "city": "São Paulo",
-    "state": "São Paulo",
-    "seniority": "senior",
-    "stacks": [
-      "Inteligência Comercial",
-      "Operações / BizOps",
-      "Indicadores / KPIs",
-      "Power BI",
-      "Automação / IA",
-      "Excel / Sheets"
-    ],
-    "description": "A Globo é feita de gente que quer fazer diferente, fazer junto, fazer o futuro.Gente espalhada por todo o país (e mundo!) trabalhando com conteúdo, notícias, negócios, tecnologia e brasilidade de sobra. Canais na TV aberta e por assinatura, produtos digitais como globoplay, Cartola, g1, ge, gshow e outros serviços estão reunidos no mesmo lugar, na mesma Globo.Novos modelos de negócios digitais estão sendo pensados e desenvolvidos, buscando nos aproximar cada vez mais do usuário e dos seus desejo",
-    "requirements": [
-      "Domínio ou vivência em Inteligência Comercial",
-      "Domínio ou vivência em Operações / BizOps",
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em Power BI",
-      "Domínio ou vivência em Automação / IA",
-      "Domínio ou vivência em Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 285,
     "isInternational": false
   },
   {
@@ -2827,7 +2799,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://centralar.gupy.io/job/eyJqb2JJZCI6MTI4ODI4NzQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T20:45:36.334Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Araçatuba, São Paulo",
     "city": "Araçatuba",
@@ -2875,7 +2847,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://confidencialvagas01.gupy.io/job/eyJqb2JJZCI6MTI4Nzc0MDQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-11T21:23:11.858Z",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -3054,6 +3026,45 @@
       "crm_revops_onboarding"
     ],
     "distanceFromMuzambinhoKm": 285,
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12916203",
+    "title": "Analista de Implantação PL",
+    "company": "Nordware",
+    "companyLogo": "https://attachments.gupy.io/production/companies/68751/career/167683/images/2024-04-11_23-21_companyLogoUrl.png",
+    "platform": "gupy",
+    "canonicalUrl": "https://nordware.gupy.io/job/eyJqb2JJZCI6MTI5MTYyMDMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-18T18:57:17.684Z",
+    "daysOpen": 0,
+    "workplaceType": "hibrido",
+    "location": "Curitiba, Paraná",
+    "city": "Curitiba",
+    "state": "Paraná",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS",
+      "N8N",
+      "Automação / IA",
+      "Excel / Sheets",
+      "APIs / Webhooks"
+    ],
+    "description": "A Nordware é uma empresa inovadora de software, especializada em soluções de integração e automação para o setor de e-commerce. Buscamos um(a) Analista de Implantação PL para facilitar a transformação digital e operacional dos nossos clientes por meio da implementação personalizada e eficiente das soluções Nordware, garantindo a máxima satisfação e valor agregado. Este profissional será o elo essencial entre a Nordware e os clientes, comprometido em entender profundamente suas necessidades e flu",
+    "requirements": [
+      "Domínio ou vivência em Onboarding / CS",
+      "Domínio ou vivência em N8N",
+      "Domínio ou vivência em Automação / IA",
+      "Domínio ou vivência em Excel / Sheets",
+      "Domínio ou vivência em APIs / Webhooks"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "automacao_ia"
+    ],
+    "distanceFromMuzambinhoKm": 540,
     "isInternational": false
   },
   {
@@ -3339,7 +3350,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vwgs-sam.gupy.io/job/eyJqb2JJZCI6MTI4MzAxODYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-03T20:01:41.801Z",
-    "daysOpen": 14,
+    "daysOpen": 15,
     "workplaceType": "presencial",
     "location": "São Bernardo do Campo, São Paulo",
     "city": "São Bernardo do Campo",
@@ -3407,54 +3418,6 @@
     "isInternational": false
   },
   {
-    "id": "gupy_12783626",
-    "title": "Analista de Implantação Pleno (Motor de Cobrança)",
-    "company": "Omni&co",
-    "companyLogo": "https://attachments.gupy.io/production/companies/2008/career/3348/images/2026-08-17_19-22_companyLogoUrl.jpg",
-    "platform": "gupy",
-    "canonicalUrl": "https://vemseromni.gupy.io/job/eyJqb2JJZCI6MTI3ODM2MjYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-10-29T12:23:37.067Z",
-    "daysOpen": 20,
-    "workplaceType": "hibrido",
-    "location": "São Paulo, São Paulo",
-    "city": "São Paulo",
-    "state": "São Paulo",
-    "seniority": "pleno",
-    "stacks": [
-      "Operações / BizOps",
-      "Processos / BPMN",
-      "Onboarding / CS",
-      "Indicadores / KPIs",
-      "SQL",
-      "Automação / IA",
-      "Excel / Sheets",
-      "APIs / Webhooks",
-      "Python"
-    ],
-    "description": "A Omni&CoSomos uma empresa em constante transformaçãoA Omni, presente há 32 anos no mercado, é uma instituição sólida e reconhecida por possui um dos melhores serviços de crédito do Brasil. Temos orgulho da nossa importância para pessoas com menor acesso a crédito. Por isso, empenhamos toda dedicação e responsabilidade para seguirmos adiante sempre, melhorando a Vida das PessoasNos dedicamos ao desenvolvimento contínuo dos nossos colaboradores. Cultivamos relacionamentos com proximidade para cri",
-    "requirements": [
-      "Domínio ou vivência em Operações / BizOps",
-      "Domínio ou vivência em Processos / BPMN",
-      "Domínio ou vivência em Onboarding / CS",
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em SQL",
-      "Domínio ou vivência em Automação / IA",
-      "Domínio ou vivência em Excel / Sheets",
-      "Domínio ou vivência em APIs / Webhooks",
-      "Domínio ou vivência em Python"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 285,
-    "isInternational": false
-  },
-  {
     "id": "gupy_12891730",
     "title": "ANALISTA DE ONBOARDING",
     "company": "VECTOR",
@@ -3508,7 +3471,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://grupotecnospeed.gupy.io/job/eyJqb2JJZCI6MTI4ODE3NjksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T18:52:53.638Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -3616,7 +3579,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://pagaleve.gupy.io/job/eyJqb2JJZCI6MTI4NTE0NDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-06T20:43:12.166Z",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -3686,7 +3649,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://sicredi.gupy.io/job/eyJqb2JJZCI6MTI1OTI0NTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-14T19:04:53.495Z",
-    "daysOpen": 34,
+    "daysOpen": 35,
     "workplaceType": "hibrido",
     "location": "Porto Alegre, Rio Grande do Sul",
     "city": "Porto Alegre",
@@ -3984,7 +3947,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://docket.gupy.io/job/eyJqb2JJZCI6MTI5MDAzMDYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T20:17:31.097Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -4157,7 +4120,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://carreirasomie.gupy.io/job/eyJqb2JJZCI6MTI4Nzg3MjcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T19:53:19.502Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -4257,7 +4220,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://pmweb.gupy.io/job/eyJqb2JJZCI6MTI4NTEwODcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T20:40:45.592Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -4328,7 +4291,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://queroservertem.gupy.io/job/eyJqb2JJZCI6MTI2NzI4MzcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-06T20:30:21.048Z",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "hibrido",
     "location": "Barueri, São Paulo",
     "city": "Barueri",
@@ -4365,7 +4328,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://onfly.gupy.io/job/eyJqb2JJZCI6MTI4MDYwNDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-04T18:59:57.034Z",
-    "daysOpen": 13,
+    "daysOpen": 14,
     "workplaceType": "presencial",
     "location": "Belo Horizonte, Minas Gerais",
     "city": "Belo Horizonte",
@@ -4474,7 +4437,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vempragestaods.gupy.io/job/eyJqb2JJZCI6MTI4MDUxMDcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-29T19:01:21.820Z",
-    "daysOpen": 19,
+    "daysOpen": 20,
     "workplaceType": "presencial",
     "location": "Santa Maria, Rio Grande do Sul",
     "city": "Santa Maria",
@@ -4548,7 +4511,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://intelipost.gupy.io/job/eyJqb2JJZCI6MTI5MDA5OTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T21:27:55.371Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -4751,7 +4714,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://votorantimcimentos.gupy.io/job/eyJqb2JJZCI6MTI4NjIwODksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T19:20:45.308Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "hibrido",
     "location": "Curitiba, Paraná",
     "city": "Curitiba",
@@ -4943,7 +4906,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://metodo.gupy.io/job/eyJqb2JJZCI6MTI2NDUzNTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-05T20:30:40.390Z",
-    "daysOpen": 43,
+    "daysOpen": 44,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -5057,7 +5020,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://bancosofisa.gupy.io/job/eyJqb2JJZCI6MTI3NjQ5MDksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-22T21:28:15.974Z",
-    "daysOpen": 26,
+    "daysOpen": 27,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -5201,7 +5164,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://gruposysmap.gupy.io/job/eyJqb2JJZCI6MTI5MDQ4NjIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T19:06:40.529Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -5230,7 +5193,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://mercantil.gupy.io/job/eyJqb2JJZCI6MTI5MDcxMDQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T19:05:08.015Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "Belo Horizonte, Minas Gerais",
     "city": "Belo Horizonte",
@@ -5404,7 +5367,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://araguaia.gupy.io/job/eyJqb2JJZCI6MTI3OTA5MzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T20:34:45.058Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "presencial",
     "location": "Anápolis, Goiás",
     "city": "Anápolis",
@@ -5440,7 +5403,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://unimedcnu.gupy.io/job/eyJqb2JJZCI6MTI5MDAyMTcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T20:07:58.748Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -5474,7 +5437,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://ioasys.gupy.io/job/eyJqb2JJZCI6MTI4OTk0NDAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T19:48:04.970Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "hibrido",
     "location": "Belo Horizonte, Minas Gerais",
     "city": "Belo Horizonte",
@@ -5550,7 +5513,7 @@
   },
   {
     "id": "gupy_12915939",
-    "title": "Analista de BI PL - Call Center (São Paulo/SP) (",
+    "title": "Analista de BI PL - Call Center (São Paulo/SP)",
     "company": "Alares Internet",
     "companyLogo": "https://attachments.gupy.io/production/companies/15613/career/111815/images/2022-11-11_14-01_logo.png",
     "platform": "gupy",
@@ -5632,7 +5595,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI5MDU1MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T19:49:06.387Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -5671,7 +5634,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://unidas.gupy.io/job/eyJqb2JJZCI6MTI5MDA0ODUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T20:37:39.183Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "presencial",
     "location": "Belo Horizonte, Minas Gerais",
     "city": "Belo Horizonte",
@@ -5799,7 +5762,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://gruposereng.gupy.io/job/eyJqb2JJZCI6MTI4Njg5MTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T20:27:41.436Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "presencial",
     "location": "Nova Lima, Minas Gerais",
     "city": "Nova Lima",
@@ -5836,7 +5799,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://keepsimple.gupy.io/job/eyJqb2JJZCI6MTI4Njc5NzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T19:21:47.548Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -5978,7 +5941,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://embarquejca.gupy.io/job/eyJqb2JJZCI6MTI4NTA1OTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-06T19:34:47.068Z",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "presencial",
     "location": "São Gonçalo, Rio de Janeiro",
     "city": "São Gonçalo",
@@ -6186,7 +6149,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://2024conf.gupy.io/job/eyJqb2JJZCI6MTI3MDk0MjEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-21T19:23:03.920Z",
-    "daysOpen": 27,
+    "daysOpen": 28,
     "workplaceType": "hibrido",
     "location": "Vinhedo, São Paulo",
     "city": "Vinhedo",
@@ -6307,7 +6270,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://juntoseguros.gupy.io/job/eyJqb2JJZCI6MTI3NDExMDgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-30T19:20:51.103Z",
-    "daysOpen": 18,
+    "daysOpen": 19,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -6385,7 +6348,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vetta.gupy.io/job/eyJqb2JJZCI6MTI3MTU1MTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-13T20:01:28.469Z",
-    "daysOpen": 35,
+    "daysOpen": 36,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -6748,7 +6711,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://nitro.gupy.io/job/eyJqb2JJZCI6MTI3Njc1NDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-05T20:28:03.592Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -6779,7 +6742,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://nitro.gupy.io/job/eyJqb2JJZCI6MTI4MDUxNzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-05T20:14:31.054Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -6886,7 +6849,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI4Njg5NTMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T20:33:23.097Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "hibrido",
     "location": "Taboão da Serra, São Paulo",
     "city": "Taboão da Serra",
@@ -6921,7 +6884,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://jointecnologia.gupy.io/job/eyJqb2JJZCI6MTI4Njg4MTIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-10T20:18:11.427Z",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -6949,7 +6912,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://spread.gupy.io/job/eyJqb2JJZCI6MTI4NDA1MTksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-05T21:07:25.574Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -7073,7 +7036,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://montreal.gupy.io/job/eyJqb2JJZCI6MTI3OTMyOTMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-27T19:26:58.079Z",
-    "daysOpen": 21,
+    "daysOpen": 22,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -7205,7 +7168,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://anbima.gupy.io/job/eyJqb2JJZCI6MTI3NjEwODIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T21:16:07.426Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "Rio de Janeiro, Rio de Janeiro",
     "city": "Rio de Janeiro",
@@ -7240,7 +7203,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://software.gupy.io/job/eyJqb2JJZCI6MTI5MDgzODAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T20:50:41.480Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -7338,7 +7301,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vemproitau.gupy.io/job/eyJqb2JJZCI6MTI3MzEyMTksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T20:49:37.467Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -7369,7 +7332,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://costabrava.gupy.io/job/eyJqb2JJZCI6MTI4OTk0ODEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-16T18:54:04.177Z",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "hibrido",
     "location": "Campinas, São Paulo",
     "city": "Campinas",
@@ -7472,7 +7435,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://grupomarquise.gupy.io/job/eyJqb2JJZCI6MTI4ODAwNTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T19:05:21.292Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Fortaleza, Ceará",
     "city": "Fortaleza",
@@ -7560,7 +7523,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://verity.gupy.io/job/eyJqb2JJZCI6MTI5MDc4NTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T20:34:55.421Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -7597,7 +7560,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://spcbrasil.gupy.io/job/eyJqb2JJZCI6MTI4NTA5ODUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T19:34:18.547Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -7624,6 +7587,36 @@
       "bizops_processos",
       "inteligencia_mercado",
       "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 285,
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12897176",
+    "title": "Product Owner",
+    "company": "Venha ser um profissional terceirizado na Tecban",
+    "companyLogo": "",
+    "platform": "gupy",
+    "canonicalUrl": "https://terceirizadosparatecban.gupy.io/job/eyJqb2JJZCI6MTI4OTcxNzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-17T15:26:37.593Z",
+    "daysOpen": 1,
+    "workplaceType": "hibrido",
+    "location": "São Paulo, São Paulo",
+    "city": "São Paulo",
+    "state": "São Paulo",
+    "seniority": "pleno",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "Empresa de alta capacidade operacional e tecnológica, forte posicionamento e excelente infraestrutura.Desenhamos soluções que facilitam a vida de milhões de brasileiros, geram eficiência para o ecossistema financeiro e varejo.Já imaginou fazer parte de uma empresa que está presente no dia a dia de todos os brasileiros? Responsabilidades e atribuições Ser o responsável pela visão, evolução e priorização dos produtos de dados, garantindo que as entregas gerem valor para o negócio e estejam alinhad",
+    "requirements": [
+      "Domínio ou vivência em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
       "dados_bi"
     ],
     "distanceFromMuzambinhoKm": 285,
@@ -7711,7 +7704,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://gaugecarreiras.gupy.io/job/eyJqb2JJZCI6MTI4ODI5NjEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-12T20:52:51.576Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "city": "",
@@ -7857,45 +7850,6 @@
     "isInternational": false
   },
   {
-    "id": "gupy_12861925",
-    "title": "Product Owner Jr. | RPA, Automação & AI Agents",
-    "company": "Omni&co",
-    "companyLogo": "https://attachments.gupy.io/production/companies/2008/career/3348/images/2026-08-17_19-22_companyLogoUrl.jpg",
-    "platform": "gupy",
-    "canonicalUrl": "https://vemseromni.gupy.io/job/eyJqb2JJZCI6MTI4NjE5MjUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-10T11:32:33.114Z",
-    "daysOpen": 8,
-    "workplaceType": "hibrido",
-    "location": "São Paulo, São Paulo",
-    "city": "São Paulo",
-    "state": "São Paulo",
-    "seniority": "junior",
-    "stacks": [
-      "Indicadores / KPIs",
-      "SQL",
-      "Automação / IA",
-      "APIs / Webhooks",
-      "Python"
-    ],
-    "description": "A Omni&CoSomos uma empresa em constante transformaçãoA Omni, presente há 32 anos no mercado, é uma instituição sólida e reconhecida por possui um dos melhores serviços de crédito do Brasil. Temos orgulho da nossa importância para pessoas com menor acesso a crédito. Por isso, empenhamos toda dedicação e responsabilidade para seguirmos adiante sempre, melhorando a Vida das PessoasNos dedicamos ao desenvolvimento contínuodos nossos colaboradores. Cultivamos relacionamentos com proximidadepara criar",
-    "requirements": [
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em SQL",
-      "Domínio ou vivência em Automação / IA",
-      "Domínio ou vivência em APIs / Webhooks",
-      "Domínio ou vivência em Python"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 285,
-    "isInternational": false
-  },
-  {
     "id": "et_9e6584275306",
     "title": "Gerente de Projetos Salesforce",
     "company": "Compass UOL",
@@ -8038,7 +7992,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://gaudium.gupy.io/job/eyJqb2JJZCI6MTI4ODQxODEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-15T20:40:00.000Z",
-    "daysOpen": 2,
+    "daysOpen": 3,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "estagio",
@@ -8453,7 +8407,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vempralanlink.gupy.io/job/eyJqb2JJZCI6MTI3NTM2NDksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-27T21:15:00.000Z",
-    "daysOpen": 21,
+    "daysOpen": 22,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -8614,7 +8568,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://werecruiter.gupy.io/job/eyJqb2JJZCI6MTI3Njg4ODMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-26T19:15:00.000Z",
-    "daysOpen": 22,
+    "daysOpen": 23,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9055,7 +9009,7 @@
     "platform": "inhire",
     "canonicalUrl": "https://zallpy.inhire.app/vagas/5f8a4ba7-b821-4365-b475-56f1001d1cbf/nalista-de-ower-enior-ibrido",
     "publishedAt": "2026-10-19T20:30:00.000Z",
-    "daysOpen": 29,
+    "daysOpen": 30,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "senior",
@@ -9082,7 +9036,7 @@
     "platform": "inhire",
     "canonicalUrl": "https://zallpy.inhire.app/vagas/8ca83633-f672-470b-9d9f-97e8cc59ac57/nalista-de-ados-enior-oogle-nalytics",
     "publishedAt": "2026-10-19T20:20:00.000Z",
-    "daysOpen": 29,
+    "daysOpen": 30,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "senior",
@@ -9109,7 +9063,7 @@
     "platform": "inhire",
     "canonicalUrl": "https://zallpy.inhire.app/vagas/74754ebb-cff8-41a1-b461-079e5c2660b6/nalista-de-ados-unior-resencial-em-lumenau",
     "publishedAt": "2026-10-19T20:10:00.000Z",
-    "daysOpen": 29,
+    "daysOpen": 30,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "junior",
@@ -9138,7 +9092,7 @@
     "platform": "inhire",
     "canonicalUrl": "https://zig.inhire.app/vagas/be3bac11-92b8-4c88-a9b5-884b8de0ad30/nalista-de-mplantacao-leno",
     "publishedAt": "2026-10-19T19:30:00.000Z",
-    "daysOpen": 29,
+    "daysOpen": 30,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9220,7 +9174,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI3NDAyMzcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-18T19:15:00.000Z",
-    "daysOpen": 30,
+    "daysOpen": 31,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9551,7 +9505,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI3MTA4NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-12T19:15:00.000Z",
-    "daysOpen": 36,
+    "daysOpen": 37,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9692,7 +9646,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://vinci-energies.gupy.io/job/eyJqb2JJZCI6MTI2ODMwODQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-08T21:15:00.000Z",
-    "daysOpen": 40,
+    "daysOpen": 41,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9775,7 +9729,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://construmarket.gupy.io/job/eyJqb2JJZCI6MTI2ODc3OTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-07T20:15:00.000Z",
-    "daysOpen": 41,
+    "daysOpen": 42,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -9803,7 +9757,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://starian.gupy.io/job/eyJqb2JJZCI6MTIzMDg5OTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-10-07T19:15:00.000Z",
-    "daysOpen": 41,
+    "daysOpen": 42,
     "workplaceType": "remoto",
     "location": "Remoto - Brasil",
     "seniority": "pleno",
@@ -10165,7 +10119,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4433716009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -10213,7 +10167,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4478662009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -10254,7 +10208,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4419756009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -10285,7 +10239,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4462819009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -10322,7 +10276,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4459780009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -10394,7 +10348,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4450031009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -10421,7 +10375,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4468261009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -10449,7 +10403,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4391355009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -10483,7 +10437,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4450897009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -10525,7 +10479,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4383529009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -10562,7 +10516,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4472985009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -10601,7 +10555,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4437889009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -10632,7 +10586,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4391178009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -10663,7 +10617,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4047195009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -10692,7 +10646,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423527009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -10723,7 +10677,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4429078009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -10755,7 +10709,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4254812009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -10794,7 +10748,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423064009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -10866,7 +10820,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4359915009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -10901,7 +10855,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4337564009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -10970,7 +10924,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4470090009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11014,7 +10968,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4424349009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -11047,7 +11001,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4421451009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -11087,7 +11041,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4404916009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -11119,7 +11073,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4428956009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11148,7 +11102,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4452400009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11180,7 +11134,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023482009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -11210,7 +11164,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023483009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -11234,13 +11188,51 @@
     "isInternational": false
   },
   {
+    "id": "gh_quintoandar_4481089009",
+    "title": "Grupo QuintoAndar | Sr Technology Risk & Internal Controls Analyst",
+    "company": "QuintoAndar",
+    "platform": "greenhouse",
+    "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4481089009",
+    "publishedAt": "2026-11-18T16:25:50-05:00",
+    "daysOpen": 0,
+    "workplaceType": "presencial",
+    "location": "São Paulo, São Paulo, Brazil",
+    "seniority": "senior",
+    "stacks": [
+      "Operações / BizOps",
+      "Processos / BPMN",
+      "Análise de Dados",
+      "Indicadores / KPIs",
+      "SQL",
+      "Automação / IA"
+    ],
+    "description": "<h3 style=&quot;text-align: justify;&quot;><span style=&quot;font-family: helvetica, arial, sans-serif;&quot;><strong>Sobre o Grupo QuintoAndar</strong></span></h3> <p style=&quot;text-align: justify;&quot;><span style=&quot;font-family: helvetica, arial, sans-serif;&quot;>Somos o Grupo QuintoAndar, o&nbsp;<strong>maior ecossistema imobiliário da América Latina</strong>. Guiados pelo propósito de <strong>ajudar pessoas a amar o lugar onde moram</",
+    "requirements": [
+      "Experiência com Operações / BizOps",
+      "Experiência com Processos / BPMN",
+      "Experiência com Análise de Dados",
+      "Experiência com Indicadores / KPIs",
+      "Experiência com SQL",
+      "Experiência com Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi",
+      "automacao_ia"
+    ],
+    "distanceFromMuzambinhoKm": 285,
+    "isInternational": false
+  },
+  {
     "id": "gh_quintoandar_4023115009",
     "title": "Grupo QuintoAndar | Staff Data Engineer",
     "company": "QuintoAndar",
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023115009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -11271,7 +11263,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023118009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11301,7 +11293,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023516009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11331,7 +11323,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023517009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11361,7 +11353,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4426626009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -11396,7 +11388,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4400445009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -11426,7 +11418,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4436451009",
     "publishedAt": "2026-11-12T14:49:15-05:00",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -11745,7 +11737,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8727988002",
     "publishedAt": "2026-10-29T16:08:29-04:00",
-    "daysOpen": 19,
+    "daysOpen": 20,
     "workplaceType": "hibrido",
     "location": "Brazil (São Paulo - Hybrid)",
     "seniority": "especialista",
@@ -11882,7 +11874,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8949055002",
     "publishedAt": "2026-11-17T16:27:41-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "US (Remote)",
     "seniority": "especialista",
@@ -11913,7 +11905,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/rdstation/jobs/8919131002",
     "publishedAt": "2026-10-27T16:18:40-04:00",
-    "daysOpen": 21,
+    "daysOpen": 22,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brasil",
     "seniority": "pleno",
@@ -11988,7 +11980,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8015745003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "hibrido",
     "location": "Híbrido, Rio de Janeiro",
     "seniority": "pleno",
@@ -12015,7 +12007,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8031733003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "hibrido",
     "location": "Sao Paulo, Sao Paulo, Brasil",
     "seniority": "senior",
@@ -12084,7 +12076,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8041323003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "hibrido",
     "location": "Sao Paulo, Sao Paulo, Brasil",
     "seniority": "pleno",
@@ -12121,7 +12113,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8196541003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "presencial",
     "location": "Rio De Janeiro, Rio De Janeiro, Brasil",
     "seniority": "pleno",
@@ -12153,7 +12145,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8196556003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "presencial",
     "location": "Rio De Janeiro, Rio De Janeiro, Brasil",
     "seniority": "pleno",
@@ -12186,7 +12178,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/7827757003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "presencial",
     "location": "Sao Paulo, Sao Paulo, Brasil",
     "seniority": "junior",
@@ -12257,7 +12249,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8199216003",
     "publishedAt": "2026-11-10T15:34:19-05:00",
-    "daysOpen": 7,
+    "daysOpen": 8,
     "workplaceType": "remoto",
     "location": "Remoto",
     "seniority": "senior",
@@ -12292,7 +12284,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/7776752003",
     "publishedAt": "2026-11-13T15:11:54-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "hibrido",
     "location": "Híbrido, Rio de Janeiro",
     "seniority": "pleno",
@@ -12319,7 +12311,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8041727003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "hibrido",
     "location": "Florianopolis, Santa Catarina, Brasil",
     "seniority": "senior",
@@ -12384,7 +12376,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8196023003",
     "publishedAt": "2026-11-06T14:27:16-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "hibrido",
     "location": "Sao Paulo, Sao Paulo, Brasil",
     "seniority": "junior",
@@ -12411,7 +12403,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/stone/jobs/8105542003",
     "publishedAt": "2026-11-05T13:55:12-05:00",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "hibrido",
     "location": "Sao Paulo, Sao Paulo, Brasil",
     "seniority": "junior",
@@ -13593,7 +13585,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://jobicy.com/jobs/162073-outbound-growth-associate",
     "publishedAt": "2026-11-13T18:54:39.000Z",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (USA)",
     "seniority": "junior",
@@ -17346,6 +17338,193 @@
     "isInternational": true
   },
   {
+    "id": "jobicy_163179",
+    "title": "Executive Business Director, West",
+    "company": "Xenon Pharmaceuticals Inc.",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/2c3fd54cd2e8-221.webp",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163179-executive-business-director-west",
+    "publishedAt": "2026-11-18T15:49:21.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "Inteligência de Mercado",
+      "Análise de Dados",
+      "CRM"
+    ],
+    "description": "Who We Are: Xenon Pharmaceuticals ( NASDAQ:XENE ) is a neuroscience-focused biopharmaceutical company dedicated to drug discovery, clinical development, and commercialization of life-changing therapeutics for patients in need. We are looking for great people who thrive in a respectful, collaborative, inclusive, and productive culture to join the Xenon team. What We Do: We are advancing an exciting product pipeline to address indications with high unmet medical need, including",
+    "requirements": [
+      "Experience with Inteligência de Mercado",
+      "Experience with Análise de Dados",
+      "Experience with CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_163177",
+    "title": "Senior Performance Strategist",
+    "company": "Superside",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2021/01/WRILS-210104060359-501693.jpg",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163177-senior-performance-strategist",
+    "publishedAt": "2026-11-18T15:49:17.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (LATAM)",
+    "seniority": "senior",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "As a Senior Performance Strategist at Superside , you'll own how the work performs in market: what runs, how it's tested and how it keeps getting better. This is a strategy role, not a media-buying role. You'll be a senior strategic partner to enterprise clients and our creative leaders: advising on performance creative, shaping new solutions, and spotting opportunities for ongoing optimisation and account growth. You'll work alongside our creative strategists, creative teams",
+    "requirements": [
+      "Experience with Operações / BizOps",
+      "Experience with Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_163176",
+    "title": "Regional Sales Director - St. Louis",
+    "company": "Mineralys Therapeutics",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/e766f6909090-221.webp",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163176-regional-sales-director-st-louis",
+    "publishedAt": "2026-11-18T15:49:16.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "“ Mineralys Therapeutics is a clinical-stage biopharmaceutical company focused on developing medicines to target hypertension and related comorbidities such as chronic kidney disease (CKD), obstructive sleep apnea (OSA) and other diseases driven by dysregulated aldosterone. Its initial product candidate, lorundrostat, is a proprietary, orally administered, highly selective aldosterone synthase inhibitor. Mineralys is headquartered in Radnor, Pennsylvania. For more information",
+    "requirements": [
+      "Experience with CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_163174",
+    "title": "Executive Business Director, East",
+    "company": "Xenon Pharmaceuticals Inc.",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/2c3fd54cd2e8-221.webp",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163174-executive-business-director-east",
+    "publishedAt": "2026-11-18T15:49:12.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "Inteligência de Mercado",
+      "Análise de Dados",
+      "CRM"
+    ],
+    "description": "Who We Are: Xenon Pharmaceuticals ( NASDAQ:XENE ) is a neuroscience-focused biopharmaceutical company dedicated to drug discovery, clinical development, and commercialization of life-changing therapeutics for patients in need. We are looking for great people who thrive in a respectful, collaborative, inclusive, and productive culture to join the Xenon team. What We Do: We are advancing an exciting product pipeline to address indications with high unmet medical need, including",
+    "requirements": [
+      "Experience with Inteligência de Mercado",
+      "Experience with Análise de Dados",
+      "Experience with CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_163172",
+    "title": "City Manager, LA",
+    "company": "Flex",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/7bfdefe3-221.jpeg",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163172-city-manager-la",
+    "publishedAt": "2026-11-18T15:49:08.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "Flex is building AI-native financial services for business owners . We’re re-architecting the entire financial system for entrepreneurs—from the first dollar a business earns to how that value compounds, moves, and is ultimately spent in real life. Banking, credit, payments, personal finance, and financial operations—rebuilt from the ground up as a single, intelligent system. Flex is the full financial home for ambitious owners. Since launching publicly in September 2023 , Fl",
+    "requirements": [
+      "Experience with Operações / BizOps",
+      "Experience with Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_163170",
+    "title": "Regional Sales Director - San Francisco",
+    "company": "Mineralys Therapeutics",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/e766f6909090-221.webp",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/163170-regional-sales-director-san-francisco",
+    "publishedAt": "2026-11-18T15:49:05.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "“ Mineralys Therapeutics is a clinical-stage biopharmaceutical company focused on developing medicines to target hypertension and related comorbidities such as chronic kidney disease (CKD), obstructive sleep apnea (OSA) and other diseases driven by dysregulated aldosterone. Its initial product candidate, lorundrostat, is a proprietary, orally administered, highly selective aldosterone synthase inhibitor. Mineralys is headquartered in Radnor, Pennsylvania. For more information",
+    "requirements": [
+      "Experience with CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
     "id": "jobicy_163167",
     "title": "Principal Product Marketing Manager - OIS",
     "company": "Huntress",
@@ -18362,190 +18541,29 @@
     "isInternational": true
   },
   {
-    "id": "jobicy_150852",
-    "title": "Account Executive",
-    "company": "Housecall Pro",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/870ed960-221.jpg",
+    "id": "jobicy_163175",
+    "title": "Platform Engineer-Kubernetes Operators",
+    "company": "EDB",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/6c7d3949-221.png",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/150852-account-executive-2",
-    "publishedAt": "2026-11-18T03:05:17.000Z",
+    "canonicalUrl": "https://jobicy.com/jobs/163175-platform-engineer-kubernetes-operators",
+    "publishedAt": "2026-11-18T15:49:14.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (USA)",
     "seniority": "pleno",
     "stacks": [
       "Onboarding / CS",
-      "Excel / Sheets"
+      "SQL"
     ],
-    "description": "Why Housecall Pro? Help us build solutions that build better lives. At Housecall Pro, we show up to work every day to make a difference for real people: the home service professionals that support America’s 100 million homes. We’re all about the Pro, and dedicate our days to helping them streamline operations, scale their businesses, and—ultimately—save time so they can be with their families and live well. While our headquarters are based in Denver, Colorado, our team spans ",
+    "description": "A Little About Us EDB provides a data and AI platform that enables organizations to harness the full power of Postgres for transactional, analytical, and AI workloads across any cloud, anywhere. EDB empowers enterprises to control risk, manage costs and scale efficiently for a data and AI led world. Serving more than 1,500 customers globally and as the leading contributor to the vibrant and fast-growing PostgreSQL community, EDB supports major government organizations, financ",
     "requirements": [
       "Experience with Onboarding / CS",
-      "Experience with Excel / Sheets"
+      "Experience with SQL"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_155633",
-    "title": "Enterprise Territory Account Executive, Southeast",
-    "company": "Kong Inc.",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2022/03/f43352b801f4c6854ba70c5f70cec7cd.jpeg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/155633-enterprise-territory-account-executive-southeast",
-    "publishedAt": "2026-11-18T03:05:12.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "senior",
-    "stacks": [
-      "Onboarding / CS",
-      "CRM",
-      "Salesforce",
-      "APIs / Webhooks"
-    ],
-    "description": "Are you ready to unlock intelligence? If you don’t think you meet all of the criteria below but are still interested in the job, please apply. Nobody checks every box - we’re looking for candidates that are particularly strong in a few areas, and have some interest and capabilities in others. About the Role: We are seeking a committed Enterprise Sales Executive with a successful background in sales and account management, ideally within open source or similar enterprise softw",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with CRM",
-      "Experience with Salesforce",
-      "Experience with APIs / Webhooks"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_153447",
-    "title": "Mantle Squad - Global",
-    "company": "Windranger Labs",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/6d827f41-221.png",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/153447-mantle-squad-global",
-    "publishedAt": "2026-11-18T03:05:08.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere)",
-    "seniority": "pleno",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "Mantle Squad Role Overview Mantle Squad Members are community ambassadors who extend the Mantle team by bridging the ecosystem with global Web3 communities through engagement, activations, and localized storytelling. We are searching for talents who are strong in one or more of the skill areas below and can contribute meaningfully while collaborating with the broader Mantle Squad. Job Responsibilities Community Building & Ecosystem Engagement Represent Mantle as a community a",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_153436",
-    "title": "Business Development Representative",
-    "company": "Osano",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2021/12/09e360f6195b249a269ef96fe9a99259.png",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/153436-business-development-representative-14",
-    "publishedAt": "2026-11-18T03:05:05.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "pleno",
-    "stacks": [
-      "Processos / BPMN",
-      "Onboarding / CS",
-      "Automação / IA"
-    ],
-    "description": "About Osano Osano is an innovative B-Corporation built around a simple belief: privacy is a fundamental right. Since day one, we’ve been focused on giving modern enterprises the ability to innovate quickly, stay competitive, and earn customer trust by respecting data privacy and complying with consent guidelines. Our products help organizations operate confidently in a rapidly evolving regulatory and technological landscape. About the Role We’re hiring an experienced Sales Ma",
-    "requirements": [
-      "Experience with Processos / BPMN",
-      "Experience with Onboarding / CS",
-      "Experience with Automação / IA"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_153388",
-    "title": "Head of Field Sales, München (w/m/d)",
-    "company": "Lightspeed Commerce",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/09/3d38005a-221.png",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/153388-head-of-field-sales-munchen-w-m-d",
-    "publishedAt": "2026-11-18T03:00:32.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Germany)",
-    "seniority": "especialista",
-    "stacks": [
-      "Salesforce"
-    ],
-    "description": "Hallo! Schön, dass du vorbeischaust 👋 Bist du aktiv auf der Suche nach einer neuen Herausforderung? Oder schaust du dich einfach nur auf dem Markt um? Nun… dann bist du hier vielleicht genau richtig! Wir suchen eine/n Head of Field Sales für unser Hospitality-Team vor Ort in München . In dieser Rolle übernehmst du eine Schlüsselfunktion: Du wirst ein komplett neues Team von ca. 8 bis 10 Outbound Field Account Executives aufbauen, strukturieren und leiten. Gemeinsam helft ihr",
-    "requirements": [
-      "Experience with Salesforce"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_153387",
-    "title": "Strategic Account Executive",
-    "company": "Lightspeed Commerce",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/09/3d38005a-221.png",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/153387-strategic-account-executive-9",
-    "publishedAt": "2026-11-18T03:00:30.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (UK)",
-    "seniority": "senior",
-    "stacks": [
-      "Onboarding / CS",
-      "Análise de Dados",
-      "CRM",
-      "Salesforce"
-    ],
-    "description": "Hi there! Thanks for stopping by 👋 Are you actively looking for a new opportunity? Or just checking the market? Well… you might just be in the right place! Lightspeed is looking for a Strategic Account Executive to join our UK Sales team. As a Strategic Account Executive focused on new business, you'll be at the forefront of our company's growth in the UK, driving revenue by identifying, pursuing, and closing strategic deals with high-value clients across the hospitality sec",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with Análise de Dados",
-      "Experience with CRM",
-      "Experience with Salesforce"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
       "crm_revops_onboarding",
       "dados_bi"
     ],
@@ -20103,201 +20121,6 @@
     "isInternational": true
   },
   {
-    "id": "jobicy_155764",
-    "title": "Bilingual Customer Experience Specialist (Spanish)",
-    "company": "Instacart",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2023/03/fe39c2bc9bb5ebb0b5e24318b1f3b60d.jpeg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/155764-bilingual-customer-experience-specialist-spanish",
-    "publishedAt": "2026-11-18T04:15:13.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "CRM",
-      "Salesforce"
-    ],
-    "description": "We're transforming the grocery industry At Instacart, we invite the world to share love through food because we believe everyone should have access to the food they love and more time to enjoy it together. Where others see a simple need for grocery delivery, we see exciting complexity and endless opportunity to serve the varied needs of our community. We work to deliver an essential service that customers rely on to get their groceries and household goods, while also offering",
-    "requirements": [
-      "Experience with CRM",
-      "Experience with Salesforce"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_155755",
-    "title": "Account Manager",
-    "company": "Instacart",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2023/03/fe39c2bc9bb5ebb0b5e24318b1f3b60d.jpeg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/155755-account-manager-14",
-    "publishedAt": "2026-11-18T04:15:11.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Power BI",
-      "Salesforce",
-      "Excel / Sheets"
-    ],
-    "description": "We're transforming the grocery industry At Instacart, we invite the world to share love through food because we believe everyone should have access to the food they love and more time to enjoy it together. Where others see a simple need for grocery delivery, we see exciting complexity and endless opportunity to serve the varied needs of our community. We work to deliver an essential service that customers rely on to get their groceries and household goods, while also offering",
-    "requirements": [
-      "Experience with Power BI",
-      "Experience with Salesforce",
-      "Experience with Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_155765",
-    "title": "Director, Legal",
-    "company": "Submittable",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2022/01/fb2fe80b022541b590972867c58ae74b.jpeg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/155765-director-legal",
-    "publishedAt": "2026-11-18T04:15:08.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Processos / BPMN",
-      "RevOps",
-      "Automação / IA"
-    ],
-    "description": "At Submittable, we are transforming how organizations create social impact. Our platform empowers thousands of mission-driven organizations, from nonprofits to government entities, to make a difference in their communities and beyond. In 2024, our innovative software helped organizations worldwide run 30,000 programs , welcomed 1.2 million applicants , and facilitated the distribution of more than $10 billion in funding through our products on behalf of our clients. We are on",
-    "requirements": [
-      "Experience with Processos / BPMN",
-      "Experience with RevOps",
-      "Experience with Automação / IA"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_155716",
-    "title": "Assistant General Counsel, Servicing",
-    "company": "Goodleap",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/482c4fb7-221.png",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/155716-assistant-general-counsel-servicing",
-    "publishedAt": "2026-11-18T04:10:37.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "pleno",
-    "stacks": [
-      "Onboarding / CS"
-    ],
-    "description": "About GoodLeap: GoodLeap is a technology company delivering best-in-class financing and software products for sustainable solutions, from solar panels and batteries to energy-efficient HVAC, heat pumps, roofing, windows, and more. Over 1 million homeowners have benefited from our simple, fast, and frictionless technology that makes the adoption of these products more affordable, accessible, and easier to understand. Thousands of professionals deploying home efficiency and sol",
-    "requirements": [
-      "Experience with Onboarding / CS"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_163179",
-    "title": "Executive Business Director, West",
-    "company": "Xenon Pharmaceuticals Inc.",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/2c3fd54cd2e8-221.webp",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/163179-executive-business-director-west",
-    "publishedAt": "2026-11-18T15:49:21.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Inteligência de Mercado",
-      "Análise de Dados",
-      "CRM"
-    ],
-    "description": "Who We Are: Xenon Pharmaceuticals ( NASDAQ:XENE ) is a neuroscience-focused biopharmaceutical company dedicated to drug discovery, clinical development, and commercialization of life-changing therapeutics for patients in need. We are looking for great people who thrive in a respectful, collaborative, inclusive, and productive culture to join the Xenon team. What We Do: We are advancing an exciting product pipeline to address indications with high unmet medical need, including",
-    "requirements": [
-      "Experience with Inteligência de Mercado",
-      "Experience with Análise de Dados",
-      "Experience with CRM"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_163174",
-    "title": "Executive Business Director, East",
-    "company": "Xenon Pharmaceuticals Inc.",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/2c3fd54cd2e8-221.webp",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/163174-executive-business-director-east",
-    "publishedAt": "2026-11-18T15:49:12.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Inteligência de Mercado",
-      "Análise de Dados",
-      "CRM"
-    ],
-    "description": "Who We Are: Xenon Pharmaceuticals ( NASDAQ:XENE ) is a neuroscience-focused biopharmaceutical company dedicated to drug discovery, clinical development, and commercialization of life-changing therapeutics for patients in need. We are looking for great people who thrive in a respectful, collaborative, inclusive, and productive culture to join the Xenon team. What We Do: We are advancing an exciting product pipeline to address indications with high unmet medical need, including",
-    "requirements": [
-      "Experience with Inteligência de Mercado",
-      "Experience with Análise de Dados",
-      "Experience with CRM"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "jobicy_163168",
     "title": "Forward Deployed Engineer II (Remote, US)",
     "company": "Sayari",
@@ -20517,6 +20340,41 @@
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_153387",
+    "title": "Strategic Account Executive",
+    "company": "Lightspeed Commerce",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/09/3d38005a-221.png",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/153387-strategic-account-executive-9",
+    "publishedAt": "2026-11-18T03:00:30.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (UK)",
+    "seniority": "senior",
+    "stacks": [
+      "Onboarding / CS",
+      "Análise de Dados",
+      "CRM",
+      "Salesforce"
+    ],
+    "description": "Hi there! Thanks for stopping by 👋 Are you actively looking for a new opportunity? Or just checking the market? Well… you might just be in the right place! Lightspeed is looking for a Strategic Account Executive to join our UK Sales team. As a Strategic Account Executive focused on new business, you'll be at the forefront of our company's growth in the UK, driving revenue by identifying, pursuing, and closing strategic deals with high-value clients across the hospitality sec",
+    "requirements": [
+      "Experience with Onboarding / CS",
+      "Experience with Análise de Dados",
+      "Experience with CRM",
+      "Experience with Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
       "dados_bi"
     ],
     "distanceFromMuzambinhoKm": 0,
@@ -21011,6 +20869,37 @@
     "isInternational": true
   },
   {
+    "id": "jobicy_155764",
+    "title": "Bilingual Customer Experience Specialist (Spanish)",
+    "company": "Instacart",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2023/03/fe39c2bc9bb5ebb0b5e24318b1f3b60d.jpeg",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/155764-bilingual-customer-experience-specialist-spanish",
+    "publishedAt": "2026-11-18T04:15:13.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM",
+      "Salesforce"
+    ],
+    "description": "We're transforming the grocery industry At Instacart, we invite the world to share love through food because we believe everyone should have access to the food they love and more time to enjoy it together. Where others see a simple need for grocery delivery, we see exciting complexity and endless opportunity to serve the varied needs of our community. We work to deliver an essential service that customers rely on to get their groceries and household goods, while also offering",
+    "requirements": [
+      "Experience with CRM",
+      "Experience with Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
     "id": "jobicy_155706",
     "title": "Enterprise Customer Success Manager (French speaker)",
     "company": "Canonical",
@@ -21103,6 +20992,41 @@
     "isAffirmative": false,
     "nicheCategories": [
       "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_155633",
+    "title": "Enterprise Territory Account Executive, Southeast",
+    "company": "Kong Inc.",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2022/03/f43352b801f4c6854ba70c5f70cec7cd.jpeg",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/155633-enterprise-territory-account-executive-southeast",
+    "publishedAt": "2026-11-18T03:05:12.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "senior",
+    "stacks": [
+      "Onboarding / CS",
+      "CRM",
+      "Salesforce",
+      "APIs / Webhooks"
+    ],
+    "description": "Are you ready to unlock intelligence? If you don’t think you meet all of the criteria below but are still interested in the job, please apply. Nobody checks every box - we’re looking for candidates that are particularly strong in a few areas, and have some interest and capabilities in others. About the Role: We are seeking a committed Enterprise Sales Executive with a successful background in sales and account management, ideally within open source or similar enterprise softw",
+    "requirements": [
+      "Experience with Onboarding / CS",
+      "Experience with CRM",
+      "Experience with Salesforce",
+      "Experience with APIs / Webhooks"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "inteligencia_mercado",
       "crm_revops_onboarding",
       "dados_bi"
     ],
@@ -21751,105 +21675,6 @@
     "isInternational": true
   },
   {
-    "id": "jobicy_162655",
-    "title": "Manager, Sales",
-    "company": "Cision",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/08/e9661342-221.jpeg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/162655-manager-sales",
-    "publishedAt": "2026-11-16T15:39:03.000Z",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Onboarding / CS",
-      "CRM",
-      "RevOps",
-      "Excel / Sheets"
-    ],
-    "description": "At Cision , we believe in empowering every individual to make an impact. Here, your voice is heard, your ideas are valued, and your unique perspective fuels our collective success. As part of our global team, you'll thrive in an environment that champions curiosity, collaboration, and innovation, all while making meaningful contributions to the brands we accelerate. Join us in shaping the future of communication and building authentic connections that matter. Whether you're s",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with CRM",
-      "Experience with RevOps",
-      "Experience with Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_162640",
-    "title": "Sales Assistant",
-    "company": "Amplify",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/574452e40fe3-221.webp",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/162640-sales-assistant",
-    "publishedAt": "2026-11-16T15:37:13.000Z",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "pleno",
-    "stacks": [
-      "Onboarding / CS",
-      "CRM"
-    ],
-    "description": "About Amplify Amplify helps teachers bring delight and rigor to students every day. We have become a leader in K–12 literacy, biliteracy, math, and science by building inspiring teaching and learning experiences based on research. The Amplify Classroom platform combines curriculum, assessment, and supplemental learning into one coherent high-quality instructional system. A pioneer in education since 2000, Amplify has developed deep relationships in states and districts by par",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with CRM"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "jobicy_162634",
-    "title": "Channel Account Manager II, Service Providers",
-    "company": "Huntress",
-    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/91eae3ae-221.jpg",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://jobicy.com/jobs/162634-channel-account-manager-ii-service-providers-2",
-    "publishedAt": "2026-11-16T15:37:03.000Z",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA)",
-    "seniority": "especialista",
-    "stacks": [
-      "Onboarding / CS",
-      "CRM",
-      "Salesforce"
-    ],
-    "description": "What We Do: Cybercrime is growing, and more businesses are getting hit by threats that used to target only the biggest organizations. That pushes defenders like us to operate at the highest level, and it deepens our need for good people who want to make a meaningful impact. Founded in 2015 by former NSA cyber operators, Huntress is a remote-first team working to make enterprise-grade cybersecurity accessible to businesses of all sizes. We work closely with security teams and ",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with CRM",
-      "Experience with Salesforce"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "jobicy_155739",
     "title": "Customer Success Manager",
     "company": "Hubstaff",
@@ -22003,6 +21828,36 @@
       "inteligencia_mercado",
       "crm_revops_onboarding",
       "automacao_ia"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "jobicy_150852",
+    "title": "Account Executive",
+    "company": "Housecall Pro",
+    "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2025/06/870ed960-221.jpg",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://jobicy.com/jobs/150852-account-executive-2",
+    "publishedAt": "2026-11-18T03:05:17.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (USA)",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS",
+      "Excel / Sheets"
+    ],
+    "description": "Why Housecall Pro? Help us build solutions that build better lives. At Housecall Pro, we show up to work every day to make a difference for real people: the home service professionals that support America’s 100 million homes. We’re all about the Pro, and dedicate our days to helping them streamline operations, scale their businesses, and—ultimately—save time so they can be with their families and live well. While our headquarters are based in Denver, Colorado, our team spans ",
+    "requirements": [
+      "Experience with Onboarding / CS",
+      "Experience with Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -22302,39 +22157,25 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/fortive/jobs/sr-ops-analyst-revenue-operations",
-    "title": "Sr. Ops Analyst, Revenue Operations",
-    "company": "Fortive",
-    "companyLogo": "https://cdn-images.himalayas.app/9e77ghsp5ecnrwa4kyxgufjonj1m",
+    "id": "himalayas_https://himalayas.app/companies/reyes-holdings/jobs/salesforce-business-analyst",
+    "title": "Salesforce Business Analyst",
+    "company": "Reyes Holdings",
+    "companyLogo": "",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/fortive/jobs/sr-ops-analyst-revenue-operations?utm_source=api",
-    "publishedAt": "2026-11-18T18:01:32.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/reyes-holdings/jobs/salesforce-business-analyst?utm_source=api",
+    "publishedAt": "2026-11-18T21:02:43.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (United States)",
-    "seniority": "senior",
+    "seniority": "pleno",
     "stacks": [
-      "Operações / BizOps",
-      "Análise de Dados",
       "Indicadores / KPIs",
-      "Power BI",
-      "CRM",
-      "Salesforce",
-      "RevOps",
-      "Sales Ops",
-      "Excel / Sheets"
+      "Salesforce"
     ],
-    "description": "Sr. Ops Analyst, Revenue Operations Role Overview The Sr. Ops Analyst, Revenue Operations is a hands-on member of the Revenue Operations team responsible for supporting the day-to-day execution of the sales organization. This role helps ensure Sales leaders and sellers have accurate information, effective processes, and the operational support needed to manage pipeline, forecast revenue, and achieve business objectives. The analyst will work closely with Sales leadership, Fin",
+    "description": "Position responsibilities: Participate in requirements gathering, design workshops to understand applications’ functionality and support requirement and works with business and technology leaders to further define the support and project functions needed within the organization Manage operational requests and reporting including analysis, issue troubleshooting, and resolution to build custom reports including dashboards and workflows Create and update data dictionary, data mo",
     "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Análise de Dados",
       "Experience with Indicadores / KPIs",
-      "Experience with Power BI",
-      "Experience with CRM",
-      "Experience with Salesforce",
-      "Experience with RevOps",
-      "Experience with Sales Ops",
-      "Experience with Excel / Sheets"
+      "Experience with Salesforce"
     ],
     "isActive": true,
     "isAffirmative": false,
@@ -22347,71 +22188,175 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/signify/jobs/sales-specialist-4196500088",
-    "title": "Sales Specialist",
-    "company": "Signify",
-    "companyLogo": "https://cdn-images.himalayas.app/6ui933faa8707fwhejww0as2x4nh",
+    "id": "himalayas_https://himalayas.app/companies/alertmedia/jobs/global-intelligence-analyst-tues-sat-3pm-11pm-cst",
+    "title": "Global Intelligence Analyst (Tues-Sat, 3pm-11pm CST)",
+    "company": "AlertMedia",
+    "companyLogo": "https://cdn-images.himalayas.app/c2dx51agef6cesq7pd0oi671zrvj",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/signify/jobs/sales-specialist-4196500088?utm_source=api",
-    "publishedAt": "2026-11-18T18:01:17.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/alertmedia/jobs/global-intelligence-analyst-tues-sat-3pm-11pm-cst?utm_source=api",
+    "publishedAt": "2026-11-18T21:01:59.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (India)",
-    "seniority": "especialista",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "pleno",
     "stacks": [
-      "Onboarding / CS",
-      "Análise de Dados"
+      "Operações / BizOps",
+      "Indicadores / KPIs"
     ],
-    "description": "About Signify Through bold discovery and cutting-edge innovation, we lead an industry that is vital for the future of our planet: lighting. Through our leadership in connected lighting and the Internet of Things, we're breaking new ground in data analytics, AI, and smart solutions for homes, offices, cities, and beyond. At Signify , you can shape tomorrow by building on our incredible 125+ year legacy while working toward even bolder sustainability goals. Our culture of conti",
+    "description": "Do work that matters. At AlertMedia , we help organizations protect their people, operations, and brand. Our modern Risk Intelligence and Response platform empowers teams to detect emerging threats, assess impact, and respond with confidence. We believe building resilience should be simpler—and it starts with bringing critical information and workflows together in one unified platform. Our core values drive us in our important mission of keeping people safe & informed: We’re ",
     "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with Análise de Dados"
+      "Experience with Operações / BizOps",
+      "Experience with Indicadores / KPIs"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
-      "inteligencia_mercado",
+      "bizops_processos"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/qc-holdings/jobs/e-commerce-collections-specialist-5723928395",
+    "title": "E-Commerce Collections Specialist",
+    "company": "QC Holdings",
+    "companyLogo": "",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/qc-holdings/jobs/e-commerce-collections-specialist-5723928395?utm_source=api",
+    "publishedAt": "2026-11-18T20:59:33.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "especialista",
+    "stacks": [
+      "Excel / Sheets"
+    ],
+    "description": "The QC Holdings /LendNation E-Commerce Department is seeking experienced remote collections professionals to fill the position of E-Commerce Collections Specialist . This is a full-time opportunity with BONUS POTENTIAL . This position is responsible for servicing loans and collecting on delinquent and defaulted loans. The employee will ensure compliance with all company, local, state, and federal policy, procedures, and laws. Location: Fully Remote with/optional Hybrid opport",
+    "requirements": [
+      "Experience with Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/rvu/jobs/head-of-data-engineering",
+    "title": "Head of Data - Engineering",
+    "company": "RVU",
+    "companyLogo": "https://cdn-images.himalayas.app/fm4br7mjz0b9dmj37cqoikulj9sz",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/rvu/jobs/head-of-data-engineering?utm_source=api",
+    "publishedAt": "2026-11-18T20:53:36.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (United Kingdom)",
+    "seniority": "especialista",
+    "stacks": [
+      "Análise de Dados",
+      "SQL",
+      "Salesforce"
+    ],
+    "description": "Remote - occasional trips to the London office About Mojo Mortgages We're not your average mortgage brokerage. We're a fast-moving, ever-evolving fintech on a mission to disrupt the industry. With a buzzing, high-energy environment, we're constantly pushing boundaries to deliver smarter solutions and better outcomes for our customers. Change is constant here, and so is our drive to work faster, think bigger, and raise the bar. We’re part of RVU , a group of online brands that",
+    "requirements": [
+      "Experience with Análise de Dados",
+      "Experience with SQL",
+      "Experience with Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
       "crm_revops_onboarding",
-      "dados_bi",
+      "dados_bi"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/nayax/jobs/customer-support-specialist-nayax-energy",
+    "title": "Customer Support Specialist – Nayax Energy",
+    "company": "Nayax",
+    "companyLogo": "https://cdn-images.himalayas.app/w3wl4glsnx8p5lu5z8cnvzf8qt1w",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/nayax/jobs/customer-support-specialist-nayax-energy?utm_source=api",
+    "publishedAt": "2026-11-18T20:30:03.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Brazil)",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "Description Nayax Energy is expanding its Tier 1 customer support team and is looking for a Customer Support Specialist to assist customers across the United States, including EV drivers and commercial charging station operators. You will handle customer inquiries, troubleshoot issues, manage support tickets, and escalate complex cases when necessary, ensuring efficient resolution and a high-quality customer experience. This is a remote position Key Responsibilities Serve as ",
+    "requirements": [
+      "Experience with Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "distanceFromMuzambinhoKm": 0,
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/mercor/jobs/ai-safety-specialist-remote-upto-84-hr-1312994365",
+    "title": "AI Safety Specialist - Remote | Upto $84/hr",
+    "company": "mercor",
+    "companyLogo": "https://cdn-images.himalayas.app/6jo5q9nua35jgtdfm41nq6b7ocqf",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/mercor/jobs/ai-safety-specialist-remote-upto-84-hr-1312994365?utm_source=api",
+    "publishedAt": "2026-11-18T20:28:31.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Hungary)",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "About the job Mercor connects elite creative and technical talent with leading AI research labs. Headquartered in San Francisco, our investors include Benchmark , General Catalyst , Peter Thiel , Adam D'Angelo , Larry Summers , and Jack Dorsey . Position: AI Safety Red Teamer Type: Contract Compensation: $70–$84/hour Location: Remote Role Responsibilities Design adversarial prompts to stress-test frontier AI models . Identify jailbreaks, unsafe behaviors, hallucinations, and ",
+    "requirements": [
+      "Experience with Operações / BizOps",
+      "Experience with Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
       "automacao_ia"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/reged/jobs/artificial-intelligence-architect",
-    "title": "Artificial Intelligence Architect",
-    "company": "RegEd",
-    "companyLogo": "https://cdn-images.himalayas.app/i84aoqg0mdfww6r3g0ltcwykjmei",
+    "id": "himalayas_https://himalayas.app/companies/blanchard/jobs/temporary-contracts-specialist",
+    "title": "Temporary Contracts Specialist",
+    "company": "Blanchard",
+    "companyLogo": "",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/reged/jobs/artificial-intelligence-architect?utm_source=api",
-    "publishedAt": "2026-11-18T17:59:40.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/blanchard/jobs/temporary-contracts-specialist?utm_source=api",
+    "publishedAt": "2026-11-18T20:25:46.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (United States)",
-    "seniority": "senior",
+    "seniority": "especialista",
     "stacks": [
-      "Onboarding / CS",
-      "Indicadores / KPIs",
-      "Automação / IA",
-      "APIs / Webhooks",
-      "Python"
+      "Salesforce"
     ],
-    "description": "Who We Are: RegEd is the market-leading provider ofRegTechenterprise solutions with relationships with hundreds of enterprise clients, including 80% of the top 25 financial services firms. Established in 2000 by former regulators, the company is recognized for continuous regulatory technology innovation with solutions hallmarked by workflow-directed processes, data integration, regulatory intelligence, automated validations, business process automation and compliance dashboar",
+    "description": "Who We Are At Blanchard ®, we believe the heart of leadership is the human connection. For over 45 years, we’ve partnered with organizations around the world to transform people into impactful leaders—equipping more than 150,000 individuals each year with the mindsets, skills, and confidence to lead effectively. We’re proud to be the home of SLII®, the world’s most widely taught leadership model, and offer a comprehensive suite of training experiences—including Management Ess",
     "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with Indicadores / KPIs",
-      "Experience with Automação / IA",
-      "Experience with APIs / Webhooks",
-      "Experience with Python"
+      "Experience with Salesforce"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
       "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
+      "inteligencia_mercado",
+      "crm_revops_onboarding"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -22726,69 +22671,6 @@
     "isInternational": true
   },
   {
-    "id": "wwr_cGVhbHMtc3BlY2lhbGlzdA",
-    "title": "DRG and Clinical Appeals Specialist",
-    "company": "Second Wave Delivery Systems",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/second-wave-delivery-systems-drg-and-clinical-appeals-specialist",
-    "publishedAt": "2026-11-14T17:01:00.000Z",
-    "daysOpen": 4,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Las Vegas, Nevada, United States <br /><strong>URL:</strong> <a href=\"https://www.secondwaveds.com/\">https://www.secondwaveds.com/</a> </p> <div> <div> <p><span><span>Key Responsibilities</span></span><span>&nbsp;</span></p> </div> <div> <p><span>This position is designed as a cross-functional revenue integrity role. While primary responsibilities focus on clinical and DRG appeals, the specialist is expected to support DRG validation audits,",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_9tbWVyY2lhbC1maW5hbmNl",
-    "title": "Senior Financial Analyst, Commercial Finance",
-    "company": "Mozilla",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/mozilla-senior-financial-analyst-commercial-finance",
-    "publishedAt": "2026-11-13T15:58:24.000Z",
-    "daysOpen": 5,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Canada Only)",
-    "seniority": "senior",
-    "stacks": [
-      "Análise de Dados",
-      "SQL",
-      "Automação / IA",
-      "Python"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Canada <br /><strong>URL:</strong> <a href=\"http://www.mozilla.org\">http://www.mozilla.org</a> </p> <div> <div><strong>Why Mozilla?</strong> <p><span>Mozilla Corporation is the non-profit-backed technology company that has shaped the internet for the better over the last 25 years. We make pioneering brands like Firefox, the privacy-minded web browser. Now, with more than 225 million people around the world using our products each month, we'r",
-    "requirements": [
-      "Experience with Análise de Dados",
-      "Experience with SQL",
-      "Experience with Automação / IA",
-      "Experience with Python"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_Rpb25zLWNvb3JkaW5hdG9y",
     "title": "Cleaning Operations Coordinator",
     "company": "Stayd Collective",
@@ -22840,34 +22722,6 @@
       "bizops_processos",
       "dados_bi",
       "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_WRlZGljYXRlZC1jbGllbnQ",
-    "title": "Liability Claims Associate | Remote | Dedicated Client",
-    "company": "Sedgwick",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/sedgwick-liability-claims-associate-remote-dedicated-client",
-    "publishedAt": "2026-11-09T09:07:03.000Z",
-    "daysOpen": 9,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA Only)",
-    "seniority": "junior",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Alabama, United States <br /><strong>URL:</strong> <a href=\"https://www.sedgwick.com\">https://www.sedgwick.com</a> </p> <p>By joining Sedgwick, you'll be part of something truly meaningful. It’s what our 33,000 colleagues do every day for people around the world who are facing the unexpected. We invite you to grow your career with us, experience our caring culture, and enjoy work-life balance. Here, there’s no limit to what you can achieve.<",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -22926,36 +22780,6 @@
       "bizops_processos",
       "crm_revops_onboarding",
       "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_Qtb3BlcmF0aW9ucy1sZWFk",
-    "title": "Unified Foundational Offers Strategy and Operations Lead",
-    "company": "Microsoft",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/microsoft-unified-foundational-offers-strategy-and-operations-lead",
-    "publishedAt": "2026-11-06T07:13:06.000Z",
-    "daysOpen": 12,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Processos / BPMN",
-      "Onboarding / CS"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> San Francisco, California, United States <br /><strong>URL:</strong> <a href=\"https://microsoft.com\">https://microsoft.com</a> </p> <div><b>Overview</b><br><div><p><strong><span>Candidate-facing role description</span><span>&nbsp;</span></strong></p></div><div><p><span>With more than 45,000 employees and partners worldwide, the Customer and Commercial Success (CCS) organization is on a mission to empower customers to accelerate business valu",
-    "requirements": [
-      "Experience with Processos / BPMN",
-      "Experience with Onboarding / CS"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -23028,7 +22852,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/spreetail-principal-financial-analyst-merchandising",
     "publishedAt": "2026-11-05T21:25:35.000Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Texas)",
     "seniority": "especialista",
@@ -23058,43 +22882,13 @@
     "isInternational": true
   },
   {
-    "id": "wwr_ZXhlY3V0aXZlLXNlY29wcw",
-    "title": "Specialist Account Executive, SecOps",
-    "company": "Zscaler",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/zscaler-specialist-account-executive-secops",
-    "publishedAt": "2026-11-05T21:25:35.000Z",
-    "daysOpen": 12,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<img src=\"https://we-work-remotely.imgix.net/logos/0171/6705/logo.gif?ixlib=rails-4.0.0&w=50&h=50&dpr=2&fit=fill&auto=compress\" /> <p> <strong>Headquarters:</strong> Remote - Georgia, USA; Remote - USA <br /><strong>URL:</strong> <a href=\"http://zscaler.com\">http://zscaler.com</a> </p> <div class=\"job__description body\"><div><p>Zscaler (NASDAQ: ZS) accelerates digital transformation so customers can be more agile, efficient, resilient, and secure. The Zscaler Zero Trust Excha",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_bnMtbWFuYWdlci1sYXRhbQ",
     "title": "Supply Chain & Operations Manager - LATAM",
     "company": "Super Speciosa",
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/super-speciosa-supply-chain-operations-manager-latam",
     "publishedAt": "2026-11-04T21:16:31.000Z",
-    "daysOpen": 13,
+    "daysOpen": 14,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Anywhere in the World)",
     "seniority": "especialista",
@@ -23154,109 +22948,6 @@
     "isInternational": true
   },
   {
-    "id": "wwr_GVzZm9yY2UtbGVhZC11c2E",
-    "title": "Salesforce Lead - USA",
-    "company": "Storyblok",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/storyblok-salesforce-lead-usa",
-    "publishedAt": "2026-10-23T07:31:21.000Z",
-    "daysOpen": 26,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Onboarding / CS",
-      "CRM",
-      "Salesforce",
-      "RevOps",
-      "Automação / IA"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Remote </p> <div class=\"content-intro\"><p>Storyblok is a headless CMS that enables marketers and developers to create with joy and publish with confidence. It empowers you to deliver structured and consistent content everywhere: websites, apps, AI search, and beyond.</p> <p>Legendary brands like Virgin Media O2, Oatly, and TomTom use Storyblok to make a bigger, faster market impact.</p> <p>&nbsp;</p> <p><strong>WHAT IS IN IT FOR YOU</strong>",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with CRM",
-      "Experience with Salesforce",
-      "Experience with RevOps",
-      "Experience with Automação / IA"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_WJ1c2luZXNzLXBhcnRuZXI",
-    "title": "Analytics Business Partner",
-    "company": "Cribl",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/cribl-analytics-business-partner",
-    "publishedAt": "2026-10-21T07:31:11.000Z",
-    "daysOpen": 28,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "pleno",
-    "stacks": [
-      "Operações / BizOps",
-      "Análise de Dados",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Remote - United States </p> <div class=\"content-intro\"><p>Join the company that’s building the telemetry infrastructure for the AI era. At Cribl, we partner with IT and Security teams at many of the world’s biggest enterprises, including half of the Fortune 100, to bridge the gap between AI ambition and infrastructure reality. As the AI Platform for Telemetry, we give customers the choice, control, and flexibility to manage and analyze telem",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_VsbGlnZW5jZS1hbmFseXN0",
-    "title": "Business Intelligence Analyst",
-    "company": "Carrot",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/carrot-business-intelligence-analyst",
-    "publishedAt": "2026-10-20T07:30:58.000Z",
-    "daysOpen": 29,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "pleno",
-    "stacks": [
-      "Análise de Dados",
-      "Indicadores / KPIs",
-      "Power BI",
-      "SQL"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Remote </p> <div class=\"content-intro\"><p><strong>About Carrot: </strong></p> <p><a href=\"https://c212.net/c/link/?t=0&amp;l=en&amp;o=4420559-1&amp;h=3535232987&amp;u=https%3A%2F%2Fwww.carrotfertility.com%2F&amp;a=Carrot+Fertility\">Carrot</a> is the leading global fertility and family care platform, built on intelligent care orchestration: the right clinical guidance, at the right moment, in the context of each member’s life. More than a tho",
-    "requirements": [
-      "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs",
-      "Experience with Power BI",
-      "Experience with SQL"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_LXByb2R1Y3Qtb3duZXItMQ",
     "title": "Product Owner",
     "company": "Zanda Health",
@@ -23283,33 +22974,6 @@
       "crm_revops_onboarding",
       "dados_bi",
       "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_BlcmF0aW9ucy1hbmFseXN0",
-    "title": "Payment Operations Analyst",
-    "company": "Gusto, Inc.",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/gusto-inc-payment-operations-analyst",
-    "publishedAt": "2026-10-24T07:31:03.000Z",
-    "daysOpen": 25,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "senior",
-    "stacks": [
-      "SQL"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> San Francisco, CA - Hybrid; Seattle, WA - Remote </p> <div class=\"content-intro\"><p>&nbsp;</p> <hr> <p><strong>About Gusto</strong></p> <p>At Gusto, we're on a mission to grow the small business economy. We handle the hard stuff — payroll, health insurance, 401(k)s, and HR — so owners can focus on their craft and their customers. With teams in Denver, San Francisco, and New York, we support more than 500,000 small businesses nationwide and a",
-    "requirements": [
-      "Experience with SQL"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -23401,35 +23065,6 @@
     "isInternational": true
   },
   {
-    "id": "wwr_ZmaW5nLWNvb3JkaW5hdG9y",
-    "title": "School Staffing Coordinator",
-    "company": "Celebrations Speech Group Inc.",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/celebrations-speech-group-inc-school-staffing-coordinator",
-    "publishedAt": "2026-11-17T04:40:17.000Z",
-    "daysOpen": 1,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Operações / BizOps",
-      "Onboarding / CS"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> United States <br /><strong>URL:</strong> <a href=\"https://www.celebrationspeechgroup.com\">https://www.celebrationspeechgroup.com</a> </p> <div> <div><strong>Benefits:</strong></div> <ul> <li>Flexible schedule</li> <li>Opportunity for advancement</li> </ul> </div> <div> <div> <h1>School Staffing Coordinator / Consultant</h1> <div> <strong>Independent Contractor (1099) | Commission-Based Opportunity<br></strong><br> </div> <div>Celebrations S",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Onboarding / CS"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_Y3QtY29vcmRpbmF0b3ItMQ",
     "title": "Creative Marketing Project Coordinator",
     "company": "CapsLock",
@@ -23480,60 +23115,6 @@
     "isAffirmative": false,
     "nicheCategories": [
       "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_29yZGluYXRvci1kZW50YWw",
-    "title": "Marketing Coordinator (Dental)",
-    "company": "D2B",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/d2b-marketing-coordinator-dental",
-    "publishedAt": "2026-11-16T17:01:32.000Z",
-    "daysOpen": 2,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Asia Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "CRM"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Manila, Metro Manila, Philippines <br /><strong>URL:</strong> <a href=\"https://jobs.workable.com/company/dcaVtKQqXr9FwBNppNCBH9/jobs-at-d2b\">https://jobs.workable.com/company/dcaVtKQqXr9FwBNppNCBH9/jobs-at-d2b</a> </p> <p>Position: Marketing Coordinator&nbsp;</p><p>Salary: 2000 NZD</p><p>Working Hours &amp; Conditions: Part-Time , Hours To be confirmed</p><p>Holidays : To follow</p><p></p><p>ABOUT THE COMPANY:&nbsp;</p><p>The Compnay is a pr",
-    "requirements": [
-      "Experience with CRM"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "crm_revops_onboarding"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_bnRlbnQtc3BlY2lhbGlzdA",
-    "title": "SEO Content Specialist",
-    "company": "Donorbox",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/donorbox-seo-content-specialist",
-    "publishedAt": "2026-11-14T17:00:34.000Z",
-    "daysOpen": 4,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Asia Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> India <br /><strong>URL:</strong> <a href=\"https://donorbox.org\">https://donorbox.org</a> </p> <h2><strong>About Donorbox</strong></h2> <p>Donorbox is a leading fundraising platform and donor management system for nonprofit organizations. Our mission is to accelerate positive impact worldwide by helping nonprofits become highly effective at raising funds and managing their supporter base. Since 2014, we have powered more than 100,000 global ",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -23604,35 +23185,6 @@
       "crm_revops_onboarding",
       "dados_bi",
       "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_YmlrZS1yZXBhaXItdG9vbA",
-    "title": "Product Marketing Managers: GTM Brief Review for Bike Repair Tool",
-    "company": "Terac",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/terac-product-marketing-managers-gtm-brief-review-for-bike-repair-tool",
-    "publishedAt": "2026-11-13T21:41:29.000Z",
-    "daysOpen": 4,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "pleno",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<img src=\"https://we-work-remotely.imgix.net/logos/0171/6773/logo.gif?ixlib=rails-4.0.0&w=50&h=50&dpr=2&fit=fill&auto=compress\" /> <p> <strong>Headquarters:</strong> Afghanistan <br /><strong>URL:</strong> <a href=\"http://terac.com\">http://terac.com</a> </p> <h2>What We're Researching</h2><p>We're running a paid study on go-to-market strategies tailored to independent retail operations. Specifically, we are evaluating a new appointment management tool designed for independent",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado"
     ],
     "distanceFromMuzambinhoKm": 0,
     "isInternational": true
@@ -23731,62 +23283,6 @@
     "isInternational": true
   },
   {
-    "id": "wwr_XNhbGVzLXNwZWNpYWxpc3Q",
-    "title": "Sales Specialist",
-    "company": "Yalent",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/yalent-sales-specialist",
-    "publishedAt": "2026-11-11T17:00:49.000Z",
-    "daysOpen": 7,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Africa Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Cairo, Cairo, Egypt <br /><strong>URL:</strong> <a href=\"https://jobs.workable.com/company/ew61qLVCmwC8sAwjrCAtS9/jobs-at-yalent\">https://jobs.workable.com/company/ew61qLVCmwC8sAwjrCAtS9/jobs-at-yalent</a> </p> <p>Company: AllCare.ai | Healthcare Technology</p>The Mission<p>AllCare.ai is an AI-powered healthcare delivery platform that acts as the easy button for accessing care. We combine advanced artificial intelligence with compassionate c",
-    "requirements": [
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_dGluZy1tYW5hZ2VyLWdyYw",
-    "title": "Associate Product Marketing Manager – GRC",
-    "company": "Mitratech",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/mitratech-associate-product-marketing-manager-grc",
-    "publishedAt": "2026-11-06T17:00:39.000Z",
-    "daysOpen": 12,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (USA Only)",
-    "seniority": "especialista",
-    "stacks": [
-      "Automação / IA"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Franklin Parish, Louisiana, United States <br /><strong>URL:</strong> <a href=\"http://www.mitratech.com\">http://www.mitratech.com</a> </p> <p>At Mitratech, we are a team of innovators focused on building world-class products that simplify operations in the Legal, Risk, Compliance, and HR functions. We are a close-knit, globally dispersed team that thrives in an ecosystem that supports individual excellence and takes pride in a diverse, inclu",
-    "requirements": [
-      "Experience with Automação / IA"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_S11Z2MtY29vcmRpbmF0b3I",
     "title": "UGC Coordinator",
     "company": "Elavate",
@@ -23850,7 +23346,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/london-recruitment-and-social-media-specialist",
     "publishedAt": "2026-11-05T21:25:07.000Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Anywhere in the World)",
     "seniority": "especialista",
@@ -23880,7 +23376,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/zanda-health-marketing-coordinator-paid-media",
     "publishedAt": "2026-11-05T19:23:51.000Z",
-    "daysOpen": 12,
+    "daysOpen": 13,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Anywhere in the World)",
     "seniority": "especialista",
@@ -23913,7 +23409,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/clickguard-inc-revops-manager",
     "publishedAt": "2026-11-03T19:09:15.000Z",
-    "daysOpen": 14,
+    "daysOpen": 15,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Anywhere in the World)",
     "seniority": "especialista",
@@ -24008,67 +23504,6 @@
     "requirements": [
       "Experience with Onboarding / CS",
       "Experience with Salesforce"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_xpZ2VuY2UtbWFuYWdlci0x",
-    "title": "Principal Competitive Intelligence Manager",
-    "company": "6sense",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/6sense-principal-competitive-intelligence-manager-1",
-    "publishedAt": "2026-10-29T22:53:36.000Z",
-    "daysOpen": 19,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Inteligência Comercial",
-      "Onboarding / CS"
-    ],
-    "description": "<img src=\"https://we-work-remotely.imgix.net/logos/0171/6660/logo.gif?ixlib=rails-4.0.0&w=50&h=50&dpr=2&fit=fill&auto=compress\" /> <p> <strong>Headquarters:</strong> United States <br /><strong>URL:</strong> <a href=\"https://6sense.com/\">https://6sense.com/</a> </p> <div> <div> <h1>6sense Product Marketing</h1> <h2>Principal Competitive Intelligence Manager</h2> <h3>Competitive Intelligence &amp; Win/Loss</h3> <p><strong>Team:</strong> Product Marketing<br><strong>Reports to:",
-    "requirements": [
-      "Experience with Inteligência Comercial",
-      "Experience with Onboarding / CS"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_luZy1zcGVjaWFsaXN0LXVr",
-    "title": "Senior Content Marketing Specialist - UK",
-    "company": "Storyblok",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/storyblok-senior-content-marketing-specialist-uk",
-    "publishedAt": "2026-10-28T07:31:07.000Z",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Onboarding / CS",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Remote </p> <div class=\"content-intro\"><p>Storyblok is a headless CMS that enables marketers and developers to create with joy and publish with confidence. It empowers you to deliver structured and consistent content everywhere: websites, apps, AI search, and beyond.</p> <p>Legendary brands like Virgin Media O2, Oatly, and TomTom use Storyblok to make a bigger, faster market impact.</p> <p>&nbsp;</p> <p><strong>WHAT IS IN IT FOR YOU</strong>",
-    "requirements": [
-      "Experience with Onboarding / CS",
-      "Experience with Indicadores / KPIs"
     ],
     "isActive": true,
     "isAffirmative": false,
@@ -24424,75 +23859,13 @@
     "isInternational": true
   },
   {
-    "id": "wwr_NjaWVudGlzdC1wcm9kdWN0",
-    "title": "Lead Data Scientist, Product",
-    "company": "Descript",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/descript-lead-data-scientist-product",
-    "publishedAt": "2026-10-28T07:31:07.000Z",
-    "daysOpen": 21,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Análise de Dados",
-      "SQL",
-      "Automação / IA",
-      "Python"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> San Francisco, CA or Remote, US </p> <p>Our vision is to build the next generation platform to enable easy and fast creation of audio and video content powered by cutting-edge AI. Building a revolutionary way to record, transcribe, edit, and mix spoken audio and video comes with a series of unique challenges and requires solving hard and complex problems.</p> <p>As a lead product data scientist on the team, you will play a critical role in s",
-    "requirements": [
-      "Experience with Análise de Dados",
-      "Experience with SQL",
-      "Experience with Automação / IA",
-      "Experience with Python"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "wwr_WluZGlhbmEta2VudHVja3k",
-    "title": "Community Engagement Manager, Data Centers (Indiana & Kentucky)",
-    "company": "Anthropic",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/anthropic-community-engagement-manager-data-centers-indiana-kentucky",
-    "publishedAt": "2026-10-24T07:31:04.000Z",
-    "daysOpen": 25,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "especialista",
-    "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Remote-Friendly, United States </p> <div class=\"content-intro\"><h2><strong>About Anthropic</strong></h2> <p>Anthropic’s mission is to create reliable, interpretable, and steerable AI systems. We want AI to be safe and beneficial for our users and for society as a whole. Our team is a quickly growing group of committed researchers, engineers, policy experts, and business leaders working together to build beneficial AI systems.</p></div><h2>Ab",
-    "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "wwr_Y2UtYW5hbHlzdC1oYWNrcw",
     "title": "Senior / Staff Threat Intelligence Analyst, Hacks",
     "company": "TRM Labs",
     "platform": "remotive_intl",
     "canonicalUrl": "https://weworkremotely.com/remote-jobs/trm-labs-senior-staff-threat-intelligence-analyst-hacks",
     "publishedAt": "2026-10-21T18:51:52.000Z",
-    "daysOpen": 27,
+    "daysOpen": 28,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Anywhere in the World)",
     "seniority": "especialista",
@@ -24544,45 +23917,13 @@
     "isInternational": true
   },
   {
-    "id": "wwr_GVha2luZy1kZXNpcmFibGU",
-    "title": "Threat Detection Analyst (Japanese Speaking desirable)",
-    "company": "Fastly",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://weworkremotely.com/remote-jobs/fastly-threat-detection-analyst-japanese-speaking-desirable",
-    "publishedAt": "2026-10-20T07:30:57.000Z",
-    "daysOpen": 29,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Anywhere in the World)",
-    "seniority": "pleno",
-    "stacks": [
-      "Automação / IA",
-      "APIs / Webhooks",
-      "Python"
-    ],
-    "description": "<p> <strong>Headquarters:</strong> Australia (Remote) </p> <div class=\"content-intro\"><p>Fastly helps people stay better connected with the things they love. Fastly’s edge cloud platform enables customers to create great digital experiences quickly, securely, and reliably by processing, serving, and securing our customers’ applications as close to their end-users as possible — at the edge of the Internet. The platform is designed to take advantage of the modern internet, to b",
-    "requirements": [
-      "Experience with Automação / IA",
-      "Experience with APIs / Webhooks",
-      "Experience with Python"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi",
-      "automacao_ia"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
     "id": "gh_intl_gitlab_8857185002",
     "title": "Associate Renewals Manager, SMB",
     "company": "GitLab (Global)",
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8857185002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -24613,7 +23954,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8864819002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Bangalore, India)",
     "seniority": "senior",
@@ -24729,7 +24070,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8920912002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -24872,7 +24213,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8880999002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Japan)",
     "seniority": "senior",
@@ -24956,7 +24297,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8931347002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "pleno",
@@ -25096,7 +24437,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8533016002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, North America)",
     "seniority": "especialista",
@@ -25124,7 +24465,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8922013002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "pleno",
@@ -25166,7 +24507,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8883003002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25206,7 +24547,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8931768002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25238,7 +24579,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8907694002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25319,7 +24660,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8633807002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -25350,7 +24691,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8929477002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -25408,7 +24749,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8861782002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "senior",
@@ -25435,7 +24776,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8814596002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -25466,7 +24807,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8912969002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Netherlands; Remote, United Kingdom)",
     "seniority": "senior",
@@ -25534,7 +24875,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8844846002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Austria; Remote, Germany)",
     "seniority": "senior",
@@ -25562,7 +24903,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8808549002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Japan)",
     "seniority": "senior",
@@ -25590,7 +24931,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8907680002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25627,7 +24968,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8922062002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25658,7 +24999,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8909192002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, India)",
     "seniority": "especialista",
@@ -25687,7 +25028,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8855883002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -25727,7 +25068,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8905040002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Bangalore, India)",
     "seniority": "especialista",
@@ -25757,7 +25098,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8770661002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25834,7 +25175,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8612937002",
     "publishedAt": "2026-11-16T15:40:57-05:00",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, US)",
     "seniority": "especialista",
@@ -25869,7 +25210,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8691770002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, Canada; Remote, United States)",
     "seniority": "especialista",
@@ -25907,7 +25248,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8800489002",
     "publishedAt": "2026-11-06T15:25:07-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Bangalore, India)",
     "seniority": "especialista",
@@ -25995,7 +25336,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://www.asana.com/jobs/apply/8275101?gh_jid=8275101",
     "publishedAt": "2026-11-06T15:26:11-05:00",
-    "daysOpen": 11,
+    "daysOpen": 12,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote)",
     "seniority": "especialista",
@@ -26120,7 +25461,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/intercom/jobs/8157881",
     "publishedAt": "2026-10-28T17:26:39-04:00",
-    "daysOpen": 20,
+    "daysOpen": 21,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Chicago, Illinois; NYC, Remote; San Francisco, California)",
     "seniority": "especialista",
@@ -26259,7 +25600,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=8213951",
     "publishedAt": "2026-11-11T15:18:04-05:00",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Chicago, Atlanta, US-Remote, Toronto )",
     "seniority": "especialista",
@@ -26347,34 +25688,6 @@
     "nicheCategories": [
       "bizops_processos",
       "inteligencia_mercado",
-      "crm_revops_onboarding",
-      "dados_bi"
-    ],
-    "distanceFromMuzambinhoKm": 0,
-    "isInternational": true
-  },
-  {
-    "id": "gh_intl_stripe_8212672",
-    "title": "Instructional Designer, Global Sales Enablement",
-    "company": "Stripe",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=8212672",
-    "publishedAt": "2026-10-29T14:50:03-04:00",
-    "daysOpen": 20,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Remote)",
-    "seniority": "pleno",
-    "stacks": [
-      "Onboarding / CS"
-    ],
-    "description": "<h2><strong>Who we are</strong></h2> <h3><strong>About Stripe</strong></h3> <p>Stripe is a financial infrastructure platform for businesses. Millions of companies—from the world’s largest enterprises to the most ambitious startups—use Stripe to accept payments, grow their revenue, and accelerate new business opportunities. Our mission is to increase the GDP of the internet, and we have a staggering amount of work ahead. That means you have an unprecedented opportunity to put ",
-    "requirements": [
-      "Experience with Onboarding / CS"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
       "crm_revops_onboarding",
       "dados_bi"
     ],
@@ -26489,7 +25802,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=8393939",
     "publishedAt": "2026-11-16T14:46:40-05:00",
-    "daysOpen": 1,
+    "daysOpen": 2,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (US-Remote)",
     "seniority": "especialista",
@@ -26585,7 +25898,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=7214197",
     "publishedAt": "2026-11-03T14:33:24-05:00",
-    "daysOpen": 14,
+    "daysOpen": 15,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (US-Remote)",
     "seniority": "especialista",
@@ -26614,7 +25927,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=7230921",
     "publishedAt": "2026-11-11T15:56:43-05:00",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Chicago, Atlanta, US-Remote, Toro)",
     "seniority": "pleno",
@@ -26637,22 +25950,24 @@
   },
   {
     "id": "gh_intl_stripe_8175824",
-    "title": "Risk Operations Analyst - User Operations Policy",
+    "title": "Risk Operations Analyst - Restricted Business Operations ",
     "company": "Stripe",
     "platform": "remotive_intl",
     "canonicalUrl": "https://stripe.com/jobs/search?gh_jid=8175824",
-    "publishedAt": "2026-11-17T19:50:08-05:00",
+    "publishedAt": "2026-11-18T14:09:18-05:00",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote )",
     "seniority": "pleno",
     "stacks": [
+      "Operações / BizOps",
       "Onboarding / CS",
       "Análise de Dados",
       "SQL"
     ],
     "description": "<p><span style=&quot;font-size: 18pt;&quot;><strong>Who we are</strong></span></p> <p><strong>About Stripe</strong></p> <p>Stripe is a financial infrastructure platform for businesses. Millions of companies—from the world&#39;s largest enterprises to the most ambitious startups—use Stripe to accept payments, grow their revenue, and accelerate new business opportunities. Our mission is to increase the GDP of the internet, and we have a staggering amount of work ahead. That mea",
     "requirements": [
+      "Experience with Operações / BizOps",
       "Experience with Onboarding / CS",
       "Experience with Análise de Dados",
       "Experience with SQL"
@@ -26992,7 +26307,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8261245",
     "publishedAt": "2026-11-17T16:23:25-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Mexico)",
     "seniority": "senior",
@@ -27053,7 +26368,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8312421",
     "publishedAt": "2026-11-17T16:23:26-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Colombia)",
     "seniority": "especialista",
@@ -27082,7 +26397,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8097524",
     "publishedAt": "2026-11-17T16:23:24-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Colombia)",
     "seniority": "especialista",
@@ -27112,7 +26427,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8292798",
     "publishedAt": "2026-11-17T16:23:26-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Canada)",
     "seniority": "especialista",
@@ -27155,7 +26470,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8209103",
     "publishedAt": "2026-11-17T16:23:25-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - US)",
     "seniority": "pleno",
@@ -27188,7 +26503,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8324443",
     "publishedAt": "2026-11-17T16:23:26-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Mexico)",
     "seniority": "pleno",
@@ -27385,7 +26700,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8044650",
     "publishedAt": "2026-11-17T16:23:24-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - US)",
     "seniority": "senior",
@@ -27452,7 +26767,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8213826",
     "publishedAt": "2026-11-17T16:23:25-05:00",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - Australia)",
     "seniority": "especialista",
