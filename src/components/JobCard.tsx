@@ -11,7 +11,6 @@ import {
   Globe,
   Briefcase,
   Home,
-  Banknote,
   CheckCircle2,
   Link2,
   Eye,
@@ -410,27 +409,19 @@ export const JobCard: React.FC<JobCardProps> = ({
           </h3>
         </div>
 
-        {/* Empresa & Localidade (Sempre alinhado na mesma altura em todos os cards) */}
+        {/* Empresa (Sempre alinhado na mesma altura em todos os cards) */}
         <div className="flex items-center gap-3 text-xs text-slate-400 h-5 mb-3 truncate">
           <span className="flex items-center gap-1.5 font-medium text-slate-200 truncate">
             <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <span className="truncate">{job.company}</span>
           </span>
-          <span className="flex items-center gap-1 truncate">
-            <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <span className="truncate">{cleanLocation}</span>
-          </span>
         </div>
 
-        {/* Faixa Salarial + Indicador de Compatibilidade (Sempre na mesma linha horizontal) */}
+        {/* Localização + Indicador de Compatibilidade (Sempre na mesma linha horizontal) */}
         <div className="mb-3 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/90 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 text-xs truncate">
-            <Banknote className={`w-3.5 h-3.5 shrink-0 ${job.salary ? 'text-emerald-400' : 'text-slate-500'}`} />
-            {job.salary ? (
-              <span className="text-emerald-400 font-semibold truncate">{job.salary}</span>
-            ) : (
-              <span className="text-slate-400">Salário não informado</span>
-            )}
+          <div className="flex items-center gap-1.5 text-xs text-slate-300 truncate">
+            <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <span className="truncate font-medium">{cleanLocation}</span>
           </div>
 
           {(job.fitScore || 0) >= 60 && (

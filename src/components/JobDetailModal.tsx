@@ -5,7 +5,6 @@ import {
   MapPin,
   ExternalLink,
   Sparkles,
-  Banknote,
   CheckCircle2,
   Briefcase,
   Globe,
@@ -137,10 +136,6 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
                 <Building2 className="w-4 h-4 text-emerald-400" />
                 {job.company}
               </span>
-              <span className="flex items-center gap-1.5 text-slate-400">
-                <MapPin className="w-4 h-4 text-cyan-400" />
-                {cleanLocation}
-              </span>
             </div>
           </div>
 
@@ -178,11 +173,11 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
               <span className="text-[11px] font-semibold text-slate-400 uppercase flex items-center gap-1.5">
-                <Banknote className="w-3.5 h-3.5 text-emerald-400" />
-                Remuneração
+                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                Localização
               </span>
-              <div className={`text-sm font-bold ${job.salary ? 'text-emerald-400' : 'text-slate-300'}`}>
-                {job.salary || 'Salário não informado'}
+              <div className="text-sm font-bold text-white truncate" title={cleanLocation}>
+                {cleanLocation}
               </div>
             </div>
 
