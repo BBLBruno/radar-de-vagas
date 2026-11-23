@@ -19,6 +19,20 @@ export type NicheCategory =
   | 'dados_bi'
   | 'automacao_ia';
 
+export interface GeoCoords {
+  lat: number;
+  lng: number;
+}
+
+export interface UserGeoLocation {
+  lat: number;
+  lng: number;
+  city: string;
+  state: string;
+  source: 'gps' | 'profile';
+  updatedAt: string;
+}
+
 export interface Job {
   id: string;
   title: string;
@@ -41,7 +55,7 @@ export interface Job {
   isActive: boolean;
   isAffirmative?: boolean;
   affirmativeReason?: string;
-  distanceFromMuzambinhoKm?: number;
+  distanceFromUserKm?: number;
   hybridDaysPerWeek?: number;
   isWithinAllowedRadius?: boolean;
   nicheCategories?: NicheCategory[];
@@ -122,6 +136,6 @@ export interface FilterState {
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   hideAffirmative: boolean;
-  onlyMuzambinhoRadiusOrRemote: boolean;
+  onlyWithinRadiusOrRemote: boolean;
   selectedNicheCategory: 'todas' | NicheCategory;
 }

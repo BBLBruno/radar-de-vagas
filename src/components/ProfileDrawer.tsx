@@ -21,6 +21,8 @@ import {
   ShieldCheck,
   AlertCircle,
   AlertTriangle,
+  LocateFixed,
+  Loader2,
 } from 'lucide-react';
 import { ApplicationPortalLink, CandidateProfile } from '../types';
 import { DEFAULT_PROFILE, saveStoredProfile } from '../engine/defaultProfile';
@@ -28,6 +30,9 @@ import { DEFAULT_PROFILE, saveStoredProfile } from '../engine/defaultProfile';
 interface ProfileDrawerProps {
   profile: CandidateProfile;
   setProfile: React.Dispatch<React.SetStateAction<CandidateProfile>>;
+  onDetectLocation?: () => void;
+  isDetectingLocation?: boolean;
+  geoNotice?: { type: 'info' | 'warning' | 'success'; message: string } | null;
 }
 
 const MARKET_PRESETS = [
@@ -171,7 +176,13 @@ function validateUrlFormat(
   return { valid: true, normalized: parsed.toString(), error: '' };
 }
 
-export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfile }) => {
+export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
+  profile,
+  setProfile,
+  onDetectLocation,
+  isDetectingLocation = false,
+  geoNotice,
+}) => {
   const [savedSectionId, setSavedSectionId] = useState<string | null>(null);
   const [sectionError, setSectionError] = useState<{ section: string; message: string } | null>(null);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -673,40 +684,79 @@ export const ProfileDrawer: React.FC<ProfileDrawerProps> = ({ profile, setProfil
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-2 pt-1">
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1 flex items-center gap-1">
+          <div className="space-y-2 pt-1">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-xs font-medium text-slate-400 flex items-center gap-1">
                 <MapPin className="w-3 h-3 text-emerald-400" />
-                Cidade Base
-              </label>
-              <input
-                type="text"
-                value={profile.preferences.referenceCity}
-                onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
-                placeholder="Ex: Muzambinho"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
-              />
+                Localização Base & Raio para Vagas Híbridas
+              </span>
+              {onDetectLocation && (
+                <button
+                  type="button"
+                  disabled={isDetectingLocation}
+                  onClick={onDetectLocation}
+                  className="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-1.5 disabled:opacity-60 cursor-pointer"
+                  title="Detectar sua cidade automaticamente pelo GPS do navegador"
+                >
+                  {isDetectingLocation ? (
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                  ) : (
+                    <LocateFixed className="w-3 h-3" />
+                  )}
+                  <span>{isDetectingLocation ? 'Detectando...' : 'Detectar minha localização'}</span>
+                </button>
+              )}
             </div>
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">UF</label>
-              <input
-                type="text"
-                value={profile.preferences.referenceState}
-                onChange={(e) => handlePreferencesChange('referenceState', e.target.value)}
-                placeholder="Ex: MG"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
-              />
+
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+              <div className="sm:col-span-2">
+                <label className="block text-[11px] font-medium text-slate-400 mb-1">Cidade Base</label>
+                <input
+                  type="text"
+                  value={profile.preferences.referenceCity}
+                  onChange={(e) => handlePreferencesChange('referenceCity', e.target.value)}
+                  placeholder="Ex: São Paulo, Campinas, Belo Horizonte..."
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-medium text-slate-400 mb-1">UF</label>
+                <input
+                  type="text"
+                  maxLength={2}
+                  value={profile.preferences.referenceState}
+                  onChange={(e) => handlePreferencesChange('referenceState', e.target.value.toUpperCase())}
+                  placeholder="Ex: SP"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 uppercase"
+                />
+              </div>
+              <div>
+                <label className="block text-[11px] font-medium text-slate-400 mb-1">Raio Híbrido (km)</label>
+                <input
+                  type="number"
+                  min={10}
+                  max={1000}
+                  value={profile.preferences.maxHybridDistanceKm || ''}
+                  onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
+                  placeholder="Ex: 150"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Raio Híbrido (km)</label>
-              <input
-                type="number"
-                value={profile.preferences.maxHybridDistanceKm || ''}
-                onChange={(e) => handlePreferencesChange('maxHybridDistanceKm', Number(e.target.value))}
-                placeholder="Ex: 150"
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500"
-              />
-            </div>
+
+            {geoNotice && (
+              <p
+                className={`text-[11px] px-2.5 py-1.5 rounded-lg border ${
+                  geoNotice.type === 'success'
+                    ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300'
+                    : geoNotice.type === 'warning'
+                    ? 'bg-amber-500/10 border-amber-500/25 text-amber-300'
+                    : 'bg-cyan-500/10 border-cyan-500/25 text-cyan-300'
+                }`}
+              >
+                {geoNotice.message}
+              </p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-2 pt-1">

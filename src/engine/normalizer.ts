@@ -1,78 +1,239 @@
-import { NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
+import { GeoCoords, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
-export const MUZAMBINHO_COORDS = {
-  lat: -21.3708,
-  lng: -46.5269,
-  city: 'Muzambinho',
-  state: 'MG',
-  maxRadiusKm: 150,
-};
+export interface CityCoordEntry extends GeoCoords {
+  label: string;
+  state: string;
+}
 
-// Distância geográfica em raio (km) a partir de Muzambinho-MG
-const DISTANCES_TO_MUZAMBINHO: Record<string, number> = {
-  'muzambinho': 0,
-  'guaxupé': 18,
-  'guaxupe': 18,
-  'monte belo': 25,
-  'juruaia': 30,
-  'cabo verde': 32,
-  'caconde': 35,
-  'mococa': 45,
-  'nova resende': 46,
-  'são sebastião do paraíso': 52,
-  'sao sebastiao do paraiso': 52,
-  'poços de caldas': 55,
-  'pocos de caldas': 55,
-  'são josé do rio pardo': 60,
-  'sao jose do rio pardo': 60,
-  'alfenas': 65,
-  'casa branca': 75,
-  'passos': 85,
-  'são joão da boa vista': 85,
-  'sao joao da boa vista': 85,
-  'espírito santo do pinhal': 92,
-  'espirito santo do pinhal': 92,
-  'machado': 78,
-  'paraguaçu': 82,
-  'paraguacu': 82,
-  'mogi guaçu': 108,
-  'mogi guacu': 108,
-  'mogi mirim': 112,
-  'itapira': 110,
-  'varginha': 115,
-  'pirassununga': 115,
-  'pouso alegre': 120,
-  'santa rita do sapucaí': 125,
-  'santa rita do sapucai': 125,
-  'itajubá': 148,
-  'itajuba': 148,
-  'três corações': 132,
-  'tres coracoes': 132,
-  'três pontas': 105,
-  'tres pontas': 105,
-  'lavras': 145,
-  'franca': 128,
-  'leme': 130,
-  'ribeirão preto': 135,
-  'ribeirao preto': 135,
-  'araras': 140,
-  'rio claro': 145,
-  'são carlos': 148,
-  'sao carlos': 148,
-  'limeira': 148,
-  'paulínia': 149,
-  'paulinia': 149,
-  'campinas': 150,
-  'vinhedo': 165,
-  'jundiaí': 210,
-  'jundiai': 210,
-  'são paulo': 260,
-  'sao paulo': 260,
-  'santos': 320,
-  'belo horizonte': 360,
-  'rio de janeiro': 430,
-  'curitiba': 520,
-  'porto alegre': 940,
+// Dicionário de coordenadas (lat, lng) das 27 capitais brasileiras e principais polos regionais
+export const BRAZIL_CITY_COORDS: Record<string, CityCoordEntry> = {
+  // Capitais Brasileiras (27 UFs)
+  'sao paulo': { lat: -23.5505, lng: -46.6333, label: 'São Paulo', state: 'SP' },
+  'rio de janeiro': { lat: -22.9068, lng: -43.1729, label: 'Rio de Janeiro', state: 'RJ' },
+  'belo horizonte': { lat: -19.9167, lng: -43.9345, label: 'Belo Horizonte', state: 'MG' },
+  'curitiba': { lat: -25.4284, lng: -49.2733, label: 'Curitiba', state: 'PR' },
+  'porto alegre': { lat: -30.0346, lng: -51.2177, label: 'Porto Alegre', state: 'RS' },
+  'florianopolis': { lat: -27.5954, lng: -48.5480, label: 'Florianópolis', state: 'SC' },
+  'brasilia': { lat: -15.7975, lng: -47.8919, label: 'Brasília', state: 'DF' },
+  'goiania': { lat: -16.6869, lng: -49.2648, label: 'Goiânia', state: 'GO' },
+  'salvador': { lat: -12.9714, lng: -38.5014, label: 'Salvador', state: 'BA' },
+  'recife': { lat: -8.0476, lng: -34.8770, label: 'Recife', state: 'PE' },
+  'fortaleza': { lat: -3.7319, lng: -38.5267, label: 'Fortaleza', state: 'CE' },
+  'vitoria': { lat: -20.3155, lng: -40.3128, label: 'Vitória', state: 'ES' },
+  'manaus': { lat: -3.1190, lng: -60.0217, label: 'Manaus', state: 'AM' },
+  'belem': { lat: -1.4558, lng: -48.4902, label: 'Belém', state: 'PA' },
+  'natal': { lat: -5.7945, lng: -35.2110, label: 'Natal', state: 'RN' },
+  'joao pessoa': { lat: -7.1195, lng: -34.8450, label: 'João Pessoa', state: 'PB' },
+  'maceio': { lat: -9.6658, lng: -35.7353, label: 'Maceió', state: 'AL' },
+  'aracaju': { lat: -10.9472, lng: -37.0731, label: 'Aracaju', state: 'SE' },
+  'teresina': { lat: -5.0892, lng: -42.8016, label: 'Teresina', state: 'PI' },
+  'sao luis': { lat: -2.5307, lng: -44.3068, label: 'São Luís', state: 'MA' },
+  'campo grande': { lat: -20.4697, lng: -54.6201, label: 'Campo Grande', state: 'MS' },
+  'cuiaba': { lat: -15.6014, lng: -56.0979, label: 'Cuiabá', state: 'MT' },
+  'palmas': { lat: -10.1840, lng: -48.3336, label: 'Palmas', state: 'TO' },
+  'porto velho': { lat: -8.7612, lng: -63.9004, label: 'Porto Velho', state: 'RO' },
+  'boa vista': { lat: 2.8235, lng: -60.6758, label: 'Boa Vista', state: 'RR' },
+  'macapa': { lat: 0.0349, lng: -51.0694, label: 'Macapá', state: 'AP' },
+  'rio branco': { lat: -9.9754, lng: -67.8249, label: 'Rio Branco', state: 'AC' },
+
+  // São Paulo (Região Metropolitana, Interior e Litoral)
+  'barueri': { lat: -23.5114, lng: -46.8761, label: 'Barueri', state: 'SP' },
+  'alphaville': { lat: -23.4986, lng: -46.8475, label: 'Alphaville', state: 'SP' },
+  'santana de parnaiba': { lat: -23.4439, lng: -46.9178, label: 'Santana de Parnaíba', state: 'SP' },
+  'osasco': { lat: -23.5329, lng: -46.7916, label: 'Osasco', state: 'SP' },
+  'guarulhos': { lat: -23.4543, lng: -46.5337, label: 'Guarulhos', state: 'SP' },
+  'santo andre': { lat: -23.6639, lng: -46.5383, label: 'Santo André', state: 'SP' },
+  'sao bernardo do campo': { lat: -23.6914, lng: -46.5646, label: 'São Bernardo do Campo', state: 'SP' },
+  'sao caetano do sul': { lat: -23.6229, lng: -46.5548, label: 'São Caetano do Sul', state: 'SP' },
+  'diadema': { lat: -23.6861, lng: -46.6206, label: 'Diadema', state: 'SP' },
+  'maua': { lat: -23.6677, lng: -46.4613, label: 'Mauá', state: 'SP' },
+  'taboao da serra': { lat: -23.6095, lng: -46.7583, label: 'Taboão da Serra', state: 'SP' },
+  'embu das artes': { lat: -23.6489, lng: -46.8522, label: 'Embu das Artes', state: 'SP' },
+  'cotia': { lat: -23.6022, lng: -46.9190, label: 'Cotia', state: 'SP' },
+  'mogi das cruzes': { lat: -23.5225, lng: -46.1883, label: 'Mogi das Cruzes', state: 'SP' },
+  'santos': { lat: -23.9608, lng: -46.3336, label: 'Santos', state: 'SP' },
+  'campinas': { lat: -22.9056, lng: -47.0608, label: 'Campinas', state: 'SP' },
+  'vinhedo': { lat: -23.0297, lng: -46.9753, label: 'Vinhedo', state: 'SP' },
+  'valinhos': { lat: -22.9706, lng: -46.9958, label: 'Valinhos', state: 'SP' },
+  'indaiatuba': { lat: -23.0903, lng: -47.2181, label: 'Indaiatuba', state: 'SP' },
+  'paulinia': { lat: -22.7611, lng: -47.1542, label: 'Paulínia', state: 'SP' },
+  'hortolandia': { lat: -22.8583, lng: -47.2200, label: 'Hortolândia', state: 'SP' },
+  'sumare': { lat: -22.8219, lng: -47.2669, label: 'Sumaré', state: 'SP' },
+  'americana': { lat: -22.7392, lng: -47.3314, label: 'Americana', state: 'SP' },
+  'limeira': { lat: -22.5647, lng: -47.4017, label: 'Limeira', state: 'SP' },
+  'piracicaba': { lat: -22.7253, lng: -47.6492, label: 'Piracicaba', state: 'SP' },
+  'sorocaba': { lat: -23.5015, lng: -47.4526, label: 'Sorocaba', state: 'SP' },
+  'jundiai': { lat: -23.1864, lng: -46.8842, label: 'Jundiaí', state: 'SP' },
+  'itu': { lat: -23.2642, lng: -47.2992, label: 'Itu', state: 'SP' },
+  'sao jose dos campos': { lat: -23.2237, lng: -45.9009, label: 'São José dos Campos', state: 'SP' },
+  'taubate': { lat: -23.0264, lng: -45.5553, label: 'Taubaté', state: 'SP' },
+  'jacarei': { lat: -23.3053, lng: -45.9658, label: 'Jacareí', state: 'SP' },
+  'ribeirao preto': { lat: -21.1775, lng: -47.8103, label: 'Ribeirão Preto', state: 'SP' },
+  'franca': { lat: -20.5386, lng: -47.4008, label: 'Franca', state: 'SP' },
+  'sao carlos': { lat: -22.0175, lng: -47.8908, label: 'São Carlos', state: 'SP' },
+  'araraquara': { lat: -21.7944, lng: -48.1756, label: 'Araraquara', state: 'SP' },
+  'rio claro': { lat: -22.4114, lng: -47.5614, label: 'Rio Claro', state: 'SP' },
+  'araras': { lat: -22.3569, lng: -47.3842, label: 'Araras', state: 'SP' },
+  'leme': { lat: -22.1856, lng: -47.3903, label: 'Leme', state: 'SP' },
+  'pirassununga': { lat: -21.9961, lng: -47.4258, label: 'Pirassununga', state: 'SP' },
+  'bauru': { lat: -22.3145, lng: -49.0587, label: 'Bauru', state: 'SP' },
+  'sao jose do rio preto': { lat: -20.8197, lng: -49.3794, label: 'São José do Rio Preto', state: 'SP' },
+  'aracatuba': { lat: -21.2089, lng: -50.4328, label: 'Araçatuba', state: 'SP' },
+  'marilia': { lat: -22.2139, lng: -49.9458, label: 'Marília', state: 'SP' },
+  'presidente prudente': { lat: -22.1256, lng: -51.3889, label: 'Presidente Prudente', state: 'SP' },
+  'barra bonita': { lat: -22.4947, lng: -48.5581, label: 'Barra Bonita', state: 'SP' },
+  'charqueada': { lat: -22.5097, lng: -47.7783, label: 'Charqueada', state: 'SP' },
+  'mogi guacu': { lat: -22.3719, lng: -46.9422, label: 'Mogi Guaçu', state: 'SP' },
+  'mogi mirim': { lat: -22.4319, lng: -46.9578, label: 'Mogi Mirim', state: 'SP' },
+  'itapira': { lat: -22.4361, lng: -46.8219, label: 'Itapira', state: 'SP' },
+  'sao joao da boa vista': { lat: -21.9692, lng: -46.7981, label: 'São João da Boa Vista', state: 'SP' },
+  'mococa': { lat: -21.4678, lng: -47.0044, label: 'Mococa', state: 'SP' },
+  'sao jose do rio pardo': { lat: -21.5956, lng: -46.8886, label: 'São José do Rio Pardo', state: 'SP' },
+  'casa branca': { lat: -21.7739, lng: -47.0864, label: 'Casa Branca', state: 'SP' },
+  'espirito santo do pinhal': { lat: -22.1908, lng: -46.7406, label: 'Espírito Santo do Pinhal', state: 'SP' },
+  'caconde': { lat: -21.5294, lng: -46.6439, label: 'Caconde', state: 'SP' },
+  'atibaia': { lat: -23.1169, lng: -46.5503, label: 'Atibaia', state: 'SP' },
+  'braganca paulista': { lat: -22.9519, lng: -46.5419, label: 'Bragança Paulista', state: 'SP' },
+
+  // Minas Gerais
+  'contagem': { lat: -19.9317, lng: -44.0536, label: 'Contagem', state: 'MG' },
+  'betim': { lat: -19.9678, lng: -44.1983, label: 'Betim', state: 'MG' },
+  'nova lima': { lat: -19.9856, lng: -43.8467, label: 'Nova Lima', state: 'MG' },
+  'uberlandia': { lat: -18.9186, lng: -48.2772, label: 'Uberlândia', state: 'MG' },
+  'uberaba': { lat: -19.7483, lng: -47.9319, label: 'Uberaba', state: 'MG' },
+  'juiz de fora': { lat: -21.7642, lng: -43.3503, label: 'Juiz de Fora', state: 'MG' },
+  'montes claros': { lat: -16.7350, lng: -43.8617, label: 'Montes Claros', state: 'MG' },
+  'pocos de caldas': { lat: -21.7878, lng: -46.5614, label: 'Poços de Caldas', state: 'MG' },
+  'pouso alegre': { lat: -22.2300, lng: -45.9361, label: 'Pouso Alegre', state: 'MG' },
+  'varginha': { lat: -21.5514, lng: -45.4303, label: 'Varginha', state: 'MG' },
+  'alfenas': { lat: -21.4292, lng: -45.9472, label: 'Alfenas', state: 'MG' },
+  'lavras': { lat: -21.2453, lng: -44.9997, label: 'Lavras', state: 'MG' },
+  'divinopolis': { lat: -20.1389, lng: -44.8839, label: 'Divinópolis', state: 'MG' },
+  'sete lagoas': { lat: -19.4658, lng: -44.2467, label: 'Sete Lagoas', state: 'MG' },
+  'ipatinga': { lat: -19.4683, lng: -42.5367, label: 'Ipatinga', state: 'MG' },
+  'governador valadares': { lat: -18.8511, lng: -41.9494, label: 'Governador Valadares', state: 'MG' },
+  'passos': { lat: -20.7189, lng: -46.6097, label: 'Passos', state: 'MG' },
+  'itauna': { lat: -20.0753, lng: -44.5764, label: 'Itaúna', state: 'MG' },
+  'itajuba': { lat: -22.4256, lng: -45.4528, label: 'Itajubá', state: 'MG' },
+  'santa rita do sapucai': { lat: -22.2522, lng: -45.7033, label: 'Santa Rita do Sapucaí', state: 'MG' },
+  'tres coracoes': { lat: -21.6947, lng: -45.2553, label: 'Três Corações', state: 'MG' },
+  'tres pontas': { lat: -21.3672, lng: -45.5125, label: 'Três Pontas', state: 'MG' },
+  'guaxupe': { lat: -21.3053, lng: -46.7128, label: 'Guaxupé', state: 'MG' },
+  'sao sebastiao do paraiso': { lat: -20.9169, lng: -46.9914, label: 'São Sebastião do Paraíso', state: 'MG' },
+  'machado': { lat: -21.6747, lng: -45.9197, label: 'Machado', state: 'MG' },
+  'patos de minas': { lat: -18.5789, lng: -46.5181, label: 'Patos de Minas', state: 'MG' },
+  'barbacena': { lat: -21.2258, lng: -43.7736, label: 'Barbacena', state: 'MG' },
+  'ouro preto': { lat: -20.3856, lng: -43.5036, label: 'Ouro Preto', state: 'MG' },
+  'extrema': { lat: -22.8547, lng: -46.3183, label: 'Extrema', state: 'MG' },
+
+  // Rio de Janeiro
+  'niteroi': { lat: -22.8833, lng: -43.1036, label: 'Niterói', state: 'RJ' },
+  'duque de caxias': { lat: -22.7858, lng: -43.3117, label: 'Duque de Caxias', state: 'RJ' },
+  'sao goncalo': { lat: -22.8269, lng: -43.0539, label: 'São Gonçalo', state: 'RJ' },
+  'nova iguacu': { lat: -22.7592, lng: -43.4511, label: 'Nova Iguaçu', state: 'RJ' },
+  'petropolis': { lat: -22.5050, lng: -43.1786, label: 'Petrópolis', state: 'RJ' },
+  'volta redonda': { lat: -22.5231, lng: -44.1042, label: 'Volta Redonda', state: 'RJ' },
+  'resende': { lat: -22.4689, lng: -44.4467, label: 'Resende', state: 'RJ' },
+  'campos dos goytacazes': { lat: -21.7522, lng: -41.3303, label: 'Campos dos Goytacazes', state: 'RJ' },
+  'macae': { lat: -22.3708, lng: -41.7869, label: 'Macaé', state: 'RJ' },
+  'cabo frio': { lat: -22.8794, lng: -42.0186, label: 'Cabo Frio', state: 'RJ' },
+  'angra dos reis': { lat: -23.0067, lng: -44.3181, label: 'Angra dos Reis', state: 'RJ' },
+  'teresopolis': { lat: -22.4122, lng: -42.9656, label: 'Teresópolis', state: 'RJ' },
+
+  // Paraná
+  'londrina': { lat: -23.3103, lng: -51.1628, label: 'Londrina', state: 'PR' },
+  'maringa': { lat: -23.4205, lng: -51.9333, label: 'Maringá', state: 'PR' },
+  'ponta grossa': { lat: -25.0945, lng: -50.1633, label: 'Ponta Grossa', state: 'PR' },
+  'cascavel': { lat: -24.9555, lng: -53.4552, label: 'Cascavel', state: 'PR' },
+  'sao jose dos pinhais': { lat: -25.5347, lng: -49.2064, label: 'São José dos Pinhais', state: 'PR' },
+  'foz do iguacu': { lat: -25.5163, lng: -54.5854, label: 'Foz do Iguaçu', state: 'PR' },
+  'colombo': { lat: -25.2917, lng: -49.2242, label: 'Colombo', state: 'PR' },
+  'quatro barras': { lat: -25.3656, lng: -49.0769, label: 'Quatro Barras', state: 'PR' },
+  'pinhais': { lat: -25.4447, lng: -49.1925, label: 'Pinhais', state: 'PR' },
+  'araucaria': { lat: -25.5931, lng: -49.4103, label: 'Araucária', state: 'PR' },
+  'francisco beltrao': { lat: -26.0811, lng: -53.0550, label: 'Francisco Beltrão', state: 'PR' },
+  'toledo': { lat: -24.7139, lng: -53.7431, label: 'Toledo', state: 'PR' },
+  'guarapuava': { lat: -25.3908, lng: -51.4622, label: 'Guarapuava', state: 'PR' },
+  'paranagua': { lat: -25.5161, lng: -48.5225, label: 'Paranaguá', state: 'PR' },
+
+  // Santa Catarina
+  'joinville': { lat: -26.3044, lng: -48.8487, label: 'Joinville', state: 'SC' },
+  'blumenau': { lat: -26.9194, lng: -49.0661, label: 'Blumenau', state: 'SC' },
+  'itajai': { lat: -26.9078, lng: -48.6619, label: 'Itajaí', state: 'SC' },
+  'balneario camboriu': { lat: -26.9906, lng: -48.6347, label: 'Balneário Camboriú', state: 'SC' },
+  'chapeco': { lat: -27.1006, lng: -52.6152, label: 'Chapecó', state: 'SC' },
+  'criciuma': { lat: -28.6775, lng: -49.3697, label: 'Criciúma', state: 'SC' },
+  'jaragua do sul': { lat: -26.4861, lng: -49.0667, label: 'Jaraguá do Sul', state: 'SC' },
+  'sao jose': { lat: -27.6147, lng: -48.6278, label: 'São José', state: 'SC' },
+  'palhoca': { lat: -27.6453, lng: -48.6678, label: 'Palhoça', state: 'SC' },
+  'lages': { lat: -27.8161, lng: -50.3261, label: 'Lages', state: 'SC' },
+  'brusque': { lat: -27.0978, lng: -48.9175, label: 'Brusque', state: 'SC' },
+  'tijucas': { lat: -27.2414, lng: -48.6336, label: 'Tijucas', state: 'SC' },
+  'tubarao': { lat: -28.4669, lng: -49.0069, label: 'Tubarão', state: 'SC' },
+
+  // Rio Grande do Sul
+  'caxias do sul': { lat: -29.1678, lng: -51.1794, label: 'Caxias do Sul', state: 'RS' },
+  'canoas': { lat: -29.9178, lng: -51.1836, label: 'Canoas', state: 'RS' },
+  'novo hamburgo': { lat: -29.6783, lng: -51.1306, label: 'Novo Hamburgo', state: 'RS' },
+  'sao leopoldo': { lat: -29.7603, lng: -51.1472, label: 'São Leopoldo', state: 'RS' },
+  'pelotas': { lat: -31.7654, lng: -52.3376, label: 'Pelotas', state: 'RS' },
+  'santa maria': { lat: -29.6842, lng: -53.8069, label: 'Santa Maria', state: 'RS' },
+  'gravatai': { lat: -29.9444, lng: -50.9919, label: 'Gravataí', state: 'RS' },
+  'viamao': { lat: -30.0811, lng: -51.0233, label: 'Viamão', state: 'RS' },
+  'campo bom': { lat: -29.6789, lng: -51.0606, label: 'Campo Bom', state: 'RS' },
+  'passo fundo': { lat: -28.2628, lng: -52.4067, label: 'Passo Fundo', state: 'RS' },
+  'estacao': { lat: -27.9114, lng: -52.2606, label: 'Estação', state: 'RS' },
+  'santa cruz do sul': { lat: -29.7175, lng: -52.4258, label: 'Santa Cruz do Sul', state: 'RS' },
+  'bento goncalves': { lat: -29.1714, lng: -51.5192, label: 'Bento Gonçalves', state: 'RS' },
+  'rio grande': { lat: -32.0350, lng: -52.0986, label: 'Rio Grande', state: 'RS' },
+  'erechim': { lat: -27.6342, lng: -52.2739, label: 'Erechim', state: 'RS' },
+
+  // Goiás / DF / Centro-Oeste
+  'anapolis': { lat: -16.3281, lng: -48.9531, label: 'Anápolis', state: 'GO' },
+  'aparecida de goiania': { lat: -16.8197, lng: -49.2469, label: 'Aparecida de Goiânia', state: 'GO' },
+  'luziania': { lat: -16.2525, lng: -47.9503, label: 'Luziânia', state: 'GO' },
+  'rio verde': { lat: -17.7981, lng: -50.9192, label: 'Rio Verde', state: 'GO' },
+  'catalao': { lat: -18.1658, lng: -47.9464, label: 'Catalão', state: 'GO' },
+  'itumbiara': { lat: -18.4192, lng: -49.2153, label: 'Itumbiara', state: 'GO' },
+  'dourados': { lat: -22.2231, lng: -54.8122, label: 'Dourados', state: 'MS' },
+  'rondonopolis': { lat: -16.4708, lng: -54.6356, label: 'Rondonópolis', state: 'MT' },
+  'sinop': { lat: -11.8642, lng: -55.5025, label: 'Sinop', state: 'MT' },
+  'varzea grande': { lat: -15.6467, lng: -56.1325, label: 'Várzea Grande', state: 'MT' },
+
+  // Espírito Santo
+  'vila velha': { lat: -20.3297, lng: -40.2925, label: 'Vila Velha', state: 'ES' },
+  'serra': { lat: -20.1286, lng: -40.3078, label: 'Serra', state: 'ES' },
+  'cariacica': { lat: -20.2639, lng: -40.4164, label: 'Cariacica', state: 'ES' },
+  'cachoeiro de itapemirim': { lat: -20.8489, lng: -41.1128, label: 'Cachoeiro de Itapemirim', state: 'ES' },
+  'linhares': { lat: -19.3911, lng: -40.0722, label: 'Linhares', state: 'ES' },
+  'colatina': { lat: -19.5389, lng: -40.6306, label: 'Colatina', state: 'ES' },
+
+  // Nordeste e Norte
+  'feira de santana': { lat: -12.2664, lng: -38.9667, label: 'Feira de Santana', state: 'BA' },
+  'camacari': { lat: -12.6975, lng: -38.3242, label: 'Camaçari', state: 'BA' },
+  'vitoria da conquista': { lat: -14.8619, lng: -40.8444, label: 'Vitória da Conquista', state: 'BA' },
+  'lauro de freitas': { lat: -12.8944, lng: -38.3272, label: 'Lauro de Freitas', state: 'BA' },
+  'ilheus': { lat: -14.7889, lng: -39.0494, label: 'Ilhéus', state: 'BA' },
+  'itabuna': { lat: -14.7856, lng: -39.2803, label: 'Itabuna', state: 'BA' },
+  'olinda': { lat: -8.0089, lng: -34.8553, label: 'Olinda', state: 'PE' },
+  'jaboatao dos guararapes': { lat: -8.1128, lng: -35.0147, label: 'Jaboatão dos Guararapes', state: 'PE' },
+  'caruaru': { lat: -8.2833, lng: -35.9761, label: 'Caruaru', state: 'PE' },
+  'petrolina': { lat: -9.3891, lng: -40.5027, label: 'Petrolina', state: 'PE' },
+  'caucaia': { lat: -3.7361, lng: -38.6531, label: 'Caucaia', state: 'CE' },
+  'maracanau': { lat: -3.8769, lng: -38.6256, label: 'Maracanaú', state: 'CE' },
+  'eusebio': { lat: -3.8900, lng: -38.4506, label: 'Eusébio', state: 'CE' },
+  'sobral': { lat: -3.6883, lng: -40.3497, label: 'Sobral', state: 'CE' },
+  'juazeiro do norte': { lat: -7.2131, lng: -39.3153, label: 'Juazeiro do Norte', state: 'CE' },
+  'campina grande': { lat: -7.2306, lng: -35.8811, label: 'Campina Grande', state: 'PB' },
+  'mossoro': { lat: -5.1878, lng: -37.3442, label: 'Mossoró', state: 'RN' },
+  'parnamirim': { lat: -5.9156, lng: -35.2628, label: 'Parnamirim', state: 'RN' },
+  'imperatriz': { lat: -5.5264, lng: -47.4917, label: 'Imperatriz', state: 'MA' },
+  'parnaiba': { lat: -2.9056, lng: -41.7767, label: 'Parnaíba', state: 'PI' },
+  'ananindeua': { lat: -1.3656, lng: -48.3722, label: 'Ananindeua', state: 'PA' },
+  'santarem': { lat: -2.4431, lng: -54.7083, label: 'Santarém', state: 'PA' },
+  'maraba': { lat: -5.3686, lng: -49.1178, label: 'Marabá', state: 'PA' },
+  'araguaina': { lat: -7.1911, lng: -48.2072, label: 'Araguaína', state: 'TO' },
+  'ji-parana': { lat: -10.8853, lng: -61.9517, label: 'Ji-Paraná', state: 'RO' },
 };
 
 // Chips de Habilidades de Negócios, Operações, Inteligência, Dados, CRM e Automação (Sem TI/Dev/Suporte)
@@ -101,6 +262,342 @@ export const BRAZIL_STATES = [
   'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
   'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ];
+
+const BRAZIL_STATE_NAMES: Record<string, string> = {
+  'acre': 'AC',
+  'alagoas': 'AL',
+  'amapa': 'AP',
+  'amazonas': 'AM',
+  'bahia': 'BA',
+  'ceara': 'CE',
+  'distrito federal': 'DF',
+  'espirito santo': 'ES',
+  'goias': 'GO',
+  'maranhao': 'MA',
+  'mato grosso': 'MT',
+  'mato grosso do sul': 'MS',
+  'minas gerais': 'MG',
+  'para': 'PA',
+  'paraiba': 'PB',
+  'parana': 'PR',
+  'pernambuco': 'PE',
+  'piaui': 'PI',
+  'rio de janeiro': 'RJ',
+  'rio grande do norte': 'RN',
+  'rio grande do sul': 'RS',
+  'rondonia': 'RO',
+  'roraima': 'RR',
+  'santa catarina': 'SC',
+  'sao paulo': 'SP',
+  'sergipe': 'SE',
+  'tocantins': 'TO',
+};
+
+const GENERIC_GEO_TOKENS = new Set([
+  'brasil',
+  'brazil',
+  'remoto',
+  'remote',
+  'hibrido',
+  'hybrid',
+  'presencial',
+  'onsite',
+  'on-site',
+  'flexivel',
+  'flexible',
+  'home office',
+]);
+
+// Nomes que também correspondem a estados brasileiros; só devem ser aceitos se não houver cidade anterior
+const STATE_HOMONYM_CITIES = new Set(['sao paulo', 'rio de janeiro']);
+
+// Chaves ordenadas por comprimento decrescente, deixando homônimos de estado por último
+const SORTED_CITY_KEYS = Object.keys(BRAZIL_CITY_COORDS).sort((a, b) => {
+  const aIsState = STATE_HOMONYM_CITIES.has(a) ? 1 : 0;
+  const bIsState = STATE_HOMONYM_CITIES.has(b) ? 1 : 0;
+  if (aIsState !== bIsState) return aIsState - bIsState;
+  return b.length - a.length;
+});
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export function normalizeGeoText(text: string): string {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function parseUfCode(rawState?: string): string {
+  const norm = normalizeGeoText(rawState || '');
+  if (!norm) return '';
+  if (norm.length === 2 && BRAZIL_STATES.includes(norm.toUpperCase())) {
+    return norm.toUpperCase();
+  }
+  return BRAZIL_STATE_NAMES[norm] || '';
+}
+
+/**
+ * Calcula a distância real (em km) entre duas coordenadas geográficas usando a Fórmula de Haversine.
+ */
+export function haversineDistanceKm(a: GeoCoords, b: GeoCoords): number {
+  const R = 6371; // Raio médio da Terra em km
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+
+  const sinDLat = Math.sin(dLat / 2);
+  const sinDLng = Math.sin(dLng / 2);
+  const h =
+    sinDLat * sinDLat +
+    Math.cos(lat1) * Math.cos(lat2) * sinDLng * sinDLng;
+  const c = 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+  return Math.round(R * c);
+}
+
+/**
+ * Resolve coordenadas de uma localização (ex: "Campinas, São Paulo") ou cidade de referência,
+ * evitando falso positivo com o nome do estado (ex: "Barueri, São Paulo" -> Barueri, não capital).
+ */
+export function resolveCityCoords(
+  locationOrCity: string,
+  stateHint?: string
+): (GeoCoords & { city: string; state: string }) | null {
+  const normFull = normalizeGeoText(locationOrCity);
+  if (!normFull) return null;
+
+  const hintUf = parseUfCode(stateHint);
+  const rawSegments = normFull
+    .split(/[,;()\-/|]+/)
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  let detectedUf = hintUf;
+  const candidateSegments: string[] = [];
+
+  for (const seg of rawSegments) {
+    if (GENERIC_GEO_TOKENS.has(seg)) continue;
+    const asUf = seg.length === 2 && BRAZIL_STATES.includes(seg.toUpperCase()) ? seg.toUpperCase() : '';
+    if (asUf) {
+      if (!detectedUf) detectedUf = asUf;
+      continue;
+    }
+    candidateSegments.push(seg);
+  }
+
+  // 1. Tenta match exato no 1º segmento válido (normalmente o nome da cidade)
+  if (candidateSegments.length > 0) {
+    const first = candidateSegments[0];
+    const entry = BRAZIL_CITY_COORDS[first];
+    if (entry && (!detectedUf || entry.state === detectedUf || !STATE_HOMONYM_CITIES.has(first))) {
+      return { lat: entry.lat, lng: entry.lng, city: entry.label, state: entry.state };
+    }
+  }
+
+  // 2. Tenta match exato nos demais segmentos, priorizando cidades que NÃO são homônimas de estado
+  for (let i = 1; i < candidateSegments.length; i++) {
+    const seg = candidateSegments[i];
+    if (STATE_HOMONYM_CITIES.has(seg)) continue;
+    const entry = BRAZIL_CITY_COORDS[seg];
+    if (entry && (!detectedUf || entry.state === detectedUf)) {
+      return { lat: entry.lat, lng: entry.lng, city: entry.label, state: entry.state };
+    }
+  }
+
+  // Aceita segmento homônimo de estado somente se houver apenas 1 segmento válido (ex: "Brazil (São Paulo - Hybrid)")
+  if (candidateSegments.length === 1) {
+    const only = candidateSegments[0];
+    const entry = BRAZIL_CITY_COORDS[only];
+    if (entry) {
+      return { lat: entry.lat, lng: entry.lng, city: entry.label, state: entry.state };
+    }
+  }
+
+  // 3. Fallback por fronteira de palavra em chaves ordenadas por comprimento decrescente
+  const hasComma = normFull.includes(',');
+  const primarySlice = hasComma ? normFull.split(',')[0].trim() : normFull;
+  const fallbackTargets = primarySlice !== normFull ? [primarySlice, normFull] : [normFull];
+
+  for (let idx = 0; idx < fallbackTargets.length; idx++) {
+    const target = fallbackTargets[idx];
+    for (const key of SORTED_CITY_KEYS) {
+      // Se estamos analisando a string inteira após falhar na 1ª parte antes da vírgula,
+      // evita confundir nome de estado após a vírgula com a capital
+      if (idx > 0 && STATE_HOMONYM_CITIES.has(key)) continue;
+      const pattern = new RegExp(`(?<![a-z0-9])${escapeRegex(key)}(?![a-z0-9])`);
+      if (pattern.test(target)) {
+        const entry = BRAZIL_CITY_COORDS[key];
+        if (!detectedUf || entry.state === detectedUf || idx === 0) {
+          return { lat: entry.lat, lng: entry.lng, city: entry.label, state: entry.state };
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Calcula a distância em km entre as coordenadas do usuário e a cidade identificada na vaga.
+ * Suporta múltiplos locais separados por ";" retornando a menor distância.
+ */
+export function calculateDistanceKm(
+  userCoords: GeoCoords | null | undefined,
+  jobLocation: string,
+  jobCity?: string
+): number | null {
+  if (!userCoords) return null;
+
+  if (jobCity && jobCity.trim()) {
+    const resolvedByCity = resolveCityCoords(jobCity);
+    if (resolvedByCity) {
+      return haversineDistanceKm(userCoords, resolvedByCity);
+    }
+  }
+
+  if (!jobLocation || !jobLocation.trim()) return null;
+
+  const parts = jobLocation
+    .split(';')
+    .map(p => p.trim())
+    .filter(Boolean);
+
+  let minDistance: number | null = null;
+  for (const part of parts) {
+    const resolved = resolveCityCoords(part);
+    if (resolved) {
+      const dist = haversineDistanceKm(userCoords, resolved);
+      if (minDistance === null || dist < minDistance) {
+        minDistance = dist;
+      }
+    }
+  }
+
+  return minDistance;
+}
+
+/**
+ * Retorna a cidade conhecida do dicionário mais próxima às coordenadas informadas (fallback offline).
+ */
+export function findNearestKnownCity(coords: GeoCoords): { city: string; state: string; distanceKm: number } {
+  let nearest: { city: string; state: string; distanceKm: number } = {
+    city: 'São Paulo',
+    state: 'SP',
+    distanceKm: Number.POSITIVE_INFINITY,
+  };
+
+  for (const entry of Object.values(BRAZIL_CITY_COORDS)) {
+    const dist = haversineDistanceKm(coords, entry);
+    if (dist < nearest.distanceKm) {
+      nearest = { city: entry.label, state: entry.state, distanceKm: dist };
+    }
+  }
+
+  return nearest;
+}
+
+/**
+ * Converte coordenadas GPS em nome de cidade e UF via BigDataCloud (sem chave, suporte a CORS)
+ * com fallback automático para a cidade mais próxima do dicionário local.
+ */
+export async function reverseGeocodeCoords(coords: GeoCoords): Promise<{ city: string; state: string }> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${encodeURIComponent(
+      coords.lat
+    )}&longitude=${encodeURIComponent(coords.lng)}&localityLanguage=pt`;
+    const res = await fetch(url, { signal: controller.signal });
+    if (res.ok) {
+      const data = await res.json();
+      const city = String(data.city || data.locality || '').trim();
+      let state = '';
+      if (typeof data.principalSubdivisionCode === 'string' && data.principalSubdivisionCode.includes('-')) {
+        const ufPart = data.principalSubdivisionCode.split('-').pop()?.toUpperCase() || '';
+        if (BRAZIL_STATES.includes(ufPart)) {
+          state = ufPart;
+        }
+      }
+      if (!state && typeof data.principalSubdivision === 'string') {
+        state = parseUfCode(data.principalSubdivision);
+      }
+      if (city) {
+        return { city, state };
+      }
+    }
+  } catch {
+    // Fallback offline abaixo
+  } finally {
+    clearTimeout(timeoutId);
+  }
+
+  const nearest = findNearestKnownCity(coords);
+  return { city: nearest.city, state: nearest.state };
+}
+
+/**
+ * Geocodifica o nome da cidade do Perfil para coordenadas: primeiro consulta o dicionário local
+ * e, se necessário, consulta a API pública Nominatim (OpenStreetMap).
+ */
+export async function geocodeCityName(
+  city: string,
+  state?: string
+): Promise<(GeoCoords & { city: string; state: string }) | null> {
+  const trimmedCity = (city || '').trim();
+  if (!trimmedCity) return null;
+
+  const localMatch = resolveCityCoords(trimmedCity, state);
+  if (localMatch) {
+    return localMatch;
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+  try {
+    const query = [trimmedCity, (state || '').trim(), 'Brasil'].filter(Boolean).join(', ');
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=br&addressdetails=1&q=${encodeURIComponent(
+      query
+    )}`;
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) return null;
+
+    const results = await res.json();
+    if (!Array.isArray(results) || results.length === 0) return null;
+
+    const hit = results[0];
+    const lat = Number(hit.lat);
+    const lng = Number(hit.lon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+
+    const addr = hit.address || {};
+    const resolvedCity = String(addr.city || addr.town || addr.municipality || addr.village || trimmedCity).trim();
+    const resolvedState =
+      parseUfCode(addr['ISO3166-2-lvl4']?.split('-').pop()) ||
+      parseUfCode(addr.state) ||
+      parseUfCode(state);
+
+    return {
+      lat,
+      lng,
+      city: resolvedCity,
+      state: resolvedState,
+    };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
 
 /**
  * BLACKLIST ESTRITA DE TÍTULOS:
@@ -144,7 +641,7 @@ export function isBlacklistedTitle(title: string): boolean {
  * Lista negra de senioridade executiva/alta no título
  */
 export function isExecutiveOrSeniorTitle(title: string): boolean {
-  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|supervisor|supervisora|vp|chief|architect|arquiteto|iii)\b/i.test(
+  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|iii)\b/i.test(
     title
   );
 }
@@ -223,27 +720,6 @@ export function detectAffirmative(
   }
 
   return { isAffirmative: false };
-}
-
-export function calculateDistanceToMuzambinho(location: string): number | null {
-  if (!location) return null;
-  const locLower = location
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-
-  for (const [cityKey, distance] of Object.entries(DISTANCES_TO_MUZAMBINHO)) {
-    const cleanKey = cityKey.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    if (locLower.includes(cleanKey)) {
-      return distance;
-    }
-  }
-
-  if (locLower.includes('sao paulo') || locLower.includes('capital')) {
-    return 260;
-  }
-
-  return null;
 }
 
 export function calculateDaysOpen(publishedAtIso: string): number {

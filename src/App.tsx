@@ -15,6 +15,7 @@ import {
   NicheCategory,
   SeniorityLevel,
   WorkplaceType,
+  UserGeoLocation,
 } from './types';
 import { SEED_JOBS } from './engine/seedJobs';
 import {
@@ -24,7 +25,11 @@ import {
   detectWorkplaceType,
   isBlacklistedTitle,
   detectAffirmative,
-  calculateDistanceToMuzambinho,
+  calculateDistanceKm,
+  resolveCityCoords,
+  reverseGeocodeCoords,
+  geocodeCityName,
+  normalizeGeoText,
   POPULAR_FILTER_STACKS,
 } from './engine/normalizer';
 import { calculateJobMatch } from './engine/matcher';
@@ -52,12 +57,14 @@ import {
   AlertTriangle,
   Trash2,
   BookmarkX,
+  Info,
 } from 'lucide-react';
 
 const SAVED_STORAGE_KEY = 'radar_vagas_saved_jobs_v4';
 const APPLIED_STORAGE_KEY = 'radar_vagas_applied_jobs_v1';
 const FILTERS_STORAGE_KEY = 'radar_vagas_filters_v1';
 const UI_PREFS_STORAGE_KEY = 'radar_vagas_ui_prefs_v1';
+const USER_GEO_STORAGE_KEY = 'radar_vagas_user_geo_v1';
 
 const DEFAULT_FILTERS: FilterState = {
   searchQuery: '',
@@ -72,9 +79,38 @@ const DEFAULT_FILTERS: FilterState = {
   platform: 'todas',
   selectedStacks: [],
   hideAffirmative: false,
-  onlyMuzambinhoRadiusOrRemote: false,
+  onlyWithinRadiusOrRemote: false,
   selectedNicheCategory: 'todas',
 };
+
+function loadStoredUserGeo(): UserGeoLocation | null {
+  try {
+    const raw = localStorage.getItem(USER_GEO_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (
+      !parsed ||
+      typeof parsed !== 'object' ||
+      typeof parsed.lat !== 'number' ||
+      typeof parsed.lng !== 'number' ||
+      !Number.isFinite(parsed.lat) ||
+      !Number.isFinite(parsed.lng) ||
+      typeof parsed.city !== 'string'
+    ) {
+      return null;
+    }
+    return {
+      lat: parsed.lat,
+      lng: parsed.lng,
+      city: parsed.city,
+      state: typeof parsed.state === 'string' ? parsed.state : '',
+      source: parsed.source === 'gps' ? 'gps' : 'profile',
+      updatedAt: typeof parsed.updatedAt === 'string' ? parsed.updatedAt : new Date().toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
 
 function loadStoredFilters(): FilterState {
   try {
@@ -85,6 +121,7 @@ function loadStoredFilters(): FilterState {
     return {
       ...DEFAULT_FILTERS,
       ...parsed,
+      onlyWithinRadiusOrRemote: Boolean(parsed.onlyWithinRadiusOrRemote),
       selectedWorkplaces: Array.isArray(parsed.selectedWorkplaces) ? parsed.selectedWorkplaces : [],
       selectedSeniorities: Array.isArray(parsed.selectedSeniorities) ? parsed.selectedSeniorities : [],
       selectedStacks: Array.isArray(parsed.selectedStacks) ? parsed.selectedStacks : [],
@@ -231,8 +268,6 @@ export const App: React.FC = () => {
           ? j.nicheCategories
           : classifyJobCategories(j.title, j.description);
       const affirmative = detectAffirmative(j.title, j.description);
-      const distKm =
-        calculateDistanceToMuzambinho(j.location) ?? j.distanceFromMuzambinhoKm ?? undefined;
       const computedSeniority = detectSeniority(j.title, j.description);
       const computedWorkplace: WorkplaceType = j.isInternational
         ? 'remoto'
@@ -248,16 +283,20 @@ export const App: React.FC = () => {
         daysOpen: calculateDaysOpen(j.publishedAt),
         isAffirmative: j.isAffirmative ?? affirmative.isAffirmative,
         affirmativeReason: j.affirmativeReason ?? affirmative.reason,
-        distanceFromMuzambinhoKm: distKm,
-        isWithinAllowedRadius:
-          computedWorkplace === 'remoto' ||
-          (computedWorkplace === 'hibrido' && distKm !== undefined && distKm <= 150),
         nicheCategories: categories,
       };
     });
 
     return deduplicateJobs(enriched);
   });
+
+  const [userGeo, setUserGeo] = useState<UserGeoLocation | null>(() => loadStoredUserGeo());
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+  const [geoNotice, setGeoNotice] = useState<{
+    type: 'info' | 'warning' | 'success';
+    message: string;
+    showProfileAction?: boolean;
+  } | null>(null);
 
   const [savedJobIds, setSavedJobIds] = useState<string[]>(() => {
     try {
@@ -285,6 +324,104 @@ export const App: React.FC = () => {
   const [detailJob, setDetailJob] = useState<Job | null>(null);
   const [copilotJob, setCopilotJob] = useState<Job | null>(null);
   const [jobToRemoveFromSaved, setJobToRemoveFromSaved] = useState<Job | null>(null);
+
+  const effectiveRadiusKm =
+    profile.preferences.maxHybridDistanceKm && profile.preferences.maxHybridDistanceKm > 0
+      ? profile.preferences.maxHybridDistanceKm
+      : 150;
+
+  const resolvedUserLocation = useMemo<UserGeoLocation | null>(() => {
+    const refCity = (profile.preferences.referenceCity || '').trim();
+    const refState = (profile.preferences.referenceState || '').trim();
+
+    if (
+      refCity &&
+      (!userGeo || normalizeGeoText(refCity) !== normalizeGeoText(userGeo.city))
+    ) {
+      const resolved = resolveCityCoords(refCity, refState);
+      if (resolved) {
+        return {
+          lat: resolved.lat,
+          lng: resolved.lng,
+          city: refCity,
+          state: refState || resolved.state,
+          source: 'profile',
+          updatedAt: userGeo?.updatedAt || new Date().toISOString(),
+        };
+      }
+    }
+
+    if (userGeo) {
+      return userGeo;
+    }
+
+    if (refCity) {
+      const resolved = resolveCityCoords(refCity, refState);
+      if (resolved) {
+        return {
+          lat: resolved.lat,
+          lng: resolved.lng,
+          city: refCity,
+          state: refState || resolved.state,
+          source: 'profile',
+          updatedAt: new Date().toISOString(),
+        };
+      }
+    }
+
+    return null;
+  }, [profile.preferences.referenceCity, profile.preferences.referenceState, userGeo]);
+
+  const userLocationDisplay = resolvedUserLocation
+    ? `${resolvedUserLocation.city}${resolvedUserLocation.state ? `, ${resolvedUserLocation.state}` : ''}`
+    : '';
+
+  useEffect(() => {
+    try {
+      if (userGeo) {
+        localStorage.setItem(USER_GEO_STORAGE_KEY, JSON.stringify(userGeo));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [userGeo]);
+
+  useEffect(() => {
+    if (geoNotice?.type !== 'success') return;
+    const timer = setTimeout(() => {
+      setGeoNotice(prev => (prev?.type === 'success' ? null : prev));
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [geoNotice]);
+
+  useEffect(() => {
+    const refCity = (profile.preferences.referenceCity || '').trim();
+    const refState = (profile.preferences.referenceState || '').trim();
+    if (!filters.onlyWithinRadiusOrRemote || refCity.length < 3) return;
+    if (resolveCityCoords(refCity, refState)) return;
+    if (userGeo && normalizeGeoText(refCity) === normalizeGeoText(userGeo.city)) return;
+
+    const timer = setTimeout(async () => {
+      const geocoded = await geocodeCityName(refCity, refState);
+      if (geocoded) {
+        setUserGeo({
+          lat: geocoded.lat,
+          lng: geocoded.lng,
+          city: refCity,
+          state: refState || geocoded.state,
+          source: 'profile',
+          updatedAt: new Date().toISOString(),
+        });
+      }
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [
+    filters.onlyWithinRadiusOrRemote,
+    profile.preferences.referenceCity,
+    profile.preferences.referenceState,
+    userGeo,
+  ]);
 
   useEffect(() => {
     try {
@@ -324,6 +461,211 @@ export const App: React.FC = () => {
   useEffect(() => {
     saveStoredProfile(profile);
   }, [profile]);
+
+  const requestBrowserGeolocation = async (options?: { activateFilterAfter?: boolean }) => {
+    const activateFilterAfter = Boolean(options?.activateFilterAfter);
+    setGeoNotice(null);
+
+    const applyProfileFallback = async () => {
+      const refCity = (profile.preferences.referenceCity || '').trim();
+      const refState = (profile.preferences.referenceState || '').trim();
+      if (refCity) {
+        const coords = resolveCityCoords(refCity, refState) ?? (await geocodeCityName(refCity, refState));
+        if (coords) {
+          const finalState = refState || coords.state;
+          setUserGeo({
+            lat: coords.lat,
+            lng: coords.lng,
+            city: refCity,
+            state: finalState,
+            source: 'profile',
+            updatedAt: new Date().toISOString(),
+          });
+          if (activateFilterAfter) {
+            setFilters(prev => {
+              const cleanedWorkplaces = (prev.selectedWorkplaces || []).filter(w => w !== 'presencial');
+              return {
+                ...prev,
+                onlyWithinRadiusOrRemote: true,
+                selectedWorkplaces: cleanedWorkplaces,
+                workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+              };
+            });
+          }
+          setGeoNotice({
+            type: 'info',
+            message: `Permissão de GPS não concedida. Usando a Cidade Base do seu Perfil (${refCity}${finalState ? `, ${finalState}` : ''}).`,
+          });
+          return true;
+        }
+      }
+
+      if (activateFilterAfter) {
+        setFilters(prev => ({ ...prev, onlyWithinRadiusOrRemote: false }));
+      }
+      setGeoNotice({
+        type: 'warning',
+        message:
+          'Permissão de localização negada ou indisponível. Informe sua Cidade Base na aba Perfil para usar o filtro de raio híbrido.',
+        showProfileAction: true,
+      });
+      return false;
+    };
+
+    if (typeof navigator === 'undefined' || !('geolocation' in navigator)) {
+      setIsDetectingLocation(true);
+      try {
+        await applyProfileFallback();
+      } finally {
+        setIsDetectingLocation(false);
+      }
+      return;
+    }
+
+    setIsDetectingLocation(true);
+    try {
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: false,
+          timeout: 10000,
+          maximumAge: 600000,
+        });
+      });
+
+      const coords = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      const detected = await reverseGeocodeCoords(coords);
+      const nextGeo: UserGeoLocation = {
+        lat: coords.lat,
+        lng: coords.lng,
+        city: detected.city,
+        state: detected.state,
+        source: 'gps',
+        updatedAt: new Date().toISOString(),
+      };
+      setUserGeo(nextGeo);
+      setProfile(prev => ({
+        ...prev,
+        preferences: {
+          ...prev.preferences,
+          referenceCity: detected.city,
+          referenceState: detected.state || prev.preferences.referenceState,
+        },
+      }));
+
+      if (activateFilterAfter) {
+        setFilters(prev => {
+          const cleanedWorkplaces = (prev.selectedWorkplaces || []).filter(w => w !== 'presencial');
+          return {
+            ...prev,
+            onlyWithinRadiusOrRemote: true,
+            selectedWorkplaces: cleanedWorkplaces,
+            workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+          };
+        });
+      }
+
+      setGeoNotice({
+        type: 'success',
+        message: `Localização detectada: ${detected.city}${detected.state ? `, ${detected.state}` : ''}.`,
+      });
+    } catch {
+      await applyProfileFallback();
+    } finally {
+      setIsDetectingLocation(false);
+    }
+  };
+
+  const handleToggleRadiusOrRemote = async () => {
+    if (filters.onlyWithinRadiusOrRemote) {
+      setGeoNotice(null);
+      setFilters(prev => ({ ...prev, onlyWithinRadiusOrRemote: false }));
+      return;
+    }
+
+    const refCity = (profile.preferences.referenceCity || '').trim();
+    const refState = (profile.preferences.referenceState || '').trim();
+    const hasManualCityMismatch =
+      Boolean(refCity) &&
+      (!userGeo || normalizeGeoText(refCity) !== normalizeGeoText(userGeo.city));
+
+    if (hasManualCityMismatch && !resolveCityCoords(refCity, refState)) {
+      setIsDetectingLocation(true);
+      setGeoNotice(null);
+      try {
+        const geocoded = await geocodeCityName(refCity, refState);
+        if (geocoded) {
+          setUserGeo({
+            lat: geocoded.lat,
+            lng: geocoded.lng,
+            city: refCity,
+            state: refState || geocoded.state,
+            source: 'profile',
+            updatedAt: new Date().toISOString(),
+          });
+          setFilters(prev => {
+            const cleanedWorkplaces = (prev.selectedWorkplaces || []).filter(w => w !== 'presencial');
+            return {
+              ...prev,
+              onlyWithinRadiusOrRemote: true,
+              selectedWorkplaces: cleanedWorkplaces,
+              workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+            };
+          });
+          return;
+        }
+      } finally {
+        setIsDetectingLocation(false);
+      }
+    }
+
+    if (resolvedUserLocation) {
+      setGeoNotice(null);
+      setFilters(prev => {
+        const cleanedWorkplaces = (prev.selectedWorkplaces || []).filter(w => w !== 'presencial');
+        return {
+          ...prev,
+          onlyWithinRadiusOrRemote: true,
+          selectedWorkplaces: cleanedWorkplaces,
+          workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+        };
+      });
+      return;
+    }
+
+    if (refCity) {
+      setIsDetectingLocation(true);
+      try {
+        const geocoded = await geocodeCityName(refCity, refState);
+        if (geocoded) {
+          setUserGeo({
+            lat: geocoded.lat,
+            lng: geocoded.lng,
+            city: refCity,
+            state: refState || geocoded.state,
+            source: 'profile',
+            updatedAt: new Date().toISOString(),
+          });
+          setFilters(prev => {
+            const cleanedWorkplaces = (prev.selectedWorkplaces || []).filter(w => w !== 'presencial');
+            return {
+              ...prev,
+              onlyWithinRadiusOrRemote: true,
+              selectedWorkplaces: cleanedWorkplaces,
+              workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
+            };
+          });
+          return;
+        }
+      } finally {
+        setIsDetectingLocation(false);
+      }
+    }
+
+    await requestBrowserGeolocation({ activateFilterAfter: true });
+  };
 
   useEffect(() => {
     setCurrentPage(1);
@@ -472,14 +814,26 @@ export const App: React.FC = () => {
   const jobsWithMatch = useMemo(() => {
     return jobs.map(job => {
       const match = calculateJobMatch(job, profile);
+      const distKm =
+        job.workplaceType === 'remoto'
+          ? 0
+          : resolvedUserLocation
+          ? calculateDistanceKm(resolvedUserLocation, job.location, job.city) ?? undefined
+          : undefined;
+      const withinRadius =
+        job.workplaceType === 'remoto' ||
+        (job.workplaceType === 'hibrido' && distKm !== undefined && distKm <= effectiveRadiusKm);
+
       return {
         ...job,
+        distanceFromUserKm: distKm,
+        isWithinAllowedRadius: withinRadius,
         fitScore: match.score,
         matchedKeywords: match.matchedKeywords,
         missingKeywords: match.missingKeywords,
       };
     });
-  }, [jobs, profile]);
+  }, [jobs, profile, resolvedUserLocation, effectiveRadiusKm]);
 
   const filteredJobs = useMemo(() => {
     return jobsWithMatch
@@ -511,14 +865,15 @@ export const App: React.FC = () => {
           return false;
         }
 
-        // 4. Filtro Geográfico Fixo (Raio 150km de Muzambinho-MG / Remoto): Somente 100% Remoto e/ou Híbrido num raio fixo de até 150km
-        if (filters.onlyMuzambinhoRadiusOrRemote) {
+        // 4. Filtro Geográfico Dinâmico (Raio configurável a partir da localização do usuário / Remoto)
+        if (filters.onlyWithinRadiusOrRemote) {
           if (job.workplaceType === 'presencial') {
             return false;
           }
           if (job.workplaceType === 'hibrido') {
-            const dist = job.distanceFromMuzambinhoKm ?? 999;
-            if (dist > 150) return false;
+            if (job.distanceFromUserKm === undefined || job.distanceFromUserKm > effectiveRadiusKm) {
+              return false;
+            }
           }
         }
 
@@ -593,7 +948,7 @@ export const App: React.FC = () => {
         }
         return a.daysOpen - b.daysOpen;
       });
-  }, [jobsWithMatch, filters, sortBy, profile, savedJobIds, appliedJobsMap]);
+  }, [jobsWithMatch, filters, effectiveRadiusKm, sortBy, profile, savedJobIds, appliedJobsMap]);
 
   const totalPages = Math.max(1, Math.ceil(filteredJobs.length / itemsPerPage));
   const safeCurrentPage = Math.min(currentPage, totalPages);
@@ -663,7 +1018,57 @@ export const App: React.FC = () => {
               setFilters={setFilters}
               popularStacks={POPULAR_FILTER_STACKS}
               savedCount={allMyJobs.length}
+              radiusKm={effectiveRadiusKm}
+              userLocationLabel={userLocationDisplay}
+              isDetectingLocation={isDetectingLocation}
+              onToggleRadiusOrRemote={handleToggleRadiusOrRemote}
             />
+
+            {geoNotice && (
+              <div
+                className={`rounded-xl px-4 py-3 border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs ${
+                  geoNotice.type === 'warning'
+                    ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
+                    : geoNotice.type === 'success'
+                    ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-200'
+                    : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-200'
+                }`}
+              >
+                <div className="flex items-start sm:items-center gap-2">
+                  {geoNotice.type === 'warning' ? (
+                    <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5 sm:mt-0" />
+                  ) : geoNotice.type === 'success' ? (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5 sm:mt-0" />
+                  ) : (
+                    <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5 sm:mt-0" />
+                  )}
+                  <span>{geoNotice.message}</span>
+                </div>
+
+                <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                  {geoNotice.showProfileAction && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setGeoNotice(null);
+                        setActiveTab('profile');
+                      }}
+                      className="px-3 py-1 rounded-lg font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 transition-all cursor-pointer"
+                    >
+                      Ir para o Perfil
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setGeoNotice(null)}
+                    aria-label="Fechar aviso"
+                    className="p-1 rounded-lg opacity-75 hover:opacity-100 hover:bg-slate-800/60 transition-all cursor-pointer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Sub-header: Contagem + Tags Resumidas de Filtros Ativos + Ordenação */}
             <div id="jobs-list-top" className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-1">
@@ -751,14 +1156,17 @@ export const App: React.FC = () => {
                   </button>
                 )}
 
-                {filters.onlyMuzambinhoRadiusOrRemote && (
+                {filters.onlyWithinRadiusOrRemote && (
                   <button
                     type="button"
-                    onClick={() => setFilters(prev => ({ ...prev, onlyMuzambinhoRadiusOrRemote: false }))}
+                    onClick={() => setFilters(prev => ({ ...prev, onlyWithinRadiusOrRemote: false }))}
                     className="text-[11px] px-2 py-0.5 bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 rounded-md flex items-center gap-1 hover:bg-cyan-500/25 transition-all"
                   >
                     <MapPin className="w-3 h-3" />
-                    <span>Remoto + Híbrido (≤150km)</span>
+                    <span>
+                      Remoto + Híbrido (≤{effectiveRadiusKm}km
+                      {resolvedUserLocation?.city ? ` de ${resolvedUserLocation.city}` : ''})
+                    </span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}
@@ -943,24 +1351,7 @@ export const App: React.FC = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={() =>
-                    setFilters({
-                      searchQuery: '',
-                      maxDays: 999,
-                      workplaceType: 'todos',
-                      selectedWorkplaces: [],
-                      scopeFilter: 'todas',
-                      seniority: 'todos',
-                      selectedSeniorities: [],
-                      hideExecutiveSenior: false,
-                      hideSavedJobs: false,
-                      platform: 'todas',
-                      selectedStacks: [],
-                      hideAffirmative: false,
-                      onlyMuzambinhoRadiusOrRemote: false,
-                      selectedNicheCategory: 'todas',
-                    })
-                  }
+                  onClick={() => setFilters(DEFAULT_FILTERS)}
                   className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all inline-flex items-center gap-1.5"
                 >
                   Mostrar todas as {jobs.length} vagas
@@ -1087,7 +1478,13 @@ export const App: React.FC = () => {
         )}
 
         {activeTab === 'profile' && (
-          <ProfileDrawer profile={profile} setProfile={setProfile} />
+          <ProfileDrawer
+            profile={profile}
+            setProfile={setProfile}
+            onDetectLocation={() => requestBrowserGeolocation()}
+            isDetectingLocation={isDetectingLocation}
+            geoNotice={geoNotice}
+          />
         )}
       </main>
 

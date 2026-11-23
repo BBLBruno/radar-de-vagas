@@ -178,25 +178,6 @@ function isRelevantCareerJob(title = '', desc = '') {
   return relevantTitleRegex.test(t) || (relevantTitleRegex.test(combined) && /\b(analyst|analista|specialist|associate|coordinator|ops|operations|onboarding|crm|data|bi|automation|intelligence)\b/i.test(t));
 }
 
-const DISTANCES_TO_MUZAMBINHO = {
-  'muzambinho': 0, 'guaxupe': 18, 'guaxupé': 18, 'monte belo': 25, 'juruaia': 30,
-  'mococa': 45, 'pocos de caldas': 55, 'poços de caldas': 55, 'alfenas': 65,
-  'sao joao da boa vista': 85, 'são joão da boa vista': 85, 'varginha': 115,
-  'pouso alegre': 120, 'ribeirao preto': 135, 'ribeirão preto': 135, 'araras': 140,
-  'rio claro': 150, 'campinas': 195, 'sao paulo': 285, 'são paulo': 285,
-  'belo horizonte': 380, 'rio de janeiro': 450, 'curitiba': 540, 'porto alegre': 950
-};
-
-function calculateDistanceToMuzambinho(location) {
-  if (!location) return undefined;
-  const l = location.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  for (const [city, dist] of Object.entries(DISTANCES_TO_MUZAMBINHO)) {
-    const cleanCity = city.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    if (l.includes(cleanCity)) return dist;
-  }
-  return undefined;
-}
-
 function calculateDaysOpen(isoDate) {
   const parsed = new Date(isoDate);
   if (isNaN(parsed.getTime())) return 1;
@@ -399,7 +380,6 @@ async function scrapeGupyGlobal() {
           isAffirmative: affirmative.isAffirmative,
           affirmativeReason: affirmative.reason,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: calculateDistanceToMuzambinho(location),
           isInternational: false,
         });
       }
@@ -484,7 +464,6 @@ async function scrapeEmpregosTec() {
         isAffirmative: affirmative.isAffirmative,
         affirmativeReason: affirmative.reason,
         nicheCategories: categories,
-        distanceFromMuzambinhoKm: 0,
         isInternational: false,
       });
     }
@@ -552,7 +531,6 @@ async function scrapeBrazilGreenhouseAndLever() {
           isAffirmative: affirmative.isAffirmative,
           affirmativeReason: affirmative.reason,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: calculateDistanceToMuzambinho(loc),
           isInternational: false,
         });
       }
@@ -602,7 +580,6 @@ async function scrapeBrazilGreenhouseAndLever() {
           isAffirmative: affirmative.isAffirmative,
           affirmativeReason: affirmative.reason,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: calculateDistanceToMuzambinho(loc),
           isInternational: false,
         });
       }
@@ -671,7 +648,6 @@ async function scrapeInternationalRemote() {
             isActive: true,
             isAffirmative: false,
             nicheCategories: categories,
-            distanceFromMuzambinhoKm: 0,
             isInternational: true,
           });
         }
@@ -718,7 +694,6 @@ async function scrapeInternationalRemote() {
           isActive: true,
           isAffirmative: false,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: 0,
           isInternational: true,
         });
       }
@@ -773,7 +748,6 @@ async function scrapeInternationalRemote() {
           isActive: true,
           isAffirmative: false,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: 0,
           isInternational: true,
         });
       }
@@ -819,7 +793,6 @@ async function scrapeInternationalRemote() {
             isActive: true,
             isAffirmative: false,
             nicheCategories: categories,
-            distanceFromMuzambinhoKm: 0,
             isInternational: true,
           });
         }
@@ -864,7 +837,6 @@ async function scrapeInternationalRemote() {
           isActive: true,
           isAffirmative: false,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: 0,
           isInternational: true,
         });
       }
@@ -925,7 +897,6 @@ async function scrapeInternationalRemote() {
           isActive: true,
           isAffirmative: false,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: 0,
           isInternational: true,
         });
       }
@@ -987,7 +958,6 @@ async function scrapeInternationalRemote() {
           isActive: true,
           isAffirmative: false,
           nicheCategories: categories,
-          distanceFromMuzambinhoKm: 0,
           isInternational: true,
         });
       }

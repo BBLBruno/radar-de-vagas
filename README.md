@@ -16,7 +16,7 @@ O **Radar de Vagas** foi projetado com foco em áreas de **Operações de Negóc
 
 - **Link direto canônico:** Cada oportunidade aponta diretamente para a página oficial da vaga no ATS de origem, sem intermediários.
 - **Coleta multi-ATS automatizada:** Pipeline em Node.js (`scripts/discover.mjs`) executado de segunda a sexta-feira via GitHub Actions (`.github/workflows/update-jobs.yml`), com proteção contra sobrescrita em caso de falha de rede.
-- **Deduplicação e normalização:** Remove duplicidades por URL canônica e assinatura normalizada (`empresa + título + modalidade`), calcula dias em aberto a partir da data oficial de publicação e padroniza modalidade (`remoto`, `híbrido`, `presencial`), senioridade e localização (incluindo distância em relação a Muzambinho/MG).
+- **Deduplicação e normalização:** Remove duplicidades por URL canônica e assinatura normalizada (`empresa + título + modalidade`), calcula dias em aberto a partir da data oficial de publicação e padroniza modalidade (`remoto`, `híbrido`, `presencial`), senioridade, localização e filtro geoespacial dinâmico baseado na localização do usuário (Browser Geolocation API + Fórmula de Haversine, com fallback para a Cidade Base do Perfil e raio configurável).
 - **Estruturação de requisitos e aderência por perfil:** Extrai ferramentas/stacks mencionadas na descrição, classifica a vaga por área temática e calcula o percentual de aderência (`fitScore`), destacando palavras-chave compatíveis e lacunas em relação ao perfil configurado localmente pelo usuário.
 
 ### 🔌 Fontes e Integrações
@@ -53,7 +53,7 @@ O **Radar de Vagas** foi projetado com foco em áreas de **Operações de Negóc
 │   │   ├── deduplicator.ts   # Assinatura canônica e deduplicação de vagas
 │   │   ├── defaultProfile.ts # Leitura/gravação do perfil no localStorage
 │   │   ├── matcher.ts        # Cálculo de aderência por perfil (fitScore e palavras-chave)
-│   │   ├── normalizer.ts     # Normalização de modalidade, senioridade, áreas e distância
+│   │   ├── normalizer.ts     # Normalização de modalidade, senioridade, áreas e cálculo geoespacial (Haversine)
 │   │   └── seedJobs.ts       # Carga inicial e fallback a partir de liveJobs.json
 │   ├── types/
 │   │   └── index.ts          # Tipagens TypeScript compartilhadas
@@ -102,7 +102,7 @@ Automated **TypeScript, React, and Node.js** platform that collects, deduplicate
 
 - **Direct canonical links:** Every listing links straight to the company's official ATS posting without middlemen.
 - **Automated multi-ATS pipeline:** Node.js discovery script (`scripts/discover.mjs`) scheduled Monday through Friday via GitHub Actions (`.github/workflows/update-jobs.yml`), with a safety threshold that prevents overwriting the dataset on transient network failures.
-- **Deduplication & normalization:** Deduplicates listings by canonical URL and normalized signature (`company + title + workplace`), tracks days open from official publication timestamps, and standardizes workplace modality (`remoto`, `híbrido`, `presencial`), seniority, and location metadata.
+- **Deduplication & normalization:** Deduplicates listings by canonical URL and normalized signature (`company + title + workplace`), tracks days open from official publication timestamps, and standardizes workplace modality (`remoto`, `híbrido`, `presencial`), seniority, location metadata, and a dynamic geospatial radius filter based on user location (Browser Geolocation API + Haversine formula, with configurable radius and profile base-city fallback).
 - **Structured requirements & profile fit:** Extracts mentioned tools/stacks, classifies opportunities by domain area, and computes a profile fit score (`fitScore`) highlighting matched and missing keywords against the user's locally stored profile.
 
 ### 🔌 Data Sources
@@ -139,7 +139,7 @@ Automated **TypeScript, React, and Node.js** platform that collects, deduplicate
 │   │   ├── deduplicator.ts   # Canonical signature & deduplication logic
 │   │   ├── defaultProfile.ts # localStorage profile persistence
 │   │   ├── matcher.ts        # Profile fit scoring (fitScore & keyword matching)
-│   │   ├── normalizer.ts     # Workplace, seniority, area & distance normalization
+│   │   ├── normalizer.ts     # Workplace, seniority, area & geospatial distance normalization (Haversine)
 │   │   └── seedJobs.ts       # Dataset loader backed by liveJobs.json
 │   ├── types/
 │   │   └── index.ts          # Shared TypeScript interfaces

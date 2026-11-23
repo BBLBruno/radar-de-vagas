@@ -27,6 +27,7 @@ import {
   Award,
   Crown,
   BookmarkX,
+  Loader2,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -35,6 +36,10 @@ interface FilterBarProps {
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   popularStacks: string[];
   savedCount?: number;
+  radiusKm: number;
+  userLocationLabel?: string;
+  isDetectingLocation?: boolean;
+  onToggleRadiusOrRemote: () => void;
 }
 
 export const BrazilFlagIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
@@ -103,7 +108,16 @@ const SENIORITY_OPTIONS: Array<{
   { value: 'especialista', label: 'Especialista / Liderança', icon: Crown },
 ];
 
-export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popularStacks, savedCount = 0 }) => {
+export const FilterBar: React.FC<FilterBarProps> = ({
+  filters,
+  setFilters,
+  popularStacks,
+  savedCount = 0,
+  radiusKm,
+  userLocationLabel,
+  isDetectingLocation = false,
+  onToggleRadiusOrRemote,
+}) => {
   const [isAreaDrawerExpanded, setIsAreaDrawerExpanded] = useState(false);
   const [isStackDrawerExpanded, setIsStackDrawerExpanded] = useState(false);
 
@@ -136,13 +150,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
         ? current.filter(item => item !== mode)
         : [...current, mode];
 
-      // Se o usuário selecionou 'presencial' e o filtro de Raio 150km estava ativo,
+      // Se o usuário selecionou 'presencial' e o filtro de Raio estava ativo,
       // desativa o raio para evitar conflito lógico que zera as vagas
-      const shouldDisableRadius = mode === 'presencial' && !exists && prev.onlyMuzambinhoRadiusOrRemote;
+      const shouldDisableRadius = mode === 'presencial' && !exists && prev.onlyWithinRadiusOrRemote;
 
       return {
         ...prev,
-        onlyMuzambinhoRadiusOrRemote: shouldDisableRadius ? false : prev.onlyMuzambinhoRadiusOrRemote,
+        onlyWithinRadiusOrRemote: shouldDisableRadius ? false : prev.onlyWithinRadiusOrRemote,
         workplaceType: nextSelected.length === 1 ? nextSelected[0] : 'todos',
         selectedWorkplaces: nextSelected,
       };
@@ -208,23 +222,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
     });
   };
 
-  const handleToggleRadiusOrRemote = () => {
-    setFilters(prev => {
-      const nextActive = !prev.onlyMuzambinhoRadiusOrRemote;
-      // Se ativou o filtro de Remoto + Híbrido <=150km e estava filtrado apenas em Presencial, limpa Presencial
-      const cleanedWorkplaces = nextActive
-        ? (prev.selectedWorkplaces || []).filter(w => w !== 'presencial')
-        : prev.selectedWorkplaces || [];
-
-      return {
-        ...prev,
-        onlyMuzambinhoRadiusOrRemote: nextActive,
-        selectedWorkplaces: cleanedWorkplaces,
-        workplaceType: cleanedWorkplaces.length === 1 ? cleanedWorkplaces[0] : 'todos',
-      };
-    });
-  };
-
   const resetFilters = () => {
     setFilters({
       searchQuery: '',
@@ -239,7 +236,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
       platform: 'todas',
       selectedStacks: [],
       hideAffirmative: false,
-      onlyMuzambinhoRadiusOrRemote: false,
+      onlyWithinRadiusOrRemote: false,
       selectedNicheCategory: 'todas',
     });
   };
@@ -518,25 +515,51 @@ export const FilterBar: React.FC<FilterBarProps> = ({ filters, setFilters, popul
             })}
           </div>
 
-          {/* Direita: Raio 150km / Remoto (100% Remoto + Híbridas até 150km) */}
+          {/* Direita: Raio configurável / Remoto (100% Remoto + Híbridas dentro do raio do usuário) */}
           <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 ml-auto">
             <button
               type="button"
-              onClick={handleToggleRadiusOrRemote}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                filters.onlyMuzambinhoRadiusOrRemote
+              disabled={isDetectingLocation}
+              onClick={onToggleRadiusOrRemote}
+              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 disabled:opacity-70 cursor-pointer ${
+                filters.onlyWithinRadiusOrRemote
                   ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
               }`}
             >
-              <MapPin className="w-3.5 h-3.5" />
-              <span>Raio 150km / Remoto</span>
-              <HelpCircle className={`w-3.5 h-3.5 ${filters.onlyMuzambinhoRadiusOrRemote ? 'text-slate-950/80' : 'text-slate-400'}`} />
+              {isDetectingLocation ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <MapPin className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {isDetectingLocation ? 'Detectando localização...' : `Raio ${radiusKm}km / Remoto`}
+              </span>
+              <HelpCircle
+                className={`w-3.5 h-3.5 ${
+                  filters.onlyWithinRadiusOrRemote ? 'text-slate-950/80' : 'text-slate-400'
+                }`}
+              />
             </button>
 
-            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
-              <strong className="text-cyan-400 block mb-1">Raio Fixo 150km (Muzambinho-MG) + Remoto</strong>
-              Filtro geográfico fixo a partir de <strong>Muzambinho - MG (150km)</strong>. Exibe apenas vagas <strong>100% Remotas</strong> e vagas <strong>Híbridas na região</strong> (Poços de Caldas, Pouso Alegre, Varginha, Alfenas, Ribeirão Preto, Franca, Campinas, Limeira, Paulínia, etc.), ocultando presenciais e híbridas distantes.
+            <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-80 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+              <strong className="text-cyan-400 block mb-1">
+                Raio {radiusKm}km + Remoto (Localização Dinâmica)
+              </strong>
+              Calcula a distância real (Fórmula de Haversine) a partir da{' '}
+              <strong>localização atual do usuário</strong> (via GPS do navegador ou Cidade Base configurada no Perfil).
+              {userLocationLabel ? (
+                <span className="block mt-1 text-emerald-300 font-semibold">
+                  Base atual: {userLocationLabel}
+                </span>
+              ) : (
+                <span className="block mt-1 text-amber-300">
+                  Ao ativar, solicitaremos sua permissão de localização (ou você pode definir a Cidade Base no Perfil).
+                </span>
+              )}
+              <span className="block mt-1">
+                Exibe apenas vagas <strong>100% Remotas</strong> e <strong>Híbridas em até {radiusKm}km</strong>, ocultando presenciais e híbridas distantes.
+              </span>
             </div>
           </div>
         </div>
