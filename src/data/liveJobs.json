@@ -1329,7 +1329,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://ecolab.gupy.io/job/eyJqb2JJZCI6MTI5MjY3MzAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-22T22:44:48.073Z",
-    "daysOpen": 0,
+    "daysOpen": 1,
     "workplaceType": "hibrido",
     "location": "São Paulo, São Paulo",
     "city": "São Paulo",
@@ -1568,44 +1568,6 @@
     "isInternational": false
   },
   {
-    "id": "gupy_12879861",
-    "title": "ESTAGIÁRIO DE INTELIGÊNCIA DE MERCADO | SANTO ANDRÉ",
-    "company": "Wilson Sons",
-    "companyLogo": "https://attachments.gupy.io/production/companies/776/career/1015/images/logo.jpg",
-    "platform": "gupy",
-    "canonicalUrl": "https://wilsonsons.gupy.io/job/eyJqb2JJZCI6MTI4Nzk4NjEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-12T14:57:29.401Z",
-    "daysOpen": 11,
-    "workplaceType": "presencial",
-    "location": "Santo André, São Paulo",
-    "city": "Santo André",
-    "state": "São Paulo",
-    "seniority": "estagio",
-    "stacks": [
-      "Inteligência de Mercado",
-      "Operações / BizOps",
-      "Indicadores / KPIs",
-      "Power BI",
-      "Excel / Sheets"
-    ],
-    "description": "Juntos transformamos realidades.Somos a Wilson Sons, há mais de 188 anos conectamos o Brasil ao mundo através de operações portuárias e marítimas. Muito além da logística, somos movidos por pessoas que aceitam o desafio de movimentar e transformar o país todos os dias. Estamos em busca de um Estagiário para ser desenvolvido e colaborar no monitoramento do ambiente econômico, disponibilização de dados de inteligência de mercado e acompanhamento para o alcance dos objetivos estratégicos da unidade",
-    "requirements": [
-      "Domínio ou vivência em Inteligência de Mercado",
-      "Domínio ou vivência em Operações / BizOps",
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em Power BI",
-      "Domínio ou vivência em Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi"
-    ],
-    "isInternational": false
-  },
-  {
     "id": "gupy_12874639",
     "title": "Especialista de Inteligência de Mercado",
     "company": "Copa Energia",
@@ -1786,6 +1748,51 @@
       "bizops_processos",
       "inteligencia_mercado",
       "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "gupy_12836060",
+    "title": "Analista de Dados Pleno  - Inteligência de Mercado",
+    "company": "ICONIC",
+    "companyLogo": "https://attachments.gupy.io/production/companies/82735/career/208308/images/2025-07-03_18-30_companyLogoUrl.png",
+    "platform": "gupy",
+    "canonicalUrl": "https://iconic.gupy.io/job/eyJqb2JJZCI6MTI4MzYwNjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-04T18:34:47.230Z",
+    "daysOpen": 19,
+    "workplaceType": "hibrido",
+    "location": "Rio de Janeiro, Rio de Janeiro",
+    "city": "Rio de Janeiro",
+    "state": "Rio de Janeiro",
+    "seniority": "pleno",
+    "stacks": [
+      "Inteligência de Mercado",
+      "Análise de Dados",
+      "Indicadores / KPIs",
+      "Power BI",
+      "SQL",
+      "Automação / IA",
+      "Excel / Sheets",
+      "Python"
+    ],
+    "description": "Somos ICONIC, uma empresa líder de mercado que nasceu da fusão dos negócios de lubrificantes da Ipiranga e da Chevron no Brasil. Um time de mais de 1000 colaboradores, altamente especializados e dinâmicos. Somos responsáveis pelo desenvolvimento, produção, distribuição e comercialização de lubrificantes, fluídos, graxas e coolants... mas nosso propósito vai muito além! Por meio do nosso Centro de Tecnologia ICONIC, um dos maiores e mais avançados laboratórios da América Latina e nossas conexões ",
+    "requirements": [
+      "Domínio ou vivência em Inteligência de Mercado",
+      "Domínio ou vivência em Análise de Dados",
+      "Domínio ou vivência em Indicadores / KPIs",
+      "Domínio ou vivência em Power BI",
+      "Domínio ou vivência em SQL",
+      "Domínio ou vivência em Automação / IA",
+      "Domínio ou vivência em Excel / Sheets",
+      "Domínio ou vivência em Python"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
+      "dados_bi",
+      "automacao_ia"
     ],
     "isInternational": false
   },
@@ -3360,51 +3367,6 @@
       "bizops_processos",
       "crm_revops_onboarding",
       "dados_bi"
-    ],
-    "isInternational": false
-  },
-  {
-    "id": "gupy_12891730",
-    "title": "ANALISTA DE ONBOARDING",
-    "company": "VECTOR",
-    "companyLogo": "https://attachments.gupy.io/production/companies/63892/career/149335/images/2023-05-03_18-35_companyLogoUrl.png",
-    "platform": "gupy",
-    "canonicalUrl": "https://vector-unitech.gupy.io/job/eyJqb2JJZCI6MTI4OTE3MzAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
-    "publishedAt": "2026-11-16T17:36:02.400Z",
-    "daysOpen": 7,
-    "workplaceType": "hibrido",
-    "location": "Rio de Janeiro, Rio de Janeiro",
-    "city": "Rio de Janeiro",
-    "state": "Rio de Janeiro",
-    "seniority": "pleno",
-    "stacks": [
-      "Operações / BizOps",
-      "Processos / BPMN",
-      "Onboarding / CS",
-      "Indicadores / KPIs",
-      "Power BI",
-      "Automação / IA",
-      "Excel / Sheets",
-      "APIs / Webhooks"
-    ],
-    "description": "Estamos em busca de um(a) Analista de Onboarding e CS para atuar na execução, acompanhamento e suporte de projetos estratégicos da VECTOR, garantindo que projetos sejam implantados com sucesso, dentro do que foi acordado, com gestão ativa de escopo, cronograma, riscos, comunicação e transição para sustentação, especialmente em contextos que envolvam operações e processos logísticos.Se identificou? Então vem que tem lugar para você no time.Responsabilidades e atribuiçõesEstabelecer agendas de imp",
-    "requirements": [
-      "Domínio ou vivência em Operações / BizOps",
-      "Domínio ou vivência em Processos / BPMN",
-      "Domínio ou vivência em Onboarding / CS",
-      "Domínio ou vivência em Indicadores / KPIs",
-      "Domínio ou vivência em Power BI",
-      "Domínio ou vivência em Automação / IA",
-      "Domínio ou vivência em Excel / Sheets",
-      "Domínio ou vivência em APIs / Webhooks"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "crm_revops_onboarding",
-      "dados_bi",
-      "automacao_ia"
     ],
     "isInternational": false
   },
@@ -5164,7 +5126,7 @@
     "platform": "gupy",
     "canonicalUrl": "https://araguaia.gupy.io/job/eyJqb2JJZCI6MTI5MDIzODQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
     "publishedAt": "2026-11-17T22:22:59.776Z",
-    "daysOpen": 5,
+    "daysOpen": 6,
     "workplaceType": "presencial",
     "location": "Anápolis, Goiás",
     "city": "Anápolis",
@@ -7792,13 +7754,1789 @@
     "isInternational": false
   },
   {
+    "id": "et_b08f2951ab58",
+    "title": "Técnico de Cadastro I - Operações",
+    "company": "Alper Carreiras",
+    "platform": "gupy",
+    "canonicalUrl": "https://alpercarreiras.gupy.io/job/eyJqb2JJZCI6MTI4MDQ0MDcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-23T14:45:00.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "A Alper Carreiras abriu vaga home office para Técnico de Cadastro I - Operações. Confira requisitos, benefícios e como se candidatar. Empresa: Alper Carreiras Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_9e6584275306",
+    "title": "Gerente de Projetos Salesforce",
+    "company": "Compass UOL",
+    "platform": "gupy",
+    "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI4NjA0MjksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-16T06:40:00.000Z",
+    "daysOpen": 7,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Salesforce"
+    ],
+    "description": "A Compass UOL abriu vaga home office para Gerente de Projetos Salesforce. Confira requisitos, benefícios e como se candidatar. Empresa: Compass UOL Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_4c8118693317",
+    "title": "Analista SOC (Security Operations Center) Pleno - Noturno",
+    "company": "Oportunidade Confidencial",
+    "platform": "gupy",
+    "canonicalUrl": "https://vagas-exclusivas.gupy.io/job/eyJqb2JJZCI6MTI4NDc0NzEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-16T05:40:00.000Z",
+    "daysOpen": 7,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Oportunidade Confidencial abriu vaga home office para Analista SOC (Security Operations Center) Pleno - Noturno. Confira requisitos, benefícios e como se candidatar. Empresa: Oportunidade Confidencial Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_15663786432f",
+    "title": "QA Test Automation",
+    "company": "Compass UOL",
+    "platform": "gupy",
+    "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI4OTAwNzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-16T00:10:00.000Z",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Compass UOL abriu vaga home office para QA Test Automation. Confira requisitos, benefícios e como se candidatar. Empresa: Compass UOL Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_6035f62c852d",
+    "title": "Gerente de Projetos de Implantação Pleno",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI4ODg0ODMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-15T23:10:00.000Z",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Gerente de Projetos de Implantação Pleno. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_5176cc2b5ae7",
+    "title": "Analytics Engineer III",
+    "company": "Grupo Boticário",
+    "platform": "gupy",
+    "canonicalUrl": "https://grupoboticario.gupy.io/job/eyJqb2JJZCI6MTI4OTE0MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-15T21:40:00.000Z",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Grupo Boticário abriu vaga home office para Analytics Engineer III. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo Boticário Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_71dfda3e0b9a",
+    "title": "Estagiário de Implantação",
+    "company": "Gaudium",
+    "platform": "gupy",
+    "canonicalUrl": "https://gaudium.gupy.io/job/eyJqb2JJZCI6MTI4ODQxODEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-15T20:40:00.000Z",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "estagio",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Gaudium abriu vaga home office para Estagiário de Implantação. Confira requisitos, benefícios e como se candidatar. Empresa: Gaudium Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_fa78e9625278",
+    "title": "Banco de Talentos - Analista de Dados Sênior",
+    "company": "BHS",
+    "platform": "gupy",
+    "canonicalUrl": "https://bhs.gupy.io/job/eyJqb2JJZCI6MTI4OTIzNzMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-15T17:10:00.000Z",
+    "daysOpen": 8,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A BHS abriu vaga home office para Banco de Talentos - Analista de Dados Sênior. Confira requisitos, benefícios e como se candidatar. Empresa: BHS Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_5753a93d06f8",
+    "title": "Jovem Aprendiz - Customer Success",
+    "company": "Clicksign",
+    "platform": "gupy",
+    "canonicalUrl": "https://clicksign.gupy.io/job/eyJqb2JJZCI6MTI4NzE3NTIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-12T03:05:00.000Z",
+    "daysOpen": 11,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Clicksign abriu vaga home office para Jovem Aprendiz - Customer Success. Confira requisitos, benefícios e como se candidatar. Empresa: Clicksign Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_92dfc4d4f104",
+    "title": "Analista de Processos / Projetos e Documentação de TI",
+    "company": "Stefanini Group",
+    "platform": "gupy",
+    "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI4NjU3MjYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-12T02:45:00.000Z",
+    "daysOpen": 11,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Stefanini Group abriu vaga home office para Analista de Processos / Projetos e Documentação de TI. Confira requisitos, benefícios e como se candidatar. Empresa: Stefanini Group Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d18e2c695f12",
+    "title": "QA Automação Especialista - Segmento Varejista",
+    "company": "DB",
+    "platform": "gupy",
+    "canonicalUrl": "https://db.gupy.io/job/eyJqb2JJZCI6MTI3OTc5NTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-05T11:15:00.000Z",
+    "daysOpen": 18,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A DB abriu vaga home office para QA Automação Especialista - Segmento Varejista. Confira requisitos, benefícios e como se candidatar. Empresa: DB Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_2ed2695d4d4e",
+    "title": "Analista de Inteligência de Mercado",
+    "company": "Libbs Farmacêutica",
+    "platform": "gupy",
+    "canonicalUrl": "https://vempralibbs.gupy.io/job/eyJqb2JJZCI6MTI4MDIwNDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-05T01:15:00.000Z",
+    "daysOpen": 18,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Inteligência de Mercado"
+    ],
+    "description": "A Libbs Farmacêutica abriu vaga home office para Analista de Inteligência de Mercado. Confira requisitos, benefícios e como se candidatar. Empresa: Libbs Farmacêutica Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Inteligência de Mercado"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_01bfbe1060c4",
+    "title": "Supervisor Operações",
+    "company": "Hitss Brasil",
+    "platform": "gupy",
+    "canonicalUrl": "https://globalhitss.gupy.io/job/eyJqb2JJZCI6MTI4MDQ4MjUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-04T08:15:00.000Z",
+    "daysOpen": 19,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "A Hitss Brasil abriu vaga home office para Supervisor Operações. Confira requisitos, benefícios e como se candidatar. Empresa: Hitss Brasil Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8c03ba5c6ff1",
+    "title": "Product Owner",
+    "company": "Techne",
+    "platform": "gupy",
+    "canonicalUrl": "https://techne.gupy.io/job/eyJqb2JJZCI6MTI3NzQzMDIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-02T23:15:00.000Z",
+    "daysOpen": 21,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Techne abriu vaga home office para Product Owner. Confira requisitos, benefícios e como se candidatar. Empresa: Techne Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_25bbc0d55a7a",
+    "title": "Consultor Zendesk CX e Automação",
+    "company": "Compass UOL",
+    "platform": "gupy",
+    "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI4MTUzMzIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-02T22:15:00.000Z",
+    "daysOpen": 21,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Compass UOL abriu vaga home office para Consultor Zendesk CX e Automação. Confira requisitos, benefícios e como se candidatar. Empresa: Compass UOL Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_7364b12e71b0",
+    "title": "ANALISTA DADOS - WEB ANALYTICS & GROWTH",
+    "company": "Bernoulli Educação",
+    "platform": "gupy",
+    "canonicalUrl": "https://bernoullieducacao.gupy.io/job/eyJqb2JJZCI6MTI4MTEzODcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-02T17:15:00.000Z",
+    "daysOpen": 21,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Bernoulli Educação abriu vaga home office para ANALISTA DADOS - WEB ANALYTICS & GROWTH. Confira requisitos, benefícios e como se candidatar. Empresa: Bernoulli Educação Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_5fa6557209d4",
+    "title": "Analista de Analytics Pleno (SQL, Python e Web Analytics)",
+    "company": "Leega Consultoria",
+    "platform": "gupy",
+    "canonicalUrl": "https://leega.gupy.io/job/eyJqb2JJZCI6MTI4MDg3NTksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-11-02T16:15:00.000Z",
+    "daysOpen": 21,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Análise de Dados",
+      "SQL",
+      "Python"
+    ],
+    "description": "A Leega Consultoria abriu vaga home office para Analista de Analytics Pleno (SQL, Python e Web Analytics). Confira requisitos, benefícios e como se candidatar. Empresa: Leega Consultoria Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados",
+      "Experiência ou conhecimento em SQL",
+      "Experiência ou conhecimento em Python"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_995360f48ea4",
+    "title": "Product Owner",
+    "company": "FCamara",
+    "platform": "gupy",
+    "canonicalUrl": "https://fcamara.gupy.io/job/eyJqb2JJZCI6MTI3ODIwOTUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-29T08:45:00.000Z",
+    "daysOpen": 25,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A FCamara abriu vaga home office para Product Owner. Confira requisitos, benefícios e como se candidatar. Empresa: FCamara Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_10e81304ee4a",
+    "title": "Analista de Automação Júnior",
+    "company": "Quality Digital",
+    "platform": "gupy",
+    "canonicalUrl": "https://qualitydigital.gupy.io/job/eyJqb2JJZCI6MTI3MDA4MzQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-29T04:15:00.000Z",
+    "daysOpen": 25,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Quality Digital abriu vaga home office para Analista de Automação Júnior. Confira requisitos, benefícios e como se candidatar. Empresa: Quality Digital Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_bb78d1d50852",
+    "title": "Analista de Dados/BI",
+    "company": "Nomus",
+    "platform": "gupy",
+    "canonicalUrl": "https://nomus.gupy.io/job/eyJqb2JJZCI6MTI2NTk4MzUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-29T01:45:00.000Z",
+    "daysOpen": 25,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Nomus abriu vaga home office para Analista de Dados/BI. Confira requisitos, benefícios e como se candidatar. Empresa: Nomus Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_b67215c7a05d",
+    "title": "Consultor(a) de Implantação – Treinamento",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI3OTQ4MDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-28T11:15:00.000Z",
+    "daysOpen": 26,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Consultor(a) de Implantação – Treinamento. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_e83a134d8155",
+    "title": "Analista de Sistemas de Automação",
+    "company": "Lanlink Informática",
+    "platform": "gupy",
+    "canonicalUrl": "https://vempralanlink.gupy.io/job/eyJqb2JJZCI6MTI3NTM2NDksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-27T21:15:00.000Z",
+    "daysOpen": 27,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Lanlink Informática abriu vaga home office para Analista de Sistemas de Automação. Confira requisitos, benefícios e como se candidatar. Empresa: Lanlink Informática Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_faa6e31e5aab",
+    "title": "Estagiário(a) - Central de Operações",
+    "company": "CIEE - Centro de Integração Empresa-Escola",
+    "platform": "gupy",
+    "canonicalUrl": "https://ciee.gupy.io/job/eyJqb2JJZCI6MTI3NTg3MTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-27T14:15:00.000Z",
+    "daysOpen": 27,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "estagio",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "A CIEE - Centro de Integração Empresa-Escola abriu vaga home office para Estagiário(a) - Central de Operações. Confira requisitos, benefícios e como se candidatar. Empresa: CIEE - Centro de Integração Empresa-Escola Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_2e8e43f7e230",
+    "title": "Consultor(a) de Implantação - Setor Farma",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI3NjI4NzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-27T00:45:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Consultor(a) de Implantação - Setor Farma. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_c5a49c37d840",
+    "title": "Consultor(a) de Implantação - Setor Financeiro",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI3NjQ4MTcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-27T00:15:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Consultor(a) de Implantação - Setor Financeiro. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_87c01ded7ec6",
+    "title": "Consultor(a) de Implantação - Setor Logístico",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI3NjUwODYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T23:45:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Consultor(a) de Implantação - Setor Logístico. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_46b9a8d925fa",
+    "title": "Consultor(a) de Implantação - Setor Público",
+    "company": "Carreiras SoftExpert",
+    "platform": "gupy",
+    "canonicalUrl": "https://softexpert.gupy.io/job/eyJqb2JJZCI6MTI3NjM4ODksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T23:15:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Carreiras SoftExpert abriu vaga home office para Consultor(a) de Implantação - Setor Público. Confira requisitos, benefícios e como se candidatar. Empresa: Carreiras SoftExpert Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_27c2c60c90cc",
+    "title": "Product Owner",
+    "company": "Werecruiter",
+    "platform": "gupy",
+    "canonicalUrl": "https://werecruiter.gupy.io/job/eyJqb2JJZCI6MTI3Njg4ODMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T19:15:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Werecruiter abriu vaga home office para Product Owner. Confira requisitos, benefícios e como se candidatar. Empresa: Werecruiter Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8de11194e725",
+    "title": "Analista de Automação",
+    "company": "Keggo Tech",
+    "platform": "gupy",
+    "canonicalUrl": "https://keeggotech.gupy.io/job/eyJqb2JJZCI6MTI3NjgxMjIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T18:15:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Keggo Tech abriu vaga home office para Analista de Automação. Confira requisitos, benefícios e como se candidatar. Empresa: Keggo Tech Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_6c26e60716f5",
+    "title": "Team Leader Sucesso do Cliente (Engajamento)",
+    "company": "Omie",
+    "platform": "gupy",
+    "canonicalUrl": "https://carreirasomie.gupy.io/job/eyJqb2JJZCI6MTI3NzAyNTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T12:15:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Omie abriu vaga home office para Team Leader Sucesso do Cliente (Engajamento). Confira requisitos, benefícios e como se candidatar. Empresa: Omie Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8697187dc1ff",
+    "title": "PRODUCT OWNER SPECIALIST",
+    "company": "Localiza&Co",
+    "platform": "gupy",
+    "canonicalUrl": "https://localiza.gupy.io/job/eyJqb2JJZCI6MTI2MTMxNTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T11:45:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Localiza&Co abriu vaga home office para PRODUCT OWNER SPECIALIST. Confira requisitos, benefícios e como se candidatar. Empresa: Localiza&Co Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_9efe146e2548",
+    "title": "Consultor Zendesk CX e Automação Pleno",
+    "company": "Confidencial",
+    "platform": "gupy",
+    "canonicalUrl": "https://xfckvnq.gupy.io/job/eyJqb2JJZCI6MTI3NjMyMTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-26T08:45:00.000Z",
+    "daysOpen": 28,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Confidencial abriu vaga home office para Consultor Zendesk CX e Automação Pleno. Confira requisitos, benefícios e como se candidatar. Empresa: Confidencial Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d05097cd90c9",
+    "title": "Analista de CRM",
+    "company": "Grupo Henry Schein Brasil",
+    "platform": "gupy",
+    "canonicalUrl": "https://henryschein.gupy.io/job/eyJqb2JJZCI6MTI3NzY5MzcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-25T21:45:00.000Z",
+    "daysOpen": 29,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "A Grupo Henry Schein Brasil abriu vaga home office para Analista de CRM. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo Henry Schein Brasil Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_48f67e8a7551",
+    "title": "Analista de BI PL",
+    "company": "Grupo SysMap",
+    "platform": "gupy",
+    "canonicalUrl": "https://gruposysmap.gupy.io/job/eyJqb2JJZCI6MTI3NzY4MDcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-25T18:45:00.000Z",
+    "daysOpen": 29,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Grupo SysMap abriu vaga home office para Analista de BI PL. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo SysMap Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_bd099b71610d",
+    "title": "Consultor Salesforce Marketing Cloud",
+    "company": "Grupo SysMap",
+    "platform": "gupy",
+    "canonicalUrl": "https://gruposysmap.gupy.io/job/eyJqb2JJZCI6MTI3MjY5NDQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-23T08:15:00.000Z",
+    "daysOpen": 31,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Salesforce"
+    ],
+    "description": "A Grupo SysMap abriu vaga home office para Consultor Salesforce Marketing Cloud. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo SysMap Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_68ecbb14fedf",
+    "title": "Analista de Operações Cloud Júnior | Sexta a Terça – 23h às 08h (Noturno)",
+    "company": "Dedalus Prime",
+    "platform": "gupy",
+    "canonicalUrl": "https://dedalus.gupy.io/job/eyJqb2JJZCI6MTI3MDc2MTMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-23T01:15:00.000Z",
+    "daysOpen": 31,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Operações / BizOps"
+    ],
+    "description": "A Dedalus Prime abriu vaga home office para Analista de Operações Cloud Júnior | Sexta a Terça – 23h às 08h (Noturno). Confira requisitos, benefícios e como se candidatar. Empresa: Dedalus Prime Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_1f4c84c7d7d2",
+    "title": "Analista Automação RPA Pleno (Power Automate e Python)",
+    "company": "Stefanini Group",
+    "platform": "gupy",
+    "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI3Mzc5MTEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-22T18:15:00.000Z",
+    "daysOpen": 32,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA",
+      "Python"
+    ],
+    "description": "A Stefanini Group abriu vaga home office para Analista Automação RPA Pleno (Power Automate e Python). Confira requisitos, benefícios e como se candidatar. Empresa: Stefanini Group Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA",
+      "Experiência ou conhecimento em Python"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_0d698394d62f",
+    "title": "QA Automation Engineer Júnior",
+    "company": "Veriter",
+    "platform": "gupy",
+    "canonicalUrl": "https://verity.gupy.io/job/eyJqb2JJZCI6MTI3NDg0NjEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-22T12:15:00.000Z",
+    "daysOpen": 32,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Veriter abriu vaga home office para QA Automation Engineer Júnior. Confira requisitos, benefícios e como se candidatar. Empresa: Veriter Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d2590cc0e9d7",
+    "title": "Vaga Híbrida: Analista de Dados",
+    "company": "KPMG",
+    "platform": "inhire",
+    "canonicalUrl": "https://kpmg.inhire.app/vagas/0d06818a-b38f-4092-9cbf-af707f80e9dc/nalista-de-ados",
+    "publishedAt": "2026-10-21T23:15:00.000Z",
+    "daysOpen": 33,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A KPMG abriu vaga híbrida para Analista de Dados. Confira requisitos, benefícios e como se candidatar. Empresa: KPMG Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8b6e4ae3bbd6",
+    "title": "Vaga Presencial: Analista de CRM",
+    "company": "Sanar",
+    "platform": "inhire",
+    "canonicalUrl": "https://sanar.inhire.app/vagas/7722297c-924a-4a9e-9b00-d49b83bd2319/nalista-de",
+    "publishedAt": "2026-10-21T14:15:00.000Z",
+    "daysOpen": 33,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "A Sanar abriu vaga presencial para Analista de CRM. Confira requisitos, benefícios e como se candidatar. Empresa: Sanar Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_c4a8889cd44a",
+    "title": "Analista de BI Pleno",
+    "company": "Nexdom Healthtech",
+    "platform": "gupy",
+    "canonicalUrl": "https://vempranexdom.gupy.io/job/eyJqb2JJZCI6MTEyODM1NDYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-20T23:45:00.000Z",
+    "daysOpen": 34,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Nexdom Healthtech abriu vaga home office para Analista de BI Pleno. Confira requisitos, benefícios e como se candidatar. Empresa: Nexdom Healthtech Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d2949756cdcc",
+    "title": "Vaga Presencial: Pessoa Coordenadora de BI & Analytics",
+    "company": "Share People Hub",
+    "platform": "inhire",
+    "canonicalUrl": "https://sharepeoplehub.inhire.app/vagas/dfcbcf49-86b3-4cc0-8b87-cf233773de92/essoa-oordenadora-de-nalytics",
+    "publishedAt": "2026-10-20T01:20:00.000Z",
+    "daysOpen": 34,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Share People Hub abriu vaga presencial para Pessoa Coordenadora de BI & Analytics. Confira requisitos, benefícios e como se candidatar. Empresa: Share People Hub Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_7d4f1d64aae8",
+    "title": "SA - Analista de Automação Power Automate + IA",
+    "company": "Zallpy Digital",
+    "platform": "inhire",
+    "canonicalUrl": "https://zallpy.inhire.app/vagas/bdf8acbd-6f50-4ace-91d0-a76d389d86f4/nalista-de-utomacao-ower-utomate",
+    "publishedAt": "2026-10-19T21:50:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Zallpy Digital abriu vaga home office para SA - Analista de Automação Power Automate + IA. Confira requisitos, benefícios e como se candidatar. Empresa: Zallpy Digital Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8cffc0ef6748",
+    "title": "Vaga Híbrida: Analista de Power BI Sênior (Híbrido)",
+    "company": "Zallpy Digital",
+    "platform": "inhire",
+    "canonicalUrl": "https://zallpy.inhire.app/vagas/5f8a4ba7-b821-4365-b475-56f1001d1cbf/nalista-de-ower-enior-ibrido",
+    "publishedAt": "2026-10-19T20:30:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Power BI"
+    ],
+    "description": "A Zallpy Digital abriu vaga híbrida para Analista de Power BI Sênior (Híbrido). Confira requisitos, benefícios e como se candidatar. Empresa: Zallpy Digital Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Power BI"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_4c37935b11a9",
+    "title": "Analista de Dados Sênior – Google Analytics",
+    "company": "Zallpy Digital",
+    "platform": "inhire",
+    "canonicalUrl": "https://zallpy.inhire.app/vagas/8ca83633-f672-470b-9d9f-97e8cc59ac57/nalista-de-ados-enior-oogle-nalytics",
+    "publishedAt": "2026-10-19T20:20:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Zallpy Digital abriu vaga home office para Analista de Dados Sênior – Google Analytics. Confira requisitos, benefícios e como se candidatar. Empresa: Zallpy Digital Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_e4b579b38570",
+    "title": "Vaga Presencial: Analista de Dados Júnior - Presencial em Blumenau",
+    "company": "Zallpy Digital",
+    "platform": "inhire",
+    "canonicalUrl": "https://zallpy.inhire.app/vagas/74754ebb-cff8-41a1-b461-079e5c2660b6/nalista-de-ados-unior-resencial-em-lumenau",
+    "publishedAt": "2026-10-19T20:10:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Zallpy Digital abriu vaga presencial para Analista de Dados Júnior - Presencial em Blumenau. Confira requisitos, benefícios e como se candidatar. Empresa: Zallpy Digital Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_af3bb535e9b5",
+    "title": "Vaga Presencial: Analista de Implantação Pleno",
+    "company": "Zig",
+    "platform": "inhire",
+    "canonicalUrl": "https://zig.inhire.app/vagas/be3bac11-92b8-4c88-a9b5-884b8de0ad30/nalista-de-mplantacao-leno",
+    "publishedAt": "2026-10-19T19:30:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Zig abriu vaga presencial para Analista de Implantação Pleno. Confira requisitos, benefícios e como se candidatar. Empresa: Zig Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_857c85bbbf3f",
+    "title": "Product Owner (PO) de Tecnologia",
+    "company": "Paciente 360",
+    "platform": "gupy",
+    "canonicalUrl": "https://paciente360.gupy.io/job/eyJqb2JJZCI6MTI3Mzk1MDMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-19T03:15:00.000Z",
+    "daysOpen": 35,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Paciente 360 abriu vaga home office para Product Owner (PO) de Tecnologia. Confira requisitos, benefícios e como se candidatar. Empresa: Paciente 360 Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_a8b0e0ef8a10",
+    "title": "ANALISTA DE ANALYTICS",
+    "company": "La Moda",
+    "platform": "gupy",
+    "canonicalUrl": "https://lamoda.gupy.io/job/eyJqb2JJZCI6MTI3MzYzODMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-19T00:15:00.000Z",
+    "daysOpen": 36,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A La Moda abriu vaga home office para ANALISTA DE ANALYTICS. Confira requisitos, benefícios e como se candidatar. Empresa: La Moda Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_bf466e18dd21",
+    "title": "ANALISTA AUTOMAÇÃO",
+    "company": "Stefanini Group",
+    "platform": "gupy",
+    "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI3NDAyMzcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-18T19:15:00.000Z",
+    "daysOpen": 36,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Stefanini Group abriu vaga home office para ANALISTA AUTOMAÇÃO. Confira requisitos, benefícios e como se candidatar. Empresa: Stefanini Group Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_9c15b1b6c8d4",
+    "title": "Senior Marketing Data Analyst",
+    "company": "Grupo OLX",
+    "platform": "gupy",
+    "canonicalUrl": "https://vemsergrupoolx.gupy.io/job/eyJqb2JJZCI6MTI2NjY5NzUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T18:05:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Grupo OLX abriu vaga home office para Senior Marketing Data Analyst. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo OLX Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_62f767be676c",
+    "title": "Estágio | Data Science and Analytics",
+    "company": "domoinovacao",
+    "platform": "gupy",
+    "canonicalUrl": "https://domo.gupy.io/job/eyJqb2JJZCI6MTI3MTg1NTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T10:25:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "estagio",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A domoinovacao abriu vaga home office para Estágio | Data Science and Analytics. Confira requisitos, benefícios e como se candidatar. Empresa: domoinovacao Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_7b1e371854a2",
+    "title": "Analista Funcional Salesforce Sênior",
+    "company": "Confidencial",
+    "platform": "gupy",
+    "canonicalUrl": "https://xfckvnq.gupy.io/job/eyJqb2JJZCI6MTI2OTc4NjQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T09:25:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "senior",
+    "stacks": [
+      "Salesforce"
+    ],
+    "description": "A Confidencial abriu vaga home office para Analista Funcional Salesforce Sênior. Confira requisitos, benefícios e como se candidatar. Empresa: Confidencial Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_c7876f42648f",
+    "title": "ESPECIALISTA CRM",
+    "company": "Azul Linhas Aéreas Brasileiras",
+    "platform": "gupy",
+    "canonicalUrl": "https://voeazul.gupy.io/job/eyJqb2JJZCI6MTI0MTM4MTcsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T08:25:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "A Azul Linhas Aéreas Brasileiras abriu vaga home office para ESPECIALISTA CRM. Confira requisitos, benefícios e como se candidatar. Empresa: Azul Linhas Aéreas Brasileiras Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_4312c78ea145",
+    "title": "Arquiteto de Dados e Analytics",
+    "company": "Confidencial",
+    "platform": "gupy",
+    "canonicalUrl": "https://vagasconfidenciais1.gupy.io/job/eyJqb2JJZCI6MTI3MjQxNjYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T06:05:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Confidencial abriu vaga home office para Arquiteto de Dados e Analytics. Confira requisitos, benefícios e como se candidatar. Empresa: Confidencial Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_6cb1f766ab2b",
+    "title": "Assistente Implantação II",
+    "company": "Alper Carreiras",
+    "platform": "gupy",
+    "canonicalUrl": "https://alpercarreiras.gupy.io/job/eyJqb2JJZCI6MTI2MTkyNzksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T05:25:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Onboarding / CS"
+    ],
+    "description": "A Alper Carreiras abriu vaga home office para Assistente Implantação II. Confira requisitos, benefícios e como se candidatar. Empresa: Alper Carreiras Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Onboarding / CS"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_c1dfbe50ce8f",
+    "title": "Analista de Soluções (Product Owner)",
+    "company": "Cresol Oficial",
+    "platform": "gupy",
+    "canonicalUrl": "https://cresolcarreiras.gupy.io/job/eyJqb2JJZCI6MTI3MjUwOTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-15T03:05:00.000Z",
+    "daysOpen": 39,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Cresol Oficial abriu vaga home office para Analista de Soluções (Product Owner). Confira requisitos, benefícios e como se candidatar. Empresa: Cresol Oficial Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_f898ec488694",
+    "title": "Especialista de BI &amp; Analytics Engineering",
+    "company": "Helppi",
+    "platform": "gupy",
+    "canonicalUrl": "https://helppi.gupy.io/job/eyJqb2JJZCI6MTI2NjE4NjgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-13T09:45:00.000Z",
+    "daysOpen": 41,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Helppi abriu vaga home office para Especialista de BI & Analytics Engineering. Confira requisitos, benefícios e como se candidatar. Empresa: Helppi Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_36bb50721f51",
+    "title": "Arquiteto de Sistemas Salesforce",
+    "company": "Grupo SysMap",
+    "platform": "gupy",
+    "canonicalUrl": "https://gruposysmap.gupy.io/job/eyJqb2JJZCI6MTI2OTgxNzIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-13T07:45:00.000Z",
+    "daysOpen": 41,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Salesforce"
+    ],
+    "description": "A Grupo SysMap abriu vaga home office para Arquiteto de Sistemas Salesforce. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo SysMap Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_65df84e1a504",
+    "title": "Analista de Dados II (Pleno)",
+    "company": "Celk Sistemas",
+    "platform": "gupy",
+    "canonicalUrl": "https://celksistemas.gupy.io/job/eyJqb2JJZCI6MTI3MDQ1NjMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-13T06:45:00.000Z",
+    "daysOpen": 41,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Celk Sistemas abriu vaga home office para Analista de Dados II (Pleno). Confira requisitos, benefícios e como se candidatar. Empresa: Celk Sistemas Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_68685063ac58",
+    "title": "Analytics Engineer Tech Lead",
+    "company": "Asaas",
+    "platform": "gupy",
+    "canonicalUrl": "https://asaas.gupy.io/job/eyJqb2JJZCI6MTI0OTg5MjQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-12T23:15:00.000Z",
+    "daysOpen": 42,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Análise de Dados"
+    ],
+    "description": "A Asaas abriu vaga home office para Analytics Engineer Tech Lead. Confira requisitos, benefícios e como se candidatar. Empresa: Asaas Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Análise de Dados"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8e5a849a1070",
+    "title": "Líder Técnico BI SR",
+    "company": "Grupo SysMap",
+    "platform": "gupy",
+    "canonicalUrl": "https://gruposysmap.gupy.io/job/eyJqb2JJZCI6MTI3MDA3NzMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-12T22:45:00.000Z",
+    "daysOpen": 42,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Grupo SysMap abriu vaga home office para Líder Técnico BI SR. Confira requisitos, benefícios e como se candidatar. Empresa: Grupo SysMap Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d3b95a9f0551",
+    "title": "Analista de BI",
+    "company": "Compass UOL",
+    "platform": "gupy",
+    "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI3MTA4NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-12T19:15:00.000Z",
+    "daysOpen": 42,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Compass UOL abriu vaga home office para Analista de BI. Confira requisitos, benefícios e como se candidatar. Empresa: Compass UOL Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_b2319f02fce5",
+    "title": "ANALISTA PROCESSOS JR",
+    "company": "Stefanini Group",
+    "platform": "gupy",
+    "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI2ODcxMTQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-12T06:15:00.000Z",
+    "daysOpen": 42,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "junior",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Stefanini Group abriu vaga home office para ANALISTA PROCESSOS JR. Confira requisitos, benefícios e como se candidatar. Empresa: Stefanini Group Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_5ad8a4a3a063",
+    "title": "Data Product Analyst (Governance & Data Mesh)",
+    "company": "Compass UOL",
+    "platform": "gupy",
+    "canonicalUrl": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI2NzYzNDUsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-12T04:15:00.000Z",
+    "daysOpen": 42,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Compass UOL abriu vaga home office para Data Product Analyst (Governance & Data Mesh). Confira requisitos, benefícios e como se candidatar. Empresa: Compass UOL Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_8ee6b64ce5e2",
+    "title": "Analista de Processos",
+    "company": "Itix",
+    "platform": "gupy",
+    "canonicalUrl": "https://sejaitix.gupy.io/job/eyJqb2JJZCI6MTI2OTM5NTYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-11T06:15:00.000Z",
+    "daysOpen": 43,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "A Itix abriu vaga home office para Analista de Processos. Confira requisitos, benefícios e como se candidatar. Empresa: Itix Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Operações / BizOps",
+      "Experiência ou conhecimento em Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos"
+    ],
+    "isInternational": false
+  },
+  {
+    "id": "et_d2e326119435",
+    "title": "Analista Automação PL",
+    "company": "Stefanini Group",
+    "platform": "gupy",
+    "canonicalUrl": "https://stefanini.gupy.io/job/eyJqb2JJZCI6MTI3MDI0MzEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "publishedAt": "2026-10-09T16:15:00.000Z",
+    "daysOpen": 45,
+    "workplaceType": "remoto",
+    "location": "Remoto - Brasil",
+    "seniority": "pleno",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "A Stefanini Group abriu vaga home office para Analista Automação PL. Confira requisitos, benefícios e como se candidatar. Empresa: Stefanini Group Tipo: CLT – Tempo Integral Ver vaga completa no Empregos Tech → Candidatar-se agora →",
+    "requirements": [
+      "Experiência ou conhecimento em Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "automacao_ia"
+    ],
+    "isInternational": false
+  },
+  {
     "id": "gh_quintoandar_4433716009",
     "title": "Analista de Planejamento e Performance | Sales Operations - Afirmativa PcD",
     "company": "QuintoAndar",
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4433716009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -7846,7 +9584,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4478662009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -7886,7 +9624,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4462819009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -7922,7 +9660,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4459780009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -7956,7 +9694,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4468847009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -7992,7 +9730,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4450031009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -8018,7 +9756,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4503765009",
     "publishedAt": "2026-11-18T17:59:08-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -8045,7 +9783,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4391355009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -8115,7 +9853,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4450897009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -8157,7 +9895,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4383529009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -8194,7 +9932,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4472985009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -8232,7 +9970,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4437889009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -8263,7 +10001,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4391178009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -8293,7 +10031,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4047195009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "pleno",
@@ -8321,7 +10059,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423527009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8351,7 +10089,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4254812009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8389,7 +10127,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4423064009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8424,7 +10162,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4486042009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8459,7 +10197,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4337564009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8492,7 +10230,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4360924009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8526,7 +10264,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4470090009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8570,7 +10308,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4424349009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8602,7 +10340,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4421451009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8641,7 +10379,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4404916009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8672,7 +10410,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4428956009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8701,7 +10439,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4452400009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8733,7 +10471,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023482009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -8763,7 +10501,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023483009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "senior",
@@ -8793,7 +10531,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4481089009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "senior",
@@ -8830,7 +10568,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023115009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "São Paulo, São Paulo, Brazil",
     "seniority": "especialista",
@@ -8860,7 +10598,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023118009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8890,7 +10628,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023516009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8920,7 +10658,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4023517009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8950,7 +10688,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4426626009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "especialista",
@@ -8985,7 +10723,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/quintoandar/jobs/4400445009",
     "publishedAt": "2026-11-18T17:08:43-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "presencial",
     "location": "Brasil",
     "seniority": "pleno",
@@ -9377,7 +11115,7 @@
     "platform": "greenhouse",
     "canonicalUrl": "https://job-boards.greenhouse.io/gympass/jobs/8939094002",
     "publishedAt": "2026-11-18T18:53:22-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "remoto",
     "location": "US (NY - Remote)",
     "seniority": "junior",
@@ -10096,7 +11834,7 @@
     "platform": "lever",
     "canonicalUrl": "https://jobs.lever.co/neon/5cae0695-01bc-4b65-81a9-11fcba5c53ba",
     "publishedAt": "2026-10-22T22:32:35.883Z",
-    "daysOpen": 31,
+    "daysOpen": 32,
     "workplaceType": "remoto",
     "location": "Remoto",
     "seniority": "senior",
@@ -18939,30 +20677,24 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/aledade/jobs/program-coordinator-cacp",
-    "title": "Program Coordinator, CACP",
-    "company": "Aledade",
-    "companyLogo": "https://cdn-images.himalayas.app/j22e2jalbeaoet2dn4rvrnthuc6v",
+    "id": "himalayas_https://himalayas.app/companies/sedgwick/jobs/it-project-management-specialist-sr",
+    "title": "IT Project Management Specialist Sr",
+    "company": "Sedgwick",
+    "companyLogo": "https://cdn-images.himalayas.app/dkjnp3uyhc8h7u9w3umzr3cpt8fd",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/aledade/jobs/program-coordinator-cacp?utm_source=api",
-    "publishedAt": "2026-11-23T21:49:53.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/sedgwick/jobs/it-project-management-specialist-sr?utm_source=api",
+    "publishedAt": "2026-11-23T23:52:29.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (United States)",
     "seniority": "especialista",
     "stacks": [
       "Análise de Dados",
-      "Indicadores / KPIs",
-      "Power BI",
-      "SQL",
       "Excel / Sheets"
     ],
-    "description": "The Program Coordinator is responsible for supporting the day-to-day operations of our Comprehensive Advanced Care Planning (CACP) program, keeping it running smoothly and helping it deliver strong outcomes. CACP is part of Aledade ’s mission to help independent primary care practices thrive in value-based care, by reaching out to patients to help them get the care they need. In this role, you’ll track milestones, monitor KPIs, and be a go-to partner for program leaders and t",
+    "description": "By joining Sedgwick , you'll be part of something truly meaningful. It’s what our 33,000 colleagues do every day for people around the world who are facing the unexpected. We invite you to grow your career with us, experience our caring culture, and enjoy work-life balance. Here, there’s no limit to what you can achieve. Newsweek Recognizes Sedgwick as America’s Greatest Workplaces National Top Companies Certified as a Great Place to Work® Fortune Best Workplaces in Financial",
     "requirements": [
       "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs",
-      "Experience with Power BI",
-      "Experience with SQL",
       "Experience with Excel / Sheets"
     ],
     "isActive": true,
@@ -18974,102 +20706,198 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/roche/jobs/technical-support-specialist-2-fixed-term-24-months",
-    "title": "Technical Support Specialist 2 (Fixed Term 24 months)",
-    "company": "Roche",
-    "companyLogo": "https://cdn-images.himalayas.app/becnmii5osfyl5ninbqgqydwe2en",
+    "id": "himalayas_https://himalayas.app/companies/tista-science-and-technology-corporation/jobs/product-owner-enterprise-asset-management-eam-cmms",
+    "title": "Product Owner – Enterprise Asset Management (EAM/CMMS)",
+    "company": "TISTA Science and Technology Corporation",
+    "companyLogo": "https://cdn-images.himalayas.app/6xjguyi87vqpj7eln84nmu9ms32a",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/roche/jobs/technical-support-specialist-2-fixed-term-24-months?utm_source=api",
-    "publishedAt": "2026-11-23T21:36:38.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/tista-science-and-technology-corporation/jobs/product-owner-enterprise-asset-management-eam-cmms?utm_source=api",
+    "publishedAt": "2026-11-23T23:50:35.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (United States)",
-    "seniority": "especialista",
+    "seniority": "senior",
     "stacks": [
-      "Operações / BizOps",
-      "Indicadores / KPIs"
+      "Onboarding / CS",
+      "Indicadores / KPIs",
+      "Salesforce"
     ],
-    "description": "At Roche you can show up as yourself, embraced for the unique qualities you bring. Our culture encourages personal expression, open dialogue, and genuine connections, where you are valued, accepted and respected for who you are, allowing you to thrive both personally and professionally. This is how we aim to prevent, stop and cure diseases and ensure everyone has access to healthcare today and for generations to come. Join Roche , where every voice matters. The Position This ",
+    "description": "Overview TISTA Science and Technology Corporation is seeking an experienced Product Owner – Enterprise Asset Management (EAM/CMMS) to support the Department of Veterans Affairs (VA) Supply Chain Management Development Security Operations (SCM DSO) program within the Healthcare Environment and Logistics Management (HELM) product line. The Product Owner will lead product backlog management, Agile delivery coordination, and stakeholder engagement for VA's Enterprise Asset Manage",
     "requirements": [
-      "Experience with Operações / BizOps",
-      "Experience with Indicadores / KPIs"
+      "Experience with Onboarding / CS",
+      "Experience with Indicadores / KPIs",
+      "Experience with Salesforce"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
-      "bizops_processos"
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi"
     ],
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/ethena/jobs/principal-revenue-operations-manager",
-    "title": "Principal Revenue Operations Manager",
-    "company": "Ethena",
-    "companyLogo": "https://cdn-images.himalayas.app/qsc63hd49okfnlxnvi6536n5eiad",
+    "id": "himalayas_https://himalayas.app/companies/jabil/jobs/sr-operations-development-manager",
+    "title": "Sr Operations Development Manager",
+    "company": "Jabil",
+    "companyLogo": "https://cdn-images.himalayas.app/ledr9i1lz1emly3uapr6k50sy4hr",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/ethena/jobs/principal-revenue-operations-manager?utm_source=api",
-    "publishedAt": "2026-11-23T21:31:55.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/jabil/jobs/sr-operations-development-manager?utm_source=api",
+    "publishedAt": "2026-11-23T23:41:22.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (United States)",
     "seniority": "especialista",
     "stacks": [
       "Processos / BPMN",
-      "Onboarding / CS",
-      "Análise de Dados",
       "Indicadores / KPIs",
-      "CRM",
-      "Salesforce",
-      "RevOps",
-      "Sales Ops",
-      "Automação / IA"
+      "Excel / Sheets"
     ],
-    "description": "Who we are We’re Ethena , an AI platform that’s revolutionizing the Compliance space. Our team of agents helps Compliance and People leaders run proactive Compliance programs that drive real behavior change. From Policies and Disclosures to Training, Hotline, and Analytics, our agents work together to drive smarter, faster, human-led decision-making. Hotline and training data rolls up into fully customizable, board-ready risk reports. Our AI call taker synthesizes data to rec",
+    "description": "At Jabil (NYSE: JBL), we are proud to be a trusted partner for the world's top brands, offering comprehensive engineering, supply chain, and manufacturing solutions. With 60 years of experience across industries and a vast network of over 100 sites worldwide, Jabil combines global reach with local expertise to deliver both scalable and customized solutions. Our commitment extends beyond business success as we strive to build sustainable processes that minimize environmental i",
     "requirements": [
       "Experience with Processos / BPMN",
-      "Experience with Onboarding / CS",
-      "Experience with Análise de Dados",
       "Experience with Indicadores / KPIs",
-      "Experience with CRM",
-      "Experience with Salesforce",
-      "Experience with RevOps",
-      "Experience with Sales Ops",
+      "Experience with Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/teya/jobs/internal-operations-senior-associate",
+    "title": "Internal Operations Senior Associate",
+    "company": "Teya",
+    "companyLogo": "https://cdn-images.himalayas.app/umfzqh4d5yznkm0cq7m930ynq28l",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/teya/jobs/internal-operations-senior-associate?utm_source=api",
+    "publishedAt": "2026-11-23T23:40:14.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Portugal, United Kingdom)",
+    "seniority": "senior",
+    "stacks": [
+      "Análise de Dados",
+      "Power BI",
+      "SQL",
+      "Automação / IA"
+    ],
+    "description": "Hello. We’re Teya . Teya was founded on a simple belief: local businesses deserve better. They are the cafés, restaurants, salons, shops and entrepreneurs that bring character to our high streets, create jobs and keep communities moving. Yet for too long, financial services has made life harder for them - with clunky tools, poor support and complexity that gets in the way of running a business. Teya exists to change that. We’re building a financial platform for local business",
+    "requirements": [
+      "Experience with Análise de Dados",
+      "Experience with Power BI",
+      "Experience with SQL",
       "Experience with Automação / IA"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
       "bizops_processos",
-      "inteligencia_mercado",
-      "crm_revops_onboarding",
       "dados_bi",
       "automacao_ia"
     ],
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/valmont-industries-inc/jobs/senior-programmer-analyst-ai-solutions",
-    "title": "Senior Programmer Analyst (AI Solutions)",
-    "company": "Valmont Industries, Inc.",
-    "companyLogo": "https://cdn-images.himalayas.app/yk6h6tkip5gcecq2o104olgvnlo4",
+    "id": "himalayas_https://himalayas.app/companies/beonemedicines/jobs/associate-director-field-incentive-compensation",
+    "title": "Associate Director, Field Incentive Compensation",
+    "company": "BeiGene",
+    "companyLogo": "https://cdn-images.himalayas.app/chez8kf5mgknvyw92e7ys1q8xkfp",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/valmont-industries-inc/jobs/senior-programmer-analyst-ai-solutions?utm_source=api",
-    "publishedAt": "2026-11-23T20:27:32.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/beonemedicines/jobs/associate-director-field-incentive-compensation?utm_source=api",
+    "publishedAt": "2026-11-23T23:38:04.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (India)",
-    "seniority": "senior",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "especialista",
     "stacks": [
+      "Análise de Dados",
+      "SQL",
+      "CRM",
+      "Salesforce",
+      "Sales Ops",
+      "Excel / Sheets"
+    ],
+    "description": "BeOne continues to grow at a rapid pace with challenging and exciting opportunities for experienced professionals. When considering candidates, we look for scientific and business professionals who are highly motivated, collaborative, and most importantly, share our passionate interest in fighting cancer. Job Title: Associate Director, Field Incentive Compensation ⠀ General Description: The Associate Director of Field Incentive Compensation will be responsible for the managem",
+    "requirements": [
+      "Experience with Análise de Dados",
+      "Experience with SQL",
+      "Experience with CRM",
+      "Experience with Salesforce",
+      "Experience with Sales Ops",
+      "Experience with Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/darkroom/jobs/senior-paid-search-specialist-319773768",
+    "title": "Senior Paid Search Specialist",
+    "company": "Darkroom",
+    "companyLogo": "https://cdn-images.himalayas.app/zir5bg4e46y031xclwqmqjm2ek7t",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/darkroom/jobs/senior-paid-search-specialist-319773768?utm_source=api",
+    "publishedAt": "2026-11-23T23:36:20.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "especialista",
+    "stacks": [
+      "Análise de Dados",
+      "Indicadores / KPIs",
+      "Automação / IA"
+    ],
+    "description": "About Darkroom Darkroom is the leading next-generation growth marketing firm engineering the brands of tomorrow. Founded in 2017, we set out to redefine what a modern agency could be, by replacing the inertia of legacy advertising behemoths with a model built for speed, intelligence, and measurable impact. At our core, Darkroom is a human services company powered by Shadow , a universal AI commerce layer that integrates executive-level strategy with proprietary agentic techno",
+    "requirements": [
+      "Experience with Análise de Dados",
+      "Experience with Indicadores / KPIs",
+      "Experience with Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "dados_bi",
+      "automacao_ia"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/concentrix/jobs/data-scientist-2105467462",
+    "title": "Data Scientist",
+    "company": "Concentrix",
+    "companyLogo": "https://cdn-images.himalayas.app/i9hx9jrexxuh5tonc0gnxc75d444",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/concentrix/jobs/data-scientist-2105467462?utm_source=api",
+    "publishedAt": "2026-11-23T23:35:46.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Colombia, El Salvador, Nicaragua)",
+    "seniority": "pleno",
+    "stacks": [
+      "Processos / BPMN",
+      "Análise de Dados",
+      "Power BI",
       "SQL",
       "Automação / IA",
-      "APIs / Webhooks",
       "Python"
     ],
-    "description": "123 Main Street Remote Office 99999 Why Valmont We’re Here to Move the World Forward. Valmont impacts millions of people around the world every day, yet they might not realize the many ways. Our technology is helping feed the growing population, supplying the world with more reliable energy and access to renewables, enhancing connectivity in remote and urban locations to create a sustainable future and so much more. Simply put, Valmont is advancing agricultural productivity a",
+    "description": "Job Title: Data Scientist Job Description The Consultant, Decision Sciences (Data Scientist) is responsible for supporting clients through the data & contact operations by providing insight to drive overall campaign performance, as well as working with other business areas where our expertise can be of assistance. We're Concentrix . The intelligent transformation partner. Solution-focused. Tech-powered. Intelligence-fueled. The global technology and services leader that power",
     "requirements": [
+      "Experience with Processos / BPMN",
+      "Experience with Análise de Dados",
+      "Experience with Power BI",
       "Experience with SQL",
       "Experience with Automação / IA",
-      "Experience with APIs / Webhooks",
       "Experience with Python"
     ],
     "isActive": true,
@@ -19082,128 +20910,29 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/centene-corporation/jobs/business-operations-summer-2027-intern-undergraduate",
-    "title": "Business Operations Summer 2027 Intern (Undergraduate)",
-    "company": "Centene Corporation",
-    "companyLogo": "https://cdn-images.himalayas.app/tjx15wvbp0qhex64zscq23xzg6ct",
+    "id": "himalayas_https://himalayas.app/companies/akamai-technologies/jobs/senior-manager-channel-programs-and-operations",
+    "title": "Senior Manager Channel Programs and Operations",
+    "company": "Akamai Technologies",
+    "companyLogo": "https://cdn-images.himalayas.app/lb8259c8ijm7nvddhbhfm13hy13d",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/centene-corporation/jobs/business-operations-summer-2027-intern-undergraduate?utm_source=api",
-    "publishedAt": "2026-11-23T20:27:29.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (United States)",
-    "seniority": "estagio",
-    "stacks": [
-      "Operações / BizOps"
-    ],
-    "description": "Position Purpose: Learn about various processes and functions within the Managed Care industry and develop professionally by contributing to projects that support the business. We are seeking curious, collaborative, and analytical students who are interested in using financial insights to support business strategy and decision-making. Interns may contribute to projects across Finance, Accounting, Internal Audit, Reporting, Business Operations, and Healthcare Finance. Through ",
-    "requirements": [
-      "Experience with Operações / BizOps"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos"
-    ],
-    "isInternational": true
-  },
-  {
-    "id": "himalayas_https://himalayas.app/companies/vanderbilt-university-medical-center/jobs/workday-hcm-business-intelligence-analyst-remote-available",
-    "title": "Workday HCM Business Intelligence Analyst (Remote Available)",
-    "company": "Vanderbilt University Medical Center",
-    "companyLogo": "https://cdn-images.himalayas.app/blrofvvdx4gl4z4a222m5m076xbp",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/vanderbilt-university-medical-center/jobs/workday-hcm-business-intelligence-analyst-remote-available?utm_source=api",
-    "publishedAt": "2026-11-23T20:27:27.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (United States)",
-    "seniority": "pleno",
-    "stacks": [
-      "Análise de Dados",
-      "Indicadores / KPIs"
-    ],
-    "description": "Discover Vanderbilt Health : With eight hospitals and over 180 clinics, we are the region’s largest comprehensive academic health system. Vanderbilt Health has a long tradition of providing world-class care to the people of the Mid-South, living out our mission of moving medicine forward through preeminent programs in patient care, education and research. Here you’ll find a spirit of collaboration and a supportive community where your expertise is valued, your knowledge expan",
-    "requirements": [
-      "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "dados_bi"
-    ],
-    "isInternational": true
-  },
-  {
-    "id": "himalayas_https://himalayas.app/companies/starian/jobs/pessoa-analista-de-pricing-precificacao-sr-remoto-5414",
-    "title": "Pessoa Analista de Pricing/Precificação Sr (Remoto) - 5414",
-    "company": "Starian",
-    "companyLogo": "",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/starian/jobs/pessoa-analista-de-pricing-precificacao-sr-remoto-5414?utm_source=api",
-    "publishedAt": "2026-11-23T20:27:25.000Z",
-    "daysOpen": 0,
-    "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Brazil)",
-    "seniority": "senior",
-    "stacks": [
-      "Inteligência de Mercado",
-      "Inteligência Comercial",
-      "Análise de Dados",
-      "Indicadores / KPIs",
-      "Power BI",
-      "SQL",
-      "Automação / IA",
-      "Excel / Sheets"
-    ],
-    "description": "Somos um grupo que desenvolve e incorpora soluções SaaS (Software as a Service) como motor de crescimento e habilitador de novas linhas de negócio para as verticais em que atuamos: Indústria da Construção, Inteligência Legal, Eficiência Operacional e Governança e Compliance . Acreditamos que o futuro é construído no agora. Somos AI First e aplicamos inteligência artificial em nossos processos seletivos. Faça parte de equipes que transformam desafios em soluções reais e ajudam",
-    "requirements": [
-      "Experience with Inteligência de Mercado",
-      "Experience with Inteligência Comercial",
-      "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs",
-      "Experience with Power BI",
-      "Experience with SQL",
-      "Experience with Automação / IA",
-      "Experience with Excel / Sheets"
-    ],
-    "isActive": true,
-    "isAffirmative": false,
-    "nicheCategories": [
-      "bizops_processos",
-      "inteligencia_mercado",
-      "dados_bi"
-    ],
-    "isInternational": true
-  },
-  {
-    "id": "himalayas_https://himalayas.app/companies/sage/jobs/associate-managing-editor",
-    "title": "Associate Managing Editor",
-    "company": "Sage",
-    "companyLogo": "https://cdn-images.himalayas.app/l0uq4hh9ahye8gm4v63tf5n45d7k",
-    "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/sage/jobs/associate-managing-editor?utm_source=api",
-    "publishedAt": "2026-11-23T20:26:38.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/akamai-technologies/jobs/senior-manager-channel-programs-and-operations?utm_source=api",
+    "publishedAt": "2026-11-23T23:35:35.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (India)",
-    "seniority": "junior",
+    "seniority": "especialista",
     "stacks": [
+      "Operações / BizOps",
       "Processos / BPMN",
-      "Onboarding / CS",
-      "Análise de Dados",
-      "Indicadores / KPIs",
-      "Excel / Sheets"
+      "CRM",
+      "Salesforce"
     ],
-    "description": "The Associate Managing Editor will be responsible for the end-to-end management and development of an assigned portfolio of journals. The role involves maintaining strong relationships with editors, reviewers, authors, societies, and internal stakeholders while ensuring high publishing standards, journal growth, process optimization, indexing advancement, and portfolio performance. Key Responsibilities Journal Portfolio Management Manage assigned journals from onboarding thro",
+    "description": "Are you interested to lead a global team responsible for delivering effective support to Akamai's channel partners? Are you willing to build a high performing geographically dispersed Partner Support team? Join our Channel Programs team! Partner Support is the operational front door to Akamai's global partner community. We support more than 2,000 partner organizations and serve as a trusted resource throughout the partner lifecycle. Partner with the best In this role, you wil",
     "requirements": [
+      "Experience with Operações / BizOps",
       "Experience with Processos / BPMN",
-      "Experience with Onboarding / CS",
-      "Experience with Análise de Dados",
-      "Experience with Indicadores / KPIs",
-      "Experience with Excel / Sheets"
+      "Experience with CRM",
+      "Experience with Salesforce"
     ],
     "isActive": true,
     "isAffirmative": false,
@@ -19215,33 +20944,160 @@
     "isInternational": true
   },
   {
-    "id": "himalayas_https://himalayas.app/companies/bonapolia/jobs/senior-qa-automation-java",
-    "title": "Senior QA Automation (Java)",
-    "company": "Bonapolia",
-    "companyLogo": "",
+    "id": "himalayas_https://himalayas.app/companies/micro1/jobs/human-data-manager-new-grad-6398560180",
+    "title": "Human Data Manager, New Grad",
+    "company": "micro1",
+    "companyLogo": "https://cdn-images.himalayas.app/91oa56akgt3qjqc1nh3uoruub40c",
     "platform": "remotive_intl",
-    "canonicalUrl": "https://himalayas.app/companies/bonapolia/jobs/senior-qa-automation-java?utm_source=api",
-    "publishedAt": "2026-11-23T20:24:45.000Z",
+    "canonicalUrl": "https://himalayas.app/companies/micro1/jobs/human-data-manager-new-grad-6398560180?utm_source=api",
+    "publishedAt": "2026-11-23T22:20:29.000Z",
     "daysOpen": 0,
     "workplaceType": "remoto",
-    "location": "🌎 Remoto Internacional (Poland)",
-    "seniority": "senior",
+    "location": "🌎 Remoto Internacional (Worldwide)",
+    "seniority": "especialista",
     "stacks": [
-      "Onboarding / CS",
       "Análise de Dados",
-      "Automação / IA",
-      "APIs / Webhooks"
+      "Indicadores / KPIs",
+      "Power BI",
+      "SQL",
+      "Excel / Sheets",
+      "Python"
     ],
-    "description": "We are looking for a Senior QA Automation (Java): Language Proficiency: Upper-Intermediate Employment type: Full time Candidate Location: Poland Working Time Zone: CET Start: 2027-01-20 Planned Work Duration: 12 months 0.125 FTE employment contract, duration 12 months+ . Payment terms - up to 60 days. Work will be performed using client-provided equipment. 👥 Customer Description: Our client is a leading global consulting organization serving enterprise customers across multi",
+    "description": "Job Title: Human Data Manager, New Grad Job Type: Full-time Location: Remote Job Summary: In this role, you'll apply your expertise to help train next-generation AI systems. Your work will shape how models learn, reason, and perform through high-quality, real-world input. No prior experience in AI is required — your domain knowledge is what matters. Key Responsibilities Design, build, and manage robust data workflows for accurate annotation, collection, processing, and analys",
     "requirements": [
-      "Experience with Onboarding / CS",
       "Experience with Análise de Dados",
-      "Experience with Automação / IA",
-      "Experience with APIs / Webhooks"
+      "Experience with Indicadores / KPIs",
+      "Experience with Power BI",
+      "Experience with SQL",
+      "Experience with Excel / Sheets",
+      "Experience with Python"
     ],
     "isActive": true,
     "isAffirmative": false,
     "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/micro1/jobs/retail-customer-support-specialist",
+    "title": "Retail Customer Support Specialist",
+    "company": "micro1",
+    "companyLogo": "https://cdn-images.himalayas.app/91oa56akgt3qjqc1nh3uoruub40c",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/micro1/jobs/retail-customer-support-specialist?utm_source=api",
+    "publishedAt": "2026-11-23T22:20:22.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Worldwide)",
+    "seniority": "especialista",
+    "stacks": [
+      "Operações / BizOps",
+      "Indicadores / KPIs"
+    ],
+    "description": "Role Title: Retail Customer Support Specialist Role Type: Contractor Location: Remote micro1 is engaging Retail Customer Support Specialists to contribute to a customer's project focused on elevating the customer experience in retail service interactions. In this role, you'll apply your expertise to help train next-generation AI systems. Your work will shape how models learn, reason, and perform through high-quality, real-world input. No prior experience in AI is required — y",
+    "requirements": [
+      "Experience with Operações / BizOps",
+      "Experience with Indicadores / KPIs"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "dados_bi"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/sedgwick/jobs/remote-customer-service-specialist",
+    "title": "Remote Customer Service Specialist",
+    "company": "Sedgwick",
+    "companyLogo": "https://cdn-images.himalayas.app/dkjnp3uyhc8h7u9w3umzr3cpt8fd",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/sedgwick/jobs/remote-customer-service-specialist?utm_source=api",
+    "publishedAt": "2026-11-23T22:15:25.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "especialista",
+    "stacks": [
+      "CRM"
+    ],
+    "description": "By joining Sedgwick , you'll be part of something truly meaningful. It’s what our 33,000 colleagues do every day for people around the world who are facing the unexpected. We invite you to grow your career with us, experience our caring culture, and enjoy work-life balance. Here, there’s no limit to what you can achieve. Newsweek Recognizes Sedgwick as America’s Greatest Workplaces National Top Companies Certified as a Great Place to Work® Fortune Best Workplaces in Financial",
+    "requirements": [
+      "Experience with CRM"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/icf/jobs/salesforce-business-analyst-2059779679",
+    "title": "Salesforce Business Analyst",
+    "company": "ICF",
+    "companyLogo": "https://cdn-images.himalayas.app/jduduh5ao9nkg59dqaxj2d0yvx2g",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/icf/jobs/salesforce-business-analyst-2059779679?utm_source=api",
+    "publishedAt": "2026-11-23T22:13:52.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (United States)",
+    "seniority": "pleno",
+    "stacks": [
+      "Onboarding / CS",
+      "Indicadores / KPIs",
+      "Salesforce"
+    ],
+    "description": "ICF ’s Digital Modernization Division is seeking a Salesforce Business Analyst to support the U.S. Department of the Treasury’s Community Development Financial Institutions (CDFI) Fund. The position supports development, modernization, and enhancement of the Awards Management Information System (AMIS), an existing, customized Salesforce application supporting organizational certifications, funding applications, awards, and compliance activities. Working in an Agile environmen",
+    "requirements": [
+      "Experience with Onboarding / CS",
+      "Experience with Indicadores / KPIs",
+      "Experience with Salesforce"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "crm_revops_onboarding",
+      "dados_bi"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "himalayas_https://himalayas.app/companies/jll/jobs/transitions-enablement-manager",
+    "title": "Transitions & Enablement Manager",
+    "company": "JLL",
+    "companyLogo": "https://cdn-images.himalayas.app/6xo512ort9byboluu48qm4z5zpr0",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://himalayas.app/companies/jll/jobs/transitions-enablement-manager?utm_source=api",
+    "publishedAt": "2026-11-23T22:06:54.000Z",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Poland)",
+    "seniority": "especialista",
+    "stacks": [
+      "Onboarding / CS",
+      "CRM",
+      "Automação / IA",
+      "Excel / Sheets"
+    ],
+    "description": "JLL empowers you to shape a brighter way . Our people at JLL are shaping the future of real estate for a better world by combining world class services, advisory and technology for our clients. We are committed to hiring the best, most talented people and empowering them to thrive, grow meaningful careers and to find a place where they belong. Whether you’ve got deep experience in commercial real estate, skilled trades or technology, or you’re looking to apply your relevant e",
+    "requirements": [
+      "Experience with Onboarding / CS",
+      "Experience with CRM",
+      "Experience with Automação / IA",
+      "Experience with Excel / Sheets"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
+      "inteligencia_mercado",
       "crm_revops_onboarding",
       "dados_bi",
       "automacao_ia"
@@ -22707,7 +24563,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8877426002",
     "publishedAt": "2026-11-16T18:42:19-05:00",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "senior",
@@ -22869,7 +24725,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8939861002",
     "publishedAt": "2026-11-16T18:19:42-05:00",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "senior",
@@ -23183,7 +25039,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8943456002",
     "publishedAt": "2026-11-16T17:43:41-05:00",
-    "daysOpen": 6,
+    "daysOpen": 7,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote, United States)",
     "seniority": "especialista",
@@ -23205,6 +25061,33 @@
     "nicheCategories": [
       "bizops_processos",
       "crm_revops_onboarding",
+      "dados_bi",
+      "automacao_ia"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "gh_intl_gitlab_8950794002",
+    "title": "Junior Talent Operations Specialist",
+    "company": "GitLab (Global)",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8950794002",
+    "publishedAt": "2026-11-23T18:03:54-05:00",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Remote, United States)",
+    "seniority": "especialista",
+    "stacks": [
+      "Automação / IA"
+    ],
+    "description": "<div class=&quot;content-intro&quot;><p>GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and more than 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.</p> <p>The same principles built into our products are reflected in h",
+    "requirements": [
+      "Experience with Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
       "dados_bi",
       "automacao_ia"
     ],
@@ -23696,6 +25579,35 @@
     "nicheCategories": [
       "bizops_processos",
       "crm_revops_onboarding",
+      "dados_bi",
+      "automacao_ia"
+    ],
+    "isInternational": true
+  },
+  {
+    "id": "gh_intl_gitlab_8949468002",
+    "title": "Senior TA Operations Specialist",
+    "company": "GitLab (Global)",
+    "platform": "remotive_intl",
+    "canonicalUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8949468002",
+    "publishedAt": "2026-11-23T18:25:08-05:00",
+    "daysOpen": 0,
+    "workplaceType": "remoto",
+    "location": "🌎 Remoto Internacional (Remote, United States)",
+    "seniority": "especialista",
+    "stacks": [
+      "Indicadores / KPIs",
+      "Automação / IA"
+    ],
+    "description": "<div class=&quot;content-intro&quot;><p>GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and more than 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.</p> <p>The same principles built into our products are reflected in h",
+    "requirements": [
+      "Experience with Indicadores / KPIs",
+      "Experience with Automação / IA"
+    ],
+    "isActive": true,
+    "isAffirmative": false,
+    "nicheCategories": [
+      "bizops_processos",
       "dados_bi",
       "automacao_ia"
     ],
@@ -24819,7 +26731,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8386095",
     "publishedAt": "2026-11-20T18:27:51-05:00",
-    "daysOpen": 2,
+    "daysOpen": 3,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - US)",
     "seniority": "especialista",
@@ -24981,7 +26893,7 @@
     "platform": "remotive_intl",
     "canonicalUrl": "https://job-boards.greenhouse.io/twilio/jobs/8044650",
     "publishedAt": "2026-11-18T18:29:53-05:00",
-    "daysOpen": 4,
+    "daysOpen": 5,
     "workplaceType": "remoto",
     "location": "🌎 Remoto Internacional (Remote - US)",
     "seniority": "senior",
