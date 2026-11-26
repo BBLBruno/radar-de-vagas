@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Executar coleta multi-ATS (11 plataformas / 57 canais BR + Global)
+      - name: Executar coleta multi-ATS hidratada (Gupy, InHire, Ashby, Greenhouse, Lever & Global)
         run: node scripts/discover.mjs
 
       - name: Commit e Push das vagas atualizadas

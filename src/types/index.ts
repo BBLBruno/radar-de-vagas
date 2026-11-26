@@ -1,6 +1,7 @@
 export type ATSPlatform =
   | 'gupy'
   | 'inhire'
+  | 'ashby'
   | 'empregostec'
   | 'greenhouse'
   | 'lever'
@@ -11,6 +12,12 @@ export type ATSPlatform =
 export type WorkplaceType = 'remoto' | 'hibrido' | 'presencial';
 
 export type SeniorityLevel = 'estagio' | 'junior' | 'pleno' | 'senior' | 'especialista';
+
+export type ContractType = 'clt' | 'pj' | 'temporario' | 'estagio';
+
+export type GeoEligibility = 'br_nacional' | 'latam_br' | 'global_remoto';
+
+export type CrmTrack = 'crm_tecnico' | 'crm_marketing';
 
 export type NicheCategory =
   | 'bizops_processos'
@@ -41,12 +48,19 @@ export interface Job {
   platform: ATSPlatform;
   canonicalUrl: string;
   publishedAt: string; // ISO UTC date
+  expiresAt?: string;
   daysOpen: number;
   workplaceType: WorkplaceType;
   location: string;
   city?: string;
   state?: string;
   seniority: SeniorityLevel;
+  contractType?: ContractType;
+  geoEligibility?: GeoEligibility;
+  crmTrack?: CrmTrack;
+  requiresSpanish?: boolean;
+  hasHiddenOnsiteWarning?: boolean;
+  hiddenOnsiteReason?: string;
   stacks: string[];
   salary?: string;
   description: string;
@@ -133,6 +147,7 @@ export interface FilterState {
   selectedSeniorities: SeniorityLevel[];
   hideExecutiveSenior: boolean;
   hideSavedJobs?: boolean;
+  hideSpanishRequired?: boolean;
   platform: 'todas' | ATSPlatform;
   selectedStacks: string[];
   hideAffirmative: boolean;

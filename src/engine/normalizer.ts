@@ -1,4 +1,12 @@
-import { GeoCoords, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
+import {
+  ContractType,
+  CrmTrack,
+  GeoCoords,
+  GeoEligibility,
+  NicheCategory,
+  SeniorityLevel,
+  WorkplaceType,
+} from '../types';
 
 export interface CityCoordEntry extends GeoCoords {
   label: string;
@@ -120,6 +128,11 @@ export const BRAZIL_CITY_COORDS: Record<string, CityCoordEntry> = {
   'tres pontas': { lat: -21.3672, lng: -45.5125, label: 'Três Pontas', state: 'MG' },
   'guaxupe': { lat: -21.3053, lng: -46.7128, label: 'Guaxupé', state: 'MG' },
   'sao sebastiao do paraiso': { lat: -20.9169, lng: -46.9914, label: 'São Sebastião do Paraíso', state: 'MG' },
+  'monte belo': { lat: -21.3264, lng: -46.3647, label: 'Monte Belo', state: 'MG' },
+  'juruaia': { lat: -21.2519, lng: -46.5719, label: 'Juruaia', state: 'MG' },
+  'nova resende': { lat: -21.1247, lng: -46.4203, label: 'Nova Resende', state: 'MG' },
+  'cabo verde': { lat: -21.4744, lng: -46.3958, label: 'Cabo Verde', state: 'MG' },
+  'andradas': { lat: -22.0681, lng: -46.5692, label: 'Andradas', state: 'MG' },
   'machado': { lat: -21.6747, lng: -45.9197, label: 'Machado', state: 'MG' },
   'patos de minas': { lat: -18.5789, lng: -46.5181, label: 'Patos de Minas', state: 'MG' },
   'barbacena': { lat: -21.2258, lng: -43.7736, label: 'Barbacena', state: 'MG' },
@@ -236,24 +249,29 @@ export const BRAZIL_CITY_COORDS: Record<string, CityCoordEntry> = {
   'ji-parana': { lat: -10.8853, lng: -61.9517, label: 'Ji-Paraná', state: 'RO' },
 };
 
-// Chips de Habilidades de Negócios, Operações, Inteligência, Dados, CRM e Automação (Sem TI/Dev/Suporte)
+// Chips de Habilidades alinhados ao posicionamento BizOps, Processos, Inteligência Comercial, CRM, Implantação, Dados e Automação/IA
 export const POPULAR_FILTER_STACKS = [
-  'Inteligência de Mercado',
-  'Inteligência Comercial',
   'Operações / BizOps',
   'Processos / BPMN',
   'Onboarding / CS',
-  'Análise de Dados',
-  'Indicadores / KPIs',
+  'Inteligência Comercial',
+  'Inteligência de Mercado',
   'CRM',
   'HubSpot',
   'Salesforce',
+  'RD Station / Pipedrive',
+  'Chatwoot / Mensageria',
   'Sales Ops',
   'RevOps',
-  'Power BI',
+  'Análise de Dados',
+  'Indicadores / KPIs',
   'SQL',
+  'Power BI',
   'N8N',
   'Automação / IA',
+  'APIs / Webhooks',
+  'E-commerce / Ads',
+  'Python',
   'Excel / Sheets',
 ];
 
@@ -308,10 +326,8 @@ const GENERIC_GEO_TOKENS = new Set([
   'home office',
 ]);
 
-// Nomes que também correspondem a estados brasileiros; só devem ser aceitos se não houver cidade anterior
 const STATE_HOMONYM_CITIES = new Set(['sao paulo', 'rio de janeiro']);
 
-// Chaves ordenadas por comprimento decrescente, deixando homônimos de estado por último
 const SORTED_CITY_KEYS = Object.keys(BRAZIL_CITY_COORDS).sort((a, b) => {
   const aIsState = STATE_HOMONYM_CITIES.has(a) ? 1 : 0;
   const bIsState = STATE_HOMONYM_CITIES.has(b) ? 1 : 0;
@@ -332,6 +348,33 @@ export function normalizeGeoText(text: string): string {
     .trim();
 }
 
+/**
+ * Decodifica entidades HTML ANTES de remover tags para nunca vazar `<div class="content-intro">` na UI.
+ */
+export function cleanJobDescription(raw: string = ''): string {
+  if (!raw) return '';
+  return raw
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;|&#8217;/gi, "'")
+    .replace(/&#8211;|&#8212;/g, '-')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#(\d+);/g, (_, code) => {
+      const n = Number(code);
+      return Number.isFinite(n) && n > 31 ? String.fromCharCode(n) : ' ';
+    })
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<\/(p|div|li|h[1-6]|tr)>/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n\s*\n+/g, '\n\n')
+    .trim();
+}
+
 function parseUfCode(rawState?: string): string {
   const norm = normalizeGeoText(rawState || '');
   if (!norm) return '';
@@ -341,11 +384,8 @@ function parseUfCode(rawState?: string): string {
   return BRAZIL_STATE_NAMES[norm] || '';
 }
 
-/**
- * Calcula a distância real (em km) entre duas coordenadas geográficas usando a Fórmula de Haversine.
- */
 export function haversineDistanceKm(a: GeoCoords, b: GeoCoords): number {
-  const R = 6371; // Raio médio da Terra em km
+  const R = 6371;
   const toRad = (deg: number) => (deg * Math.PI) / 180;
   const dLat = toRad(b.lat - a.lat);
   const dLng = toRad(b.lng - a.lng);
@@ -361,10 +401,6 @@ export function haversineDistanceKm(a: GeoCoords, b: GeoCoords): number {
   return Math.round(R * c);
 }
 
-/**
- * Resolve coordenadas de uma localização (ex: "Campinas, São Paulo") ou cidade de referência,
- * evitando falso positivo com o nome do estado (ex: "Barueri, São Paulo" -> Barueri, não capital).
- */
 export function resolveCityCoords(
   locationOrCity: string,
   stateHint?: string
@@ -391,7 +427,6 @@ export function resolveCityCoords(
     candidateSegments.push(seg);
   }
 
-  // 1. Tenta match exato no 1º segmento válido (normalmente o nome da cidade)
   if (candidateSegments.length > 0) {
     const first = candidateSegments[0];
     const entry = BRAZIL_CITY_COORDS[first];
@@ -400,7 +435,6 @@ export function resolveCityCoords(
     }
   }
 
-  // 2. Tenta match exato nos demais segmentos, priorizando cidades que NÃO são homônimas de estado
   for (let i = 1; i < candidateSegments.length; i++) {
     const seg = candidateSegments[i];
     if (STATE_HOMONYM_CITIES.has(seg)) continue;
@@ -410,7 +444,6 @@ export function resolveCityCoords(
     }
   }
 
-  // Aceita segmento homônimo de estado somente se houver apenas 1 segmento válido (ex: "Brazil (São Paulo - Hybrid)")
   if (candidateSegments.length === 1) {
     const only = candidateSegments[0];
     const entry = BRAZIL_CITY_COORDS[only];
@@ -419,7 +452,6 @@ export function resolveCityCoords(
     }
   }
 
-  // 3. Fallback por fronteira de palavra em chaves ordenadas por comprimento decrescente
   const hasComma = normFull.includes(',');
   const primarySlice = hasComma ? normFull.split(',')[0].trim() : normFull;
   const fallbackTargets = primarySlice !== normFull ? [primarySlice, normFull] : [normFull];
@@ -427,8 +459,6 @@ export function resolveCityCoords(
   for (let idx = 0; idx < fallbackTargets.length; idx++) {
     const target = fallbackTargets[idx];
     for (const key of SORTED_CITY_KEYS) {
-      // Se estamos analisando a string inteira após falhar na 1ª parte antes da vírgula,
-      // evita confundir nome de estado após a vírgula com a capital
       if (idx > 0 && STATE_HOMONYM_CITIES.has(key)) continue;
       const pattern = new RegExp(`(?<![a-z0-9])${escapeRegex(key)}(?![a-z0-9])`);
       if (pattern.test(target)) {
@@ -443,10 +473,6 @@ export function resolveCityCoords(
   return null;
 }
 
-/**
- * Calcula a distância em km entre as coordenadas do usuário e a cidade identificada na vaga.
- * Suporta múltiplos locais separados por ";" retornando a menor distância.
- */
 export function calculateDistanceKm(
   userCoords: GeoCoords | null | undefined,
   jobLocation: string,
@@ -482,9 +508,6 @@ export function calculateDistanceKm(
   return minDistance;
 }
 
-/**
- * Retorna a cidade conhecida do dicionário mais próxima às coordenadas informadas (fallback offline).
- */
 export function findNearestKnownCity(coords: GeoCoords): { city: string; state: string; distanceKm: number } {
   let nearest: { city: string; state: string; distanceKm: number } = {
     city: 'São Paulo',
@@ -502,10 +525,6 @@ export function findNearestKnownCity(coords: GeoCoords): { city: string; state: 
   return nearest;
 }
 
-/**
- * Converte coordenadas GPS em nome de cidade e UF via BigDataCloud (sem chave, suporte a CORS)
- * com fallback automático para a cidade mais próxima do dicionário local.
- */
 export async function reverseGeocodeCoords(coords: GeoCoords): Promise<{ city: string; state: string }> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 5000);
@@ -542,10 +561,6 @@ export async function reverseGeocodeCoords(coords: GeoCoords): Promise<{ city: s
   return { city: nearest.city, state: nearest.state };
 }
 
-/**
- * Geocodifica o nome da cidade do Perfil para coordenadas: primeiro consulta o dicionário local
- * e, se necessário, consulta a API pública Nominatim (OpenStreetMap).
- */
 export async function geocodeCityName(
   city: string,
   state?: string
@@ -601,25 +616,42 @@ export async function geocodeCityName(
 
 /**
  * BLACKLIST ESTRITA DE TÍTULOS:
- * Descarta qualquer vaga cujo título contenha Suporte Técnico, Técnico de Suporte, Tecnico Suporte,
- * Help Desk, Service Desk, Suporte N1, Suporte N2, Infraestrutura, Desenvolvedor, Developer,
- * Front-end, Back-end, Fullstack, DevOps.
+ * Bloqueia TI/Infra/Dev/SRE/Segurança/QA/Engenharia de Dados, Vendas Frias (SDR/BDR/AE),
+ * RH/DP/Folha, Jurídico, Contábil/Fiscal, Licitações, Call Center, Raters e Jovem Aprendiz.
  */
 export function isBlacklistedTitle(title: string): boolean {
   if (!title) return true;
-  const normalized = title
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+  const normalized = normalizeGeoText(title);
 
   const blacklistPatterns = [
+    // TI / Suporte / Infra / Redes / Segurança / Dev / QA / Engenharia de Dados
     /\bsuporte\s+tecnico\b/i,
     /\btecnico\s+(de\s+)?suporte\b/i,
     /\banalista\s+de\s+suporte\b/i,
+    /\bcustomer\s+support\s+engineer\b/i,
+    /\btechnical\s+support\b/i,
     /\bhelp\s*desk\b/i,
     /\bservice\s*desk\b/i,
     /\bsuporte\s+n[123]\b/i,
     /\binfraestrutura\b/i,
+    /\binfrastructure\b/i,
+    /\bplatform\s+engineer\b/i,
+    /\bsite\s+reliability\b/i,
+    /\bsre\b/i,
+    /\bnoc\b/i,
+    /\boperacoes\s+de\s+redes\b/i,
+    /\banalista\s+de\s+redes\b/i,
+    /\bnetwork\s+(engineer|analyst|administrator|operations)\b/i,
+    /\btelecom\b/i,
+    /\bsysadmin\b/i,
+    /\bsystems?\s+administrator\b/i,
+    /\blinux\b/i,
+    /\bsecurity\s+(engineer|analyst|operations|specialist)\b/i,
+    /\bseguranca\s+da\s+informacao\b/i,
+    /\bcybersecurity\b/i,
+    /\binfosec\b/i,
+    /\banalista\s+soc\b/i,
+    /\bsecurity\s+operations\s+center\b/i,
     /\bdesenvolvedor(a)?\b/i,
     /\bdeveloper\b/i,
     /\bfront[\s-]*end\b/i,
@@ -628,20 +660,243 @@ export function isBlacklistedTitle(title: string): boolean {
     /\bdevops\b/i,
     /\bsoftware\s+engineer\b/i,
     /\bengenheiro(a)?\s+de\s+software\b/i,
-    /\bsre\b/i,
-    /\bqa\s+engineer\b/i,
+    /\bmobile\s+engineer\b/i,
+    /\bios\s+engineer\b/i,
+    /\bandroid\s+engineer\b/i,
+    /\bcloud\s+(engineer|architect)\b/i,
+    /\bsolutions?\s+architect\b/i,
+    /\bqa\b/i,
+    /\bquality\s+assurance\b/i,
     /\banalista\s+de\s+testes\b/i,
+    /\btest\s+(automation|engineer)\b/i,
+    /\bautomation\s+(tester|qa)\b/i,
+    /\bsdet\b/i,
+    /\bdata\s+engineer\b/i,
+    /\bengenheiro(a)?\s+de\s+dados\b/i,
+    /\bengenharia\s+de\s+dados\b/i,
+    /\banalytics\s+engineer\b/i,
+    /\bmachine\s+learning\s+engineer\b/i,
+    /\bml\s+engineer\b/i,
+    /\bai\s+engineer\b/i,
+    /\bdata\s+scientist\b/i,
+    /\bcientista\s+de\s+dados\b/i,
+    /\bdba\b/i,
+    /\bdatabase\s+administrator\b/i,
+    /\bscrum\s+master\b/i,
+    /\bagile\s+coach\b/i,
+    /\bproduct\s+designer\b/i,
+    /\b(ux|ui)\s+designer\b/i,
+    /\bgraphic\s+designer\b/i,
     /\bprogramador(a)?\b/i,
+
+    // Vendas frias / Outbound / Prospecção pura
+    /\baccount\s+executive\b/i,
+    /\bexecutivo(a)?\s+de\s+(contas|vendas|negocios)\b/i,
+    /\bexecutivo(a)?\s+comercial\b/i,
+    /\bbdr\b/i,
+    /\bsdr\b/i,
+    /\bsales\s+development\b/i,
+    /\bbusiness\s+development\s+rep(resentative)?\b/i,
+    /\binside\s+sales\b/i,
+    /\bvendedor(a)?\b/i,
+    /\bconsultor(a)?\s+(comercial|de\s+vendas)\b/i,
+    /\brepresentante\s+comercial\b/i,
+    /\bcloser\b/i,
+    /\bkey\s+account\s+manager\b/i,
+    /\bassessor(a)?\s+de\s+investimentos\b/i,
+
+    // RH / DP / Jurídico / Contábil / Fiscal / Backoffice operacional fora de escopo
+    /\bjovem\s+aprendiz\b/i,
+    /\bmenor\s+aprendiz\b/i,
+    /\baprendiz\b/i,
+    /\brecruiter\b/i,
+    /\brecrutador(a)?\b/i,
+    /\btalent\s+acquisition\b/i,
+    /\bpeople\s+(ops|operations|partner|analytics)\b/i,
+    /\boperacoes\s+de\s+rh\b/i,
+    /\bimplantacao\s+em\s+rh\b/i,
+    /\brecursos\s+humanos\b/i,
+    /\bdepartamento\s+pessoal\b/i,
+    /\badmissao\b/i,
+    /\bfolha\s+de\s+pagamento\b/i,
+    /\bpayroll\b/i,
+    /\bgeneral\s+counsel\b/i,
+    /\blegal\s+(counsel|operations|analyst)\b/i,
+    /\bjuridico\b/i,
+    /\badvogad[oa]\b/i,
+    /\bparalegal\b/i,
+    /\bcontabil\b/i,
+    /\bcontador(a)?\b/i,
+    /\baccountant\b/i,
+    /\baccounting\b/i,
+    /\bsec\s+reporting\b/i,
+    /\bfiscal\b/i,
+    /\btributari[oa]\b/i,
+    /\btax\s+(analyst|specialist|manager|operations)\b/i,
+    /\bauditor(ia)?\b/i,
+    /\btesouraria\b/i,
+    /\bcontas\s+a\s+(pagar|receber)\b/i,
+    /\blicitac(ao|oes)\b/i,
+    /\bpregao\b/i,
+    /\bcompras\b/i,
+    /\bsuprimentos\b/i,
+    /\bprocurement\b/i,
+    /\btecnico\s+de\s+cadastro\b/i,
+    /\balmoxarifado\b/i,
+    /\bmotorista\b/i,
+    /\brecepcionista\b/i,
+    /\boperador(a)?\s+de\s+(loja|caixa|telemarketing|atendimento)\b/i,
+    /\bcall\s*center\b/i,
+    /\btelemarketing\b/i,
+    /\bouvidoria\b/i,
+    /\bannotator\b/i,
+    /\brater\b/i,
+    /\bai\s+trainer\b/i,
+    /\bdata\s+labeling\b/i,
+    /\bcopywriter\b/i,
+    /\bredator(a)?\b/i,
+    /\bsocial\s+media\b/i,
+    /\bvideo\s+editor\b/i,
+    /\bmilitary\b/i,
+    /\bpatient\s+onboarding\b/i,
+    /\bpropagandista\b/i,
+    /\boperacoes\s+(agricolas|florestais|industriais|hospitalares|de\s+loja|portuarias|de\s+usina|de\s+aterro|leves|pesadas|aeroportuarias|de\s+patio)\b/i,
+    /\bprocessos\s+(quimicos|industriais|produtivos|fabris|metalurgicos)\b/i,
+    /\bengenhari?a\s+(civil|ambiental|mecanic[oa]|eletric[oa]|quimic[oa]|de\s+seguranca|agronomica|florestal|de\s+minas)\b/i,
+    /\bengenheiro(a)?\s+(civil|mecanic[oa]|eletricista|quimic[oa]|ambiental|de\s+seguranca|agronom[oa]|de\s+producao|de\s+alimentos|florestal)\b/i,
+    /\bmanutencao\b/i,
+    /\bmineracao\b/i,
+    /\baux\.?\s+de\s+operacoes\b/i,
+    /\b(farmaceutic[oa]|enfermeir[oa]|medic[oa]|psicolog[oa]|nutricionista|fisioterapeuta|biomedic[oa]|veterinari[oa])\b/i,
+    /\btecnico(a)?\s+(em?\s+)?(enfermagem|seguranca\s+do\s+trabalho|manutencao|eletronica|eletrotecnica|mecanica|quimica|edificacoes|agropecuaria|agricola|laboratorio)\b/i,
+    /\bauxiliar\s+de\s+(limpeza|servicos\s+gerais|producao|cozinha|estoque|expedicao|almoxarifado|carga)\b/i,
   ];
 
-  return blacklistPatterns.some(regex => regex.test(normalized) || regex.test(title));
+  return blacklistPatterns.some(regex => regex.test(normalized));
+}
+
+/**
+ * Exige que o TÍTULO represente genuinamente uma das carreiras-alvo:
+ * BizOps/Operações, Processos, Inteligência Comercial/Mercado, Sales Ops/RevOps,
+ * CRM, Implantação/Onboarding/CS, Dados/BI/Analytics ou Automação/IA de Negócios.
+ */
+export function isRelevantCareerTitle(title: string): boolean {
+  if (!title || isBlacklistedTitle(title)) return false;
+  const norm = normalizeGeoText(title);
+
+  return /\b(operacoes|operations|bizops|business\s+operations|strategy\s*&\s*operations|estrategia\s+e\s+operacoes|excelencia\s+operacional|operational\s+excellence|processos|process\s+(analyst|improvement|specialist|excellence)|business\s+process|melhoria\s+continua|bpm|bpmn|analista\s+de\s+negocios|business\s+analyst|analista\s+de\s+requisitos|analista\s+de\s+solucoes|product\s+operations|product\s+owner|inteligencia\s+(de\s+mercado|comercial)|market\s+intelligence|sales\s+intelligence|commercial\s+intelligence|competitive\s+intelligence|planejamento\s+comercial|efetividade\s+comercial|pricing|precificacao|sales\s+ops|sales\s+operations|operacoes\s+comerciais|revops|revenue\s+operations|marketing\s+ops|marketing\s+operations|martech|growth\s+operations|gtm\s+operations|go-to-market|crm|hubspot|salesforce|pipedrive|lifecycle|retencao|implantacao|implementation|onboarding|technical\s+onboarding|customer\s+success|sucesso\s+do\s+cliente|cs\s+ops|analista\s+de\s+integracoes|integration\s+specialist|zendesk|chatwoot|analista\s+de\s+dados|data\s+analyst|data\s+product\s+analyst|analista\s+de\s+analytics|analytics\s+analyst|web\s+analytics|digital\s+analytics|business\s+intelligence|analista\s+de\s+bi|bi\s+analyst|power\s+bi|indicadores|business\s+analytics|e-?commerce\s+(analyst|operations|specialist)|(analista|assistente|consultor(a)?|especialista)\s+(de\s+)?e-?commerce|operacoes\s+de\s+e-?commerce|automacao|automation\s+(analyst|specialist|consultant)|process\s+automation|workflow\s+automation|ai\s+operations|n8n|low-code|no-code)\b/i.test(
+    norm
+  );
+}
+
+/**
+ * Detecta armadilhas no corpo da descrição (AIOps de infraestrutura, idioma exótico obrigatório, SDR frio disfarçado)
+ */
+export function isDisguisedTrap(title: string, description: string = ''): boolean {
+  const normDesc = normalizeGeoText(description);
+  const normAll = normalizeGeoText(`${title} ${description}`);
+
+  // AIOps Clássico (Infraestrutura / Observabilidade)
+  if (/\baiops\b/i.test(normAll) && /\b(datadog|dynatrace|splunk|new\s+relic|kubernetes|prometheus|nagios|zabbix)\b/i.test(normAll)) {
+    return true;
+  }
+
+  // Idiomas fora de PT / EN / ES exigidos como obrigatórios/bilíngues
+  if (
+    /\b(french|frances|german|alemao|mandarin|mandarim|korean|coreano|japanese|japones|italian|italiano)\s+(bilingual|fluent|fluency|fluente|required|mandatory|obrigatorio)\b/i.test(
+      normAll
+    ) ||
+    /\b(bilingual|bilingue)\s*[\(\-:]?\s*(french|frances|german|alemao|mandarin|korean|japanese)\b/i.test(normAll)
+  ) {
+    return true;
+  }
+
+  // SDR / Prospecção fria por telefone disfarçada de Inteligência Comercial
+  if (
+    /\b(cold\s+call|cold\s+calling|ligacoes\s+frias|prospeccao\s+ativa\s+por\s+telefone|meta\s+diaria\s+de\s+ligacoes)\b/i.test(
+      normDesc
+    ) &&
+    !/\b(sales\s+ops|revops|analista\s+de\s+crm|sql|power\s+bi)\b/i.test(normAll)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Valida se uma vaga é geograficamente elegível para quem reside no Brasil.
+ */
+export function checkBrazilEligibility(
+  isInternational: boolean,
+  title: string,
+  location: string,
+  description: string = ''
+): { eligible: boolean; tier: GeoEligibility } {
+  const normLoc = normalizeGeoText(location);
+  const normTitle = normalizeGeoText(title);
+  const normDesc = normalizeGeoText(description.slice(0, 1800));
+  const combinedHeader = `${normTitle} ${normLoc}`;
+
+  const mentionsBrazil = /\b(brazil|brasil)\b/i.test(`${combinedHeader} ${normDesc}`);
+  const mentionsLatam = /\b(latam|latin\s+america|america\s+latina|south\s+america|americas)\b/i.test(
+    `${combinedHeader} ${normDesc}`
+  );
+
+  if (!isInternational) {
+    const foreignNationalLeak =
+      /\b(miami|florida|new\s+york|manhattan|san\s+francisco|california|texas|bucharest|romania|london|united\s+kingdom|madrid|lisbon|portugal|berlin|germany|mexico\s+city|bogota|buenos\s+aires|santiago|us\s*\(|usa\b|united\s+states)\b/i.test(
+        normLoc
+      ) && !/\b(brazil|brasil)\b/i.test(normLoc);
+
+    return { eligible: !foreignNationalLeak, tier: 'br_nacional' };
+  }
+
+  // Bloqueio imediato se título ou localização restringem a país/região estrangeira sem Brasil
+  const foreignLocLock =
+    /\b(usa|u\.s\.|u\.s\.a\.|united\s+states|us\s+only|north\s+america|canada|uk|united\s+kingdom|europe|eu\s+only|eea|emea|dach|germany|austria|switzerland|france|spain|portugal|italy|netherlands|ireland|poland|romania|serbia|ukraine|bulgaria|nordics|sweden|denmark|norway|finland|australia|new\s+zealand|apac|asia|india|philippines|singapore|japan|korea|israel|uae|dubai|abu\s+dhabi|hong\s+kong|south\s+africa|washington\s+d\.?c\.?|california|new\s+york|texas|london|berlin|toronto|sydney|melbourne)\b/i.test(
+      combinedHeader
+    );
+
+  if (foreignLocLock && !mentionsBrazil && !/\b(latam|latin\s+america|south\s+america)\b/i.test(combinedHeader)) {
+    return { eligible: false, tier: 'global_remoto' };
+  }
+
+  // Bloqueio de vagas LATAM restritas exclusivamente a outro país da América Latina (ex: "Based in Argentina")
+  const singleLatamCountryLoc =
+    /\b(argentina|mexico|colombia|chile|peru|uruguay|costa\s+rica)\b/i.test(normLoc) &&
+    !/\b(brazil|brasil|latam|latin\s+america)\b/i.test(normLoc);
+  const singleLatamCountryBody =
+    /\b(based\s+in|reside\s+in|located\s+in|living\s+in|residents\s+of|only\s+in)\s+(argentina|mexico|colombia|chile|peru|uruguay|costa\s+rica|the\s+us|the\s+united\s+states|united\s+states|usa|canada|uk|the\s+uk|europe|germany|australia|india|spain|serbia)\b/i.test(
+      normDesc
+    ) ||
+    /\bheadquarters:\s*(remote\s*[-–,;]\s*)?(argentina|mexico|usa|united\s+states|washington|uk|europe|germany|australia|canada|abu\s+dhabi|singapore|india)\b/i.test(
+      normDesc
+    ) ||
+    /\b(u\.?s\.?\s+citizenship|us\s+work\s+authorization|authorized\s+to\s+work\s+in\s+the\s+(us|united\s+states|uk|eu|canada|australia)|must\s+be\s+located\s+in\s+(the\s+)?(us|usa|uk|canada|eu|europe))\b/i.test(
+      normDesc
+    );
+
+  if ((singleLatamCountryLoc || singleLatamCountryBody) && !/\b(brazil|brasil)\b/i.test(normLoc)) {
+    return { eligible: false, tier: 'global_remoto' };
+  }
+
+  if (mentionsBrazil || mentionsLatam) {
+    return { eligible: true, tier: 'latam_br' };
+  }
+
+  if (/\b(worldwide|anywhere\s+in\s+the\s+world|work\s+from\s+anywhere|global\s+remote|remote\s*-\s*global)\b/i.test(combinedHeader)) {
+    return { eligible: true, tier: 'global_remoto' };
+  }
+
+  return { eligible: false, tier: 'global_remoto' };
 }
 
 /**
  * Lista negra de senioridade executiva/alta no título
  */
 export function isExecutiveOrSeniorTitle(title: string): boolean {
-  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|iii)\b/i.test(
+  return /\b(staff|principal|director|diretor|diretora|head|lead|líder|lider|senior|sênior|sr\.?|especialista|specialist|manager|gerente|coordenador|coordenadora|coordinator|supervisor|supervisora|vp|vice\s+president|chief|architect|arquiteto|iii)\b/i.test(
     title
   );
 }
@@ -668,21 +923,21 @@ export function classifyJobCategories(title: string, description: string = ''): 
     categories.push('inteligencia_mercado');
   }
   if (
-    /\b(crm|revops|revenue\s+operations|sales\s+ops|sales\s+operations|opera[çc][õo]es\s+comerciais|hubspot|salesforce|pipedrive|rd\s+station|implanta[çc][ãa]o|onboarding|implementation|customer\s+success|sucesso\s+do\s+cliente|cs\s+ops|ativac[ãa]o)\b/i.test(
+    /\b(crm|revops|revenue\s+operations|sales\s+ops|sales\s+operations|opera[çc][õo]es\s+comerciais|hubspot|salesforce|pipedrive|rd\s+station|implanta[çc][ãa]o|onboarding|implementation|customer\s+success|sucesso\s+do\s+cliente|cs\s+ops|ativac[ãa]o|chatwoot|zendesk)\b/i.test(
       combined
     )
   ) {
     categories.push('crm_revops_onboarding');
   }
   if (
-    /\b(dados|data|bi\b|business\s+intelligence|power\s+bi|looker|metabase|tableau|analytics|sql|etl|indicadores|kpis?|dashboard)\b/i.test(
+    /\b(dados|data|bi\b|business\s+intelligence|power\s+bi|looker|metabase|tableau|analytics|sql|etl|indicadores|kpis?|dashboard|ga4|tag\s+manager)\b/i.test(
       combined
     )
   ) {
     categories.push('dados_bi');
   }
   if (
-    /\b(n8n|zapier|make\.com|integromat|automa[çc][ãa]o|automation|rpa|ai\s+ops|aiops|agentes\s+de\s+ia|ai\s+agents|llm|openai|prompt|webhooks)\b/i.test(
+    /\b(n8n|zapier|make\.com|integromat|automa[çc][ãa]o|automation|rpa|agentes\s+de\s+ia|ai\s+agents|ai\s+operations|llm|openai|gemini|prompt|webhooks)\b/i.test(
       combined
     )
   ) {
@@ -696,7 +951,7 @@ export function classifyJobCategories(title: string, description: string = ''): 
 }
 
 /**
- * Identifica se a vaga é afirmativa (PCD, gênero, raça/etnia, 50+, etc.)
+ * Identifica se a vaga é afirmativa exclusiva (PCD, gênero, raça/etnia, 50+, etc.)
  */
 export function detectAffirmative(
   title: string,
@@ -722,6 +977,97 @@ export function detectAffirmative(
   return { isAffirmative: false };
 }
 
+/**
+ * Detecta exigência obrigatória de Espanhol avançado/fluente (ignorando quando for apenas desejável/diferencial).
+ */
+export function detectSpanishRequirement(title: string, description: string = ''): boolean {
+  const normTitle = normalizeGeoText(title);
+  const normDesc = normalizeGeoText(description);
+
+  if (/\b(bilingue\s+espanhol|spanish\s+bilingual|bilingual\s*\(?spanish|espanhol\s+obrigatorio)\b/i.test(`${normTitle} ${normDesc}`)) {
+    return true;
+  }
+
+  const sentences = normDesc.split(/[.\n;•]+/);
+  for (const s of sentences) {
+    if (!/\b(espanhol|spanish|espanol)\b/i.test(s)) continue;
+    if (/\b(desejavel|diferencial|nice\s+to\s+have|plus|bonus|sera\s+um\s+diferencial|opcional)\b/i.test(s)) {
+      continue;
+    }
+    if (/\b(avancado|fluente|fluent|fluency|advanced|obrigatorio|mandatory|required|necessario|indispensavel|c1|c2|b2)\b/i.test(s)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Detecta requisitos presenciais ou viagens ocultas no texto de vagas marcadas como Remoto ("Falso Remoto").
+ */
+export function detectHiddenOnsiteWarning(
+  workplaceType: WorkplaceType,
+  title: string,
+  description: string = ''
+): { hasWarning: boolean; reason?: string } {
+  if (workplaceType !== 'remoto') return { hasWarning: false };
+  const norm = normalizeGeoText(`${title} ${description}`);
+
+  if (
+    /\b(encontros\s+presenciais|ida[s]?\s+presencia(l|is)|ida[s]?\s+ao\s+escritorio|[1-5]\s*x\s*(por|na)\s*semana\s*(presencial|no\s+escritorio)|regime\s+hibrido|modelo\s+hibrido|atuar\s+presencialmente|residir\s+(obrigatoriamente\s+)?em\s+[a-z]+)\b/i.test(
+      norm
+    )
+  ) {
+    return { hasWarning: true, reason: 'Presencial/Híbrido citado no texto' };
+  }
+
+  if (/\b(disponibilidade\s+para\s+viagens|viagens\s+(pontuais|frequentes|esporadicas|nacionais)|eventos\s+presenciais)\b/i.test(norm)) {
+    return { hasWarning: true, reason: 'Viagens / eventos pontuais' };
+  }
+
+  return { hasWarning: false };
+}
+
+export function detectContractType(
+  title: string,
+  description: string = '',
+  rawJobType: string = ''
+): ContractType | undefined {
+  const jt = normalizeGeoText(rawJobType);
+  if (jt.includes('autonomous') || jt.includes('legal_entity') || jt === 'pj' || jt === 'contractor') return 'pj';
+  if (jt.includes('temporary')) return 'temporario';
+  if (jt.includes('intern') || jt.includes('trainee')) return 'estagio';
+  if (jt.includes('effective') || jt === 'clt') return 'clt';
+
+  const normTitle = normalizeGeoText(title);
+  const normDesc = normalizeGeoText(description.slice(0, 1200));
+  if (/\b(temporari[oa]|cobertura\s+de\s+licenca|contrato\s+determinado)\b/i.test(normTitle)) return 'temporario';
+  if (/\b(estagio|estagiari[oa]|internship)\b/i.test(normTitle)) return 'estagio';
+  if (/\b(modelo\s+pj|contratacao\s+pj|contrato\s+pj|\bpj\b|pessoa\s+juridica|autonomo)\b/i.test(`${normTitle} ${normDesc}`)) {
+    return 'pj';
+  }
+  if (/\b(\bclt\b|efetivo)\b/i.test(`${normTitle} ${normDesc}`)) {
+    return 'clt';
+  }
+  return undefined;
+}
+
+export function detectCrmTrack(title: string, description: string = ''): CrmTrack | undefined {
+  const norm = normalizeGeoText(`${title} ${description}`);
+  if (!/\b(crm|hubspot|salesforce|pipedrive|rd\s+station|klaviyo|braze|chatwoot)\b/i.test(norm)) {
+    return undefined;
+  }
+  if (
+    /\b(reguas?\s+de\s+relacionamento|email\s+marketing|push|sms|rfm|lifecycle|braze|klaviyo|sfmc|marketing\s+cloud|campanhas\s+de\s+retencao)\b/i.test(
+      norm
+    ) &&
+    !/\b(webhooks?|n8n|sales\s+ops|revops|integrac(ao|oes)\s+via\s+api)\b/i.test(norm)
+  ) {
+    return 'crm_marketing';
+  }
+  return 'crm_tecnico';
+}
+
 export function calculateDaysOpen(publishedAtIso: string): number {
   const publishedDate = new Date(publishedAtIso);
   if (isNaN(publishedDate.getTime())) return 1;
@@ -731,24 +1077,46 @@ export function calculateDaysOpen(publishedAtIso: string): number {
 }
 
 export function detectSeniority(title: string, description: string = ''): SeniorityLevel {
-  const t = title.toLowerCase();
-  const text = `${title} ${description}`.toLowerCase();
+  const normTitle = normalizeGeoText(title);
+  const normDesc = normalizeGeoText(description);
+
+  if (/\b(estagio|estagiari[oa]|intern|internship|trainee)\b/i.test(normTitle)) return 'estagio';
 
   if (isExecutiveOrSeniorTitle(title)) {
     if (
-      /\b(sênior|senior|sr\.?|iii)\b/i.test(t) &&
-      !/\b(staff|principal|director|diretor|head|lead|líder|especialista|manager|gerente|coordenador)\b/i.test(t)
+      /\b(senior|sr\.?|iii|nivel\s+3|n3)\b/i.test(normTitle) &&
+      !/\b(staff|principal|director|diretor|diretora|head|lead|lider|especialista|specialist|manager|gerente|coordenador|coordenadora|supervisor|supervisora|vp|chief)\b/i.test(
+        normTitle
+      )
     ) {
       return 'senior';
     }
     return 'especialista';
   }
-  if (/\b(estágio|estagio|estagiário|estagiario|intern|trainee)\b/i.test(t)) return 'estagio';
-  if (/\b(júnior|junior|jr\.?|assistente|auxiliar|entry|associate|nível 1|n1)\b/i.test(t)) return 'junior';
-  if (/\b(pleno|pl\.?|mid|ii|nível 2|n2)\b/i.test(t)) return 'pleno';
 
-  if (text.includes('júnior') || text.includes('junior')) return 'junior';
-  if (text.includes('sênior') || text.includes('senior')) return 'senior';
+  if (
+    /\b(junior|jr\.?|assistente|auxiliar|entry[\s-]*level|associate|nivel\s+1|\bn1\b)\b/i.test(normTitle) ||
+    /\b(analista|analyst|consultor)\s+i\b/i.test(normTitle)
+  ) {
+    return 'junior';
+  }
+
+  if (/\b(pleno|pl\.?|mid[\s-]*level|\bii\b|nivel\s+2|\bn2\b)\b/i.test(normTitle)) {
+    return 'pleno';
+  }
+
+  // Se o título não explicita Júnior/Pleno, avalia sinais fortes na descrição completa
+  if (
+    /\b([5-9]|1\d)\+?\s*(anos|years)\s+(de\s+)?(experiencia|experience|vivencia)\b/i.test(normDesc) ||
+    /\bexperiencia\s+senior\b/i.test(normDesc)
+  ) {
+    return 'senior';
+  }
+
+  if (/\b(junior|entry\s+level|ate\s+2\s+anos|1\s+a\s+2\s+anos)\b/i.test(normDesc)) {
+    return 'junior';
+  }
+
   return 'pleno';
 }
 

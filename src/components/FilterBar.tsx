@@ -28,6 +28,7 @@ import {
   Crown,
   BookmarkX,
   Loader2,
+  Languages,
 } from 'lucide-react';
 import { ATSPlatform, FilterState, NicheCategory, SeniorityLevel, WorkplaceType } from '../types';
 
@@ -63,8 +64,9 @@ const DAY_OPTIONS = [
 const PLATFORM_OPTIONS: Array<{ value: 'todas' | ATSPlatform; label: string }> = [
   { value: 'todas', label: 'Todas as Fontes' },
   { value: 'gupy', label: 'Gupy' },
-  { value: 'greenhouse', label: 'Greenhouse' },
   { value: 'inhire', label: 'InHire' },
+  { value: 'ashby', label: 'Ashby' },
+  { value: 'greenhouse', label: 'Greenhouse' },
   { value: 'lever', label: 'Lever' },
   { value: 'remotive_intl', label: 'Internacional' },
 ];
@@ -195,7 +197,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       let nextPlatform = prev.platform;
       if (scope === 'nacional' && prev.platform === 'remotive_intl') {
         nextPlatform = 'todas';
-      } else if (scope === 'internacional' && prev.platform !== 'todas' && prev.platform !== 'remotive_intl') {
+      } else if (
+        scope === 'internacional' &&
+        prev.platform !== 'todas' &&
+        prev.platform !== 'remotive_intl' &&
+        prev.platform !== 'ashby' &&
+        prev.platform !== 'greenhouse'
+      ) {
         nextPlatform = 'todas';
       }
       return {
@@ -211,7 +219,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       let nextScope = prev.scopeFilter;
       if (platform === 'remotive_intl' && prev.scopeFilter === 'nacional') {
         nextScope = 'todas';
-      } else if (platform !== 'todas' && platform !== 'remotive_intl' && prev.scopeFilter === 'internacional') {
+      } else if (
+        platform !== 'todas' &&
+        platform !== 'remotive_intl' &&
+        platform !== 'ashby' &&
+        platform !== 'greenhouse' &&
+        prev.scopeFilter === 'internacional'
+      ) {
         nextScope = 'todas';
       }
       return {
@@ -233,6 +247,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       selectedSeniorities: [],
       hideExecutiveSenior: false,
       hideSavedJobs: false,
+      hideSpanishRequired: false,
       platform: 'todas',
       selectedStacks: [],
       hideAffirmative: false,
@@ -461,6 +476,28 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
                 <strong className="text-amber-400 block mb-1">Ocultar Vagas Salvas</strong>
                 Esconde da listagem as vagas que você já favoritou ou já se candidatou em "Minhas Vagas", permitindo focar exclusivamente em oportunidades não exploradas.
+              </div>
+            </div>
+
+            {/* Sem Espanhol Obrigatório + Tooltip */}
+            <div className="relative group flex items-center gap-1 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+              <button
+                type="button"
+                onClick={() => setFilters(prev => ({ ...prev, hideSpanishRequired: !prev.hideSpanishRequired }))}
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                  filters.hideSpanishRequired
+                    ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/70'
+                }`}
+              >
+                <Languages className={`w-3.5 h-3.5 ${filters.hideSpanishRequired ? 'text-slate-950' : 'text-amber-400'}`} />
+                <span>Sem Espanhol</span>
+                <HelpCircle className={`w-3.5 h-3.5 ${filters.hideSpanishRequired ? 'text-slate-950/80' : 'text-slate-400'}`} />
+              </button>
+
+              <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150 absolute bottom-full right-0 mb-2 w-72 p-3 rounded-xl bg-slate-900 border border-slate-700 text-xs text-slate-200 shadow-2xl z-50 leading-relaxed">
+                <strong className="text-amber-400 block mb-1">Ocultar Espanhol Obrigatório</strong>
+                Oculta vagas LATAM/internacionais que exigem Espanhol avançado ou fluente como requisito obrigatório, mantendo vagas em Português, Inglês ou onde o Espanhol é apenas desejável.
               </div>
             </div>
 

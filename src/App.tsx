@@ -21,10 +21,18 @@ import { SEED_JOBS } from './engine/seedJobs';
 import {
   calculateDaysOpen,
   classifyJobCategories,
+  cleanJobDescription,
+  checkBrazilEligibility,
   detectSeniority,
   detectWorkplaceType,
   isBlacklistedTitle,
+  isRelevantCareerTitle,
+  isDisguisedTrap,
   detectAffirmative,
+  detectSpanishRequirement,
+  detectHiddenOnsiteWarning,
+  detectContractType,
+  detectCrmTrack,
   calculateDistanceKm,
   resolveCityCoords,
   reverseGeocodeCoords,
@@ -76,6 +84,7 @@ const DEFAULT_FILTERS: FilterState = {
   selectedSeniorities: [],
   hideExecutiveSenior: false,
   hideSavedJobs: false,
+  hideSpanishRequired: false,
   platform: 'todas',
   selectedStacks: [],
   hideAffirmative: false,
@@ -122,6 +131,7 @@ function loadStoredFilters(): FilterState {
       ...DEFAULT_FILTERS,
       ...parsed,
       onlyWithinRadiusOrRemote: Boolean(parsed.onlyWithinRadiusOrRemote),
+      hideSpanishRequired: Boolean(parsed.hideSpanishRequired),
       selectedWorkplaces: Array.isArray(parsed.selectedWorkplaces) ? parsed.selectedWorkplaces : [],
       selectedSeniorities: Array.isArray(parsed.selectedSeniorities) ? parsed.selectedSeniorities : [],
       selectedStacks: Array.isArray(parsed.selectedStacks) ? parsed.selectedStacks : [],
@@ -198,6 +208,7 @@ const SHORT_PLATFORM_LABELS: Record<string, string> = {
   remotive_intl: 'Internacional',
   greenhouse: 'Greenhouse',
   inhire: 'InHire',
+  ashby: 'Ashby',
   empregostec: 'EmpregosTec',
   lever: 'Lever',
 };
@@ -262,24 +273,43 @@ export const App: React.FC = () => {
   const [profile, setProfile] = useState<CandidateProfile>(() => loadStoredProfile());
 
   const [jobs] = useState<Job[]>(() => {
-    const enriched = SEED_JOBS.filter(j => !isBlacklistedTitle(j.title)).map(j => {
+    const enriched = SEED_JOBS.filter(
+      j =>
+        !isBlacklistedTitle(j.title) &&
+        isRelevantCareerTitle(j.title) &&
+        !isDisguisedTrap(j.title, j.description)
+    ).map(j => {
+      const cleanDesc = cleanJobDescription(j.description);
+      const isIntl = Boolean(j.isInternational || j.platform === 'remotive_intl');
+      const elig = checkBrazilEligibility(isIntl, j.title, j.location || '', cleanDesc);
       const categories =
         j.nicheCategories && j.nicheCategories.length > 0
           ? j.nicheCategories
-          : classifyJobCategories(j.title, j.description);
-      const affirmative = detectAffirmative(j.title, j.description);
-      const computedSeniority = detectSeniority(j.title, j.description);
-      const computedWorkplace: WorkplaceType = j.isInternational
+          : classifyJobCategories(j.title, cleanDesc);
+      const affirmative = detectAffirmative(j.title, cleanDesc);
+      const computedSeniority = detectSeniority(j.title, cleanDesc);
+      const computedWorkplace: WorkplaceType = isIntl
         ? 'remoto'
         : j.workplaceType === 'presencial' &&
           (j.location.trim().toLowerCase() === 'brasil' || j.location.trim().toLowerCase() === 'brazil')
         ? 'remoto'
         : j.workplaceType || detectWorkplaceType(j.title, j.location);
+      const onsiteWarn = isIntl
+        ? { hasWarning: false }
+        : detectHiddenOnsiteWarning(computedWorkplace, j.title, cleanDesc);
 
       return {
         ...j,
+        description: cleanDesc,
+        isInternational: isIntl,
+        geoEligibility: j.geoEligibility ?? elig.tier,
         seniority: computedSeniority,
         workplaceType: computedWorkplace,
+        contractType: j.contractType ?? detectContractType(j.title, cleanDesc),
+        crmTrack: j.crmTrack ?? detectCrmTrack(j.title, cleanDesc),
+        requiresSpanish: j.requiresSpanish ?? detectSpanishRequirement(j.title, cleanDesc),
+        hasHiddenOnsiteWarning: j.hasHiddenOnsiteWarning ?? onsiteWarn.hasWarning,
+        hiddenOnsiteReason: j.hiddenOnsiteReason ?? onsiteWarn.reason,
         daysOpen: calculateDaysOpen(j.publishedAt),
         isAffirmative: j.isAffirmative ?? affirmative.isAffirmative,
         affirmativeReason: j.affirmativeReason ?? affirmative.reason,
@@ -852,8 +882,11 @@ export const App: React.FC = () => {
           }
         }
 
-        // 2. Filtro Sem Afirmativas
+        // 2. Filtro Sem Afirmativas e Sem Espanhol Obrigatório
         if (filters.hideAffirmative && job.isAffirmative) {
+          return false;
+        }
+        if (filters.hideSpanishRequired && job.requiresSpanish) {
           return false;
         }
 
@@ -1179,6 +1212,18 @@ export const App: React.FC = () => {
                   >
                     <EyeOff className="w-3 h-3" />
                     <span>Sem Afirmativas</span>
+                    <X className="w-3 h-3 ml-0.5 opacity-70" />
+                  </button>
+                )}
+
+                {filters.hideSpanishRequired && (
+                  <button
+                    type="button"
+                    onClick={() => setFilters(prev => ({ ...prev, hideSpanishRequired: false }))}
+                    className="text-[11px] px-2 py-0.5 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-md flex items-center gap-1 hover:bg-amber-500/25 transition-all"
+                  >
+                    <EyeOff className="w-3 h-3" />
+                    <span>Sem Espanhol Obrigatório</span>
                     <X className="w-3 h-3 ml-0.5 opacity-70" />
                   </button>
                 )}

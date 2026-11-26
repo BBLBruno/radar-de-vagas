@@ -18,6 +18,7 @@ import {
   Check,
   X,
   Plus,
+  AlertTriangle,
 } from 'lucide-react';
 import { AppliedJobInfo, Job } from '../types';
 
@@ -223,6 +224,10 @@ const PLATFORM_CONFIG: Record<string, { label: string; badgeClass: string }> = {
     label: 'InHire',
     badgeClass: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
   },
+  ashby: {
+    label: 'Ashby',
+    badgeClass: 'bg-violet-500/15 text-violet-300 border-violet-500/30',
+  },
   empregostec: {
     label: 'EmpregosTec',
     badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
@@ -308,11 +313,14 @@ export const JobCard: React.FC<JobCardProps> = ({
   const topBadges: JobBadgeItem[] = [];
 
   if (job.isInternational) {
+    const isLatamTier = job.geoEligibility === 'latam_br';
     topBadges.push({
       id: 'workplace_intl',
-      label: 'Intl • Remoto',
+      label: isLatamTier ? 'LATAM / Brasil' : 'Global • Verificar País',
       icon: <Globe className="w-3 h-3" />,
-      className: 'bg-teal-500/15 text-teal-300 border-teal-500/30 font-semibold',
+      className: isLatamTier
+        ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 font-semibold'
+        : 'bg-teal-500/15 text-teal-300 border-teal-500/30 font-semibold',
     });
   } else if (job.workplaceType === 'remoto') {
     topBadges.push({
@@ -343,6 +351,51 @@ export const JobCard: React.FC<JobCardProps> = ({
     icon: <Briefcase className="w-3 h-3" />,
     className: `${seniorityBadge.className} font-semibold`,
   });
+
+  if (job.requiresSpanish) {
+    topBadges.push({
+      id: 'spanish_req',
+      label: 'Espanhol Obrigatório',
+      icon: <AlertTriangle className="w-3 h-3" />,
+      className: 'bg-amber-500/15 text-amber-300 border-amber-500/35 font-semibold',
+    });
+  }
+
+  if (job.hasHiddenOnsiteWarning) {
+    topBadges.push({
+      id: 'onsite_warn',
+      label: job.hiddenOnsiteReason || 'Presencial/Viagem no texto',
+      icon: <AlertTriangle className="w-3 h-3" />,
+      className: 'bg-rose-500/15 text-rose-300 border-rose-500/35 font-semibold',
+    });
+  }
+
+  if (job.contractType === 'pj' || job.contractType === 'temporario' || job.contractType === 'clt') {
+    const contractLabels: Record<string, { label: string; cls: string }> = {
+      pj: { label: 'PJ', cls: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30 font-semibold' },
+      temporario: { label: 'Temporário', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/30 font-semibold' },
+      clt: { label: 'CLT', cls: 'bg-slate-800/90 text-slate-300 border-slate-700/80 font-medium' },
+    };
+    const cfg = contractLabels[job.contractType];
+    if (cfg) {
+      topBadges.push({
+        id: `contract_${job.contractType}`,
+        label: cfg.label,
+        className: cfg.cls,
+      });
+    }
+  }
+
+  if (job.crmTrack) {
+    topBadges.push({
+      id: `crm_${job.crmTrack}`,
+      label: job.crmTrack === 'crm_tecnico' ? 'CRM Técnico' : 'CRM Marketing',
+      className:
+        job.crmTrack === 'crm_tecnico'
+          ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30 font-medium'
+          : 'bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-500/30 font-medium',
+    });
+  }
 
   topBadges.push({
     id: `freshness_${job.daysOpen}`,
@@ -421,7 +474,12 @@ export const JobCard: React.FC<JobCardProps> = ({
         <div className="mb-3 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/90 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 text-xs text-slate-300 truncate">
             <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-            <span className="truncate font-medium">{cleanLocation}</span>
+            <span className="truncate font-medium">
+              {cleanLocation}
+              {!job.isInternational && job.distanceFromUserKm !== undefined && job.distanceFromUserKm > 0
+                ? ` • ~${job.distanceFromUserKm}km`
+                : ''}
+            </span>
           </div>
 
           {(job.fitScore || 0) >= 60 && (

@@ -36,10 +36,17 @@ export const CrawlerControlModal: React.FC<CrawlerControlModalProps> = ({ jobs }
     },
     {
       id: 'src_inhire',
-      name: 'InHire',
-      type: 'ATS Tech & Consultorias BR',
-      description: 'Focado em startups, scale-ups e consultorias de negócios, operações, dados e transformação digital no Brasil.',
+      name: 'InHire (API Direta)',
+      type: '20 Scale-ups & Consultorias BR',
+      description: 'Integração direta e hidratada com Cora, Contabilizei, Olist, Conta Azul, Sympla, Loggi, Dock, Cobli, Qive, Alice, Pier e mais.',
       count: countByPlatform('inhire'),
+    },
+    {
+      id: 'src_ashby',
+      name: 'Ashby (BR & Global)',
+      type: 'ATS Moderno • Fast-Apply',
+      description: 'Integração direta com Nubank no Brasil e scale-ups globais de automação/CRM (n8n, Zapier, Notion, Supabase, Twenty, Attio).',
+      count: countByPlatform('ashby'),
     },
     {
       id: 'src_lever_br',

@@ -16,6 +16,7 @@ import {
   Compass,
   Bookmark,
   BookmarkCheck,
+  AlertTriangle,
 } from 'lucide-react';
 import { Job, NicheCategory } from '../types';
 
@@ -47,6 +48,7 @@ const PLATFORM_APPLICATION_TIPS: Record<string, string> = {
   gupy: 'Portal Gupy: Mantenha seu currículo e perfil Gupy preenchidos e utilize as palavras-chave identificadas abaixo no campo de experiências para elevar seu posicionamento no ranking.',
   greenhouse: 'Greenhouse ATS: Formulário rápido de página única. Anexe seu currículo em PDF e cole a Carta de Apresentação gerada pelo Copiloto no campo "Cover Letter / Additional Information".',
   inhire: 'InHire ATS: Candidatura direta sem necessidade de criar conta longa. Preencha seu LinkedIn, anexe o PDF do currículo e destaque seus cases de operação e dados.',
+  ashby: 'Ashby ATS: Formulário moderno de página única usado por scale-ups (Nubank, n8n, Zapier, Notion). Anexe o PDF do currículo e cole o pitch do Copiloto.',
   lever: 'Lever ATS: Página direta de aplicação. Anexe seu PDF no topo para autopreenchimento e cole o pitch do Copiloto no bloco final de comentários.',
   remotive_intl: 'Vaga Internacional 100% Remota: Verifique os requisitos de idioma (geralmente Inglês ou Espanhol) e destaque sua experiência com ferramentas globais (CRM, SQL, BI, N8N) e comunicação assíncrona.',
 };
@@ -102,7 +104,9 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
               {job.isInternational ? (
                 <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-teal-500/15 text-teal-300 border border-teal-500/30 flex items-center gap-1.5">
                   <Globe className="w-3.5 h-3.5" />
-                  Internacional • 100% Remoto
+                  {job.geoEligibility === 'latam_br'
+                    ? 'Internacional • LATAM / Brasil'
+                    : 'Internacional • Global (Verificar País)'}
                 </span>
               ) : job.workplaceType === 'remoto' ? (
                 <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
@@ -120,6 +124,18 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
                 <Briefcase className="w-3.5 h-3.5" />
                 {SENIORITY_NAMES[job.seniority] || job.seniority}
               </span>
+
+              {job.contractType && (
+                <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 uppercase">
+                  {job.contractType === 'temporario' ? 'Temporário' : job.contractType}
+                </span>
+              )}
+
+              {job.crmTrack && (
+                <span className="px-2.5 py-1 text-xs font-semibold rounded-md bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                  {job.crmTrack === 'crm_tecnico' ? 'CRM Técnico / Ops' : 'CRM Marketing / Réguas'}
+                </span>
+              )}
 
               <span className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-800 text-slate-300 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-slate-400" />
@@ -169,6 +185,38 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
 
         {/* Scrollable Body Content (Maior espaço vertical e organização em blocos) */}
         <div className="flex-1 p-6 overflow-y-auto space-y-6">
+          {(job.requiresSpanish || job.hasHiddenOnsiteWarning || (job.isInternational && job.geoEligibility === 'global_remoto')) && (
+            <div className="space-y-2">
+              {job.requiresSpanish && (
+                <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs sm:text-sm text-amber-200 flex items-start gap-2.5">
+                  <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-amber-300">Alerta de Idioma:</strong> A descrição indica exigência de{' '}
+                    <strong>Espanhol avançado ou fluente</strong> para esta posição.
+                  </span>
+                </div>
+              )}
+              {job.hasHiddenOnsiteWarning && (
+                <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs sm:text-sm text-rose-200 flex items-start gap-2.5">
+                  <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-rose-300">Atenção à Modalidade ({job.hiddenOnsiteReason}):</strong> Apesar
+                    do selo Remoto no ATS, o texto menciona encontros presenciais, viagens ou residência específica.
+                  </span>
+                </div>
+              )}
+              {job.isInternational && job.geoEligibility === 'global_remoto' && (
+                <div className="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-xs sm:text-sm text-cyan-200 flex items-start gap-2.5">
+                  <Globe className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-cyan-300">Remoto Global (Worldwide):</strong> Não há trava de país nos EUA/UE
+                    detectada no anúncio, mas confirme no formulário se a empresa contrata via Contractor/EOR no Brasil.
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* 1. Grid de Resumo Executivo da Vaga (4 Cartões de Informação) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
