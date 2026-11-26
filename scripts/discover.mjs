@@ -80,24 +80,40 @@ function normalizeGeoText(text = '') {
 /**
  * Decodifica entidades HTML ANTES de remover as tags para nunca vazar `<div class="content-intro">`
  */
+const NAMED_HTML_ENTITIES = {
+  nbsp: ' ', quot: '"', apos: "'", lt: '<', gt: '>',
+  aacute: 'á', agrave: 'à', acirc: 'â', atilde: 'ã', auml: 'ä',
+  eacute: 'é', egrave: 'è', ecirc: 'ê', iacute: 'í', icirc: 'î',
+  oacute: 'ó', ograve: 'ò', ocirc: 'ô', otilde: 'õ', ouml: 'ö',
+  uacute: 'ú', ugrave: 'ù', ucirc: 'û', uuml: 'ü', ccedil: 'ç', ntilde: 'ñ',
+  Aacute: 'Á', Agrave: 'À', Acirc: 'Â', Atilde: 'Ã', Eacute: 'É', Ecirc: 'Ê',
+  Iacute: 'Í', Oacute: 'Ó', Ocirc: 'Ô', Otilde: 'Õ', Uacute: 'Ú', Ccedil: 'Ç', Ntilde: 'Ñ',
+  ordm: 'º', ordf: 'ª', deg: '°', rsquo: "'", lsquo: "'", ldquo: '"', rdquo: '"',
+  ndash: '-', mdash: '-', hellip: '...', bull: '•', middot: '·', euro: '€', copy: '©', reg: '®', trade: '™',
+  iexcl: '¡', iquest: '¿', zwj: '\u200D', zwnj: '', shy: '', laquo: '«', raquo: '»',
+};
+
+function decodeHtmlEntities(raw = '') {
+  let text = String(raw || '');
+  for (let pass = 0; pass < 2; pass++) {
+    text = text
+      .replace(/&amp;/gi, '&')
+      .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
+        const n = parseInt(hex, 16);
+        return Number.isFinite(n) && n > 31 ? String.fromCodePoint(n) : ' ';
+      })
+      .replace(/&#(\d+);/g, (_, code) => {
+        const n = Number(code);
+        return Number.isFinite(n) && n > 31 ? String.fromCodePoint(n) : ' ';
+      })
+      .replace(/&([a-zA-Z]+);/g, (match, name) => NAMED_HTML_ENTITIES[name] ?? NAMED_HTML_ENTITIES[name.toLowerCase()] ?? match);
+  }
+  return text;
+}
+
 export function stripHtml(raw = '') {
   if (!raw) return '';
-  return String(raw)
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;|&#8217;/gi, "'")
-    .replace(/&#8211;|&#8212;/g, '-')
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
-    .replace(/&amp;/gi, '&')
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => {
-      const code = parseInt(hex, 16);
-      return Number.isFinite(code) && code > 31 ? String.fromCharCode(code) : ' ';
-    })
-    .replace(/&#(\d+);/g, (_, dec) => {
-      const code = Number(dec);
-      return Number.isFinite(code) && code > 31 ? String.fromCharCode(code) : ' ';
-    })
+  return decodeHtmlEntities(raw)
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<\/(p|div|li|h[1-6]|tr)>/gi, '\n')
@@ -519,9 +535,11 @@ function checkBrazilEligibility(isInternational, title = '', location = '', desc
 
   if (!isInternational) {
     const foreignNationalLeak =
-      /\b(miami|florida|new\s+york|manhattan|san\s+francisco|california|texas|bucharest|romania|london|united\s+kingdom|madrid|lisbon|portugal|berlin|germany|mexico\s+city|bogota|buenos\s+aires|santiago|warsaw|poland|us\s*\(|usa\b|united\s+states)\b/i.test(
+      (/\b(miami|florida|new\s+york|manhattan|san\s+francisco|california|texas|bucharest|romania|london|united\s+kingdom|madrid|lisbon|portugal|berlin|germany|mexico|cdmx|ciudad\s+de|bogota|colombia|buenos\s+aires|argentina|santiago|chile|lima|peru|montevideo|uruguay|warsaw|poland|us\s*\(|usa\b|united\s+states)\b/i.test(
         normLoc
-      ) && !/\b(brazil|brasil)\b/i.test(normLoc);
+      ) ||
+        /,\s*(mx|ar|co|cl|pe|uy|us|pt|es|gb|uk|de)\s*$/i.test(normLoc)) &&
+      !/\b(brazil|brasil)\b/i.test(normLoc);
 
     return { eligible: !foreignNationalLeak, tier: 'br_nacional' };
   }
@@ -712,6 +730,17 @@ function detectSpanishRequirement(title = '', description = '') {
 function detectHiddenOnsiteWarning(workplaceType, title = '', description = '') {
   if (workplaceType !== 'remoto') return { hasWarning: false };
   const norm = normalizeGeoText(`${title} ${description}`);
+
+  if (/\b(hibrido|hybrid|presencial)\b/i.test(normalizeGeoText(title))) {
+    return { hasWarning: true, reason: 'Híbrido/Presencial citado no título' };
+  }
+  if (
+    /\b(regime|modelo|formato)\s+(de\s+trabalho\s+)?(hibrido|presencial)\b|\b\d+\s*(x|vez|vezes)\s+(por|ao|na)\s+(semana|mes)\s+(no|ao|em)\s+(escritorio|presencial)/i.test(
+      norm
+    )
+  ) {
+    return { hasWarning: true, reason: 'Presencial/Híbrido citado no texto' };
+  }
 
   if (
     /\b(encontros\s+presenciais|ida[s]?\s+presencia(l|is)|ida[s]?\s+ao\s+escritorio|[1-5]\s*x\s*(por|na)\s*semana\s*(presencial|no\s+escritorio)|regime\s+hibrido|modelo\s+hibrido|atuar\s+presencialmente|residir\s+(obrigatoriamente\s+)?em\s+[a-z]+)\b/i.test(
